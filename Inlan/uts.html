@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UTS Jaringan Komputer Bagian 2 — Jawaban Singkat</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f7fb;color:#1d3042;font:16px/1.5 Arial, sans-serif}
+header{background:#155a96;color:white;text-align:center;padding:24px 14px}header h1{margin:0;font-size:clamp(1.35rem,3vw,2rem)}header p{margin:5px 0 0}
+main{max-width:950px;margin:20px auto;padding:0 14px 32px}.note{background:#fff7d8;padding:10px 14px;border-left:4px solid #e2b534;border-radius:6px;margin-bottom:14px}
+article{background:#fff;border:1px solid #cce7f8;border-radius:10px;margin:12px 0;overflow:hidden}.q{display:flex;gap:10px;align-items:flex-start;background:#e5f4ff;padding:12px 14px;font-weight:bold;color:#124b7c}.n{background:#1675b9;color:#fff;border-radius:7px;min-width:30px;height:30px;display:grid;place-items:center}.a{padding:12px 16px}.a p{margin:0 0 7px}.a ol,.a ul{margin:5px 0;padding-left:22px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef2f5;padding:10px;border-radius:7px;margin:7px 0;font-size:.9rem;color:#15334c}code{font-family:Consolas,monospace}.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}.panel{border:1px dashed #88c9f0;border-radius:8px;padding:10px}.topology{display:block;width:100%;max-width:650px;margin:10px auto;background:#fbfdff;border:1px solid #cce7f8;border-radius:8px}footer{text-align:center;color:#607080;padding:18px;font-size:.9rem}
+@media(max-width:650px){.cols{grid-template-columns:1fr}.a{padding:11px}}
+@media print{body{background:#fff}article{break-inside:avoid}header{background:#155a96!important;color:#fff!important;print-color-adjust:exact}.q{print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header><h1>UTS Jaringan Komputer — Bagian 2</h1><p>Jawaban Esai Singkat • Mudah Diingat</p></header>
+<main>
+<div class="note"><strong>Catatan:</strong> Perintah Cisco dapat berbeda sesuai model perangkat. Gunakan hanya pada perangkat yang Anda berwenang kelola.</div>
+
+<article><div class="q"><span class="n">1</span><span>Ketika seorang admin jaringan diberikan piranti switch yang sudah dikonfigurasi tetapi tidak mengetahui password untuk masuk dan mengedit konfigurasi, maka admin tersebut haruslah melakukan password recovery. Berikan langkah-langkah yang harus dikerjakan admin jaringan tersebut untuk bisa mengganti password piranti switch tersebut tanpa kehilangan konfigurasi lama yang sudah ada.</span></div><div class="a">
+<ol><li>Akses switch melalui kabel console dan restart.</li><li>Masuk boot loader/ROMMON sesuai petunjuk model.</li><li>Lewati sementara pemuatan startup-config sesuai prosedur resmi.</li><li>Boot switch dan muat konfigurasi lama bila diperlukan.</li><li>Ganti password, lalu simpan dengan <code>copy running-config startup-config</code>.</li></ol>
+<p><strong>Ingat:</strong> jangan menghapus startup-config.</p></div></article>
+
+<article><div class="q"><span class="n">2</span><span>Tuliskan tiga metode Frame Forwarding dalam proses Switching pada suatu switch, dan berikan sedikit penjelasan ringkas yang membedakan ketiganya.</span></div><div class="a"><ol><li><strong>Store-and-Forward:</strong> menerima seluruh frame dan memeriksa CRC; lebih aman, lebih lambat.</li><li><strong>Cut-Through:</strong> meneruskan setelah membaca MAC tujuan; cepat, pemeriksaan error terbatas.</li><li><strong>Fragment-Free:</strong> memeriksa 64 byte pertama sebelum meneruskan; kompromi antara kecepatan dan pemeriksaan.</li></ol></div></article>
+
+<article><div class="q"><span class="n">3</span><span>Jelaskan 3 permasalahan yang akan muncul jika kita menggunakan model redundancy pada switch block design namun tidak menerapkan Spanning Tree Protocol!</span></div><div class="a"><ol><li><strong>Layer 2 loop:</strong> frame berputar terus.</li><li><strong>Broadcast storm:</strong> broadcast membanjiri jaringan.</li><li><strong>MAC table instability:</strong> switch salah mempelajari lokasi MAC.</li></ol></div></article>
+
+<article><div class="q"><span class="n">4</span><span>Apakah yang dimaksud dengan inter-VLAN routing? Tuliskan 3 metode untuk melakukan inter-VLAN routing dan berikan penjelasan singkatnya.</span></div><div class="a"><p>Inter-VLAN routing adalah komunikasi antar-VLAN yang berbeda subnet.</p><ol><li><strong>Router-on-a-stick:</strong> satu port router dengan beberapa subinterface trunk.</li><li><strong>Layer 3 switch:</strong> routing memakai SVI tiap VLAN.</li><li><strong>Router interface terpisah:</strong> tiap VLAN memakai interface fisik router sendiri.</li></ol></div></article>
+
+<article><div class="q"><span class="n">5</span><span>Tuliskan urutan perintah konfigurasi untuk membuat VLAN nomor 10 dengan nama Mahasiswa.</span></div><div class="a"><pre><code>enable
+configure terminal
+vlan 10
+name Mahasiswa
+end
+copy running-config startup-config</code></pre></div></article>
+
+<article><div class="q"><span class="n">6</span><span>Tuliskan urutan perintah konfigurasi untuk memasukkan port Fa0/3 suatu switch menjadi anggota VLAN 20.</span></div><div class="a"><pre><code>enable
+configure terminal
+interface fa0/3
+switchport mode access
+switchport access vlan 20
+end
+copy running-config startup-config</code></pre></div></article>
+
+<article><div class="q"><span class="n">7</span><span>Tuliskan (5) lima langkah/perintah konfigurasi untuk mengkonfigurasi SSH pada switch dan mengaktifkannya sehingga switch bisa diakses secara remote.</span></div><div class="a"><pre><code>enable
+configure terminal
+hostname SW1
+ip domain-name kampus.local
+username admin privilege 15 secret SandiKuat123!
+crypto key generate rsa modulus 2048
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+end
+copy running-config startup-config</code></pre><p>Switch juga perlu IP manajemen dan gateway yang sesuai. Ganti contoh password dengan password kuat.</p></div></article>
+
+<article><div class="q"><span class="n">8</span><span>Tuliskan urutan perintah untuk konfigurasi subinterface fa0/1.20 untuk menjadi gateway vlan 20 dengan ip add 192.168.20.1/28 pada model router-on-a-stick inter-VLAN.</span></div><div class="a"><pre><code>enable
+configure terminal
+interface fa0/1
+no shutdown
+exit
+interface fa0/1.20
+encapsulation dot1Q 20
+ip address 192.168.20.1 255.255.255.240
+no shutdown
+end
+copy running-config startup-config</code></pre><p>Port switch menuju router harus trunk dan mengizinkan VLAN 20.</p></div></article>
+
+<article><div class="q"><span class="n">9</span><span>Bridge ID suatu switch terdiri dari tiga bagian nomor, apa sajakah itu?</span></div><div class="a"><ol><li>Bridge priority.</li><li>Extended System ID (ID VLAN).</li><li>MAC address switch.</li></ol></div></article>
+
+<article><div class="q"><span class="n">10</span><span>Tuliskan 4 (empat) metode pemberian IP DHCPv6 pada piranti jaringan, berikan penjelasan untuk masing-masing metode.</span></div><div class="a"><ol><li><strong>Stateful DHCPv6:</strong> server memberikan alamat IPv6.</li><li><strong>Stateless DHCPv6:</strong> alamat dibuat lewat SLAAC; DHCPv6 memberi info tambahan, misalnya DNS.</li><li><strong>SLAAC:</strong> host membuat alamat dari prefix Router Advertisement.</li><li><strong>Static:</strong> alamat diatur manual oleh administrator.</li></ol></div></article>
+
+<article><div class="q"><span class="n">11</span><span>Apakah tujuan penerapan per-VLAN spanning tree?</span></div><div class="a"><p>Menjalankan STP terpisah untuk setiap VLAN, sehingga root bridge dan jalur forwarding bisa diatur per VLAN sambil mencegah loop.</p></div></article>
+
+<article><div class="q"><span class="n">12</span><span>Apakah tujuan dari implementasi Etherchannel dalam topologi block switch?</span></div><div class="a"><p>Menggabungkan beberapa link fisik menjadi satu link logis untuk menambah bandwidth, menyediakan redundansi, dan membantu load balancing.</p></div></article>
+
+<article><div class="q"><span class="n">13</span><span>Apa yang dimaksud FHRP dalam konteks topologi ganda untuk mencegah single point failure?</span></div><div class="a"><p><strong>First Hop Redundancy Protocol</strong> menyediakan default gateway virtual. Jika gateway aktif gagal, perangkat cadangan mengambil alih. Contoh: HSRP, VRRP, GLBP.</p></div></article>
+
+<article><div class="q"><span class="n">14</span><span>Berikan penjelasan mengenai cara kerja HSRP?</span></div><div class="a"><p>Router berbagi IP virtual sebagai gateway. Router <strong>Active</strong> meneruskan trafik, router <strong>Standby</strong> siap menggantikan jika Active gagal. Hello digunakan untuk memantau status.</p></div></article>
+
+<article><div class="q"><span class="n">15</span><span>Tuliskan langkah-langkah konfigurasi HSRP! Sertakan gambar topologi sesuai dengan langkah-langkah konfigurasi yang anda buat.</span></div><div class="a">
+<p><strong>Topologi contoh:</strong> R1 Active (192.168.1.2), R2 Standby (192.168.1.3), gateway virtual 192.168.1.1. Semua terhubung ke LAN/VLAN yang sama.</p>
+<svg class="topology" viewBox="0 0 650 245" role="img" aria-label="Topologi HSRP: dua router ke switch dan PC">
+<rect x="10" y="10" width="630" height="225" rx="10" fill="#fbfdff" stroke="#cce7f8"/>
+<rect x="35" y="28" width="190" height="55" rx="9" fill="#e3f3ff" stroke="#2478b9" stroke-width="2"/>
+<text x="130" y="49" text-anchor="middle" font-size="15" font-weight="bold" fill="#124b7c">R1 — Active</text><text x="130" y="68" text-anchor="middle" font-size="12" fill="#124b7c">192.168.1.2</text>
+<rect x="425" y="28" width="190" height="55" rx="9" fill="#edf2f6" stroke="#617f99" stroke-width="2"/>
+<text x="520" y="49" text-anchor="middle" font-size="15" font-weight="bold" fill="#24445e">R2 — Standby</text><text x="520" y="68" text-anchor="middle" font-size="12" fill="#24445e">192.168.1.3</text>
+<line x1="130" y1="83" x2="260" y2="135" stroke="#55758d" stroke-width="3"/><line x1="520" y1="83" x2="390" y2="135" stroke="#55758d" stroke-width="3"/>
+<text x="325" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#124b7c">Virtual IP: 192.168.1.1</text>
+<rect x="230" y="132" width="190" height="40" rx="8" fill="#dceeff" stroke="#2478b9" stroke-width="2"/><text x="325" y="157" text-anchor="middle" font-size="15" font-weight="bold" fill="#124b7c">Switch / LAN</text>
+<line x1="325" y1="172" x2="325" y2="192" stroke="#55758d" stroke-width="3"/>
+<rect x="260" y="192" width="130" height="27" rx="7" fill="#fff" stroke="#617f99" stroke-width="2"/><text x="325" y="210" text-anchor="middle" font-size="12" fill="#24445e">PC: 192.168.1.10</text>
+</svg>
+<div class="cols">
+<div class="panel"><strong>R1 (Active)</strong><pre><code>enable
+conf t
+interface g0/0
+ip address 192.168.1.2 255.255.255.0
+standby 1 ip 192.168.1.1
+standby 1 priority 110
+standby 1 preempt
+no shutdown</code></pre></div>
+<div class="panel"><strong>R2 (Standby)</strong><pre><code>enable
+conf t
+interface g0/0
+ip address 192.168.1.3 255.255.255.0
+standby 1 ip 192.168.1.1
+standby 1 priority 100
+standby 1 preempt
+no shutdown</code></pre></div>
+</div>
+<p><strong>Verifikasi:</strong> <code>show standby brief</code>. Atur gateway PC ke <code>192.168.1.1</code>. Uji failover dengan mematikan interface Active secara terkontrol.</p>
+</div></article>
+<footer>Ringkasan belajar • Jaringan Komputer • Cisco IOS</footer>
+</main>
+</body>
+</html>

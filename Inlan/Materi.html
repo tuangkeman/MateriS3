@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ringkasan CCNA SRWE Modul 1-9</title>
+<style>
+:root{--bg:#f5f6fa;--cd:#fff;--tx:#1b2232;--mu:#586177;--a:#2563eb;--b:#d9730d;--ok:#15803d;--no:#dc2626;--bd:#dde1ec;--cb:#eef1f8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1320;--cd:#171e30;--tx:#e6e9f2;--mu:#9aa4bb;--a:#60a5fa;--b:#fb923c;--ok:#4ade80;--no:#f87171;--bd:#2a3350;--cb:#0b101c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1320;--cd:#171e30;--tx:#e6e9f2;--mu:#9aa4bb;--a:#60a5fa;--b:#fb923c;--ok:#4ade80;--no:#f87171;--bd:#2a3350;--cb:#0b101c;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--cd);z-index:10}
+header{padding:28px 18px 8px;max-width:860px;margin:auto}
+h1{margin:0 0 6px;font-size:1.7rem;line-height:1.2}
+header p{margin:0;color:var(--mu)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--cd);border-bottom:1px solid var(--bd);display:flex;gap:6px;padding:8px 12px;overflow-x:auto;margin-top:12px}
+nav a{flex:none;padding:4px 12px;border:1px solid var(--bd);border-radius:99px;color:var(--a);text-decoration:none;font-size:.88rem}
+main{max-width:860px;margin:auto;padding:0 14px 40px}
+section{background:var(--cd);border:1px solid var(--bd);border-left:5px solid var(--a);border-radius:10px;padding:6px 18px 16px;margin-top:22px}
+h2{font-size:1.3rem;margin:14px 0 4px}
+h3{font-size:1.03rem;margin:18px 0 4px;color:var(--a)}
+p,ul{margin:6px 0}ul{padding-left:20px}
+b{color:var(--b)}
+code{background:var(--cb);padding:1px 5px;border-radius:4px;font-size:.88em}
+pre{background:var(--cb);padding:10px 12px;border-radius:8px;overflow-x:auto;font-size:.8rem;line-height:1.5;margin:8px 0}
+pre code{background:none;padding:0}
+.tw{overflow-x:auto;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid var(--bd);padding:5px 9px;text-align:left;vertical-align:top}
+th{background:var(--cb)}
+.note{border-left:4px solid var(--b);background:var(--cb);padding:6px 12px;border-radius:0 8px 8px 0;margin:10px 0}
+svg{width:100%;height:auto;max-width:560px;display:block;margin:8px auto;background:var(--cb);border-radius:8px}
+svg text{fill:var(--tx);font:11px system-ui,sans-serif;text-anchor:middle}
+.n{fill:var(--cd);stroke:var(--a);stroke-width:2}.ln{stroke:var(--mu);stroke-width:2;fill:none}
+.pk{fill:var(--b)}.pb{fill:var(--a)}
+.seq{margin:8px 0;display:grid;gap:6px}
+.s{opacity:.2;transform:translateX(-10px);transition:.5s;border-left:4px solid var(--a);background:var(--cb);padding:5px 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+.s.on{opacity:1;transform:none}.s.l{border-color:var(--b)}
+@media(prefers-reduced-motion:reduce){.s{transition:none}}
+</style></head><body>
+<header><h1>Ringkasan CCNA SRWE Modul 1-9</h1>
+<p>Cisco NetAcad: Switching, Routing, dan Wireless Essentials. Teks <b>oranye tebal</b> = wajib diingat.</p></header>
+<nav><a href="#m1">Modul 1</a><a href="#m2">Modul 2</a><a href="#m3">Modul 3</a><a href="#m4">Modul 4</a><a href="#m5">Modul 5</a><a href="#m6">Modul 6</a><a href="#m7">Modul 7</a><a href="#m8">Modul 8</a><a href="#m9">Modul 9</a></nav>
+<main>
+
+<section id="m1"><h2>Modul 1: Konfigurasi Perangkat Dasar</h2>
+<h3>Mode perintah IOS</h3>
+<div class="tw"><table><tr><th>Mode</th><th>Prompt</th><th>Fungsi</th></tr>
+<tr><td>User EXEC</td><td><code>S1&gt;</code></td><td>Akses terbatas, hanya pantau dasar</td></tr>
+<tr><td>Privileged EXEC</td><td><code>S1#</code></td><td>Semua perintah <code>show</code>, simpan konfigurasi. Masuk: <code>enable</code></td></tr>
+<tr><td>Global Config</td><td><code>S1(config)#</code></td><td>Ubah konfigurasi. Masuk: <code>configure terminal</code></td></tr>
+<tr><td>Line Config</td><td><code>S1(config-line)#</code></td><td>Atur console, vty (akses jarak jauh)</td></tr>
+<tr><td>Interface Config</td><td><code>S1(config-if)#</code></td><td>Atur port / antarmuka</td></tr></table></div>
+<h3>Konfigurasi awal switch</h3>
+<pre><code>hostname S1                         ! nama perangkat
+enable secret kunci123              ! sandi mode privilese (terenkripsi)
+line console 0
+ password kunci456
+ login                              ! wajib sandi saat lewat console
+line vty 0 15
+ password kunci789
+ login                              ! wajib sandi saat remote
+service password-encryption         ! enkripsi semua sandi teks biasa
+banner motd #Dilarang masuk tanpa izin#
+interface vlan 1                    ! SVI untuk manajemen
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown                        ! aktifkan antarmuka
+ip default-gateway 192.168.1.1
+copy running-config startup-config  ! SIMPAN ke NVRAM</code></pre>
+<div class="note"><b>running-config</b> ada di RAM (hilang saat mati). <b>startup-config</b> ada di NVRAM (permanen). Lupa <code>copy running-config startup-config</code> = konfigurasi hilang saat reboot.</div>
+<h3>Akses jarak jauh</h3>
+<div class="tw"><table><tr><th>Metode</th><th>Keterangan</th></tr>
+<tr><td>Console</td><td>Kabel langsung, tanpa jaringan, untuk konfigurasi awal</td></tr>
+<tr><td>Telnet (port 23)</td><td><b>Tidak aman</b>, data dikirim teks biasa</td></tr>
+<tr><td>SSH (port 22)</td><td><b>Aman</b>, terenkripsi, <b>disarankan</b></td></tr></table></div>
+<pre><code>ip domain-name contoh.local
+crypto key generate rsa             ! buat kunci enkripsi (min. 1024 bit)
+username admin secret rahasia
+line vty 0 15
+ transport input ssh                ! hanya izinkan SSH
+ login local                        ! login pakai username lokal</code></pre>
+<h3>Port dan antarmuka</h3>
+<ul><li><b>Half duplex</b>: kirim atau terima bergantian (bisa tabrakan). <b>Full duplex</b>: kirim dan terima bersamaan (tanpa tabrakan).</li>
+<li>Default: <b>auto-negosiasi</b> kecepatan dan duplex. <b>Duplex tidak cocok</b> di dua ujung = performa buruk dan banyak error.</li>
+<li><b>Auto-MDIX</b>: port otomatis menyesuaikan kabel straight atau crossover.</li></ul>
+<h3>Konfigurasi router dan status antarmuka</h3>
+<pre><code>interface g0/0/0
+ description Ke LAN Utama
+ ip address 192.168.10.1 255.255.255.0
+ ipv6 address 2001:db8:acad:10::1/64
+ no shutdown</code></pre>
+<div class="tw"><table><tr><th>Status</th><th>Artinya</th></tr>
+<tr><td>Up / Up</td><td>Normal, Layer 1 dan 2 sehat</td></tr>
+<tr><td>Up / Down</td><td>Masalah <b>Layer 2</b> (enkapsulasi, clock rate, tidak ada keepalive)</td></tr>
+<tr><td>Down / Down</td><td>Masalah <b>Layer 1</b> (kabel putus atau lepas, perangkat ujung mati)</td></tr>
+<tr><td>Administratively down</td><td>Belum diberi <code>no shutdown</code></td></tr></table></div>
+<p>Verifikasi: <code>show ip interface brief</code>, <code>show running-config</code>, <code>show interfaces</code>, <code>show ip route</code> (kode <b>C</b> = terhubung langsung, <b>L</b> = alamat lokal).</p>
+</section>
+
+<section id="m2"><h2>Modul 2: Konsep Switching</h2>
+<h3>Frame Ethernet</h3>
+<div class="tw"><table><tr><th>Preamble</th><th>SFD</th><th>MAC Tujuan</th><th>MAC Sumber</th><th>Tipe</th><th>Data</th><th>FCS</th></tr>
+<tr><td>7 byte</td><td>1</td><td>6</td><td>6</td><td>2</td><td>46-1500</td><td>4</td></tr></table></div>
+<ul><li>Ukuran frame valid: <b>64 sampai 1518 byte</b> (tanpa preamble dan SFD). Di bawah 64 = <b>runt</b>, di atas 1518 = <b>jumbo / baby giant</b>.</li>
+<li><b>FCS</b> dipakai mendeteksi kerusakan data (frame rusak dibuang).</li>
+<li><b>MAC address</b> = 48 bit (12 digit heksadesimal). 3 byte pertama = <b>OUI</b> (kode pabrikan), 3 byte terakhir = nomor unik dari pabrikan.</li></ul>
+<div class="tw"><table><tr><th>Jenis</th><th>Alamat tujuan</th></tr>
+<tr><td>Unicast</td><td>Satu perangkat tertentu</td></tr>
+<tr><td>Broadcast</td><td><b>FF:FF:FF:FF:FF:FF</b>, semua perangkat dalam jaringan</td></tr>
+<tr><td>Multicast</td><td>Sekelompok perangkat. IPv4 mulai <b>01-00-5E</b>, IPv6 mulai <b>33-33</b></td></tr></table></div>
+<h3>Cara switch bekerja (animasi)</h3>
+<svg viewBox="0 0 360 110"><path class="ln" d="M45,55H315"/>
+<rect class="n" x="10" y="40" width="40" height="30" rx="5"/><text x="30" y="59">PC-A</text>
+<rect class="n" x="160" y="35" width="40" height="40" rx="5"/><text x="180" y="59">SW</text>
+<rect class="n" x="310" y="40" width="40" height="30" rx="5"/><text x="330" y="59">PC-B</text>
+<text x="180" y="100">PC-A kirim frame ke PC-B. Switch mencatat MAC PC-A, lalu meneruskan.</text>
+<circle r="6" class="pk"><animateMotion dur="3s" repeatCount="indefinite" path="M45,55L315,55"/></circle></svg>
+<div class="seq"><div class="s">1. Frame masuk ke port. Switch <b>belajar</b>: catat <b>MAC sumber</b> + nomor port ke tabel MAC.</div>
+<div class="s">2. Switch cek <b>MAC tujuan</b> di tabel.</div>
+<div class="s l">3a. Ada di tabel: <b>teruskan (forward)</b> hanya ke port itu.</div>
+<div class="s l">3b. Tidak ada (atau broadcast): <b>banjiri (flood)</b> ke semua port kecuali port asal.</div></div>
+<ul><li>Tabel MAC (CAM) hapus entri otomatis setelah <b>aging time 300 detik</b>. Lihat: <code>show mac address-table</code>. Hapus: <code>clear mac address-table dynamic</code>.</li></ul>
+<h3>Metode forwarding</h3>
+<div class="tw"><table><tr><th>Metode</th><th>Cara kerja</th></tr>
+<tr><td><b>Store-and-forward</b></td><td>Terima seluruh frame, cek FCS, baru kirim. Frame rusak dibuang. Dipakai Cisco (default), butuh buffer</td></tr>
+<tr><td><b>Cut-through</b></td><td>Mulai kirim setelah baca MAC tujuan, latensi sangat rendah, tanpa cek FCS. Ada 2 jenis: <b>fast-forward</b> (paling cepat) dan <b>fragment-free</b> (tunggu 64 byte pertama)</td></tr></table></div>
+<h3>Domain tabrakan dan broadcast</h3>
+<ul><li><b>Collision domain</b>: tiap port switch = 1 domain tabrakan sendiri (hub: semua port satu domain).</li>
+<li><b>Broadcast domain</b>: semua port switch = 1 domain broadcast (tanpa VLAN). <b>Router memisahkan broadcast domain</b>.</li>
+<li>Jaringan terlalu besar = banyak broadcast = performa turun. Solusinya: segmentasi dengan VLAN atau router.</li></ul>
+</section>
+
+<section id="m3"><h2>Modul 3: VLAN</h2>
+<p><b>VLAN</b> = pemisahan jaringan secara logis (satu VLAN = satu broadcast domain) tanpa peduli lokasi fisik. Manfaat: <b>keamanan, hemat biaya, performa lebih baik, broadcast domain lebih kecil, IT lebih efisien, manajemen lebih mudah</b>.</p>
+<div class="tw"><table><tr><th>Jenis VLAN</th><th>Keterangan</th></tr>
+<tr><td>Default VLAN</td><td><b>VLAN 1</b>, semua port awalnya di sini, tidak bisa dihapus</td></tr>
+<tr><td>Data VLAN</td><td>Khusus lalu lintas pengguna</td></tr>
+<tr><td>Native VLAN</td><td>Lalu lintas <b>tanpa tag</b> di trunk. Default VLAN 1, sebaiknya diganti (mis. 99)</td></tr>
+<tr><td>Management VLAN</td><td>Untuk akses manajemen switch (SVI)</td></tr>
+<tr><td>Voice VLAN</td><td>Khusus telepon IP (butuh prioritas dan delay rendah)</td></tr></table></div>
+<ul><li>Rentang <b>normal 1-1005</b> (disimpan di <code>vlan.dat</code> di flash). Rentang <b>extended 1006-4094</b>.</li></ul>
+<h3>Trunk dan tag 802.1Q (animasi)</h3>
+<p><b>Trunk</b> = link yang membawa banyak VLAN sekaligus. Frame diberi <b>tag 802.1Q (4 byte)</b>: TPID 2 byte (0x8100), prioritas 3 bit, DEI 1 bit, <b>VLAN ID 12 bit</b>. FCS dihitung ulang. Frame <b>native VLAN tidak diberi tag</b>.</p>
+<svg viewBox="0 0 360 125"><path class="ln" d="M30,28L80,62L280,62L330,28M30,98L80,62M280,62L330,98"/>
+<rect class="n" x="60" y="47" width="40" height="30" rx="5"/><text x="80" y="66">S1</text>
+<rect class="n" x="260" y="47" width="40" height="30" rx="5"/><text x="280" y="66">S2</text>
+<text x="10" y="20" style="fill:var(--a)">PC VLAN10</text><text x="10" y="116" style="fill:var(--b)">PC VLAN20</text>
+<text x="335" y="20" style="fill:var(--a)">PC VLAN10</text><text x="335" y="116" style="fill:var(--b)">PC VLAN20</text>
+<text x="180" y="52">Trunk 802.1Q (frame bertag)</text>
+<circle r="5" class="pb"><animateMotion dur="4s" repeatCount="indefinite" path="M30,28L80,62L280,62L330,28"/></circle>
+<circle r="5" class="pk"><animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M30,98L80,62L280,62L330,98"/></circle></svg>
+<h3>Konfigurasi</h3>
+<pre><code>vlan 10
+ name DATA                          ! buat VLAN + nama
+interface f0/1
+ switchport mode access             ! port untuk host
+ switchport access vlan 10          ! masukkan port ke VLAN 10
+interface g0/1
+ switchport mode trunk              ! port untuk antar-switch
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,99
+no vlan 10                          ! hapus VLAN</code></pre>
+<div class="note">Hapus VLAN tapi port masih terpasang: port jadi <b>tidak aktif</b> sampai dipindah ke VLAN lain. Verifikasi: <code>show vlan brief</code>, <code>show interfaces trunk</code>, <code>show interfaces f0/1 switchport</code>.</div>
+<h3>DTP (negosiasi trunk otomatis)</h3>
+<div class="tw"><table><tr><th></th><th>Auto</th><th>Desirable</th><th>Trunk</th><th>Access</th></tr>
+<tr><td><b>Auto</b></td><td>Access</td><td>Trunk</td><td>Trunk</td><td>Access</td></tr>
+<tr><td><b>Desirable</b></td><td>Trunk</td><td>Trunk</td><td>Trunk</td><td>Access</td></tr>
+<tr><td><b>Trunk</b></td><td>Trunk</td><td>Trunk</td><td>Trunk</td><td>Tidak cocok</td></tr>
+<tr><td><b>Access</b></td><td>Access</td><td>Access</td><td>Tidak cocok</td><td>Access</td></tr></table></div>
+<p>Auto + Auto = Access (tidak jadi trunk). Matikan negosiasi: <code>switchport nonegotiate</code>. Masalah umum: <b>native VLAN tidak sama</b>, VLAN tidak ada di allowed list, mode trunk tidak cocok.</p>
+</section>
+
+<section id="m4"><h2>Modul 4: Routing Antar-VLAN</h2>
+<p>Beda VLAN = beda subnet, jadi butuh <b>perangkat Layer 3</b> agar bisa saling komunikasi. Tiga cara:</p>
+<div class="tw"><table><tr><th>Metode</th><th>Keterangan</th></tr>
+<tr><td>Legacy</td><td>Satu port fisik router per VLAN. <b>Tidak skalabel</b>, sudah ditinggalkan</td></tr>
+<tr><td><b>Router-on-a-Stick</b></td><td>Satu link trunk ke router, dipecah jadi <b>subinterface</b> per VLAN</td></tr>
+<tr><td><b>Switch Layer 3 (SVI)</b></td><td>Routing di switch lewat interface VLAN. <b>Paling cepat dan skalabel</b></td></tr></table></div>
+<h3>Router-on-a-Stick (animasi)</h3>
+<svg viewBox="0 0 360 120"><path class="ln" d="M45,98H315M180,98V38"/>
+<rect class="n" x="10" y="85" width="40" height="26" rx="5"/><text x="30" y="102">PC10</text>
+<rect class="n" x="310" y="85" width="40" height="26" rx="5"/><text x="330" y="102">PC20</text>
+<rect class="n" x="160" y="85" width="40" height="26" rx="5"/><text x="180" y="102">SW</text>
+<rect class="n" x="160" y="14" width="40" height="26" rx="5"/><text x="180" y="31">R1</text>
+<text x="250" y="48">Trunk ke R1 (g0/0/1.10 dan .20)</text>
+<circle r="6" class="pk"><animateMotion dur="5s" repeatCount="indefinite" path="M45,98L180,98L180,38L180,98L315,98"/></circle></svg>
+<pre><code>interface g0/0/1.10                 ! subinterface untuk VLAN 10
+ encapsulation dot1q 10             ! pakai tag VLAN 10
+ ip address 192.168.10.1 255.255.255.0
+interface g0/0/1.20
+ encapsulation dot1q 20
+ ip address 192.168.20.1 255.255.255.0
+interface g0/0/1
+ no shutdown                        ! aktifkan interface FISIK
+! native VLAN: encapsulation dot1q 99 native</code></pre>
+<ul><li>Port switch ke router harus <b>mode trunk</b>. <b>Gateway host = IP subinterface</b> VLAN-nya.</li>
+<li>Kelemahan: satu link jadi <b>bottleneck</b> (semua lalu lintas antar-VLAN lewat satu kabel).</li></ul>
+<h3>Switch Layer 3</h3>
+<pre><code>ip routing                          ! aktifkan fungsi routing
+interface vlan 10
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+interface g1/0/1                    ! port routed (tanpa VLAN)
+ no switchport
+ ip address 10.0.0.1 255.255.255.252</code></pre>
+<p>Troubleshooting: cek <b>VLAN hilang, port trunk salah, native VLAN beda, allowed VLAN kurang, IP atau mask salah, gateway host salah</b>.</p>
+</section>
+
+<section id="m5"><h2>Modul 5: Konsep STP</h2>
+<p>Link redundan mencegah putus, tapi di Layer 2 menimbulkan <b>loop</b> karena Ethernet <b>tidak punya TTL</b>. Akibatnya: <b>broadcast storm</b>, <b>tabel MAC tidak stabil (MAC flapping)</b>, dan frame duplikat. <b>STP (802.1D)</b> memblokir sebagian port agar topologi bebas loop.</p>
+<h3>Topologi (animasi)</h3>
+<svg viewBox="0 0 360 130"><path class="ln" style="stroke:var(--ok)" d="M180,30L70,100M180,30L290,100"/>
+<path class="ln" style="stroke:var(--no);stroke-dasharray:6 5" d="M70,100H290"/>
+<text x="180" y="94" style="fill:var(--no)">✕ Blocking (Alternate)</text>
+<rect class="n" x="155" y="14" width="50" height="26" rx="5"/><text x="180" y="31">S1 Root</text>
+<rect class="n" x="45" y="88" width="50" height="26" rx="5"/><text x="70" y="105">S2</text>
+<rect class="n" x="265" y="88" width="50" height="26" rx="5"/><text x="290" y="105">S3</text>
+<text x="110" y="55">Root Port</text><text x="252" y="55">Root Port</text>
+<circle r="5" class="pb"><animateMotion dur="2.5s" repeatCount="indefinite" path="M180,30L70,100"/></circle>
+<circle r="5" class="pb"><animateMotion dur="2.5s" repeatCount="indefinite" path="M180,30L290,100"/></circle></svg>
+<p>Titik biru = <b>BPDU</b> (pesan kontrol STP) dikirim tiap <b>2 detik</b>, berisi <b>Bridge ID</b> = prioritas (default <b>32768</b>, kelipatan 4096) + ID VLAN + MAC address.</p>
+<h3>4 langkah memilih topologi</h3>
+<div class="seq"><div class="s">1. Pilih <b>Root Bridge</b>: Bridge ID <b>terendah</b> menang (prioritas dulu, seri: MAC terendah).</div>
+<div class="s">2. Tiap switch non-root pilih <b>Root Port</b>: port dengan <b>biaya jalur terendah</b> ke root.</div>
+<div class="s">3. Tiap segmen pilih <b>Designated Port</b> (port yang meneruskan ke segmen itu).</div>
+<div class="s l">4. Sisanya jadi <b>Alternate / Backup</b> = <b>diblokir</b> (tidak meneruskan data).</div></div>
+<div class="tw"><table><tr><th>Kecepatan</th><th>10 Mbps</th><th>100 Mbps</th><th>1 Gbps</th><th>10 Gbps</th></tr><tr><td>Biaya (802.1D)</td><td>100</td><td>19</td><td>4</td><td>2</td></tr></table></div>
+<p>Seri biaya: pilih <b>Bridge ID pengirim terendah</b>, lalu <b>prioritas port terendah</b> (default 128), lalu <b>ID port terendah</b>.</p>
+<h3>Status port dan timer 802.1D</h3>
+<p><b>Blocking</b> (20 detik Max Age) → <b>Listening</b> (15 detik) → <b>Learning</b> (15 detik) → <b>Forwarding</b>; ada juga Disabled. Timer: <b>Hello 2 dtk, Forward Delay 15 dtk, Max Age 20 dtk</b>. Konvergensi lambat: <b>30-50 detik</b>.</p>
+<div class="tw"><table><tr><th>Varian</th><th>Keterangan</th></tr>
+<tr><td>STP (802.1D)</td><td>Satu instans untuk semua VLAN, lambat</td></tr>
+<tr><td><b>PVST+</b></td><td>Satu instans <b>per VLAN</b> (Cisco), bisa load balancing</td></tr>
+<tr><td>RSTP (802.1w)</td><td><b>Konvergensi cepat</b>. Status: <b>Discarding, Learning, Forwarding</b></td></tr>
+<tr><td><b>Rapid PVST+</b></td><td>RSTP per VLAN (Cisco), pilihan yang dipakai di CCNA</td></tr></table></div>
+<ul><li><b>PortFast</b>: port host langsung Forwarding (jangan untuk link antar-switch). <b>BPDU Guard</b>: matikan port jika menerima BPDU.</li></ul>
+<pre><code>spanning-tree mode rapid-pvst
+spanning-tree vlan 1 root primary     ! jadikan root (prioritas 24576)
+spanning-tree vlan 1 root secondary   ! cadangan root (28672)
+spanning-tree vlan 1 priority 4096    ! atur prioritas manual
+interface f0/1
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+! verifikasi: show spanning-tree</code></pre>
+</section>
+
+<section id="m6"><h2>Modul 6: EtherChannel</h2>
+<p>Menggabungkan beberapa link fisik menjadi <b>satu link logis (Port-channel)</b>. Manfaat: <b>bandwidth bertambah, redundansi, load balancing</b>, dan STP menganggapnya <b>satu link</b> (tidak ada port yang diblokir).</p>
+<svg viewBox="0 0 360 110"><path class="ln" d="M60,30H300M60,55H300M60,80H300"/>
+<rect class="n" x="10" y="25" width="50" height="60" rx="5"/><text x="35" y="59">S1</text>
+<rect class="n" x="300" y="25" width="50" height="60" rx="5"/><text x="325" y="59">S2</text>
+<ellipse cx="180" cy="55" rx="110" ry="38" fill="none" stroke="var(--b)" stroke-dasharray="5 4" stroke-width="2"/>
+<text x="180" y="104">Port-channel 1 (3 link menjadi 1 link logis)</text>
+<circle r="4" class="pk"><animateMotion dur="2s" repeatCount="indefinite" path="M60,30H300"/></circle>
+<circle r="4" class="pb"><animateMotion dur="2.4s" repeatCount="indefinite" path="M60,55H300"/></circle>
+<circle r="4" class="pk"><animateMotion dur="2.8s" repeatCount="indefinite" path="M60,80H300"/></circle></svg>
+<h3>Protokol dan mode</h3>
+<div class="tw"><table><tr><th>Protokol</th><th>Mode</th><th>Keterangan</th></tr>
+<tr><td><b>PAgP</b></td><td>auto, desirable</td><td>Milik Cisco</td></tr>
+<tr><td><b>LACP</b> (802.3ad)</td><td>passive, active</td><td>Standar terbuka (IEEE)</td></tr>
+<tr><td>Statis</td><td>on</td><td>Tanpa negosiasi</td></tr></table></div>
+<div class="tw"><table><tr><th>Pasangan mode</th><th>Hasil</th></tr>
+<tr><td>desirable + desirable, desirable + auto</td><td>Berhasil</td></tr>
+<tr><td>active + active, active + passive</td><td>Berhasil</td></tr>
+<tr><td>on + on</td><td>Berhasil</td></tr>
+<tr><td><b>auto + auto, passive + passive</b></td><td><b>Gagal</b> (keduanya hanya menunggu)</td></tr>
+<tr><td><b>PAgP dengan LACP</b></td><td><b>Gagal</b>, tidak kompatibel</td></tr></table></div>
+<pre><code>interface range f0/1-2
+ channel-group 1 mode active        ! gabung ke Port-channel 1 (LACP)
+interface port-channel 1
+ switchport mode trunk              ! atur di interface logis</code></pre>
+<ul><li>Syarat: semua port anggota harus <b>sama kecepatan, duplex, mode, VLAN, native VLAN, dan allowed VLAN</b>. Maksimal <b>8 port aktif</b> per bundel.</li>
+<li>Verifikasi: <code>show etherchannel summary</code>. Flag <b>SU</b> = Layer 2 dan sedang dipakai (sehat), <b>P</b> = anggota bundel, <b>D</b> = mati, <b>I</b> = berdiri sendiri (gagal bergabung).</li></ul>
+</section>
+
+<section id="m7"><h2>Modul 7: DHCPv4</h2>
+<p><b>DHCPv4</b> memberi konfigurasi IP otomatis: <b>alamat IP, subnet mask, gateway, DNS, lama sewa (lease)</b>. Server memakai <b>UDP port 67</b>, klien <b>UDP port 68</b>.</p>
+<h3>Proses DORA (animasi)</h3>
+<div class="seq"><div class="s"><b>D</b>iscover: klien ➜ server. <b>Broadcast</b>, “Ada server DHCP?”</div>
+<div class="s l"><b>O</b>ffer: server ➜ klien. <b>Unicast</b>, menawarkan IP + pengaturan.</div>
+<div class="s"><b>R</b>equest: klien ➜ server. <b>Broadcast</b>, “Saya ambil tawaran ini.”</div>
+<div class="s l"><b>A</b>cknowledge: server ➜ klien. <b>Unicast</b>, konfirmasi dan mulai masa sewa.</div></div>
+<div class="note">Perpanjangan sewa: di <b>50% lease</b> klien kirim Request unicast ke server asal. Jika gagal, di <b>87,5%</b> kirim broadcast ke server mana pun.</div>
+<h3>Router sebagai server DHCP</h3>
+<pre><code>ip dhcp excluded-address 192.168.10.1 192.168.10.9   ! alamat yang TIDAK dibagikan
+ip dhcp pool LAN10                                   ! buat pool
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1                         ! gateway
+ dns-server 8.8.8.8
+ domain-name contoh.local
+ lease 2                                             ! sewa 2 hari
+! matikan layanan: no service dhcp</code></pre>
+<p><b>Excluded-address dibuat sebelum pool</b> agar alamat gateway/server tidak terbagi.</p>
+<h3>DHCP Relay</h3>
+<p>Broadcast tidak melewati router. Jika server di subnet lain, pasang <b>relay</b> di interface yang <b>menghadap klien</b>: broadcast diubah jadi unicast ke server.</p>
+<pre><code>interface g0/0/0
+ ip helper-address 192.168.50.5     ! alamat server DHCP
+interface g0/0/1
+ ip address dhcp                    ! router sebagai KLIEN DHCP</code></pre>
+<p>Verifikasi: <code>show ip dhcp binding</code> (daftar IP terpakai), <code>show ip dhcp pool</code>, <code>show ip dhcp server statistics</code>, di PC: <code>ipconfig /renew</code>. Masalah umum: <b>kabel/VLAN salah, pool habis, helper-address salah, alamat bentrok</b>.</p>
+</section>
+
+<section id="m8"><h2>Modul 8: SLAAC dan DHCPv6</h2>
+<h3>Alamat IPv6 penting</h3>
+<div class="tw"><table><tr><th>Jenis</th><th>Keterangan</th></tr>
+<tr><td>Global Unicast (GUA)</td><td><b>2000::/3</b>, alamat publik</td></tr>
+<tr><td>Link-Local</td><td><b>FE80::/10</b>, hanya dalam satu link, otomatis ada di tiap interface</td></tr>
+<tr><td>Multicast</td><td><b>FF02::1</b> = semua node, <b>FF02::2</b> = semua router</td></tr>
+<tr><td>Unique Local</td><td><b>FC00::/7</b>, mirip IP privat</td></tr></table></div>
+<h3>Alur SLAAC (animasi)</h3>
+<div class="seq"><div class="s"><b>Router Solicitation (RS, ICMPv6 tipe 133)</b>: host ➜ FF02::2, “Ada router?”</div>
+<div class="s l"><b>Router Advertisement (RA, tipe 134)</b>: router ➜ host, berisi <b>prefix, panjang prefix, gateway</b>.</div>
+<div class="s">Host buat alamat sendiri: <b>prefix dari RA + Interface ID</b> (EUI-64 atau acak).</div>
+<div class="s l"><b>DAD</b> (Duplicate Address Detection): host kirim Neighbor Solicitation untuk memastikan alamat tidak bentrok. Aman = alamat dipakai.</div></div>
+<p><b>EUI-64</b>: ambil MAC 48 bit, <b>sisipkan FFFE di tengah</b>, lalu <b>balik bit ke-7</b>. Contoh: MAC <code>00:1A:2B:3C:4D:5E</code> menjadi <code>021A:2BFF:FE3C:4D5E</code>.</p>
+<h3>Tiga metode (diatur oleh flag di RA)</h3>
+<div class="tw"><table><tr><th>Metode</th><th>Flag</th><th>Siapa kasih apa</th></tr>
+<tr><td><b>SLAAC saja</b></td><td>A=1, O=0, M=0</td><td>Alamat dari RA. Info lain (DNS) <b>tidak ada</b></td></tr>
+<tr><td><b>SLAAC + DHCPv6 stateless</b></td><td>A=1, <b>O=1</b>, M=0</td><td>Alamat dari SLAAC, <b>DNS dkk dari server DHCPv6</b></td></tr>
+<tr><td><b>DHCPv6 stateful</b></td><td><b>M=1</b>, A=0</td><td>Server DHCPv6 beri <b>alamat lengkap + info</b> dan mencatat klien</td></tr></table></div>
+<p>Pesan DHCPv6: <b>SOLICIT, ADVERTISE, REQUEST, REPLY</b>. Port: klien <b>UDP 546</b>, server <b>UDP 547</b>. Klien mengirim ke multicast <b>FF02::1:2</b> (semua server dan relay DHCPv6).</p>
+<h3>Konfigurasi router</h3>
+<pre><code>ipv6 unicast-routing                  ! WAJIB agar router kirim RA
+interface g0/0/1
+ ipv6 address 2001:db8:acad:1::1/64   ! SLAAC saja: cukup ini
+
+! --- Stateless DHCPv6 ---
+ipv6 dhcp pool STATELESS
+ dns-server 2001:db8:acad::254
+ domain-name contoh.local
+interface g0/0/1
+ ipv6 nd other-config-flag            ! set O=1
+ ipv6 dhcp server STATELESS
+
+! --- Stateful DHCPv6 ---
+ipv6 dhcp pool STATEFUL
+ address prefix 2001:db8:acad:1::/64 lifetime infinite infinite
+ dns-server 2001:db8:acad::254
+interface g0/0/1
+ ipv6 nd managed-config-flag          ! set M=1
+ ipv6 nd prefix default no-autoconfig ! set A=0
+ ipv6 dhcp server STATEFUL
+
+! --- Relay (server beda subnet) ---
+interface g0/0/0
+ ipv6 dhcp relay destination 2001:db8:acad:2::5 g0/0/1
+! --- Router sebagai klien ---
+interface g0/0/1
+ ipv6 enable
+ ipv6 address autoconfig              ! SLAAC  (atau: ipv6 address dhcp)</code></pre>
+<p>Verifikasi: <code>show ipv6 interface</code>, <code>show ipv6 dhcp pool</code>, <code>show ipv6 dhcp binding</code>, <code>show ipv6 dhcp interface</code>.</p>
+</section>
+
+<section id="m9"><h2>Modul 9: Konsep FHRP (Redundansi Gateway)</h2>
+<p>Host hanya punya <b>satu default gateway</b>. Jika router itu mati, host <b>terputus dari luar jaringan</b> walau ada router cadangan (<b>single point of failure</b>). <b>FHRP</b> (First Hop Redundancy Protocol) menyelesaikannya: beberapa router fisik berbagi satu <b>router virtual</b> dengan <b>IP virtual dan MAC virtual</b>. Host memakai IP virtual itu sebagai gateway, jadi saat router utama mati, host <b>tidak perlu mengubah apa pun</b>.</p>
+<h3>Failover (animasi)</h3>
+<svg viewBox="0 0 360 165"><path class="ln" d="M45,80H110M110,80L230,30M110,80L230,131M230,30L330,80M230,131L330,80"/>
+<ellipse cx="230" cy="80" rx="46" ry="68" fill="none" stroke="var(--b)" stroke-dasharray="5 4" stroke-width="2"/>
+<rect class="n" x="10" y="67" width="40" height="26" rx="5"/><text x="30" y="84">PC</text>
+<rect class="n" x="95" y="67" width="30" height="26" rx="5"/><text x="110" y="84">SW</text>
+<rect class="n" x="205" y="17" width="50" height="26" rx="5"/><text x="230" y="34">R1</text>
+<rect class="n" x="205" y="118" width="50" height="26" rx="5"/><text x="230" y="135">R2</text>
+<rect class="n" x="305" y="67" width="50" height="26" rx="5"/><text x="330" y="84">Luar</text>
+<text x="230" y="12" style="fill:var(--ok)">Aktif<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.55;1" dur="8s" repeatCount="indefinite"/></text>
+<text x="230" y="12" opacity="0" style="fill:var(--no)">Mati ✕<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.55;1" dur="8s" repeatCount="indefinite"/></text>
+<text x="230" y="158">Standby<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.55;0.6;1" dur="8s" repeatCount="indefinite"/></text>
+<text x="230" y="158" opacity="0" style="fill:var(--ok)">Aktif<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.6;1" dur="8s" repeatCount="indefinite"/></text>
+<text x="85" y="140">Gateway virtual = R1 + R2</text>
+<circle r="5" class="pb"><animateMotion dur="2s" repeatCount="indefinite" path="M45,80H110L230,30L330,80"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.48;0.5;1" dur="8s" repeatCount="indefinite"/></circle>
+<circle r="5" class="pk" opacity="0"><animateMotion dur="2s" repeatCount="indefinite" path="M45,80H110L230,131L330,80"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.6;0.62;1" dur="8s" repeatCount="indefinite"/></circle></svg>
+<div class="seq"><div class="s">1. Host kirim lalu lintas ke <b>IP virtual</b>. Router <b>Aktif</b> yang meneruskan.</div>
+<div class="s">2. Router Aktif mengirim <b>pesan hello</b> berkala. Router <b>Standby</b> memantau.</div>
+<div class="s l">3. Router Aktif mati: <b>hello berhenti</b>. Standby menunggu sampai <b>hold time habis</b>.</div>
+<div class="s l">4. Standby <b>mengambil alih IP dan MAC virtual</b>, jadi Aktif. Host lanjut tanpa ubah pengaturan.</div></div>
+<h3>Pilihan protokol FHRP</h3>
+<div class="tw"><table><tr><th></th><th>HSRP</th><th>VRRP</th><th>GLBP</th></tr>
+<tr><td>Pembuat</td><td>Cisco</td><td><b>IETF</b> (standar terbuka)</td><td>Cisco</td></tr>
+<tr><td>Peran router</td><td><b>Active / Standby</b></td><td><b>Master / Backup</b></td><td><b>AVG</b> + <b>AVF</b></td></tr>
+<tr><td>Load balancing</td><td>Manual (banyak grup)</td><td>Manual (banyak grup)</td><td><b>Otomatis</b> (sampai 4 AVF)</td></tr>
+<tr><td>Multicast</td><td>224.0.0.2 (v1), 224.0.0.102 (v2)</td><td>224.0.0.18</td><td>224.0.0.102</td></tr>
+<tr><td>Hello default</td><td><b>3 detik</b> (hold 10)</td><td><b>1 detik</b></td><td><b>3 detik</b> (hold 10)</td></tr>
+<tr><td>Prioritas default</td><td><b>100</b></td><td><b>100</b></td><td><b>100</b></td></tr></table></div>
+<p>Satu lagi: <b>IRDP</b> (ICMP Router Discovery Protocol), hanya IPv4, host menemukan router lewat pesan ICMP. Versi IPv6: HSRP untuk IPv6, VRRPv3, GLBP untuk IPv6.</p>
+<h3>HSRP lebih dalam</h3>
+<ul><li>Router dengan <b>prioritas tertinggi</b> jadi Aktif. Seri prioritas: <b>IP address tertinggi</b> menang.</li>
+<li><b>Preempt</b>: router berprioritas lebih tinggi merebut kembali peran Aktif. Di HSRP <b>preempt tidak aktif secara default</b> (VRRP: aktif).</li>
+<li><b>MAC virtual</b>: HSRPv1 <b>0000.0C07.ACxx</b>, HSRPv2 <b>0000.0C9F.Fxxx</b> (xx = nomor grup). Grup: v1 <b>0-255</b>, v2 <b>0-4095</b>. HSRP memakai <b>UDP 1985</b>.</li>
+<li>Status HSRP berurutan: <b>Initial, Learn, Listen, Speak, Standby, Active</b>.</li>
+<li><b>Load balancing HSRP</b>: buat dua grup (mis. VLAN 10 Aktif di R1, VLAN 20 Aktif di R2), supaya kedua router terpakai.</li></ul>
+<pre><code>! R1 (dibuat Aktif)
+interface g0/0/1
+ standby version 2
+ standby 1 ip 192.168.1.254         ! IP virtual = gateway host
+ standby 1 priority 150             ! lebih tinggi dari default 100
+ standby 1 preempt                  ! rebut peran Aktif kembali
+! R2: cukup "standby 1 ip 192.168.1.254" (prioritas default 100)
+! verifikasi: show standby   atau   show standby brief</code></pre>
+<div class="note">Gateway di PC harus diisi <b>IP virtual (192.168.1.254)</b>, bukan IP asli R1 atau R2.</div>
+<h3>GLBP singkat</h3>
+<p><b>AVG</b> (Active Virtual Gateway) membalas ARP host dengan <b>MAC virtual berbeda-beda</b> (default bergiliran), sedangkan tiap <b>AVF</b> (Active Virtual Forwarder) meneruskan lalu lintas. Hasilnya beban terbagi otomatis ke beberapa router.</p>
+</section>
+</main>
+<script>
+document.querySelectorAll('.seq').forEach(function(q){var r=[].slice.call(q.children),i=0;
+setInterval(function(){if(i<r.length){r[i].classList.add('on');i++}else{r.forEach(function(x){x.classList.remove('on')});i=0}},1500)});
+</script></body></html>
