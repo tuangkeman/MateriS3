@@ -1,120 +1,299 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UTS Jaringan Komputer Bagian 2 — Jawaban Singkat</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#f3f7fb;color:#1d3042;font:16px/1.5 Arial, sans-serif}
-header{background:#155a96;color:white;text-align:center;padding:24px 14px}header h1{margin:0;font-size:clamp(1.35rem,3vw,2rem)}header p{margin:5px 0 0}
-main{max-width:950px;margin:20px auto;padding:0 14px 32px}.note{background:#fff7d8;padding:10px 14px;border-left:4px solid #e2b534;border-radius:6px;margin-bottom:14px}
-article{background:#fff;border:1px solid #cce7f8;border-radius:10px;margin:12px 0;overflow:hidden}.q{display:flex;gap:10px;align-items:flex-start;background:#e5f4ff;padding:12px 14px;font-weight:bold;color:#124b7c}.n{background:#1675b9;color:#fff;border-radius:7px;min-width:30px;height:30px;display:grid;place-items:center}.a{padding:12px 16px}.a p{margin:0 0 7px}.a ol,.a ul{margin:5px 0;padding-left:22px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef2f5;padding:10px;border-radius:7px;margin:7px 0;font-size:.9rem;color:#15334c}code{font-family:Consolas,monospace}.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}.panel{border:1px dashed #88c9f0;border-radius:8px;padding:10px}.topology{display:block;width:100%;max-width:650px;margin:10px auto;background:#fbfdff;border:1px solid #cce7f8;border-radius:8px}footer{text-align:center;color:#607080;padding:18px;font-size:.9rem}
-@media(max-width:650px){.cols{grid-template-columns:1fr}.a{padding:11px}}
-@media print{body{background:#fff}article{break-inside:avoid}header{background:#155a96!important;color:#fff!important;print-color-adjust:exact}.q{print-color-adjust:exact}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawaban UTS Infrastruktur LAN - Grup B & D</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .question-block {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+        .question-block:last-child {
+            border-bottom: none;
+        }
+        .question {
+            font-weight: bold;
+            color: #2980b9;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .answer {
+            margin-left: 20px;
+        }
+        ul, ol {
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            border-left: 4px solid #3498db;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #eaeaea;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #c0392b;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .topology {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-<header><h1>UTS Jaringan Komputer — Bagian 2</h1><p>Jawaban Esai Singkat • Mudah Diingat</p></header>
-<main>
-<div class="note"><strong>Catatan:</strong> Perintah Cisco dapat berbeda sesuai model perangkat. Gunakan hanya pada perangkat yang Anda berwenang kelola.</div>
 
-<article><div class="q"><span class="n">1</span><span>Ketika seorang admin jaringan diberikan piranti switch yang sudah dikonfigurasi tetapi tidak mengetahui password untuk masuk dan mengedit konfigurasi, maka admin tersebut haruslah melakukan password recovery. Berikan langkah-langkah yang harus dikerjakan admin jaringan tersebut untuk bisa mengganti password piranti switch tersebut tanpa kehilangan konfigurasi lama yang sudah ada.</span></div><div class="a">
-<ol><li>Akses switch melalui kabel console dan restart.</li><li>Masuk boot loader/ROMMON sesuai petunjuk model.</li><li>Lewati sementara pemuatan startup-config sesuai prosedur resmi.</li><li>Boot switch dan muat konfigurasi lama bila diperlukan.</li><li>Ganti password, lalu simpan dengan <code>copy running-config startup-config</code>.</li></ol>
-<p><strong>Ingat:</strong> jangan menghapus startup-config.</p></div></article>
+<div class="container">
+    <h1>Jawaban UTS Infrastruktur LAN Bagian 2</h1>
 
-<article><div class="q"><span class="n">2</span><span>Tuliskan tiga metode Frame Forwarding dalam proses Switching pada suatu switch, dan berikan sedikit penjelasan ringkas yang membedakan ketiganya.</span></div><div class="a"><ol><li><strong>Store-and-Forward:</strong> menerima seluruh frame dan memeriksa CRC; lebih aman, lebih lambat.</li><li><strong>Cut-Through:</strong> meneruskan setelah membaca MAC tujuan; cepat, pemeriksaan error terbatas.</li><li><strong>Fragment-Free:</strong> memeriksa 64 byte pertama sebelum meneruskan; kompromi antara kecepatan dan pemeriksaan.</li></ol></div></article>
+    <div class="question-block">
+        <div class="question">1. Langkah-langkah Password Recovery pada Switch (tanpa kehilangan konfigurasi lama):</div>
+        <div class="answer">
+            <ol>
+                <li>Hubungkan PC ke port console switch, buka aplikasi terminal (PuTTY/Tera Term).</li>
+                <li>Cabut kabel power switch, lalu colok kembali sambil <strong>menekan dan menahan tombol MODE</strong> hingga lampu LED port menyala dan berkedip.</li>
+                <li>Lepaskan tombol MODE. Switch akan masuk ke mode <code>switch:</code> (boot loader).</li>
+                <li>Ketik perintah <code>flash_init</code> lalu tekan Enter.</li>
+                <li>Ubah nama file konfigurasi agar tidak diload saat booting: <code>rename flash:config.text flash:config.old</code>.</li>
+                <li>Ketik <code>boot</code> untuk melanjutkan proses booting normal.</li>
+                <li>Setelah masuk ke mode <code>Switch&gt;</code>, ketik <code>enable</code> untuk masuk ke mode privileged EXEC (<code>Switch#</code>).</li>
+                <li>Ubah kembali nama file konfigurasi tadi: <code>rename flash:config.old flash:config.text</code>.</li>
+                <li>Load konfigurasi lama ke memori: <code>copy flash:config.text system:running-config</code>.</li>
+                <li>Ganti password (misal: <code>enable secret PasswordBaru</code>).</li>
+                <li>Simpan konfigurasi baru: <code>copy running-config startup-config</code>.</li>
+            </ol>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">3</span><span>Jelaskan 3 permasalahan yang akan muncul jika kita menggunakan model redundancy pada switch block design namun tidak menerapkan Spanning Tree Protocol!</span></div><div class="a"><ol><li><strong>Layer 2 loop:</strong> frame berputar terus.</li><li><strong>Broadcast storm:</strong> broadcast membanjiri jaringan.</li><li><strong>MAC table instability:</strong> switch salah mempelajari lokasi MAC.</li></ol></div></article>
+    <div class="question-block">
+        <div class="question">2. Tiga Metode Frame Forwarding pada Switch:</div>
+        <div class="answer">
+            <ol>
+                <li><strong>Store-and-Forward:</strong> Switch menerima <strong>seluruh frame</strong>, memeriksa integritasnya menggunakan Frame Check Sequence (FCS), membuang frame jika ada error (CRC), lalu meneruskannya. (Metode default/rekomendasi Cisco).</li>
+                <li><strong>Cut-Through:</strong> Switch meneruskan frame segera setelah membaca alamat MAC tujuan (6 byte pertama). Tidak melakukan pengecekan error, sehingga memiliki latency paling rendah, tetapi bisa menyebarkan frame yang rusak.</li>
+                <li><strong>Fragment-Free:</strong> Modifikasi dari cut-through. Switch membaca 64 byte pertama frame sebelum meneruskannya. Tujuannya untuk menyaring <em>runt frames</em> (frame yang lebih kecil dari 64 byte akibat tabrakan/collision).</li>
+            </ol>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">4</span><span>Apakah yang dimaksud dengan inter-VLAN routing? Tuliskan 3 metode untuk melakukan inter-VLAN routing dan berikan penjelasan singkatnya.</span></div><div class="a"><p>Inter-VLAN routing adalah komunikasi antar-VLAN yang berbeda subnet.</p><ol><li><strong>Router-on-a-stick:</strong> satu port router dengan beberapa subinterface trunk.</li><li><strong>Layer 3 switch:</strong> routing memakai SVI tiap VLAN.</li><li><strong>Router interface terpisah:</strong> tiap VLAN memakai interface fisik router sendiri.</li></ol></div></article>
+    <div class="question-block">
+        <div class="question">3. Tiga Masalah jika Redundancy tanpa STP (Spanning Tree Protocol):</div>
+        <div class="answer">
+            <ol>
+                <li><strong>Broadcast Storm:</strong> Frame broadcast akan berputar terus-menerus di loop Layer 2 tanpa henti, membanjiri jaringan dan menghabiskan bandwidth.</li>
+                <li><strong>MAC Address Table Instability:</strong> Switch akan terus-menerus menerima frame yang sama dari port yang berbeda, menyebabkan tabel MAC terus berubah dan membingungkan switch.</li>
+                <li><strong>High CPU Utilization:</strong> Beban kerja switch meningkat drastis karena harus memproses dan meneruskan frame yang berputar-putar tanpa henti, yang bisa menyebabkan switch crash atau freeze.</li>
+            </ol>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">5</span><span>Tuliskan urutan perintah konfigurasi untuk membuat VLAN nomor 10 dengan nama Mahasiswa.</span></div><div class="a"><pre><code>enable
-configure terminal
-vlan 10
-name Mahasiswa
-end
-copy running-config startup-config</code></pre></div></article>
+    <div class="question-block">
+        <div class="question">4. Inter-VLAN Routing dan 3 Metodenya:</div>
+        <div class="answer">
+            <p><strong>Pengertian:</strong> Proses meneruskan traffic jaringan dari satu VLAN ke VLAN lain menggunakan perangkat Layer 3 (Router atau Layer 3 Switch). Tanpa ini, host di VLAN berbeda tidak bisa berkomunikasi.</p>
+            <p><strong>3 Metode:</strong></p>
+            <ol>
+                <li><strong>Legacy Inter-VLAN Routing:</strong> Menggunakan router dengan antarmuka fisik terpisah untuk setiap VLAN. (Kurang efisien karena butuh banyak port).</li>
+                <li><strong>Router-on-a-Stick:</strong> Menggunakan satu antarmuka fisik router yang dikonfigurasi menjadi beberapa subinterface (menggunakan trunking 802.1Q) untuk menangani banyak VLAN.</li>
+                <li><strong>Layer 3 Switch (SVI):</strong> Menggunakan Switch Virtual Interface (SVI) pada switch multilayer. Jauh lebih cepat karena routing dilakukan oleh hardware switch, cocok untuk jaringan skala besar.</li>
+            </ol>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">6</span><span>Tuliskan urutan perintah konfigurasi untuk memasukkan port Fa0/3 suatu switch menjadi anggota VLAN 20.</span></div><div class="a"><pre><code>enable
-configure terminal
-interface fa0/3
-switchport mode access
-switchport access vlan 20
-end
-copy running-config startup-config</code></pre></div></article>
+    <div class="question-block">
+        <div class="question">5. Konfigurasi Membuat VLAN 10 dengan nama Mahasiswa:</div>
+        <div class="answer">
+<pre><code>Switch&gt; enable
+Switch# configure terminal
+Switch(config)# vlan 10
+Switch(config-vlan)# name Mahasiswa
+Switch(config-vlan)# end</code></pre>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">7</span><span>Tuliskan (5) lima langkah/perintah konfigurasi untuk mengkonfigurasi SSH pada switch dan mengaktifkannya sehingga switch bisa diakses secara remote.</span></div><div class="a"><pre><code>enable
-configure terminal
-hostname SW1
-ip domain-name kampus.local
-username admin privilege 15 secret SandiKuat123!
-crypto key generate rsa modulus 2048
-ip ssh version 2
-line vty 0 15
-login local
-transport input ssh
-end
-copy running-config startup-config</code></pre><p>Switch juga perlu IP manajemen dan gateway yang sesuai. Ganti contoh password dengan password kuat.</p></div></article>
+    <div class="question-block">
+        <div class="question">6. Konfigurasi Memasukkan Port Fa0/3 ke VLAN 20:</div>
+        <div class="answer">
+<pre><code>Switch&gt; enable
+Switch# configure terminal
+Switch(config)# interface FastEthernet 0/3
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 20
+Switch(config-if)# end</code></pre>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">8</span><span>Tuliskan urutan perintah untuk konfigurasi subinterface fa0/1.20 untuk menjadi gateway vlan 20 dengan ip add 192.168.20.1/28 pada model router-on-a-stick inter-VLAN.</span></div><div class="a"><pre><code>enable
-configure terminal
-interface fa0/1
-no shutdown
-exit
-interface fa0/1.20
-encapsulation dot1Q 20
-ip address 192.168.20.1 255.255.255.240
-no shutdown
-end
-copy running-config startup-config</code></pre><p>Port switch menuju router harus trunk dan mengizinkan VLAN 20.</p></div></article>
+    <div class="question-block">
+        <div class="question">7. Lima Langkah Konfigurasi SSH pada Switch:</div>
+        <div class="answer">
+            <ol>
+                <li>Verifikasi dukungan SSH: <code>show ip ssh</code>.</li>
+                <li>Konfigurasi nama domain IP: <code>ip domain-name namadomain.com</code>.</li>
+                <li>Generate pasangan kunci RSA (mengaktifkan SSH): <code>crypto key generate rsa</code> (minimal 1024 bit).</li>
+                <li>Buat user dan password lokal: <code>username admin secret PasswordAman</code>.</li>
+                <li>Konfigurasi jalur VTY untuk menggunakan SSH: <br>
+                    <code>line vty 0 15</code> <br>
+                    <code>transport input ssh</code> <br>
+                    <code>login local</code>
+                </li>
+            </ol>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">9</span><span>Bridge ID suatu switch terdiri dari tiga bagian nomor, apa sajakah itu?</span></div><div class="a"><ol><li>Bridge priority.</li><li>Extended System ID (ID VLAN).</li><li>MAC address switch.</li></ol></div></article>
+    <div class="question-block">
+        <div class="question">8. Konfigurasi Subinterface Fa0/1.20 (Gateway VLAN 20, IP 192.168.20.1/28):</div>
+        <div class="answer">
+            <p><em>(Catatan: /28 sama dengan subnet mask 255.255.255.240)</em></p>
+<pre><code>Router&gt; enable
+Router# configure terminal
+Router(config)# interface FastEthernet 0/1.20
+Router(config-subif)# encapsulation dot1Q 20
+Router(config-subif)# ip address 192.168.20.1 255.255.255.240
+Router(config-subif)# exit
+Router(config)# interface FastEthernet 0/1
+Router(config-if)# no shutdown</code></pre>
+            <p><em>(Jangan lupa mengaktifkan interface fisik utamanya dengan <code>no shutdown</code>)</em></p>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">10</span><span>Tuliskan 4 (empat) metode pemberian IP DHCPv6 pada piranti jaringan, berikan penjelasan untuk masing-masing metode.</span></div><div class="a"><ol><li><strong>Stateful DHCPv6:</strong> server memberikan alamat IPv6.</li><li><strong>Stateless DHCPv6:</strong> alamat dibuat lewat SLAAC; DHCPv6 memberi info tambahan, misalnya DNS.</li><li><strong>SLAAC:</strong> host membuat alamat dari prefix Router Advertisement.</li><li><strong>Static:</strong> alamat diatur manual oleh administrator.</li></ol></div></article>
+    <div class="question-block">
+        <div class="question">9. Tiga Bagian Bridge ID (BID) pada Switch:</div>
+        <div class="answer">
+            <ol>
+                <li><strong>Bridge Priority</strong> (Prioritas default: 32768).</li>
+                <li><strong>Extended System ID</strong> (ID VLAN, ditambahkan ke prioritas).</li>
+                <li><strong>MAC Address</strong> milik switch itu sendiri.</li>
+            </ol>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">11</span><span>Apakah tujuan penerapan per-VLAN spanning tree?</span></div><div class="a"><p>Menjalankan STP terpisah untuk setiap VLAN, sehingga root bridge dan jalur forwarding bisa diatur per VLAN sambil mencegah loop.</p></div></article>
+    <div class="question-block">
+        <div class="question">10. Empat Metode Pemberian IP DHCPv6 / IPv6 pada Jaringan:</div>
+        <div class="answer">
+            <ol>
+                <li><strong>Manual:</strong> Konfigurasi IP address secara statis oleh administrator.</li>
+                <li><strong>SLAAC (Stateless Address Autoconfiguration) Only:</strong> Host membuat IP sendiri berdasarkan pesan RA (Router Advertisement) dari router (Flag A=1, O=0, M=0).</li>
+                <li><strong>SLAAC + Stateless DHCPv6:</strong> Host membuat IP sendiri via SLAAC, tapi mendapatkan info tambahan (seperti DNS) dari server DHCPv6 (Flag A=1, O=1, M=0).</li>
+                <li><strong>Stateful DHCPv6:</strong> Host mendapatkan IP address dan seluruh konfigurasi lainnya langsung dari server DHCPv6 (Flag A=0, O=0, M=1).</li>
+            </ol>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">12</span><span>Apakah tujuan dari implementasi Etherchannel dalam topologi block switch?</span></div><div class="a"><p>Menggabungkan beberapa link fisik menjadi satu link logis untuk menambah bandwidth, menyediakan redundansi, dan membantu load balancing.</p></div></article>
+    <div class="question-block">
+        <div class="question">11. Tujuan Penerapan Per-VLAN Spanning Tree (PVST):</div>
+        <div class="answer">
+            <p>Untuk menjalankan <strong>instance STP yang terpisah untuk setiap VLAN</strong>. Ini memungkinkan adanya <em>load balancing</em> (penyeimbangan beban) karena root bridge untuk VLAN 10 bisa berbeda dengan root bridge untuk VLAN 20, sehingga jalur yang tadinya diblokir di satu VLAN bisa digunakan (forwarding) di VLAN lain.</p>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">13</span><span>Apa yang dimaksud FHRP dalam konteks topologi ganda untuk mencegah single point failure?</span></div><div class="a"><p><strong>First Hop Redundancy Protocol</strong> menyediakan default gateway virtual. Jika gateway aktif gagal, perangkat cadangan mengambil alih. Contoh: HSRP, VRRP, GLBP.</p></div></article>
+    <div class="question-block">
+        <div class="question">12. Tujuan Implementasi EtherChannel pada Topologi Block Switch:</div>
+        <div class="answer">
+            <p>Untuk menggabungkan beberapa link fisik (kabel) menjadi satu link logis. Tujuannya adalah untuk <strong>meningkatkan bandwidth</strong> secara agregat, menyediakan <strong>redundansi</strong> (jika satu kabel putus, link tetap jalan), dan mencegah STP memblokir link redundan (karena STP melihat EtherChannel sebagai satu link logis tunggal).</p>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">14</span><span>Berikan penjelasan mengenai cara kerja HSRP?</span></div><div class="a"><p>Router berbagi IP virtual sebagai gateway. Router <strong>Active</strong> meneruskan trafik, router <strong>Standby</strong> siap menggantikan jika Active gagal. Hello digunakan untuk memantau status.</p></div></article>
+    <div class="question-block">
+        <div class="question">13. Pengertian FHRP (First Hop Redundancy Protocol):</div>
+        <div class="answer">
+            <p>Mekanisme/protokol yang menyediakan default gateway cadangan (redundan) pada jaringan. FHRP memungkinkan dua atau lebih router berbagi satu IP Virtual dan MAC Virtual yang sama, sehingga jika router aktif (master/active) mati, router cadangan (standby) akan mengambil alih secara transparan tanpa membuat host kehilangan koneksi ke luar jaringan (mencegah <em>single point of failure</em>).</p>
+        </div>
+    </div>
 
-<article><div class="q"><span class="n">15</span><span>Tuliskan langkah-langkah konfigurasi HSRP! Sertakan gambar topologi sesuai dengan langkah-langkah konfigurasi yang anda buat.</span></div><div class="a">
-<p><strong>Topologi contoh:</strong> R1 Active (192.168.1.2), R2 Standby (192.168.1.3), gateway virtual 192.168.1.1. Semua terhubung ke LAN/VLAN yang sama.</p>
-<svg class="topology" viewBox="0 0 650 245" role="img" aria-label="Topologi HSRP: dua router ke switch dan PC">
-<rect x="10" y="10" width="630" height="225" rx="10" fill="#fbfdff" stroke="#cce7f8"/>
-<rect x="35" y="28" width="190" height="55" rx="9" fill="#e3f3ff" stroke="#2478b9" stroke-width="2"/>
-<text x="130" y="49" text-anchor="middle" font-size="15" font-weight="bold" fill="#124b7c">R1 — Active</text><text x="130" y="68" text-anchor="middle" font-size="12" fill="#124b7c">192.168.1.2</text>
-<rect x="425" y="28" width="190" height="55" rx="9" fill="#edf2f6" stroke="#617f99" stroke-width="2"/>
-<text x="520" y="49" text-anchor="middle" font-size="15" font-weight="bold" fill="#24445e">R2 — Standby</text><text x="520" y="68" text-anchor="middle" font-size="12" fill="#24445e">192.168.1.3</text>
-<line x1="130" y1="83" x2="260" y2="135" stroke="#55758d" stroke-width="3"/><line x1="520" y1="83" x2="390" y2="135" stroke="#55758d" stroke-width="3"/>
-<text x="325" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#124b7c">Virtual IP: 192.168.1.1</text>
-<rect x="230" y="132" width="190" height="40" rx="8" fill="#dceeff" stroke="#2478b9" stroke-width="2"/><text x="325" y="157" text-anchor="middle" font-size="15" font-weight="bold" fill="#124b7c">Switch / LAN</text>
-<line x1="325" y1="172" x2="325" y2="192" stroke="#55758d" stroke-width="3"/>
-<rect x="260" y="192" width="130" height="27" rx="7" fill="#fff" stroke="#617f99" stroke-width="2"/><text x="325" y="210" text-anchor="middle" font-size="12" fill="#24445e">PC: 192.168.1.10</text>
-</svg>
-<div class="cols">
-<div class="panel"><strong>R1 (Active)</strong><pre><code>enable
-conf t
-interface g0/0
-ip address 192.168.1.2 255.255.255.0
-standby 1 ip 192.168.1.1
-standby 1 priority 110
-standby 1 preempt
-no shutdown</code></pre></div>
-<div class="panel"><strong>R2 (Standby)</strong><pre><code>enable
-conf t
-interface g0/0
-ip address 192.168.1.3 255.255.255.0
-standby 1 ip 192.168.1.1
-standby 1 priority 100
-standby 1 preempt
-no shutdown</code></pre></div>
+    <div class="question-block">
+        <div class="question">14. Cara Kerja HSRP (Hot Standby Router Protocol):</div>
+        <div class="answer">
+            <ol>
+                <li>Router dalam satu grup HSRP bertukar pesan <em>Hello</em> setiap 3 detik untuk memantau status.</li>
+                <li>Satu router dipilih menjadi <strong>Active</strong> (meneruskan traffic) dan satu menjadi <strong>Standby</strong> (mengawasi).</li>
+                <li>Pemilihan Active berdasarkan prioritas tertinggi (default 100). Jika prioritas sama, IP tertinggi menang.</li>
+                <li>Jika router Active mati (tidak mengirim Hello selama 10 detik), router Standby akan naik menjadi Active dan mengambil alih IP &amp; MAC Virtual.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="question-block">
+        <div class="question">15. Langkah Konfigurasi HSRP dan Gambar Topologi:</div>
+        <div class="answer">
+            <p><strong>Langkah Konfigurasi (Dilakukan pada R1 dan R2):</strong></p>
+            <ol>
+                <li>Masuk ke interface yang mengarah ke LAN: <code>interface GigabitEthernet0/1</code> (contoh).</li>
+                <li>Berikan IP Address fisik: <code>ip address 192.168.1.2 255.255.255.0</code>.</li>
+                <li>Aktifkan interface: <code>no shutdown</code>.</li>
+                <li>Konfigurasi HSRP grup 1 dan IP Virtual: <code>standby 1 ip 192.168.1.254</code>.</li>
+                <li>(Opsional) Atur prioritas (R1 dibuat lebih tinggi): <code>standby 1 priority 150</code>.</li>
+                <li>(Opsional) Aktifkan preempt agar langsung mengambil alih jika lebih tinggi: <code>standby 1 preempt</code>.</li>
+            </ol>
+            
+            <p><strong>Gambar Topologi (Deskripsi Visual):</strong></p>
+            <div class="topology">
+             [ Internet / ISP ]
+                    |
+          ---------------------
+          |                   |
+       [ R1 ]              [ R2 ]
+  (IP: 192.168.1.2)   (IP: 192.168.1.3)
+  (Priority 150)      (Priority 100)
+  (Active Router)     (Standby Router)
+          |                   |
+          +---------+---------+
+                    |
+              [ Switch L2 ]
+                    |
+          [ PC (Host) ]
+  (IP PC: 192.168.1.10/24)
+  (Default Gateway PC: 192.168.1.254)
+            </div>
+            <p><strong>Penjelasan Topologi:</strong> PC dikonfigurasi menggunakan IP Virtual <code>192.168.1.254</code> sebagai default gateway. R1 dan R2 secara fisik terhubung ke switch yang sama. Karena R1 memiliki prioritas lebih tinggi, R1 menjadi Active dan meneruskan paket dari PC. Jika R1 mati, R2 otomatis mengambil alih peran dengan IP Virtual yang sama.</p>
+        </div>
+    </div>
+
 </div>
-<p><strong>Verifikasi:</strong> <code>show standby brief</code>. Atur gateway PC ke <code>192.168.1.1</code>. Uji failover dengan mematikan interface Active secara terkontrol.</p>
-</div></article>
-<footer>Ringkasan belajar • Jaringan Komputer • Cisco IOS</footer>
-</main>
+
 </body>
 </html>
