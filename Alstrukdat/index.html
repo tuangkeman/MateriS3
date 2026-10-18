@@ -1,405 +1,2095 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="utf-8">
+<html lang="id"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ringkasan CCNA SRWE Modul 1-9</title>
+<title>Rangkuman Strukdat — Materi 01–07</title>
 <style>
-:root{--bg:#f5f6fa;--cd:#fff;--tx:#1b2232;--mu:#586177;--a:#2563eb;--b:#d9730d;--ok:#15803d;--no:#dc2626;--bd:#dde1ec;--cb:#eef1f8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1320;--cd:#171e30;--tx:#e6e9f2;--mu:#9aa4bb;--a:#60a5fa;--b:#fb923c;--ok:#4ade80;--no:#f87171;--bd:#2a3350;--cb:#0b101c;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0e1320;--cd:#171e30;--tx:#e6e9f2;--mu:#9aa4bb;--a:#60a5fa;--b:#fb923c;--ok:#4ade80;--no:#f87171;--bd:#2a3350;--cb:#0b101c;color-scheme:dark}
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px);scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--cd);z-index:10}
-header{padding:28px 18px 8px;max-width:860px;margin:auto}
-h1{margin:0 0 6px;font-size:1.7rem;line-height:1.2}
-header p{margin:0;color:var(--mu)}
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--cd);border-bottom:1px solid var(--bd);display:flex;gap:6px;padding:8px 12px;overflow-x:auto;margin-top:12px}
-nav a{flex:none;padding:4px 12px;border:1px solid var(--bd);border-radius:99px;color:var(--a);text-decoration:none;font-size:.88rem}
-main{max-width:860px;margin:auto;padding:0 14px 40px}
-section{background:var(--cd);border:1px solid var(--bd);border-left:5px solid var(--a);border-radius:10px;padding:6px 18px 16px;margin-top:22px}
-h2{font-size:1.3rem;margin:14px 0 4px}
-h3{font-size:1.03rem;margin:18px 0 4px;color:var(--a)}
-p,ul{margin:6px 0}ul{padding-left:20px}
-b{color:var(--b)}
-code{background:var(--cb);padding:1px 5px;border-radius:4px;font-size:.88em}
-pre{background:var(--cb);padding:10px 12px;border-radius:8px;overflow-x:auto;font-size:.8rem;line-height:1.5;margin:8px 0}
-pre code{background:none;padding:0}
-.tw{overflow-x:auto;margin:8px 0}
-table{border-collapse:collapse;width:100%;font-size:.9rem}
-th,td{border:1px solid var(--bd);padding:5px 9px;text-align:left;vertical-align:top}
-th{background:var(--cb)}
-.note{border-left:4px solid var(--b);background:var(--cb);padding:6px 12px;border-radius:0 8px 8px 0;margin:10px 0}
-svg{width:100%;height:auto;max-width:560px;display:block;margin:8px auto;background:var(--cb);border-radius:8px}
-svg text{fill:var(--tx);font:11px system-ui,sans-serif;text-anchor:middle}
-.n{fill:var(--cd);stroke:var(--a);stroke-width:2}.ln{stroke:var(--mu);stroke-width:2;fill:none}
-.pk{fill:var(--b)}.pb{fill:var(--a)}
-.seq{margin:8px 0;display:grid;gap:6px}
-.s{opacity:.2;transform:translateX(-10px);transition:.5s;border-left:4px solid var(--a);background:var(--cb);padding:5px 10px;border-radius:0 8px 8px 0;font-size:.92rem}
-.s.on{opacity:1;transform:none}.s.l{border-color:var(--b)}
-@media(prefers-reduced-motion:reduce){.s{transition:none}}
-</style></head><body>
-<header><h1>Ringkasan CCNA SRWE Modul 1-9</h1>
-<p>Cisco NetAcad: Switching, Routing, dan Wireless Essentials. Teks <b>oranye tebal</b> = wajib diingat.</p></header>
-<nav><a href="#m1">Modul 1</a><a href="#m2">Modul 2</a><a href="#m3">Modul 3</a><a href="#m4">Modul 4</a><a href="#m5">Modul 5</a><a href="#m6">Modul 6</a><a href="#m7">Modul 7</a><a href="#m8">Modul 8</a><a href="#m9">Modul 9</a></nav>
-<main>
+  :root{
+    --bg:#f6f7fb; --surface:#ffffff; --border:#e0e3ee; --text:#1c2030; --muted:#5c6478;
+    --primary:#463a72; --primary-soft:#ece9f6;
+    --amber:#c97a1f; --amber-soft:#fbe7cc;
+    --green:#2f8f5f; --green-soft:#dcf3e6;
+    --violet:#7752a8; --violet-soft:#efe6f7;
+    --code-bg:#f0f1f7; --code-border:#dfe1ee;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c; --surface:#191c26; --border:#2c3040; --text:#e8e9f2; --muted:#9aa1b5;
+      --primary:#a89ad6; --primary-soft:#2a2540;
+      --amber:#e4a256; --amber-soft:#3a2c17;
+      --green:#66c493; --green-soft:#173726;
+      --violet:#b79ee0; --violet-soft:#2a2140;
+      --code-bg:#1f2230; --code-border:#2f3344;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c; --surface:#191c26; --border:#2c3040; --text:#e8e9f2; --muted:#9aa1b5;
+    --primary:#a89ad6; --primary-soft:#2a2540;
+    --amber:#e4a256; --amber-soft:#3a2c17;
+    --green:#66c493; --green-soft:#173726;
+    --violet:#b79ee0; --violet-soft:#2a2140;
+    --code-bg:#1f2230; --code-border:#2f3344;
+  }
+  html{scroll-padding-top:64px;}
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{ font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; font-weight:600; color:var(--text); line-height:1.25; }
+  .container{max-width:740px; margin:0 auto; padding:0 20px 80px;}
 
-<section id="m1"><h2>Modul 1: Konfigurasi Perangkat Dasar</h2>
-<h3>Mode perintah IOS</h3>
-<div class="tw"><table><tr><th>Mode</th><th>Prompt</th><th>Fungsi</th></tr>
-<tr><td>User EXEC</td><td><code>S1&gt;</code></td><td>Akses terbatas, hanya pantau dasar</td></tr>
-<tr><td>Privileged EXEC</td><td><code>S1#</code></td><td>Semua perintah <code>show</code>, simpan konfigurasi. Masuk: <code>enable</code></td></tr>
-<tr><td>Global Config</td><td><code>S1(config)#</code></td><td>Ubah konfigurasi. Masuk: <code>configure terminal</code></td></tr>
-<tr><td>Line Config</td><td><code>S1(config-line)#</code></td><td>Atur console, vty (akses jarak jauh)</td></tr>
-<tr><td>Interface Config</td><td><code>S1(config-if)#</code></td><td>Atur port / antarmuka</td></tr></table></div>
-<h3>Konfigurasi awal switch</h3>
-<pre><code>hostname S1                         ! nama perangkat
-enable secret kunci123              ! sandi mode privilese (terenkripsi)
-line console 0
- password kunci456
- login                              ! wajib sandi saat lewat console
-line vty 0 15
- password kunci789
- login                              ! wajib sandi saat remote
-service password-encryption         ! enkripsi semua sandi teks biasa
-banner motd #Dilarang masuk tanpa izin#
-interface vlan 1                    ! SVI untuk manajemen
- ip address 192.168.1.2 255.255.255.0
- no shutdown                        ! aktifkan antarmuka
-ip default-gateway 192.168.1.1
-copy running-config startup-config  ! SIMPAN ke NVRAM</code></pre>
-<div class="note"><b>running-config</b> ada di RAM (hilang saat mati). <b>startup-config</b> ada di NVRAM (permanen). Lupa <code>copy running-config startup-config</code> = konfigurasi hilang saat reboot.</div>
-<h3>Akses jarak jauh</h3>
-<div class="tw"><table><tr><th>Metode</th><th>Keterangan</th></tr>
-<tr><td>Console</td><td>Kabel langsung, tanpa jaringan, untuk konfigurasi awal</td></tr>
-<tr><td>Telnet (port 23)</td><td><b>Tidak aman</b>, data dikirim teks biasa</td></tr>
-<tr><td>SSH (port 22)</td><td><b>Aman</b>, terenkripsi, <b>disarankan</b></td></tr></table></div>
-<pre><code>ip domain-name contoh.local
-crypto key generate rsa             ! buat kunci enkripsi (min. 1024 bit)
-username admin secret rahasia
-line vty 0 15
- transport input ssh                ! hanya izinkan SSH
- login local                        ! login pakai username lokal</code></pre>
-<h3>Port dan antarmuka</h3>
-<ul><li><b>Half duplex</b>: kirim atau terima bergantian (bisa tabrakan). <b>Full duplex</b>: kirim dan terima bersamaan (tanpa tabrakan).</li>
-<li>Default: <b>auto-negosiasi</b> kecepatan dan duplex. <b>Duplex tidak cocok</b> di dua ujung = performa buruk dan banyak error.</li>
-<li><b>Auto-MDIX</b>: port otomatis menyesuaikan kabel straight atau crossover.</li></ul>
-<h3>Konfigurasi router dan status antarmuka</h3>
-<pre><code>interface g0/0/0
- description Ke LAN Utama
- ip address 192.168.10.1 255.255.255.0
- ipv6 address 2001:db8:acad:10::1/64
- no shutdown</code></pre>
-<div class="tw"><table><tr><th>Status</th><th>Artinya</th></tr>
-<tr><td>Up / Up</td><td>Normal, Layer 1 dan 2 sehat</td></tr>
-<tr><td>Up / Down</td><td>Masalah <b>Layer 2</b> (enkapsulasi, clock rate, tidak ada keepalive)</td></tr>
-<tr><td>Down / Down</td><td>Masalah <b>Layer 1</b> (kabel putus atau lepas, perangkat ujung mati)</td></tr>
-<tr><td>Administratively down</td><td>Belum diberi <code>no shutdown</code></td></tr></table></div>
-<p>Verifikasi: <code>show ip interface brief</code>, <code>show running-config</code>, <code>show interfaces</code>, <code>show ip route</code> (kode <b>C</b> = terhubung langsung, <b>L</b> = alamat lokal).</p>
+  nav{ position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--border); padding-top:env(safe-area-inset-top,0px); }
+  .navrow{ max-width:740px; margin:0 auto; padding:14px 20px; display:flex; gap:20px; overflow-x:auto; white-space:nowrap; align-items:baseline; }
+  .navrow a{ color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:500; }
+  .navrow a.brand{ color:var(--primary); font-weight:700; font-family:Georgia,serif; font-size:1rem; margin-right:6px;}
+  .navrow a:hover{ color:var(--primary); }
+
+  .hero{ padding:44px 0 8px; }
+  .hero .kicker{ color:var(--muted); font-size:.95rem; margin-bottom:6px; }
+  .hero h1{ font-size:1.9rem; margin:0 0 10px; }
+  .hero p{ color:var(--muted); max-width:60ch; margin:0; }
+
+  section{ padding:44px 0 8px; border-top:1px solid var(--border); }
+  section:first-of-type{ border-top:none; }
+  section h2{ font-size:1.5rem; margin:0 0 6px; }
+  section .lede{ color:var(--muted); margin:0 0 22px; max-width:62ch; }
+  h3{ font-size:1.1rem; margin:26px 0 10px; }
+  h4{ font-size:.95rem; margin:18px 0 8px; color:var(--primary); }
+  p{ margin:0 0 14px; }
+  ul,ol{ padding-left:22px; margin:0 0 16px; }
+  li{ margin-bottom:5px; }
+
+  table{ width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.9rem; }
+  th,td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th{ color:var(--muted); font-weight:600; font-size:.8rem; }
+  tr:last-child td{ border-bottom:none; }
+
+  code{ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; font-size:.85em; background:var(--code-bg); padding:1px 5px; border-radius:4px; }
+  pre{ background:var(--code-bg); border:1px solid var(--code-border); border-radius:10px; padding:14px 16px; overflow-x:auto; margin:0 0 18px; }
+  pre code{ background:none; padding:0; font-size:.8rem; line-height:1.6; }
+
+  .callout{ background:var(--primary-soft); border-radius:10px; padding:14px 16px; margin:0 0 18px; font-size:.92rem; }
+  .callout b{ color:var(--primary); }
+  .callout.amber{ background:var(--amber-soft); }
+  .callout.amber b{ color:var(--amber); }
+
+  .steps-flow{ display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 22px; }
+  .steps-flow div{ flex:1 1 130px; background:var(--code-bg); border:1px solid var(--code-border); border-radius:9px; padding:10px 12px; font-size:.82rem; }
+  .steps-flow div b{ display:block; color:var(--primary); font-size:.78rem; margin-bottom:2px; }
+
+  .trace{ font-size:.86rem; }
+  .trace li{ margin-bottom:7px; }
+  .trace code{ font-weight:600; }
+
+  /* Sorting widget */
+  .algo-tabs{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+  .algo-tab{ padding:8px 14px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--muted); font-size:.87rem; font-weight:600; cursor:pointer; }
+  .algo-tab.active{ background:var(--primary); color:#fff; border-color:var(--primary); }
+
+  .stage{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px 16px 18px; margin-bottom:10px; }
+  .array-row{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; min-height:68px; align-items:center; margin-bottom:16px; }
+  .box{ width:52px; height:52px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.05rem; background:var(--surface); border:2px solid var(--border); color:var(--text); transition:transform .22s ease, background .22s ease, border-color .22s ease; }
+  .box.band-left{ background:var(--primary-soft); border-color:var(--primary); }
+  .box.band-right{ background:var(--violet-soft); border-color:var(--violet); }
+  .box.pivot{ border-color:var(--violet); box-shadow:0 0 0 2px var(--violet-soft); }
+  .box.compare{ background:var(--amber-soft); border-color:var(--amber); transform:translateY(-5px) scale(1.06); }
+  .box.sorted{ background:var(--green-soft); border-color:var(--green); }
+  .box.pop{ animation:pop .3s ease; }
+  @keyframes pop{ 0%{transform:scale(1);} 50%{transform:scale(1.14);} 100%{transform:scale(1);} }
+
+  .desc{ text-align:center; min-height:1.4em; font-weight:600; font-size:.98rem; margin-bottom:4px; }
+  .meta{ text-align:center; color:var(--muted); font-size:.82rem; }
+  .progress{ height:5px; border-radius:3px; background:var(--border); overflow:hidden; margin-top:12px; }
+  .progress-fill{ height:100%; background:var(--primary); width:0%; transition:width .2s ease; }
+
+  .controls{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:14px 0; }
+  button{ background:var(--primary); color:#fff; border:none; padding:9px 15px; border-radius:8px; font-size:.88rem; font-weight:600; cursor:pointer; }
+  button:disabled{ opacity:.4; cursor:default; }
+  button.secondary{ background:transparent; color:var(--text); border:1px solid var(--border); }
+
+  .speed-row{ display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:6px; color:var(--muted); font-size:.85rem; flex-wrap:wrap; }
+  input[type=range]{ width:130px; }
+  input[type=text]{ padding:8px 11px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:.88rem; width:220px; }
+  .input-row{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 4px; }
+
+  footer{ text-align:center; color:var(--muted); font-size:.8rem; padding:30px 0 10px; }
+
+
+  :root{
+    --bg:#f6f7fb; --surface:#ffffff; --border:#e0e3ee; --text:#1c2030; --muted:#5c6478;
+    --primary:#463a72; --primary-soft:#ece9f6;
+    --amber:#c97a1f; --amber-soft:#fbe7cc;
+    --green:#2f8f5f; --green-soft:#dcf3e6;
+    --violet:#7752a8; --violet-soft:#efe6f7;
+    --red:#c0443a; --red-soft:#f9dedb;
+    --code-bg:#f0f1f7; --code-border:#dfe1ee;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12141c; --surface:#191c26; --border:#2c3040; --text:#e8e9f2; --muted:#9aa1b5;
+      --primary:#a89ad6; --primary-soft:#2a2540;
+      --amber:#e4a256; --amber-soft:#3a2c17;
+      --green:#66c493; --green-soft:#173726;
+      --violet:#b79ee0; --violet-soft:#2a2140;
+      --red:#e5806f; --red-soft:#3d1f1b;
+      --code-bg:#1f2230; --code-border:#2f3344;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12141c; --surface:#191c26; --border:#2c3040; --text:#e8e9f2; --muted:#9aa1b5;
+    --primary:#a89ad6; --primary-soft:#2a2540;
+    --amber:#e4a256; --amber-soft:#3a2c17;
+    --green:#66c493; --green-soft:#173726;
+    --violet:#b79ee0; --violet-soft:#2a2140;
+    --red:#e5806f; --red-soft:#3d1f1b;
+    --code-bg:#1f2230; --code-border:#2f3344;
+  }
+  html{scroll-padding-top:64px;}
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.55; }
+  h1,h2,h3{ font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; font-weight:600; line-height:1.25; }
+  .container{max-width:740px; margin:0 auto; padding:0 20px 80px;}
+  b,strong{ font-weight:700; }
+  .k{ font-weight:700; background:linear-gradient(transparent 52%, var(--amber-soft) 52%); padding:0 2px; border-radius:2px; }
+
+  nav{ position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--border); padding-top:env(safe-area-inset-top,0px); }
+  .navrow{ max-width:740px; margin:0 auto; padding:14px 20px; display:flex; gap:20px; overflow-x:auto; white-space:nowrap; align-items:baseline; }
+  .navrow a{ color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:500; }
+  .navrow a.brand{ color:var(--primary); font-weight:700; font-family:Georgia,serif; font-size:1rem; margin-right:6px;}
+  .navrow a:hover{ color:var(--primary); }
+
+  .hero{ padding:44px 0 8px; }
+  .hero .kicker{ color:var(--muted); font-size:.95rem; margin-bottom:6px; }
+  .hero h1{ font-size:1.9rem; margin:0 0 10px; }
+  .hero p{ color:var(--muted); max-width:60ch; margin:0; }
+
+  section{ padding:44px 0 8px; border-top:1px solid var(--border); }
+  section:first-of-type{ border-top:none; }
+  section h2{ font-size:1.5rem; margin:0 0 6px; }
+  .lede{ color:var(--muted); margin:0 0 20px; max-width:62ch; }
+  h3{ font-size:1.1rem; margin:28px 0 10px; }
+  h4{ font-size:.95rem; margin:18px 0 8px; color:var(--primary); }
+  p{ margin:0 0 14px; }
+  ul,ol{ padding-left:22px; margin:0 0 16px; }
+  li{ margin-bottom:5px; }
+
+  .tw{ overflow-x:auto; }
+  table{ width:100%; border-collapse:collapse; margin:12px 0 20px; font-size:.9rem; }
+  th,td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th{ color:var(--muted); font-weight:600; font-size:.8rem; }
+  tr:last-child td{ border-bottom:none; }
+
+  code{ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; font-size:.85em; background:var(--code-bg); padding:1px 5px; border-radius:4px; }
+  pre{ background:var(--code-bg); border:1px solid var(--code-border); border-radius:10px; padding:14px 16px; overflow-x:auto; margin:0 0 18px; }
+  pre code{ background:none; padding:0; font-size:.8rem; line-height:1.6; }
+
+  .callout{ background:var(--primary-soft); border-radius:10px; padding:14px 16px; margin:0 0 18px; font-size:.92rem; }
+  .callout b{ color:var(--primary); }
+  .callout.amber{ background:var(--amber-soft); }
+  .callout.amber b{ color:var(--amber); }
+  .callout.core{ background:var(--surface); border:2px solid var(--primary); }
+  .callout.core .ttl{ display:block; font-family:Georgia,serif; font-size:1rem; color:var(--primary); margin-bottom:6px; }
+  .callout.core ul{ margin:0; }
+  .callout.core li{ margin-bottom:4px; }
+
+  .flow{ display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 22px; }
+  .flow div{ flex:1 1 130px; background:var(--code-bg); border:1px solid var(--code-border); border-radius:9px; padding:10px 12px; font-size:.84rem; }
+  .flow div b{ display:block; color:var(--primary); font-size:.8rem; margin-bottom:2px; }
+
+  /* player */
+  .tabs{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; }
+  .tab{ padding:8px 14px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--muted); font-size:.86rem; font-weight:600; cursor:pointer; }
+  .tab.active{ background:var(--primary); color:#fff; border-color:var(--primary); }
+  .stage{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 14px 16px; margin-bottom:10px; }
+  .row{ display:flex; gap:7px; flex-wrap:wrap; justify-content:center; align-items:flex-end; min-height:90px; margin-bottom:14px; }
+  .cell{ display:flex; flex-direction:column; align-items:center; }
+  .tag{ height:16px; font-size:.68rem; color:var(--violet); font-weight:700; white-space:nowrap; }
+  .idx{ font-size:.7rem; color:var(--muted); margin-top:3px; }
+  .box{ width:48px; height:48px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1rem; background:var(--surface); border:2px solid var(--border); transition:transform .22s ease, background .22s ease, border-color .22s ease, opacity .22s; }
+  .box.dim{ opacity:.3; }
+  .box.compare{ background:var(--amber-soft); border-color:var(--amber); transform:translateY(-5px) scale(1.07); }
+  .box.sorted{ background:var(--green-soft); border-color:var(--green); }
+  .hslot{ display:flex; flex-direction:column; align-items:center; }
+  .hc{ width:50px; height:46px; border-radius:8px; border:2px dashed var(--border); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.88rem; transition:all .22s ease; }
+  .hc.filled{ border-style:solid; background:var(--primary-soft); border-color:var(--primary); }
+  .hc.del{ border-style:solid; background:var(--code-bg); color:var(--muted); }
+  .hc.hl{ background:var(--amber-soft); border-color:var(--amber); border-style:solid; transform:translateY(-4px) scale(1.06); }
+  .hc.ok{ background:var(--green-soft); border-color:var(--green); border-style:solid; }
+  .hc.bad{ background:var(--red-soft); border-color:var(--red); border-style:solid; }
+  .desc{ text-align:center; min-height:2.6em; font-weight:600; font-size:.95rem; margin-bottom:4px; }
+  .meta{ text-align:center; color:var(--muted); font-size:.8rem; }
+  .progress{ height:5px; border-radius:3px; background:var(--border); overflow:hidden; margin-top:12px; }
+  .fill{ height:100%; background:var(--primary); width:0%; transition:width .2s ease; }
+  .controls{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:12px 0; }
+  button{ background:var(--primary); color:#fff; border:none; padding:9px 15px; border-radius:8px; font-size:.86rem; font-weight:600; cursor:pointer; }
+  button:disabled{ opacity:.4; cursor:default; }
+  button.secondary{ background:transparent; color:var(--text); border:1px solid var(--border); }
+  .speed{ display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:4px; color:var(--muted); font-size:.84rem; flex-wrap:wrap; }
+  input[type=range]{ width:130px; }
+  input[type=text],input[type=number]{ padding:8px 11px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:.88rem; width:200px; max-width:100%; }
+  input.sm{ width:110px; }
+  .inrow{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 4px; align-items:center; }
+  .hint{ text-align:center; color:var(--muted); font-size:.78rem; }
+
+  /* chaining + uml + acc */
+  .chain{ display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 20px; }
+  .chain .sl{ min-width:62px; font-size:.82rem; }
+  .chain .sl .n{ font-size:.7rem; color:var(--muted); }
+  .chip{ display:inline-block; background:var(--primary-soft); border:1px solid var(--primary); border-radius:6px; padding:2px 8px; margin:2px 2px 0 0; font-weight:700; font-size:.82rem; }
+  .uml{ border:2px solid var(--text); border-radius:4px; max-width:300px; font-size:.84rem; margin:10px 0 20px; background:var(--surface); }
+  .uml div{ padding:6px 10px; border-bottom:2px solid var(--text); }
+  .uml div:last-child{ border-bottom:none; }
+  .uml .nm{ text-align:center; font-weight:700; }
+  .acc{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px; font-size:.86rem; }
+  .acc.pop{ animation:pop .35s ease; }
+  @keyframes pop{ 0%{transform:scale(.96);opacity:.4;} 60%{transform:scale(1.02);} 100%{transform:scale(1);opacity:1;} }
+  .acc-h{ font-weight:700; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; }
+  .acc-ops{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; align-items:center; }
+  .acc-msg{ margin-top:6px; color:var(--green); font-weight:600; min-height:1.2em; }
+  .acc-msg.no{ color:var(--red); }
+  button.x{ padding:3px 9px; font-size:.75rem; background:transparent; color:var(--muted); border:1px solid var(--border); }
+  footer{ text-align:center; color:var(--muted); font-size:.8rem; padding:30px 0 10px; }
+
+/* ===== polish ===== */
+:root{--grad:linear-gradient(135deg,#463a72,#7752a8 55%,#c97a1f);--shadow:0 1px 2px rgba(20,20,40,.05),0 8px 24px rgba(20,20,40,.06);}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--grad:linear-gradient(135deg,#a89ad6,#b79ee0 55%,#e4a256);--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);}}
+body{background:var(--bg);background-image:radial-gradient(900px 380px at 85% -80px,var(--primary-soft),transparent 70%);background-repeat:no-repeat;-webkit-font-smoothing:antialiased;}
+.container{max-width:780px;}
+#rp{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:50;}
+nav{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.navrow{gap:8px;}
+.navrow a{padding:6px 12px;border-radius:999px;transition:.2s;}
+.navrow a:hover{background:var(--primary-soft);}
+.navrow a.on{background:var(--primary);color:#fff;}
+.navrow a.brand{padding-left:0;}
+.hero{padding:52px 0 18px;}
+.hero h1{font-size:2.3rem;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .kicker{display:inline-block;background:var(--primary-soft);color:var(--primary);padding:4px 12px;border-radius:999px;font-weight:600;font-size:.82rem;}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.chips a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 14px;font-size:.85rem;font-weight:600;box-shadow:var(--shadow);transition:.2s;}
+.chips a:hover{transform:translateY(-2px);border-color:var(--primary);}
+section{margin:28px 0;padding:30px 28px 18px;background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);}
+section:first-of-type{border-top:1px solid var(--border);}
+section h2{font-size:1.65rem;padding-bottom:8px;margin-bottom:10px;border-bottom:3px solid transparent;border-image:var(--grad) 1;display:inline-block;}
+section.rv{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+section.rv.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){section.rv{opacity:1;transform:none;transition:none;}}
+@media (max-width:560px){section{padding:22px 16px 12px;border-radius:16px;}.hero h1{font-size:1.8rem;}}
+b,strong{color:var(--text);}
+.stage{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:16px 14px;margin:12px 0 22px;}
+button{transition:transform .15s,filter .15s;}button:not(:disabled):hover{filter:brightness(1.1);transform:translateY(-1px);}
+select{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.86rem;}
+input.sm{width:84px;}
+pre{background:var(--code-bg);border:1px solid var(--code-border);border-radius:12px;padding:14px 16px;overflow-x:auto;font-size:.82rem;line-height:1.5;margin:12px 0 18px;}
+pre code{background:none;border:none;padding:0;white-space:pre;}
+.callout.core{border-left:5px solid var(--amber);background:var(--amber-soft);border-radius:12px;padding:14px 18px;}
+/* linked list widget */
+.llrow{display:flex;align-items:flex-end;overflow-x:auto;padding:12px 4px 10px;min-height:120px;}
+.lcell{display:flex;flex-direction:column;align-items:center;gap:4px;flex:none;}
+.ltag{font-size:.68rem;font-weight:700;color:var(--primary);min-height:1.8em;text-align:center;line-height:1.2;max-width:70px;}
+.lbox{min-width:56px;height:46px;padding:0 6px;border:2px solid var(--border);border-radius:10px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:700;transition:all .3s ease;}
+.lbox.hl{background:var(--amber-soft);border-color:var(--amber);transform:translateY(-6px) scale(1.07);}
+.lbox.ok{background:var(--green-soft);border-color:var(--green);animation:pop .4s ease;}
+.lbox.bad{background:var(--red-soft);border-color:var(--red);}
+.lbox.new{background:var(--violet-soft);border-color:var(--violet);}
+.lidx{font-size:.7rem;color:var(--muted);}
+.larrow{flex:none;width:40px;text-align:center;color:var(--primary);font-weight:700;margin-bottom:24px;font-size:1.05rem;}
+.larrow.skip{color:var(--green);}
+.lgap{width:26px;flex:none;}
+.lcirc{flex:none;margin:0 0 4px 14px;font-size:.78rem;color:var(--violet);font-weight:700;border:2px dashed var(--violet);border-radius:10px;padding:6px 10px;align-self:center;}
+.llrow{align-items:center;padding:8px 4px;min-height:96px}
+.lltray{display:flex;justify-content:flex-start;min-height:0}
+.lnode{display:flex;align-items:stretch;border:2px solid var(--border);border-radius:10px;background:var(--surface);overflow:hidden;transition:all .3s ease}
+.lnode b{min-width:50px;height:42px;padding:0 12px;display:flex;align-items:center;justify-content:center}
+.lnode i{width:24px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:.8rem;color:var(--primary);background:var(--primary-soft)}
+.lnode i:first-child{border-right:1px solid var(--border)}.lnode i:last-child{border-left:1px solid var(--border)}
+.lnode.hl{background:var(--amber-soft);border-color:var(--amber);transform:translateY(-6px) scale(1.07)}
+.lnode.ok{border-color:var(--green);background:var(--green-soft);animation:pop .4s ease}
+.lnode.bad{border-color:var(--red);background:var(--red-soft)}
+.lnode.new{border-color:var(--violet);background:var(--violet-soft);margin:0 0 6px}
+.lnode.new.lk{border-style:dashed}
+.larrow{margin-bottom:22px}.larrow.cut{color:var(--red)}
+.llcode{margin:14px 0 0;padding:10px 6px;font-size:.78rem}
+.llcode .ch{display:block;color:var(--muted);padding:0 8px 4px}
+.llcode .cl{display:block;padding:1px 8px;border-radius:4px;white-space:pre}
+.llcode .cl.on{background:var(--amber-soft);color:var(--text);font-weight:700;box-shadow:inset 3px 0 var(--amber)}
+.lloop{flex:none;align-self:stretch}
+.llwrap{position:relative}
+.lcirc{margin:6px 40px 0;border:2px dashed var(--violet);border-top:none;border-radius:0 0 14px 14px;text-align:center;font-size:.76rem;font-weight:700;color:var(--violet);padding:4px 0 6px}
+.box,.hc{border-radius:12px}.box{box-shadow:0 2px 6px rgba(0,0,0,.08);transition:all .3s ease}.box.compare{box-shadow:0 8px 18px rgba(201,122,31,.35)}.box.sorted{box-shadow:0 2px 8px rgba(47,143,95,.25)}.box.pivot{box-shadow:0 0 0 3px var(--violet-soft),0 6px 14px rgba(119,82,168,.3)}.progress{height:6px}.progress-fill,.fill{background:var(--grad)}.desc{font-size:1rem}.stage .llcode{margin-top:16px}
+/* layout lebar */
+html{font-size:clamp(16px,.5vw + 12px,19px)}
+body{line-height:1.65}
+.container,.navrow{max-width:min(1240px,94vw)}
+.lede,.hero p{max-width:none}
+.hero h1{font-size:clamp(2rem,3.2vw,3rem)}
+.hero p{font-size:1.05rem}
+table{font-size:1rem}th{font-size:.85rem}
+pre{font-size:.92rem}.llcode{font-size:.9rem}
+.desc{font-size:1.08rem}
+@media (min-width:900px){
+  section{padding:38px 48px 24px}
+  .stage{padding:24px 28px}
+  .box{width:58px;height:58px;font-size:1.1rem}
+  .hc{width:62px;height:54px}
+  .lnode b{min-width:62px;height:50px;font-size:1.1rem}.lnode i{width:30px}
+  .larrow{width:52px;font-size:1.2rem}
+  .llrow{min-height:120px}
+  .chain .sl{min-width:76px}
+  input[type=text]{width:280px}
+}
+@media (max-width:700px){.container,.navrow{max-width:100%}}
+</style></head>
+<body>
+<div id="rp"></div>
+<nav><div class="navrow"><a class="brand" href="#top">Strukdat</a><a href="#pengantar">Pengantar</a><a href="#efisiensi">Efisiensi</a><a href="#linear">Sorting Linear</a><a href="#nonlinear">Non-Linear</a><a href="#searching">Searching</a><a href="#hashing">Hashing</a><a href="#oop">ADT &amp; OOP</a><a href="#linkedlist">Linked List</a></div></nav>
+<div class="container" id="top">
+<div class="hero"><div class="kicker">Algoritma &amp; Struktur Data · UKDW · Gasal 2026/2027 · Materi 01–07</div>
+<h1>Rangkuman Strukdat</h1>
+<p>Pengantar, efisiensi, sorting, searching, hashing, OOP, dan <b>Linked List</b> dalam satu halaman. Poin yang <span class="k">wajib diingat</span> ditebalkan, dan tiap algoritma punya animasi alur.</p>
+<div class="chips"><a href="#linear">Sorting</a><a href="#searching">Searching</a><a href="#hashing">Hashing</a><a href="#oop">OOP</a><a href="#linkedlist">Linked List</a></div></div>
+<section id="pengantar">
+    <h2>1. Pengantar Algoritma &amp; Struktur Data</h2>
+    <p class="lede">Dasar dari semua materi berikutnya: apa itu algoritma, apa itu struktur data, dan bagaimana keduanya membentuk sebuah program.</p>
+
+    <h3>Definisi</h3>
+    <ul>
+      <li><b>Algoritma</b> — langkah-langkah logis dalam menyelesaikan suatu masalah berbasis komputer. Pondasi dari teknologi informasi, termasuk kecerdasan buatan (LLM &amp; GenAI). Bisa ditulis sebagai flowchart atau pseudocode.</li>
+      <li><b>Struktur Data</b> — cara data diorganisir secara efektif &amp; efisien di memori komputer agar bisa digunakan kembali, mencakup jenis data, sifat data, dan teknik <b>CRUDS</b> (Create, Read, Update, Delete, Select).</li>
+    </ul>
+    <div class="callout"><b>Program = Algoritma + Struktur Data.</b> Struktur data menentukan cara menyimpan &amp; mengakses data secepat apa; algoritma menentukan langkah apa yang dilakukan terhadap data itu.</div>
+
+    <h3>Kriteria algoritma yang baik</h3>
+    <table>
+      <tr><th>Kriteria</th><th>Arti</th></tr>
+      <tr><td>Finite</td><td>Langkahnya pasti berakhir</td></tr>
+      <tr><td>Definite</td><td>Setiap langkah jelas, tidak ambigu</td></tr>
+      <tr><td>Input</td><td>Memiliki 0 atau lebih input</td></tr>
+      <tr><td>Output</td><td>Minimal menghasilkan 1 output</td></tr>
+      <tr><td>Effective</td><td>Setiap langkah dapat benar-benar dikerjakan</td></tr>
+      <tr><td>Correct &amp; Efficient</td><td>Hasilnya benar dan hemat sumber daya</td></tr>
+    </table>
+
+    <h3>Cara membuat algoritma (6 langkah)</h3>
+    <div class="steps-flow">
+      <div><b>1. Pahami</b>masalah yang dihadapi</div>
+      <div><b>2. Tentukan</b>input dan output</div>
+      <div><b>3. Pilih</b>struktur data yang cocok</div>
+      <div><b>4. Susun</b>langkah logis</div>
+      <div><b>5. Uji</b>dengan contoh data</div>
+      <div><b>6. Analisis</b>dan perbaiki (iteratif)</div>
+    </div>
+
+    <h3>Kenapa butuh struktur data yang tepat?</h3>
+    <p>Contoh klasik: cari nilai terbesar dari 5 data pakai 5 variabel (<code>a,b,c,d,e</code>) — kalau butuh cari terbesar dari 100 data, butuh 100 variabel! Solusinya: pakai <b>List</b> — cukup 1 variabel, bisa diakses pakai perulangan, ukurannya dinamis, dan algoritmanya jadi lebih ringkas.</p>
+
+    <h3>Struktur data linier vs non-linier</h3>
+    <table>
+      <tr><th>Aspek</th><th>Linier</th><th>Non-Linier</th></tr>
+      <tr><td>Susunan data</td><td>Sekuensial, tiap data terkoneksi dengan sebelum/sesudahnya</td><td>Hierarkis, satu data bisa terkoneksi ke beberapa data sekaligus</td></tr>
+      <tr><td>Level</td><td>Semua data dalam satu level/tingkatan</td><td>Data berada di berbagai level</td></tr>
+      <tr><td>Traversal</td><td>Bisa ditelusuri lengkap dalam satu kali jalan</td><td>Butuh beberapa kali operasi sesuai tingkatannya</td></tr>
+      <tr><td>Contoh</td><td>List, Stack, Queue, Linked List, Array</td><td>Dictionary/Map, Tree, Graph</td></tr>
+    </table>
+
+    <h3>Masalah sama, struktur data beda</h3>
+    <p>Pertanyaan "apakah data X ada?" bisa dijawab lebih cepat kalau teknik penyimpanan datanya tepat:</p>
+    <table>
+      <tr><th>Struktur data</th><th>Teknik pencarian</th><th>Kompleksitas</th></tr>
+      <tr><td>List belum terurut</td><td>Linear Search</td><td>O(n)</td></tr>
+      <tr><td>List terurut</td><td>Binary Search</td><td>O(log n)</td></tr>
+      <tr><td>Dictionary / Hash Table</td><td>Direct Access</td><td>O(1) rata-rata</td></tr>
+    </table>
+
+    <h3>Implementasi di Python</h3>
+    <p>Built-in: <code>list</code>, <code>dictionary</code>, <code>tuple</code>, <code>set</code>. Untuk struktur data yang lebih kompleks (mis. Stack), kita bisa membuat <b>Abstract Data Type (ADT)</b> sendiri dengan OOP — mendefinisikan tipe data baru sesuai kebutuhan operasi.</p>
+  </section><section id="efisiensi">
+    <h2>2. Analisis Efisiensi Algoritma</h2>
+    <p class="lede">Mengukur kinerja algoritma dari faktor waktu &amp; ruang terhadap ukuran input — bukan dalam detik, tapi lewat <b>growth rate</b>.</p>
+
+    <h3>Kriteria algoritma yang baik (kinerja)</h3>
+    <ul>
+      <li><b>Finite</b> — langkahnya terbatas/berakhir</li>
+      <li><b>Efektif</b> — menghasilkan jawaban yang benar</li>
+      <li><b>Efisien</b> — pakai resources (waktu &amp; memory) seminimal mungkin</li>
+    </ul>
+    <p>Jumlah langkah ∝ waktu ∝ ukuran input — makin banyak data, makin banyak langkah &amp; makin lama waktunya.</p>
+
+    <h3>Dua cara analisis waktu</h3>
+    <table>
+      <tr><th>Cara</th><th>Penjelasan</th></tr>
+      <tr><td>Empiris</td><td>Jalankan program, ukur waktu nyata dengan input membesar, buat grafik, tentukan growth rate. Dipengaruhi hardware.</td></tr>
+      <tr><td>Asimtotik</td><td>Hitung dari source code: cari operasi dominan × berapa kali dieksekusi. Independen dari hardware.</td></tr>
+    </table>
+    <div class="callout">Asumsi analisis asymptotic: <b>random access machine</b> — single-core processor, single RAM. Akses memory = O(1) per sel.</div>
+
+    <h3>Contoh analisis empiris (source code)</h3>
+    <pre><code>for i in range(n):
+    proses_satu()
+    for j in range(n):
+        proses_dua()
+        proses_tiga()</code></pre>
+    <table>
+      <tr><th>n</th><th>proses_satu()</th><th>proses_dua()</th><th>proses_tiga()</th><th>Total</th></tr>
+      <tr><td>5</td><td>5</td><td>25</td><td>25</td><td>55</td></tr>
+      <tr><td>10</td><td>10</td><td>100</td><td>100</td><td>210</td></tr>
+      <tr><td>15</td><td>15</td><td>225</td><td>225</td><td>465</td></tr>
+    </table>
+
+    <h3>Contoh analisis asimtotik (jumlah langkah)</h3>
+    <pre><code>for i in range(1, n+1):   # loop 1..n
+    do_this               # operasi A -> n kali
+    do_that                # operasi B -> n kali
+# T(n) = 2n</code></pre>
+    <pre><code>for i in range(1, n+1):        # n kali
+    do_this                     # A -> n kali
+    for j in range(1, n+1):     # n kali
+        do_that                 # B -> n*n
+        do_more                  # C -> n*n
+# T(n) = n + 2n^2</code></pre>
+
+    <h3>Best, worst, average case</h3>
+    <p>Patokan yang dipakai selalu <b>worst case</b> — paling konsisten (sudah paling jelek, tidak mungkin lebih jelek lagi), dinyatakan dalam <b>notasi Big-O</b>. Best case cuma terjadi di kondisi tertentu; average case lebih realistis tapi lebih sulit dihitung.</p>
+
+    <h3>Big-O notation</h3>
+    <table>
+      <tr><th>Notasi</th><th>Nama</th><th>Jika input 2× lipat, waktu jadi</th></tr>
+      <tr><td>O(1)</td><td>Constant</td><td>Tidak berubah</td></tr>
+      <tr><td>O(log n)</td><td>Logarithmic</td><td>Bertambah konstan (kecil)</td></tr>
+      <tr><td>O(n)</td><td>Linear</td><td>2×</td></tr>
+      <tr><td>O(n log n)</td><td>Linearithmic</td><td>Sedikit lebih dari 2×</td></tr>
+      <tr><td>O(n²)</td><td>Quadratic</td><td>4×</td></tr>
+      <tr><td>O(n³)</td><td>Cubic</td><td>8×</td></tr>
+      <tr><td>O(2ⁿ)</td><td>Exponential</td><td>Mustahil dihitung untuk n &gt; 30</td></tr>
+      <tr><td>O(n!)</td><td>Factorial</td><td>Mustahil dihitung untuk n &gt; 15</td></tr>
+    </table>
+    <p>Analisis asymptotic hanya melihat <b>term terbesar</b>, koefisien &amp; term kecil diabaikan. Contoh: <code>T(n) = 3n² + 2n + log n + ¼n</code> → <code>O(n²)</code>, dan <code>T(n) = 0.3n³ + n</code> → <code>O(n³)</code> (lebih buruk walau koefisiennya kecil).</p>
+
+    <h4>Contoh per kategori</h4>
+    <ul>
+      <li><b>O(1)</b> — ambil elemen pertama list, cek genap/ganjil, tukar 2 variabel</li>
+      <li><b>O(log n)</b> — binary search, fast exponentiation (pangkat)</li>
+      <li><b>O(n)</b> — jumlahkan semua elemen array, cari nilai maksimum</li>
+      <li><b>O(n log n)</b> — merge sort, quick sort (avg), heap sort</li>
+      <li><b>O(n²)</b> — bubble sort, cari pasangan dengan jumlah tertentu (nested loop)</li>
+      <li><b>O(2ⁿ)</b> — Fibonacci rekursif, Menara Hanoi</li>
+      <li><b>O(n!)</b> — permutasi, Traveling Salesman Problem brute-force</li>
+    </ul>
+
+    <h3>Studi kasus: cari jangkauan (range) data</h3>
+    <p>Diberikan <code>data = [19, 22, 17, 40, 28, 35, 14]</code>, cari selisih nilai tertinggi &amp; terendah tanpa <code>max()</code>/<code>min()</code> bawaan Python (hasil: 40−14=<b>26</b>).</p>
+    <pre><code># Solusi 1 - nested loop
+def jangkauan1(data):
+    hasil = 0
+    for i in range(len(data)):
+        for j in range(len(data)):
+            selisih = abs(data[i] - data[j])
+            if selisih > hasil: hasil = selisih
+    return hasil   # O(n^2)</code></pre>
+    <pre><code># Solusi 2 - satu kali loop
+def jangkauan2(data):
+    high = low = data[0]
+    for i in range(len(data)):
+        if data[i] > high: high = data[i]
+        if data[i] < low: low = data[i]
+    return high - low   # O(n)</code></pre>
+    <p>Hasil pengukuran empiris: pada n=10.000, Solusi 1 (O(n²)) butuh <b>22,3 detik</b>, sedangkan Solusi 2 (O(n)) hanya <b>0,001 detik</b> — bukti nyata kenapa Big-O penting, bukan cuma teori.</p>
+
+    <h3>Contoh soal hitungan (wajib bisa!)</h3>
+    <ul>
+      <li><b>Soal:</b> O(n²), n=1 juta → 9 detik. Berapa waktu untuk n=3 juta?<br><b>Jawab:</b> 9 × 3² = <b>81 detik</b></li>
+      <li><b>Soal:</b> Algoritma O(n²) yang sama, berapa n maksimal supaya selesai dalam 60 detik?<br><b>Jawab:</b> 60 = 9×(n<sub>max</sub>/1jt)² → n<sub>max</sub> ≈ <b>2.582.000</b></li>
+      <li><b>Soal:</b> Mana yang terbaik: T(n)=9.000.000n²+100.000.000, T(n)=10.000.000.000n+3.000.000.000.000, T(n)=4n³+2n²+5?<br><b>Jawab:</b> yang <b>linear (n¹)</b> — paling baik walau koefisiennya besar</li>
+      <li><b>Soal:</b> A=O(n log n), B=O(n²), sama cepat di n=1.000. Mana lebih cepat di n=10.000?<br><b>Jawab:</b> <b>O(n log n)</b> lebih cepat (≈7,5× lebih cepat dari B)</li>
+    </ul>
+  </section><section id="linear">
+    <h2>3. Sorting Linear</h2>
+    <p class="lede">Pengurutan (sorting) = menyusun ulang data yang tersusun secara teratur menurut aturan tertentu — ascending (naik) atau descending (turun).</p>
+
+    <table>
+      <tr><th>Jenis urutan</th><th>Contoh</th></tr>
+      <tr><td>Ascending</td><td>1, 3, 5, 6, 8, 10, 25</td></tr>
+      <tr><td>Descending</td><td>25, 10, 8, 6, 5, 3, 1</td></tr>
+      <tr><td>Alphabetical order</td><td>Anton, Budi, Sudirman, Zorro</td></tr>
+      <tr><td>Natural order</td><td>gambar1, gambar9, gambar10, gambar22 (Python default = alphabetical, butuh <code>natsort</code> untuk natural order)</td></tr>
+    </table>
+
+    <h3>Kegunaan sorting</h3>
+    <p>Kalau input sudah terurut, banyak masalah jadi mudah: searching, cari min/max. Sorting juga punya banyak variasi pendekatan: iteratif, rekursif, best/worst/average case, randomized algorithm.</p>
+
+    <h3>Stabilitas pengurutan</h3>
+    <p><b>Stability</b> = selama proses pengurutan, apakah data bernilai sama tetap urutan kedatangannya atau berubah.</p>
+    <table>
+      <tr><th>Stable</th><th>Unstable</th></tr>
+      <tr><td>Merge Sort, Insertion Sort, Bubble Sort</td><td>Quick Sort, Heap Sort, Selection Sort</td></tr>
+    </table>
+
+    <h3>Best, worst, average case pada sorting</h3>
+    <p>Dari 3 data berikut, mana paling cepat diurutkan ascending?</p>
+    <table>
+      <tr><th>Data</th><th>Kondisi</th><th>Case</th></tr>
+      <tr><td>8, 10, 12, 15, 18, 20, 24</td><td>Sudah urut ascending, tidak perlu penukaran</td><td><b>Best case</b></td></tr>
+      <tr><td>24, 20, 18, 15, 12, 10, 8</td><td>Urut tapi terbalik, semua perlu ditukar</td><td><b>Worst case</b></td></tr>
+      <tr><td>12, 18, 8, 20, 24, 10, 15</td><td>Acak, jumlah tukar tergantung tingkat keacakan</td><td><b>Average case</b></td></tr>
+    </table>
+
+    <h3>Klasifikasi metode pengurutan</h3>
+    <table>
+      <tr><th>Kategori</th><th>Algoritma</th></tr>
+      <tr><td>Berdasarkan perbandingan (comparison-based)</td><td>Bubble sort, exchange sort</td></tr>
+      <tr><td>Berdasarkan prioritas (priority queue method)</td><td>Selection sort, heap sort (pakai tree)</td></tr>
+      <tr><td>Berdasarkan penyisipan &amp; penjagaan urut</td><td>Insertion sort, tree sort</td></tr>
+      <tr><td>Berdasarkan pembagian &amp; penguasaan (divide and conquer)</td><td>Quick sort, merge sort</td></tr>
+      <tr><td>Berkurang menurun (diminishing increment)</td><td>Shell sort (pengembangan insertion)</td></tr>
+    </table>
+
+    <h3>Animasi alur: Selection, Bubble, Insertion Sort</h3>
+    <div class="algo-tabs" id="lin-algoTabs"></div>
+    <div class="stage">
+      <div class="array-row" id="lin-arrayRow"></div>
+      <div class="desc" id="lin-descText"></div>
+      <div class="meta" id="lin-metaText"></div>
+      <div class="progress"><div class="progress-fill" id="lin-progressFill"></div></div>
+    </div>
+    <div class="speed-row">
+      <span>Kecepatan</span>
+      <input type="range" id="lin-speedSlider" min="250" max="1800" step="50" value="700">
+      <span id="lin-speedLabel">700 ms</span>
+    </div>
+    <div class="controls">
+      <button class="secondary" id="lin-prevBtn">⏮</button>
+      <button id="lin-playBtn">▶ Mulai</button>
+      <button class="secondary" id="lin-nextBtn">⏭</button>
+      <button class="secondary" id="lin-resetBtn">↺ Ulang</button>
+    </div>
+    <div class="input-row">
+      <input type="text" id="lin-arrInput" value="29, 5, 14, 36, 7" placeholder="mis: 29,5,14,36,7">
+      <button id="lin-setBtn">Pakai Data Ini</button>
+    </div>
+    <div id="lin-algoInfo"></div>
+
+    <h3>Selection Sort</h3>
+    <p>Array dibagi jadi 2 bagian: <b>sorted</b> &amp; <b>unsorted</b>. Kombinasi searching + sorting.</p>
+    <div class="steps-flow">
+      <div><b>1. Select</b>cari elemen terkecil di bagian unsorted</div>
+      <div><b>2. Swap</b>tukar ke indeks awal unsorted</div>
+      <div><b>3. Shift</b>geser 1 indeks batas unsorted</div>
+    </div>
+    <pre><code>def SelectionSort(A):
+    for i in range(len(A)):
+        min_idx = i
+        for j in range(i+1, len(A)):
+            if A[min_idx] > A[j]:
+                min_idx = j
+        A[i], A[min_idx] = A[min_idx], A[i]</code></pre>
+
+    <h3>Bubble Sort</h3>
+    <ol>
+      <li>Bandingkan sepasang item bersebelahan</li>
+      <li>Swap jika tidak urut</li>
+      <li>Ulang sampai akhir array — item terbesar akan berada di posisi terakhir</li>
+      <li>Kembali ke langkah 1 dengan n−1 item</li>
+    </ol>
+    <pre><code>def bubbleSort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]</code></pre>
+
+    <h3>Insertion Sort</h3>
+    <p>Mirip cara orang mengurutkan kartu — ambil selembar, sisipkan ke tempat yang seharusnya. Elemen lain bergeser ke belakang.</p>
+    <ol>
+      <li>Mulai dengan 1 item yang dianggap sudah urut</li>
+      <li>Ambil item berikutnya, sisipkan di posisi yang benar</li>
+      <li>Ulangi sampai semua item dimasukkan</li>
+    </ol>
+    <pre><code>def insertionSort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i-1
+        while j >= 0 and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+        arr[j+1] = key</code></pre>
+
+    <h3>Trace lengkap untuk data [5, 1, 10, 8, 7, 2]</h3>
+    <p>Contoh soal langsung dari slide — jalankan ketiga algoritma pada data yang sama:</p>
+    <ul class="trace">
+      <li><b>Bubble Sort</b> — Pass 1: <code>5&gt;1</code> tukar, <code>10&gt;8</code> tukar, <code>10&gt;7</code> tukar, <code>10&gt;2</code> tukar → <code>[1,5,8,7,2,10]</code>. Berlanjut hingga Pass 5 → <b>[1,2,5,7,8,10]</b></li>
+      <li><b>Selection Sort</b> — Pass 1: terkecil = 1 (idx1), tukar dgn idx0 → <code>[1,5,10,8,7,2]</code>. Pass 2: terkecil = 2 (idx5), tukar dgn idx1 → <code>[1,2,10,8,7,5]</code>. Berlanjut → <b>[1,2,5,7,8,10]</b></li>
+      <li><b>Insertion Sort</b> — bagian urut awal <code>[5]</code>. Sisipkan 1 → <code>[1,5,10,8,7,2]</code>. Sisipkan 10 (tanpa geser). Sisipkan 8 → geser 10 → <code>[1,5,8,10,7,2]</code>. Berlanjut → <b>[1,2,5,7,8,10]</b></li>
+    </ul>
+
+    <h3>Latihan (dari slide)</h3>
+    <ul>
+      <li>Urutkan <code>10, 15, 12, 18, 21, 29, 33, 42, 40, 45</code> descending pakai Selection Sort → butuh <b>5 kali swap</b></li>
+      <li>Urutkan <code>10, 15, 12, 18, 21, 29, 33</code> descending pakai Bubble Sort → butuh <b>6 pass</b></li>
+      <li>Kondisi terburuk (worst case) Insertion Sort adalah saat list <b>sudah terurut terbalik</b> — semua elemen harus digeser maksimal</li>
+    </ul>
+  </section><section id="nonlinear">
+    <h2>4. Sorting Non Linear</h2>
+    <p class="lede">Merge Sort &amp; Quick Sort — dua algoritma sorting berbasis <b>divide and conquer</b>, jauh lebih cepat dari sorting linear untuk data besar.</p>
+
+    <h3>Divide and Conquer</h3>
+    <p>Paradigma memecahkan masalah dengan membaginya jadi sub-masalah lebih kecil sampai bisa langsung diselesaikan — biasanya diimplementasikan lewat <b>fungsi rekursif</b>.</p>
+    <div class="steps-flow">
+      <div><b>Divide</b>bagi masalah jadi bagian lebih kecil</div>
+      <div><b>Conquer</b>selesaikan bagian terkecil (base case)</div>
+      <div><b>Combine</b>gabungkan solusi jadi solusi utuh</div>
+    </div>
+    <p>Contoh lain algoritma divide and conquer di luar sorting:</p>
+    <table>
+      <tr><th>Algoritma</th><th>Peningkatan kompleksitas</th></tr>
+      <tr><td>Strassen matrix multiplication</td><td>O(n³) → O(n²·⁸)</td></tr>
+      <tr><td>Longest Common Prefix (LCP)</td><td>"flower, flow, flawless" → "fl"</td></tr>
+      <tr><td>Exponential search</td><td>Pencarian berbasis perkiraan rentang</td></tr>
+      <tr><td>Karatsuba multiplication</td><td>Perkalian besar: 4× jadi 3× operasi</td></tr>
+      <tr><td>Closest pair of points</td><td>O(n²) → O(n log n)</td></tr>
+    </table>
+    <div class="callout amber"><b>Kelebihan:</b> memecahkan masalah sulit, algoritma efisien, mendukung paralelisme.<br><b>Kekurangan:</b> rekursi cenderung lambat (overhead function call); sub-problem bisa muncul berkali-kali → sebaiknya pakai <b>Dynamic Programming</b> (contoh: Fibonacci).</div>
+
+    <h4>Contoh: cari max/min dengan Divide and Conquer</h4>
+    <p>Data <code>[15,24,13,12,17,10,14,11]</code> dibagi 2 terus-menerus sampai base case (1 elemen / sepasang), lalu nilai max tiap bagian dibandingkan &amp; digabung (combine) naik ke atas hingga ditemukan max keseluruhan = <b>24</b> (dan min = <b>10</b>).</p>
+    <pre><code>def cari_maksimum(data, kiri, kanan):
+    if kiri == kanan:                      # base case
+        return data[kiri]
+    tengah = (kiri + kanan) // 2
+    maksimum_kiri = cari_maksimum(data, kiri, tengah)
+    maksimum_kanan = cari_maksimum(data, tengah + 1, kanan)
+    if maksimum_kiri > maksimum_kanan:
+        return maksimum_kiri
+    else:
+        return maksimum_kanan</code></pre>
+
+    <h3>Animasi alur: Merge Sort &amp; Quick Sort</h3>
+    <div class="algo-tabs" id="nl-algoTabs"></div>
+    <div class="stage">
+      <div class="array-row" id="nl-arrayRow"></div>
+      <div class="desc" id="nl-descText"></div>
+      <div class="meta" id="nl-metaText"></div>
+      <div class="progress"><div class="progress-fill" id="nl-progressFill"></div></div>
+    </div>
+    <div class="speed-row">
+      <span>Kecepatan</span>
+      <input type="range" id="nl-speedSlider" min="250" max="1800" step="50" value="700">
+      <span id="nl-speedLabel">700 ms</span>
+    </div>
+    <div class="controls">
+      <button class="secondary" id="nl-prevBtn">⏮</button>
+      <button id="nl-playBtn">▶ Mulai</button>
+      <button class="secondary" id="nl-nextBtn">⏭</button>
+      <button class="secondary" id="nl-resetBtn">↺ Ulang</button>
+    </div>
+    <div class="input-row">
+      <input type="text" id="nl-arrInput" value="15, 24, 13, 12, 17, 10, 14, 16" placeholder="mis: 15,24,13,12,17,10,14,16">
+      <button id="nl-setBtn">Pakai Data Ini</button>
+    </div>
+    <div id="nl-algoInfo"></div>
+
+    <h3>Quick Sort</h3>
+    <div class="callout"><b>Ditemukan oleh C.A.R. Hoare pada tahun 1960</b>, dimuat sebagai artikel di <i>Computer Journal 5</i>, April 1962.</div>
+    <ul>
+      <li>Implementasi divide and conquer: <b>Divide = Pivot</b>, <b>Conquer = Partition</b></li>
+      <li><b>Tidak stabil</b> — partisi sering menukar elemen bernilai sama</li>
+      <li><b>In-place</b> — tidak butuh memory tambahan</li>
+    </ul>
+    <p><b>Pemilihan pivot:</b> selalu elemen pertama, atau selalu elemen terakhir, atau random, atau elemen tengah (digeser ke kanan).</p>
+    <pre><code>def quicksort(data, start, end):
+    if start < end:
+        pivot_index = partition(data, start, end)
+        quicksort(data, start, pivot_index-1)
+        quicksort(data, pivot_index+1, end)
+
+def partition(data, start, end):
+    pivot = data[end]          # pivot = elemen terakhir
+    left, right = start, end - 1
+    while left <= right:
+        while data[left] < pivot: left += 1
+        while data[right] > pivot: right -= 1
+        if left <= right:
+            data[left], data[right] = data[right], data[left]
+            left += 1; right -= 1
+    data[left], data[end] = data[end], data[left]
+    return left</code></pre>
+    <p><b>Kinerja:</b> Worst case <b>O(n²)</b> — pivot selalu nilai tertinggi/terendah (mis. data sudah urut tapi ingin diurutkan sebaliknya). Best case <b>O(n log n)</b> — pivot selalu nilai median.</p>
+
+    <h3>Merge Sort</h3>
+    <div class="callout"><b>Ditemukan oleh John von Neumann pada tahun 1945</b> — salah satu algoritma divide and conquer paling awal di era komputasi modern.</div>
+    <ul>
+      <li><b>Divide</b> = bagi data jadi 2 bagian sampai 1 elemen; <b>Conquer</b> = gabungkan (merge) elemen secara terurut</li>
+      <li><b>Stable</b> — urutan data bernilai sama tidak berubah</li>
+      <li><b>Bukan in-place</b> — butuh memory tambahan untuk potongan data &amp; hasil merge</li>
+    </ul>
+    <h4>4 tahapan Merge Sort</h4>
+    <ol>
+      <li>Tentukan titik tengah, bagi data jadi kiri &amp; kanan</li>
+      <li>Merge sort bagian kiri (rekursif)</li>
+      <li>Merge sort bagian kanan (rekursif)</li>
+      <li>Gabungkan (merge) hasil kiri &amp; kanan secara terurut</li>
+    </ol>
+    <pre><code>def mergesort(data):
+    if len(data) > 1:
+        mid = len(data) // 2
+        left, right = data[:mid], data[mid:]
+        mergesort(left); mergesort(right)
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                data[k] = left[i]; i += 1
+            else:
+                data[k] = right[j]; j += 1
+            k += 1
+        while i < len(left):  data[k]=left[i];  i+=1; k+=1
+        while j < len(right): data[k]=right[j]; j+=1; k+=1</code></pre>
+
+    <h4>Contoh proses divide &amp; merge (data [15,24,13,12,17,10,14,16])</h4>
+    <p><b>Divide:</b> <code>[15,24,13,12,17,10,14,16]</code> → <code>[15,24,13,12]</code> | <code>[17,10,14,16]</code> → ... → dipecah sampai elemen tunggal.</p>
+    <p><b>Merge naik bertahap:</b> [15]&amp;[24]→[15,24] · [13]&amp;[12]→[12,13] · [17]&amp;[10]→[10,17] · [14]&amp;[16]→[14,16] → lalu [15,24]&amp;[12,13]→[12,13,15,24] · [10,17]&amp;[14,16]→[10,14,16,17] → akhirnya digabung jadi <b>[10,12,13,14,15,16,17,24]</b>.</p>
+    <p><b>Kinerja:</b> selalu <b>O(n log n)</b> di best, worst, maupun average case — karena prosesnya selalu sama (bagi dua, lalu merge), tidak dipengaruhi urutan data awal.</p>
+
+    <h3>Ringkasan perbandingan</h3>
+    <table>
+      <tr><th>Algoritma</th><th>Best</th><th>Avg</th><th>Worst</th><th>Stable</th><th>In-place</th><th>Penemu</th></tr>
+      <tr><td>Selection Sort</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>Tidak</td><td>Ya</td><td>–</td></tr>
+      <tr><td>Bubble Sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>Ya</td><td>Ya</td><td>–</td></tr>
+      <tr><td>Insertion Sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>Ya</td><td>Ya</td><td>–</td></tr>
+      <tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>Ya</td><td>Tidak</td><td>John von Neumann, 1945</td></tr>
+      <tr><td>Quick Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>Tidak</td><td>Ya</td><td>C.A.R. Hoare, 1960 (publikasi 1962)</td></tr>
+    </table>
+  </section>
+<section id="searching">
+    <h2>1. Searching (Pencarian)</h2>
+    <p class="lede">Pencarian data pada list: apakah nilai X ada atau tidak?</p>
+
+    <div class="callout core"><span class="ttl">Inti yang wajib diingat</span>
+      <ul>
+        <li><b>Searching</b> = pencarian data dengan <b>menelusuri</b> data (retrieval information). Pada materi ini hanya menjawab <b>ADA / TIDAK ADA</b>.</li>
+        <li><b>Sequential Search</b> → satu-satunya yang bisa dipakai pada list <b>belum terurut</b> · <b>O(n)</b></li>
+        <li><b>Binary Search</b> → syarat <b>list sudah terurut</b>, data dibagi 2 tiap langkah · <b>O(log n)</b></li>
+        <li><b>Exponential Search</b> → lipat dua indeks (<b>1, 2, 4, 8, …</b>) untuk cari rentang, lalu <b>binary search</b> · best <b>O(1)</b>, avg/worst <b>O(log i)</b></li>
+      </ul>
+    </div>
+
+    <h3>Dasar searching</h3>
+    <ul>
+      <li>Pada suatu data sering dibutuhkan <b>pembacaan kembali informasi (retrieval information)</b> lewat searching.</li>
+      <li>Tempat pencarian: <b>array/list di memori</b>, atau <b>file di external storage</b>.</li>
+      <li>Bentuk pencarian: <b>(1)</b> apakah data bernilai x ada di List? <b>(2)</b> ada berapa data bernilai x? <b>(3)</b> pada posisi berapa saja data bernilai x?</li>
+      <li>Dibahas: collection berupa <b>sequence (List)</b>, dengan <b>dua kondisi list: belum terurut &amp; sudah terurut</b>.</li>
+    </ul>
+
+    <h3>Animasi alur searching</h3>
+    <div class="tabs" id="s-tabs"></div>
+    <div class="stage">
+      <div class="row" id="s-row"></div>
+      <div class="desc" id="s-desc"></div>
+      <div class="meta" id="s-meta"></div>
+      <div class="progress"><div class="fill" id="s-fill"></div></div>
+    </div>
+    <div class="speed"><span>Kecepatan</span><input type="range" id="s-speed" min="300" max="2000" step="50" value="900"><span id="s-speedLbl">900 ms</span></div>
+    <div class="controls">
+      <button class="secondary" id="s-prev">⏮</button><button id="s-play">▶ Mulai</button><button class="secondary" id="s-next">⏭</button><button class="secondary" id="s-reset">↺ Ulang</button>
+    </div>
+    <div class="inrow">
+      <input type="text" id="s-arr" placeholder="array, pisah koma">
+      <input type="number" class="sm" id="s-target" placeholder="target">
+      <button id="s-set">Pakai Data Ini</button>
+    </div>
+    <div class="hint" id="s-hint"></div>
+    <div id="s-info"></div>
+
+    <h3>Sequential Search (Linear Search)</h3>
+    <p>Menelusuri data <b>satu per satu dari awal</b> sampai ketemu atau data habis. Contoh data: <code>[8, 10, 6, -2, 11, 7, 1, 100]</code>, cari <b>6</b> → tampil <b>“ADA”</b>; kalau tidak ada tampil <b>“TIDAK ADA”</b>.</p>
+<pre><code>def seqSearch(arr, x):
+    for i in range(len(arr)):
+        if arr[i] == x:
+            return 1      # ADA
+    return 0              # TIDAK ADA</code></pre>
+    <div class="callout amber"><b>Catatan:</b> kode di slide memakai <code>range(len(arr)+1)</code> (bikin IndexError) dan tidak ada <code>return</code> untuk kasus tidak ketemu — versi di atas yang benar.</div>
+    <p>Kompleksitas: best <b>O(1)</b> (ada di indeks awal), worst <b>O(n)</b> (ada di akhir / tidak ada).</p>
+
+    <h3>Binary Search</h3>
+    <p>Teknik pencarian dengan <b>membagi data menjadi dua bagian</b> setiap proses. <span class="k">Data harus diurutkan lebih dulu</span> berdasarkan kunci pencarian.</p>
+    <h4>Karakteristik penting</h4>
+    <ul>
+      <li>Input array <b>sudah sorted</b></li>
+      <li>Pencarian pada <b>subarray</b> tempat item x mungkin berada</li>
+      <li>Berulang kali membandingkan <b>x dengan elemen tengah m</b>:
+        <ul>
+          <li>jika <b>x == m</b> → <b>ketemu!</b></li>
+          <li>jika <b>x &gt; m</b> → cari di posisi <b>setelah m</b> (<code>low = mid + 1</code>)</li>
+          <li>jika <b>x &lt; m</b> → cari di posisi <b>sebelum m</b> (<code>high = mid − 1</code>)</li>
+        </ul>
+      </li>
+    </ul>
+    <h4>Ilustrasi (cari 17)</h4>
+    <div class="tw"><table>
+      <tr><th>Langkah</th><th>Data (idx 0–8): 3, 9, 11, 12, 15, 17, 23, 31, 35</th><th>low · mid · high</th><th>Keputusan</th></tr>
+      <tr><td>1</td><td>mid = idx 4 → 15</td><td>0 · 4 · 8</td><td>17 &gt; 15 → <b>low = mid + 1 = 5</b></td></tr>
+      <tr><td>2</td><td>mid = idx 6 → 23</td><td>5 · 6 · 8</td><td>17 &lt; 23 → <b>high = mid − 1 = 5</b></td></tr>
+      <tr><td>3</td><td>mid = idx 5 → 17</td><td>5 · 5 · 5</td><td>17 = 17 → <b>KETEMU</b></td></tr>
+    </table></div>
+<pre><code># Iteratif
+def binary_search(list, item):
+    low = 0
+    high = len(list) - 1
+    while low &lt;= high:
+        mid = (low + high) // 2
+        guess = list[mid]
+        if guess == item:
+            return mid
+        if guess &gt; item:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return -1</code></pre>
+<pre><code># Rekursif (contoh kode)
+def binary_search_rec(arr, item, low, high):
+    if low &gt; high:
+        return -1
+    mid = (low + high) // 2
+    if arr[mid] == item:
+        return mid
+    elif arr[mid] &gt; item:
+        return binary_search_rec(arr, item, low, mid - 1)
+    else:
+        return binary_search_rec(arr, item, mid + 1, high)</code></pre>
+    <p><b>Contoh rekursif dari slide:</b> data <code>[1, 3, 7, 10, 12, 14, 19, 20]</code>, cari <b>19</b>:</p>
+    <div class="tw"><table>
+      <tr><th>Portion</th><th>Low</th><th>High</th><th>Mid</th></tr>
+      <tr><td>1</td><td>0</td><td>7</td><td>3</td></tr>
+      <tr><td>2</td><td>4</td><td>7</td><td>5</td></tr>
+      <tr><td>3</td><td>6</td><td>7</td><td>6 → <b>X[mid] == 19</b></td></tr>
+    </table></div>
+    <p>Kenapa <b>O(log n)</b>? Tiap langkah membuang separuh data: n elemen butuh k langkah dengan <b>2<sup>k</sup> ≈ n → k ≈ log₂ n</b> (1 juta data cuma ±20 langkah).</p>
+
+    <h3>Exponential Search</h3>
+    <p>Disebut juga <b>doubling search / galloping search</b>. Algoritma untuk menemukan target pada <b>list terurut</b>. Sangat efisien untuk data terurut <b>berukuran sangat besar (unbounded / infinite array)</b> karena batas akhir list <b>tidak perlu diketahui di awal</b>.</p>
+    <h4>Dua tahap utama</h4>
+    <div class="flow">
+      <div><b>Tahap 1 — cari rentang</b>lipat gandakan indeks secara eksponensial: 1, 2, 4, 8, …, 2<sup>k</sup></div>
+      <div><b>Tahap 2 — binary search</b>jalankan binary search pada rentang [low, high] yang ditemukan</div>
+    </div>
+    <h4>Langkah kerja</h4>
+    <ol>
+      <li>Periksa indeks <b>0</b>. Kalau cocok dengan target → selesai.</li>
+      <li>Tetapkan <b>i = 1</b>.</li>
+      <li>Kalikan <b>i = i × 2</b> selama <b>i &lt; n</b> dan <b>A[i] &lt; target</b>.</li>
+      <li>Tentukan interval: <b>low = i/2</b>, <b>high = min(i, n−1)</b>.</li>
+      <li>Jalankan <b>binary search standar</b> di dalam [low, high].</li>
+    </ol>
+<pre><code>def exponential_search(arr, target):
+    if arr[0] == target: return 0
+    n = len(arr); bound = 1
+    while bound &lt; n and arr[bound] &lt; target:
+        bound *= 2                         # batas x 2
+    left, right = bound//2, min(bound, n-1)
+    while left &lt;= right:                   # binary search
+        mid = (left + right) // 2
+        if arr[mid] == target: return mid
+        elif arr[mid] &lt; target: left = mid + 1
+        else: right = mid - 1
+    return -1</code></pre>
+    <p>Kompleksitas: best <b>O(1)</b> (target di indeks awal) · average &amp; worst <b>O(log i)</b>, i = posisi indeks elemen yang dicari.</p>
+
+    <h3>Perbandingan</h3>
+    <div class="tw"><table>
+      <tr><th>Algoritma</th><th>Syarat list</th><th>Cara kerja</th><th>Best</th><th>Worst</th></tr>
+      <tr><td><b>Sequential</b></td><td>Boleh belum terurut</td><td>Cek satu per satu</td><td>O(1)</td><td><b>O(n)</b></td></tr>
+      <tr><td><b>Binary</b></td><td><b>Harus terurut</b></td><td>Bagi dua tiap langkah</td><td>O(1)</td><td><b>O(log n)</b></td></tr>
+      <tr><td><b>Exponential</b></td><td><b>Harus terurut</b></td><td>Lipat dua → binary search</td><td>O(1)</td><td><b>O(log i)</b></td></tr>
+      <tr><td><b>Hash table</b></td><td>–</td><td>Direct access via fungsi hash</td><td>O(1)</td><td>O(1) rata-rata</td></tr>
+    </table></div>
+  </section><section id="hashing">
+    <h2>2. Hashing</h2>
+    <p class="lede">Cara menemukan data langsung lewat index yang dihitung dari key — tanpa membandingkan satu per satu.</p>
+
+    <div class="callout core"><span class="ttl">Inti yang wajib diingat</span>
+      <ul>
+        <li><b>Hash table</b> = data disimpan di array; <b>index = fungsi hash(key)</b> → pencarian <b>O(1)</b> (direct access).</li>
+        <li>Fungsi hash yang bagus: <b>cepat · deterministic · fixed-length · evenly distribution</b>. Sifatnya <b>satu arah</b>.</li>
+        <li><b>Collision</b> = dua key berbeda menghasilkan index yang sama → <b>masalah utama</b> hash table.</li>
+        <li><b>Load factor</b> = <b>100% × (jumlah data / kapasitas tabel)</b> → makin besar, makin sering collision.</li>
+        <li>Penanganan collision: <b>Open Addressing</b> (<b>Linear Probing, Quadratic Probing, Double Hashing</b>) dan <b>Open Hashing</b> (<b>Separate Chaining</b>).</li>
+        <li><b>Kegunaan</b>: dictionary, representasi object, database indexing, caches.</li>
+      </ul>
+    </div>
+
+    <h3>Review: Dictionary &amp; hash table</h3>
+    <p>Di Python, <b>Dictionary</b> menyimpan pasangan <b>key-value</b>; value diakses lewat <b>key</b>. Aksesnya sangat cepat karena implementasinya berdasarkan <b>hash table</b>.</p>
+<pre><code>data = {71:'Informatika', 72:'Sistem Informasi', 41:'Kedokteran', 11:'Manajemen'}
+data[71]   # 'Informatika'</code></pre>
+    <ul>
+      <li>Nilai disimpan dalam <b>list/array</b> yang diakses lewat <b>index</b>-nya.</li>
+      <li>Linear &amp; binary search harus <b>mencari</b> karena <b>tidak tahu index</b> data. Kalau index diketahui, akses jauh lebih cepat.</li>
+      <li>Cara tahu index butuh <b>dua hal: key + fungsi hash</b> → masukkan key ke fungsi hash untuk mendapat index.</li>
+    </ul>
+
+    <h3>Kenapa pakai hashing?</h3>
+    <p>Linear &amp; binary search adalah <b>comparison-based search</b> — big-O terbaik yang bisa dicapai hanya <b>O(log n)</b>. Hashing memakai <b>direct access</b> sehingga pencarian bisa <b class="k">O(1)</b>.</p>
+
+    <h3>Fungsi hash</h3>
+    <p>Contoh: <code>f(key) = key mod 7</code>. Untuk key 71: <b>f(71) = 71 mod 7 = 1</b> → 'Informatika' disimpan di <b>index ke-1</b>.</p>
+    <div class="tw"><table>
+      <tr><th>Index</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+      <tr><td>Isi</td><td>–</td><td>Informatika (71)</td><td>Sistem Informasi (72)</td><td>–</td><td>Manajemen (11)</td><td>–</td><td>Kedokteran (41)</td></tr>
+    </table></div>
+    <ul>
+      <li>Fungsi hash <b>memetakan nilai data (panjang/besar bervariasi) ke nilai dalam rentang tetap (fixed)</b>.</li>
+      <li>Merupakan <b>fungsi satu arah</b>: dari key bisa didapat value/lokasi, tetapi tidak sebaliknya.</li>
+    </ul>
+    <h4>Ciri fungsi hash yang bagus</h4>
+    <ul>
+      <li><b>Proses perhitungan cepat</b></li>
+      <li><b>Deterministic</b> — key yang sama harus menghasilkan nilai hash yang sama</li>
+      <li><b>Fixed-length value</b> — hasil dalam rentang yang telah ditentukan</li>
+      <li><b>Evenly distribution</b> — key menyebar merata, tidak mengumpul di satu tempat</li>
+      <li><b>Perfect hash function</b> — hanya mungkin jika <b>seluruh key sudah diketahui sebelumnya</b></li>
+    </ul>
+    <h4>Permasalahan fungsi hash</h4>
+    <ul>
+      <li>Harapan: <b>Simple Uniform Hashing</b> — tiap key punya peluang sama menempati salah satu slot, hasil tidak mengumpul di satu area.</li>
+      <li>Contoh buruk: <code>f(key) = key mod 7</code> → key <b>9, 16, 37, 2</b> semuanya menghasilkan <b>index 2</b>.</li>
+      <li><b>Space problem</b>: kalau <code>f(key) = key</code> (71 di index 71, 72 di index 72…), butuh space sangat besar dan banyak tempat kosong → <b>tidak efisien</b>.</li>
+      <li>Mengatasi collision harus <b>cepat &amp; efisien</b>. Kalau waktu tidak masalah, cukup <b>linear probing</b> — tapi butuh space besar.</li>
+    </ul>
+
+    <h3>Jenis fungsi hash</h3>
+    <div class="tw"><table>
+      <tr><th>Jenis</th><th>Rumus &amp; keterangan</th></tr>
+      <tr><td><b>Modulo</b></td><td><code>f(key) = key mod n</code> — n biasanya <b>kapasitas maksimal</b> hash table (bisa juga <b>bilangan prima</b>)</td></tr>
+      <tr><td><b>Multiplication</b></td><td><code>f(key) = floor( m × ((key × A) − floor(key × A)) )</code> — pilih <b>0 &lt; A &lt; 1</b>, biasanya <b>A = 0.618 (golden ratio)</b>; <b>m</b> &gt; kapasitas maksimal (kelipatan 2); <b>floor()</b> = pembulatan ke bawah</td></tr>
+      <tr><td><b>Universal Hashing</b></td><td>Sediakan <b>bermacam-macam fungsi hash</b>, lalu pakai <b>salah satu secara acak</b></td></tr>
+    </table></div>
+
+    <h3>Hash pada String</h3>
+    <ul>
+      <li>Modulo/multiplication butuh bilangan → <b>string dikonversi dulu</b>, biasanya pakai nilai <b>ASCII / Unicode code point</b>: di Python pakai <b><code>ord()</code></b>.</li>
+      <li><b>Posisi/urutan karakter</b> penting: urutan beda = string beda.</li>
+    </ul>
+<pre><code>total = 0
+for c in key:
+    total = total + ord(c)
+index = total % 15      # hash table ukuran 15</code></pre>
+    <div class="tw"><table>
+      <tr><th>String</th><th>Jumlah ord()</th><th>Hash (mod 15)</th></tr>
+      <tr><td>'upin'</td><td>117+112+105+110 = <b>444</b></td><td><b>9</b></td></tr>
+      <tr><td>'bambang'</td><td>98+97+109+98+97+110+103 = <b>712</b></td><td><b>7</b></td></tr>
+      <tr><td>'anto'</td><td>97+110+116+111 = <b>434</b></td><td><b>14</b></td></tr>
+      <tr><td>'dani' (latihan)</td><td>100+97+110+105 = <b>412</b></td><td><b>7</b> → collision dengan 'bambang'!</td></tr>
+      <tr><td>'dina' (latihan)</td><td>100+105+110+97 = <b>412</b></td><td><b>7</b> → sama dengan 'dani' (anagram)</td></tr>
+    </table></div>
+    <div class="callout amber"><b>Catatan:</b> di slide 'anto' tertulis 91+110+116+111, padahal ord('a') = 97 (total 434 tetap benar). Hash dengan <b>penjumlahan ord()</b> tidak membedakan urutan huruf, jadi anagram seperti 'dani' dan 'dina' selalu <b>collision</b>.</div>
+
+    <h4>Kalkulator hash (coba sendiri)</h4>
+    <div class="inrow">
+      <input type="text" class="sm" id="hc-key" value="upin" placeholder="key">
+      <span>M =</span><input type="number" class="sm" id="hc-m" value="15">
+      <span>m =</span><input type="number" class="sm" id="hc-mm" value="16">
+    </div>
+    <div id="hc-out"></div>
+    <div class="hint">Angka → modulo &amp; multiplication (A = 0.618). Teks → jumlah ord() lalu mod M.</div>
+
+    <h3>Contoh hash table sederhana</h3>
+    <p>Simpan <b>93, 70, 137, 24, 51, 83, 65, 111</b> pada hash table ukuran <b>13</b>, dengan <code>f(key) = key mod 13</code> (mod 13 karena tabel berukuran 13).</p>
+    <ul>
+      <li>f(93) = <b>2</b> · f(70) = <b>5</b> · f(137) = <b>7</b> · f(24) = <b>11</b> · f(51) = <b>12</b></li>
+      <li>f(83) = <b>5</b> → <b>Collision!</b> (bentrok dengan 70) · f(65) = 0 · f(111) = <b>7</b> → collision dengan 137</li>
+    </ul>
+
+    <h3>Mengatasi collision</h3>
+    <ul>
+      <li>Fungsi hash bagus seharusnya <b>meminimalkan collision</b>.</li>
+      <li><b>Load factor = 100% × (jumlah data tersimpan / kapasitas hash table)</b>. Load factor besar → kemungkinan collision besar.</li>
+      <li>Jika collision, data baru <b>tetap harus masuk</b> ke tabel tapi di <b>posisi yang bukan seharusnya</b>. <b>Penanganan collision = mencari index alternatif</b>.</li>
+    </ul>
+    <div class="tw"><table>
+      <tr><th>Kategori</th><th>Teknik</th></tr>
+      <tr><td><b>Open Addressing</b></td><td><b>Linear Probing, Quadratic Probing, Double Hashing</b></td></tr>
+      <tr><td><b>Open Hashing</b></td><td><b>Separate Chaining</b></td></tr>
+    </table></div>
+
+    <h3>Animasi: probing &amp; collision</h3>
+    <div class="tabs" id="h-tabs"></div>
+    <div class="stage">
+      <div class="row" id="h-row"></div>
+      <div class="desc" id="h-desc"></div>
+      <div class="meta" id="h-meta"></div>
+      <div class="progress"><div class="fill" id="h-fill"></div></div>
+    </div>
+    <div class="speed"><span>Kecepatan</span><input type="range" id="h-speed" min="300" max="2000" step="50" value="1000"><span id="h-speedLbl">1000 ms</span></div>
+    <div class="controls">
+      <button class="secondary" id="h-prev">⏮</button><button id="h-play">▶ Mulai</button><button class="secondary" id="h-next">⏭</button><button class="secondary" id="h-reset">↺ Ulang</button>
+    </div>
+    <div class="hint">Kuning = slot yang sedang dicek · Hijau = berhasil · Merah = gagal · <b>Δ</b> = slot bekas terhapus (flag)</div>
+    <div id="h-info"></div>
+
+    <h3>Linear Probing</h3>
+    <p>Melakukan <b>perhitungan kembali (probing)</b> untuk menemukan <b>slot kosong</b>, secara <b>sekuensial</b> mulai dari posisi collision (selisih 1).</p>
+    <div class="callout"><b>Rumus: Slot = ( h(key) + i ) % M</b><br>M = jumlah slot hash table · i = langkah probe (biasanya bertambah 1) · h(key) = nilai hash awal</div>
+    <ul>
+      <li><b>Menambah</b> 226: h = 226 mod 13 = 5 → bentrok dengan 96 → probe ke slot 6 (kosong) → simpan.</li>
+      <li><b>Ujung tabel</b>: bila probing mencapai slot terakhir, <b>lanjut dari slot pertama</b>; ulangi sampai semua slot diperiksa (contoh 388 → hash 11 → 11, 12 penuh → <b>slot 0</b>).</li>
+      <li><b>Searching</b>: hitung hash target, cek key == target; bila belum, <b>lanjut probing</b> sampai semua slot diperiksa atau ketemu <b>slot kosong</b> (contoh 903 → ada; 561 → tidak ada).</li>
+      <li><b>Deletion</b>: pakai <b class="k">flag khusus</b> untuk menandai slot yang pernah dipakai. Tanpa flag, setelah 226 dihapus slot 6 jadi kosong dan pencarian 903 berhenti terlalu cepat (salah “tidak ada”).</li>
+    </ul>
+
+    <h3>Quadratic Probing</h3>
+    <p>Kalau linear probing mencari tempat sebelah (selisih 1), quadratic probing mencari berdasarkan <b>jarak kuadrat</b> — “melompat” lebih jauh sehingga lebih mudah menemukan slot kosong.</p>
+    <div class="callout"><b>Rumus: slot = ( home + i² ) % M</b><br>Urutan probe: <b>hash(key)</b> → <b>(hash + 1) % M</b> → <b>(hash + 4) % M</b> → <b>(hash + 9) % M</b> → <b>(hash + 16) % M</b> …</div>
+    <p><b>Contoh</b> (hash(k) = k mod 7, tabel berisi 18 di idx 4): tambah <b>3</b> → idx 3 (kosong). Tambah <b>38</b> → hash 3 penuh → +1 (idx 4 penuh) → +4 (idx 0 kosong) → simpan di <b>idx 0</b>.</p>
+
+    <h3>Double Hashing</h3>
+    <p>Menyiapkan <b>dua fungsi hash sekaligus</b>: kalau fungsi pertama collision, lokasi baru dihitung dengan <b>fungsi hash kedua</b>. Kalau fungsi kedua juga collision → pakai linear atau quadratic probing.</p>
+    <div class="callout"><b>Urutan probe:</b> hash(key) → <b>(hash(key) + hp(key)) % m</b> → <b>(hash(key) + 2 × hp(key)) % m</b> → <b>(hash(key) + 3 × hp(key)) % m</b> …<br><b>hp()</b> = fungsi hash kedua, menentukan <b>banyaknya slot yang dilompati</b> tiap collision (tergantung key).</div>
+    <ul>
+      <li><b>Contoh</b> (hash = k mod 7, hp = k mod 5): tambah <b>21</b> → hash 0 penuh, hp = 1 → idx <b>1</b>.</li>
+      <li>Tambah <b>4</b> → hash 4 penuh, hp = 4 → probe 4, 8 (idx 1 penuh), 12 (idx 5 kosong) → simpan di <b>idx 5</b>.</li>
+      <li>Tambah <b>35</b> → hash 0 penuh, <b>hp(35) = 0</b> → probe 0, 0, 0, … tidak pernah pindah → <b class="k">tidak baik!</b> (hp tidak boleh menghasilkan 0).</li>
+    </ul>
+
+    <h3>Separate Chaining (Open Hashing)</h3>
+    <p>Setiap slot menyimpan <b>list</b> dari semua key yang ber-hash sama; collision cukup <b>menambah key ke list slot tersebut</b> (tidak pindah slot). Contoh data 93, 70, 137, 24, 51, 83, 65, 111 (mod 13):</p>
+    <div class="chain">
+      <div class="sl"><div class="n">slot 0</div><span class="chip">65</span></div>
+      <div class="sl"><div class="n">slot 2</div><span class="chip">93</span></div>
+      <div class="sl"><div class="n">slot 5</div><span class="chip">70</span>→<span class="chip">83</span></div>
+      <div class="sl"><div class="n">slot 7</div><span class="chip">137</span>→<span class="chip">111</span></div>
+      <div class="sl"><div class="n">slot 11</div><span class="chip">24</span></div>
+      <div class="sl"><div class="n">slot 12</div><span class="chip">51</span></div>
+    </div>
+
+    <h3>Perbandingan penanganan collision</h3>
+    <div class="tw"><table>
+      <tr><th>Teknik</th><th>Kategori</th><th>Rumus / cara</th><th>Lompatan</th></tr>
+      <tr><td><b>Linear Probing</b></td><td>Open Addressing</td><td><code>(h(key) + i) % M</code></td><td>+1 per langkah</td></tr>
+      <tr><td><b>Quadratic Probing</b></td><td>Open Addressing</td><td><code>(h(key) + i²) % M</code></td><td>1, 4, 9, 16…</td></tr>
+      <tr><td><b>Double Hashing</b></td><td>Open Addressing</td><td><code>(h(key) + i × hp(key)) % M</code></td><td>kelipatan hp(key)</td></tr>
+      <tr><td><b>Separate Chaining</b></td><td>Open Hashing</td><td>tiap slot berisi list</td><td>tidak pindah slot</td></tr>
+    </table></div>
+
+    <h3>Kegunaan hashing (contoh penggunaan hash table)</h3>
+    <ul>
+      <li><b>Implementasi Dictionary</b> — di bahasa lain disebut <b>Associative Array</b></li>
+      <li><b>Representasi Object</b> pada bahasa dinamis yang mendukung OOP: <b>Perl, Python, JavaScript, Ruby</b></li>
+      <li><b>Database Indexing</b> — mempercepat operasi pencarian pada database</li>
+      <li><b>Caches</b> — penyimpanan data sementara yang bisa diambil dengan cepat</li>
+      <li>Dipakai di berbagai algoritma untuk <b>mempercepat penyimpanan dan pencarian data</b></li>
+    </ul>
+    <div class="callout"><b>Tujuan utamanya:</b> meningkatkan operasi pencarian dari <b>O(log n)</b> (comparison-based) menjadi <b>O(1)</b> lewat direct access.</div>
+  </section><section id="oop">
+    <h2>3. ADT dan OOP</h2>
+    <p class="lede">Dari pemrograman prosedural ke berorientasi obyek: class, object, atribut, method, dan konsep dasar OOP.</p>
+
+    <div class="callout core"><span class="ttl">Inti yang wajib diingat</span>
+      <ul>
+        <li><b>Class</b> = <b>blueprint/template</b> berisi <b>nama class, daftar atribut, daftar method</b>. <b>Object</b> = hasil <b>instansiasi</b> dari class.</li>
+        <li><b>Atribut</b> (data member / property / state) = <b>data</b> object. <b>Method</b> (function / behaviour) = <b>kemampuan</b> object.</li>
+        <li><b>Constructor</b> = <b><code>def __init__(self, …)</code></b>, dipanggil <b>otomatis saat objek dibuat</b> untuk <b>inisialisasi atribut</b>.</li>
+        <li>4 konsep dasar OOP: <b>Abstraction · Encapsulation · Inheritance · Polymorphism</b>.</li>
+        <li><b>Accessor/getter</b> = hanya <b>membaca</b>; <b>Mutator/setter</b> = <b>mengubah</b> nilai atribut.</li>
+        <li><b>self</b> = menunjuk object/class yang bersangkutan.</li>
+      </ul>
+    </div>
+
+    <h3>Prosedural (terstruktur) vs OOP</h3>
+    <div class="tw"><table>
+      <tr><th>Aspek</th><th>Prosedural</th><th>Berorientasi Obyek</th></tr>
+      <tr><td>Pendekatan</td><td><b>Top-down</b>: masalah besar dipecah jadi masalah kecil</td><td><b>Bottom-up</b>: definisikan elemen penyusun, lalu gabungkan jadi elemen lebih besar</td></tr>
+      <tr><td>Unit program</td><td><b>Fungsi / prosedur</b> (modul)</td><td><b>Obyek</b> (data + method)</td></tr>
+      <tr><td>Cara pandang</td><td>Barisan <b>langkah-langkah</b> (data + logika bisnis), sekuensial, step-by-step</td><td>Kumpulan <b>obyek (kata benda)</b> yang saling berinteraksi</td></tr>
+      <tr><td>Alur</td><td>Dari <b>program utama (main)</b> memanggil fungsi secara urut</td><td>Obyek saling <b>mengirim pesan (method call)</b></td></tr>
+    </table></div>
+    <p><b>Contoh kasus</b> (luas &amp; keliling segitiga, lingkaran, persegi, persegi panjang): <b>Prosedural</b> → susun urutan kerja dari input sampai output. <b>OOP</b> → definisikan elemen penyusun: Segitiga (a, t), Lingkaran (r), Persegi Panjang (p, l), Persegi (s), lalu gabungkan.</p>
+<pre><code>import math
+class Segitiga:
+    def __init__(self, alas, tinggi):
+        self._alas = alas
+        self._tinggi = tinggi
+    def luas(self):
+        return self._alas * self._tinggi * 0.5
+    def keliling(self):                      # asumsi segitiga siku-siku
+        c = math.sqrt(self._alas**2 + self._tinggi**2)
+        return c + self._alas + self._tinggi
+    def getAlas(self):   return self._alas
+    def getTinggi(self): return self._tinggi
+
+sgt1 = Segitiga(4, 5)                        # program utama
+print(sgt1.luas())       # 10.0
+print(sgt1.keliling())   # 15.403124237432849</code></pre>
+
+    <h3>Abstract Data Type (ADT)</h3>
+    <ul>
+      <li><b>Tipe data buatan programmer</b> yang terdiri dari <b>obyek data</b> dan <b>operasi</b> yang dilakukan.</li>
+      <li>Memakai <b class="k">information hiding</b>: <b>menyembunyikan detail implementasi</b> dan menyediakan akses lewat <b>interface</b> berbasis function/method.</li>
+      <li>Perlu dibuat sendiri karena tipe built-in Python tidak cukup. Salah satu bentuknya adalah <b>Class</b>. Contoh: <b>Queue, Stack, Mahasiswa, Buku, AC</b>.</li>
+      <li>Jenis operasi ADT: <b>Constructors · Accessors · Mutators · Iterators</b>.</li>
+    </ul>
+
+    <h3>Object Oriented Programming</h3>
+    <p>Paradigma pemrograman berorientasi pada <b>obyek</b>; obyek = <b>representasi suatu entitas</b> yang dioperasikan dalam program. Obyek punya <b>bentuk (data dan metode)</b>.</p>
+    <div class="uml">
+      <div class="nm">Rekening</div>
+      <div>no_rekening<br>nama<br>saldo<br>daftar_transaksi</div>
+      <div>buka_rekening()<br>simpan_uang()<br>ambil_uang()<br>transfer_uang()<br>cek_saldo()<br>tutup_rekening()</div>
+    </div>
+    <p>Class diagram (bagian dari <b>UML</b>): kotak atas = <b>nama class</b>, tengah = <b>atribut / data / property</b>, bawah = <b>method / function</b>.</p>
+
+    <h3>Class dan Object</h3>
+    <div class="flow">
+      <div><b>1. Class (blueprint)</b>didefinisikan <b>lebih dulu</b>: nama class, atribut, method</div>
+      <div><b>2. Instansiasi</b>membuat object dari class <b>menggunakan constructor</b></div>
+      <div><b>3. Object / Instance</b>punya atribut &amp; method yang sama, <b>nilai atribut bisa berbeda</b></div>
+    </div>
+    <ul>
+      <li>Semua object dari class yang sama punya <b>atribut dan method yang sama</b>, tapi <b>nilainya bisa berbeda dan tidak saling mempengaruhi</b>.</li>
+      <li>Contoh: Inem mengambil uang 100 juta → yang berkurang <b>hanya saldo rekening Inem</b>.</li>
+      <li><b>Sending message / method call</b>: object dioperasikan dengan memanggil method-nya, mis. simpan uang 700.000 → saldo berubah → cek saldo.</li>
+    </ul>
+
+    <h3>Konsep dasar OOP</h3>
+    <div class="tw"><table>
+      <tr><th>Konsep</th><th>Arti</th></tr>
+      <tr><td><b class="k">Abstraction</b></td><td>Mendefinisikan class berdasarkan konsep/obyek yang ingin dibuat; <b>menyederhanakan</b> dan hanya mengambil <b>bagian yang penting</b> untuk program.</td></tr>
+      <tr><td><b class="k">Encapsulation</b></td><td>Data <b>dibungkus di dalam class</b>, hanya bisa diakses lewat <b>method yang disediakan</b>. Menjamin <b>integritas data</b> — perubahan nilai bisa diawasi dan dikontrol.</td></tr>
+      <tr><td><b>Inheritance</b></td><td>Mendefinisikan class baru sebagai <b>perluasan class yang sudah ada</b> (pewarisan sifat), memakai <b>parent class</b> sebagai acuan.</td></tr>
+      <tr><td><b>Polymorphism</b></td><td>Satu class/method punya <b>banyak bentuk atau perilaku</b> tergantung konteks; lewat inheritance (<b>overriding</b>) dan <b>overloading</b>.</td></tr>
+    </table></div>
+    <p><b>Encapsulation di contoh Segitiga:</b> atribut ditulis <code>self._alas</code> (awalan <code>_</code>) dan dibaca lewat method <code>getAlas()</code> — bukan diakses langsung.</p>
+
+    <h3>Atribut (data member / state)</h3>
+    <ul>
+      <li>Disebut juga <b>variabel class / data member / property / state</b> — <b>data</b> yang dimiliki object.</li>
+      <li>Di Python dibuat di constructor lewat <code>self.nama_atribut = nilai</code>.</li>
+    </ul>
+
+    <h3>Method / fungsi / behaviour</h3>
+    <ul>
+      <li><b>Method</b> = fungsi di dalam class, <b>kemampuan/layanan</b> object (<b>behaviour</b>). Parameter pertama selalu <b><code>self</code></b>.</li>
+      <li><b>Accessor / getter</b> (<code>getX()</code>) — <b>tidak mengubah</b> nilai variabel class, hanya membaca/mengembalikan (return) nilainya.</li>
+      <li><b>Mutator / setter</b> (<code>setX(x)</code>) — <b>mengubah</b> nilai variabel class.</li>
+    </ul>
+<pre><code>class Titik:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def getX(self): return self.x        # accessor / getter
+    def getY(self): return self.y
+    def setX(self, x): self.x = x        # mutator / setter
+    def setY(self, y): self.y = y
+
+t1 = Titik(30, 10)
+t1.setX(40); t1.setY(100)
+print(t1.getX(), t1.getY())   # 40 100</code></pre>
+
+    <h3 id="constructor">Constructor (<code>__init__</code>)</h3>
+    <div class="callout core"><span class="ttl">Constructor — inti</span>
+      <ul>
+        <li><b>Constructor</b> adalah <b>fungsi spesial di dalam class</b> yang dipakai untuk <b>menciptakan object (instansiasi)</b>.</li>
+        <li>Di Python <b>ditandai dengan <code>def __init__(self, …)</code></b> (<b>garis bawah 2× sebelum dan sesudah</b> init).</li>
+        <li><b>Tujuan: inisialisasi</b> — mengisi nilai awal <b>atribut / data member</b>.</li>
+        <li><b>Dipanggil otomatis</b> saat object dibuat, <b>sekali di awal</b> (<code>t1 = Titik(100, 30)</code>).</li>
+        <li><b>Setiap class PASTI punya default constructor</b>, walau tidak ditulis.</li>
+      </ul>
+    </div>
+    <div class="tw"><table>
+      <tr><th>Jenis</th><th>Ciri</th></tr>
+      <tr><td><b>Default constructor</b></td><td><b>Tanpa parameter</b>; disediakan Python <b>otomatis</b> bila class tidak punya constructor</td></tr>
+      <tr><td><b>Non-default constructor</b></td><td><b>Punya parameter</b>; dipakai untuk <b>mengisi nilai awal</b> variabel class; (menurut slide) bisa banyak constructor dengan signature berbeda</td></tr>
+    </table></div>
+    <div class="callout amber"><b>Catatan Python:</b> sebenarnya hanya satu <code>__init__</code> per class — kalau ditulis dua kali, yang terakhir menimpa. Untuk variasi pakai <b>parameter default</b>, mis. <code>def __init__(self, x=0, y=0)</code>.</div>
+<pre><code>class Titik:
+    x = 5
+    y = 3
+    def __init__(self, x, y):   # constructor: self = variabel class Titik
+        self.x = x
+        self.y = y
+
+t1 = Titik(100, 30)             # instansiasi -> __init__ dipanggil otomatis
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def myfunc(self):
+        print("Hello my name is " + self.name)
+
+p1 = Person("John", 36); p1.myfunc()    # Hello my name is John
+p2 = Person("Matt", 40); p2.myfunc()    # Hello my name is Matt</code></pre>
+    <p>Di memori ada <b>2 object (p1 dan p2)</b> dengan nilai variabel class yang <b>berbeda</b>. <code>p1</code> adalah <b>variabel / reference</b> yang menunjuk ke <b>object</b> (punya type, nilai atribut, dan <b>id</b> unik).</p>
+
+    <h3>Contoh lengkap: class Rekening</h3>
+<pre><code>class Rekening:
+    def __init__(self, no_rekening, nama, saldo_awal):   # constructor
+        self.no_rekening = no_rekening                    # atribut / state
+        self.nama = nama
+        self.saldo = saldo_awal
+        self.daftar_transaksi = []
+
+    def simpan_uang(self, setoran):                       # method / behaviour
+        if setoran &gt; 0:
+            self.saldo = self.saldo + setoran
+            return True
+        else:
+            return False
+
+    def ambil_uang(self, penarikan):
+        if penarikan &gt; 0 and self.saldo &gt; penarikan:
+            self.saldo = self.saldo - penarikan
+            return True
+        else:
+            return False
+
+# instansiasi memakai constructor
+rekening_anton = Rekening(9865541, 'Antonius RC', 10_000_000)
+rekening_anton.simpan_uang(5_000_000)    # saldo -> 15 juta
+rekening_anton.ambil_uang(2_500_000)     # saldo -> 12,5 juta</code></pre>
+    <p class="hint" style="text-align:left">Catatan: di slide ada typo <code>seturan</code> pada <code>simpan_uang</code>; yang benar <code>setoran</code>.</p>
+
+    <h4>Demo interaktif: instansiasi &amp; method call</h4>
+    <p>Buat object baru (constructor dipanggil), lalu coba <b>simpan_uang()</b> / <b>ambil_uang()</b>. Perhatikan: <b>tiap object punya saldo sendiri</b>, dan method mengembalikan <b>True/False</b>.</p>
+    <div class="inrow">
+      <input type="text" class="sm" id="a-no" value="9865541" placeholder="no_rekening">
+      <input type="text" class="sm" id="a-nama" value="Antonius RC" placeholder="nama">
+      <input type="number" class="sm" id="a-saldo" value="10000000" placeholder="saldo_awal">
+      <button id="a-new">Buat object</button>
+    </div>
+    <pre><code id="a-code"></code></pre>
+    <div id="a-list"></div>
+
+    <h3>Method khusus: <code>__str__</code> &amp; hapus object/atribut</h3>
+    <ul>
+      <li><b><code>__str__</code></b> = method khusus Python, sama dengan <b>toString()</b> di Java/C++. Mengubah object jadi <b>string</b> agar bisa ditampilkan dengan <code>print(object)</code>.</li>
+      <li><b><code>del</code></b> menghapus <b>object atau atribut</b> (jadi tidak bisa diakses): <code>del p1</code>, <code>del p1.name</code>, <code>del p1.age</code>. <b>Method tidak bisa dihapus.</b></li>
+    </ul>
+<pre><code>class Rekening:
+    def __str__(self):
+        return "Kode: "+str(self.kode)+", Nama: "+self.nama+", Saldo: "+str(self.saldo)
+
+print(rek1)        # memanggil __str__ otomatis
+
+p1 = Person("John", 36)
+del p1.age
+print(p1.age)      # AttributeError (atribut sudah dihapus)</code></pre>
+
+    <h3>Konvensi penamaan</h3>
+    <div class="tw"><table>
+      <tr><th>Yang dinamai</th><th>Aturan</th><th>Contoh</th></tr>
+      <tr><td><b>Class</b></td><td>Deskriptif, <b>diawali huruf besar</b>, lebih dari satu kata pakai <b>CamelCase</b>, tanpa spasi (atau underscore)</td><td><code>Mahasiswa</code>, <code>PersegiPanjang</code>, <code>PegawaiHonorer</code></td></tr>
+      <tr><td><b>Atribut &amp; method</b></td><td><b>Diawali huruf kecil</b>, lebih dari satu kata pakai camelCase atau <code>_</code></td><td><code>hitungBunga()</code>, <code>hitung_bunga()</code></td></tr>
+    </table></div>
+
+    <h3>Python vs Java / C# / Swift / Kotlin</h3>
+    <ul>
+      <li>Semuanya mendukung OOP, tapi di <b>Java/C#/Swift/Kotlin</b> ada <b>private &amp; public</b> untuk data member dan member function.</li>
+      <li>Di <b>Python</b>, akses ke data member dan method <b>tidak dibatasi</b> — secara umum <b>semuanya public</b>. (<i>With great power there must also come great responsibility</i>.)</li>
+    </ul>
+
+    <h3>Review istilah penting OOP (Python)</h3>
+    <div class="tw"><table>
+      <tr><th>Istilah</th><th>Arti singkat</th></tr>
+      <tr><td><b>Class</b></td><td>Blueprint/template: nama + atribut + method</td></tr>
+      <tr><td><b>Object</b></td><td>Instance hasil instansiasi class</td></tr>
+      <tr><td><b>Variabel class / Data member / Atribut</b></td><td>Data milik object</td></tr>
+      <tr><td><b>Fungsi / Method / Behaviour</b></td><td>Kemampuan object</td></tr>
+      <tr><td><b>Constructor</b></td><td>Pembuat object &amp; inisialisasi atribut</td></tr>
+      <tr><td><b>self</b></td><td>Penunjuk ke object/class yang bersangkutan</td></tr>
+      <tr><td><b>__init__</b></td><td>Nama method constructor di Python</td></tr>
+      <tr><td><b>__str__</b></td><td>Mengubah object jadi string untuk print()</td></tr>
+      <tr><td><b>Getter / accessor</b></td><td>Membaca nilai atribut (tidak mengubah)</td></tr>
+      <tr><td><b>Setter / mutator</b></td><td>Mengubah nilai atribut</td></tr>
+      <tr><td><b>del</b></td><td>Menghapus object / atribut</td></tr>
+    </table></div>
+
+    <h3>Latihan: class AC (dari slide)</h3>
+    <p>Tugas: tentukan atribut &amp; layanan AC, buat class diagram, buat class-nya, lalu instansiasi dan operasikan di program utama. Contoh jawaban:</p>
+<pre><code>class AC:
+    def __init__(self, merk, suhu=24):
+        self.merk = merk
+        self.suhu = suhu
+        self.menyala = False
+    def nyalakan(self): self.menyala = True
+    def matikan(self):  self.menyala = False
+    def naikkanSuhu(self):
+        if self.menyala: self.suhu += 1
+    def turunkanSuhu(self):
+        if self.menyala: self.suhu -= 1
+    def getSuhu(self): return self.suhu
+
+ac1 = AC("Daikin")
+ac1.nyalakan(); ac1.turunkanSuhu()
+print(ac1.getSuhu())   # 23</code></pre>
+  </section>
+<section id="linkedlist">
+  <h2>Linked List <span class="k">(Materi 07)</span></h2>
+  <p class="lede">Struktur data <b>linier &amp; dinamis</b> yang menyambung <b>node</b> satu ke node berikutnya lewat <b>pointer / konektor</b>.</p>
+
+  <h3>Pengertian &amp; ciri-ciri</h3>
+  <ul>
+    <li><b>Linier</b>: data tersusun berurutan (satu node → node berikutnya).</li>
+    <li><b>Dinamis</b>: jumlah data <b>bisa membesar/mengecil</b> sesuai kebutuhan.</li>
+    <li>Tiap <b>node</b> = <b>data + konektor</b> (Single: <code>next</code>; Double: <code>next</code> &amp; <code>prev</code>).</li>
+    <li>Letak di memory <b>tidak contiguous</b> (array: contiguous / berurutan).</li>
+    <li><b>Head wajib ada</b> (node paling depan); <b>tail opsional</b> (node paling belakang).</li>
+    <li>Non-circular: node terakhir bernilai <b>None</b>. Akses <b>sequential</b>, bukan random access.</li>
+  </ul>
+
+  <h3>Manfaat / alasan memakai Linked List</h3>
+  <ul>
+    <li>Data &amp; jumlah data <b>dinamis</b>.</li>
+    <li><b>Insert &amp; hapus lebih mudah</b> daripada array (array harus menggeser data).</li>
+    <li><b>Efisien memory</b>, karena ukuran menyesuaikan kebutuhan.</li>
+    <li>Dasar untuk <b>Stack, Queue, Deque</b>, playlist, dll.</li>
+  </ul>
+  <div class="callout amber"><b>Kelemahan:</b> butuh <b>memory ekstra</b> untuk konektor; <b>tidak bisa random access</b>; Single sulit traversing mundur; Double bisa mundur tapi <b>memory lebih besar lagi</b>.</div>
+
+  <div class="tw"><table>
+    <tr><th></th><th>Array / List</th><th>Linked List</th></tr>
+    <tr><td>Ukuran</td><td>Statis (C, C++); Python dinamis</td><td><b>Dinamis</b></td></tr>
+    <tr><td>Akses</td><td><b>Random access</b></td><td><b>Sequential access</b></td></tr>
+    <tr><td>Tambah/hapus</td><td>Terbatas, perlu geser data</td><td><b>Tidak terbatas</b>, cukup ubah konektor</td></tr>
+    <tr><td>Memory</td><td>Contiguous</td><td>Tidak contiguous, +memory konektor</td></tr>
+  </table></div>
+
+  <h3>4 jenis Linked List</h3>
+  <p>Berdasarkan <b>jumlah konektor</b> (Single / Double) dan <b>bentuk urutan</b> (Non-Circular / Circular):</p>
+  <div class="tw"><table>
+    <tr><th></th><th>Single (next)</th><th>Double (next &amp; prev)</th></tr>
+    <tr><td><b>Non-Circular</b></td><td><b>SLLNC</b></td><td><b>DLLNC</b></td></tr>
+    <tr><td><b>Circular</b></td><td><b>SLLC</b></td><td><b>DLLC</b></td></tr>
+  </table></div>
+<pre><code>SLLNC : head → [230|•] → [110|•] → [543|∅]  tail
+DLLNC : ∅ ← [Thor] ⇄ [Ant Man] ⇄ [Hulk] → ∅
+SLLC  : tail.next = head        (tidak ada None)
+DLLC  : tail.next = head  &amp;  head.prev = tail</code></pre>
+  <ul>
+    <li>Kosong: <code>head = None, tail = None, size = 0</code>. Berisi 1 node: <b>head = tail</b> (circular: <code>tail.next = head</code>).</li>
+    <li>Prinsip Double: head di <b>node pertama</b>, tail di <b>node terakhir</b>, <b>next &amp; prev harus tersambung semua</b>. Insert, delete, traversing jadi lebih mudah, traversing bisa <b>dua arah</b>.</li>
+  </ul>
+
+  <h3>Node &amp; ADT</h3>
+<pre><code>class Node:                          # Single: tanpa prev
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None             # khusus Double
+
+class LinkedListNonCircular:
+    def __init__(self):
+        self.size = 0; self.head = None; self.tail = None</code></pre>
+  <p><b>Operasi</b>: inisialisasi; info (<code>size</code>, kosong?); <code>insert_head / insert_tail / insert_mid</code>; <code>delete_head / delete_tail / delete</code> (by posisi); <code>update</code>; <code>find</code>; <code>print</code> (traversing).</p>
+
+  <h3>Apa itu <code>helper</code>?</h3>
+  <p><b>helper</b> = <b>variabel / pointer bantu</b> (bukan bagian dari struktur linked list) yang dipakai untuk <b>menunjuk &amp; berpindah antar node</b> ("memberi nama" sebuah node), supaya <b>head dan tail tidak ikut bergeser</b>. Dibuat saat dibutuhkan, lalu dibuang.</p>
+<pre><code>helper = self.head          # mulai dari head (pointer baru, head tetap aman)
+helper = helper.next        # pindah ke node berikutnya
+print(helper.data)          # baca data node yang sedang ditunjuk
+
+# SALAH: head = head.next   → head bergeser, node depan hilang dari list!</code></pre>
+  <div class="tw"><table>
+    <tr><th>Operasi</th><th>helper ditaruh di mana?</th></tr>
+    <tr><td><b>Insert mid</b></td><td>Node <b>sebelum</b> posisi sisip (loop <code>position-1</code> kali)</td></tr>
+    <tr><td><b>Delete head</b></td><td>Di head (sebagai penampung node yang akan di-<code>del</code> setelah head digeser)</td></tr>
+    <tr><td><b>Delete tail</b> (Single)</td><td>Node <b>sebelum tail</b> (<code>while helper.next != tail</code>)</td></tr>
+    <tr><td><b>Delete mid</b></td><td>Node <b>sebelum</b> node yang dihapus. Node yang dihapus ditunjuk <code>delete</code></td></tr>
+    <tr><td><b>Print / find / update</b></td><td>Mulai dari head, jalan sampai <b>None</b> (circular: sampai kembali ke head)</td></tr>
+  </table></div>
+  <div class="callout core"><b>Ingat:</b> Single Linked List tidak bisa mundur, jadi untuk menghapus / menyisip di tengah butuh <b>helper di node sebelumnya</b>. Di <b>Double</b> cukup pakai <code>prev</code>, tidak perlu helper untuk itu. <b>helper = penunjuk bantu</b>, sedangkan <b>delete = node yang mau dihapus</b>.</div>
+
+  <h3>Animasi alur operasi</h3>
+  <p class="lede">Pilih jenis &amp; operasi lalu <b>Jalankan</b>. Panel kode menyorot baris yang sedang dieksekusi. Hasil akhir menjadi list baru untuk operasi berikutnya. <b>∅ = None</b>.</p>
+  <div class="stage">
+    <div class="inrow">
+      <select id="ll-type"><option value="s">Single</option><option value="d">Double</option></select>
+      <select id="ll-circ"><option value="0">Non-Circular</option><option value="1">Circular</option></select>
+      <select id="ll-op">
+        <option value="ih">insert_head</option><option value="it">insert_tail</option><option value="im">insert_mid</option>
+        <option value="dh">delete_head</option><option value="dt">delete_tail</option><option value="dp">delete (posisi)</option><option value="f">find</option>
+      </select>
+    </div>
+    <div class="inrow"><label class="hint">nilai <input id="ll-val" class="sm" type="number" value="420"></label><label class="hint">posisi <input id="ll-pos" class="sm" type="number" value="1"></label>
+      <button id="ll-go">▶ Jalankan</button><button id="ll-rst" class="secondary">Reset list</button></div>
+    <div class="lltray" id="ll-tray"></div>
+    <div class="llrow" id="ll-row"></div>
+    <div class="desc" id="ll-desc"></div>
+    <div class="meta" id="ll-meta"></div>
+    <div class="progress"><div class="fill" id="ll-fill"></div></div>
+    <div class="controls"><button id="ll-prev" class="secondary">◀ Prev</button><button id="ll-play">▶ Play</button><button id="ll-next" class="secondary">Next ▶</button></div>
+    <div class="speed"><span>Cepat</span><input id="ll-sp" type="range" min="300" max="1800" step="100" value="1000"><span>Lambat</span></div>
+    <pre class="llcode" id="ll-code"></pre>
+  </div>
+
+  <h3>Ringkasan operasi (Single Linked List)</h3>
+  <div class="tw"><table>
+    <tr><th>Operasi</th><th>Langkah</th><th>Big-O</th></tr>
+    <tr><td><b>Insert head</b></td><td>Buat node → <code>new_node.next = head</code> → <code>head = new_node</code>. Jika kosong, node baru jadi <b>head dan tail</b>.</td><td><b>O(1)</b></td></tr>
+    <tr><td><b>Insert tail</b></td><td><code>tail.next = new_node</code> → <code>tail = new_node</code>.</td><td><b>O(1)</b> (karena ada tail)</td></tr>
+    <tr><td><b>Insert mid</b></td><td>Taruh <code>helper</code> di node <b>sebelum</b> posisi sisip (loop <code>position-1</code> kali) → <code>new_node.next = helper.next</code> → <code>helper.next = new_node</code>. Posisi <b>0 = insert head</b>, posisi <b>≥ size = insert tail</b>.</td><td><b>O(n)</b></td></tr>
+    <tr><td><b>Delete head</b></td><td><code>helper = head</code> → <code>head = head.next</code> → hapus helper. Jika <b>size = 1</b>, list jadi kosong (<code>head = tail = None</code>).</td><td><b>O(1)</b></td></tr>
+    <tr><td><b>Delete tail</b></td><td>Cari node sebelum tail (<code>while helper.next != tail</code>) → <code>tail = helper; tail.next = None</code>.</td><td><b>O(n)</b> di Single, <b>O(1)</b> di Double</td></tr>
+    <tr><td><b>Delete mid</b></td><td>Helper di <b>sebelum</b> node yang dihapus → <code>helper.next = delete.next</code> → hapus node.</td><td><b>O(n)</b></td></tr>
+    <tr><td><b>Traversing / find / update</b></td><td>Mulai dari head, <code>helper = helper.next</code> sampai <b>None</b> (pada <b>circular</b>: sampai kembali ke head).</td><td><b>O(n)</b></td></tr>
+  </table></div>
+  <div class="callout core"><b>Selalu</b> tangani kasus <b>list kosong</b> dan <b>satu node</b>. <b>Jangan sembarangan menggeser head/tail</b>, pakai helper.</div>
+
+  <h3>Traversing, find &amp; update</h3>
+<pre><code>helper = self.head
+while helper != None:            # circular: berhenti setelah size node
+    print(helper.data, end=' ')  # find: if helper.data == data: return True
+    helper = helper.next         # update: if helper.data == old: helper.data = new</code></pre>
+
+  <h3>Kompleksitas</h3>
+  <div class="tw"><table>
+    <tr><th>Operasi</th><th>Single</th><th>Double</th></tr>
+    <tr><td>Insert / delete head</td><td><b>O(1)</b></td><td><b>O(1)</b></td></tr>
+    <tr><td>Insert tail (ada tail)</td><td><b>O(1)</b></td><td><b>O(1)</b></td></tr>
+    <tr><td>Delete tail</td><td><b>O(n)</b> (cari node sebelum tail)</td><td><b>O(1)</b> (pakai tail.prev)</td></tr>
+    <tr><td>Insert / delete tengah, find, update, print</td><td><b>O(n)</b></td><td><b>O(n)</b></td></tr>
+  </table></div>
+
+  <h3>Kelebihan, kekurangan &amp; contoh pemakaian</h3>
+  <div class="tw"><table>
+    <tr><th>Tipe</th><th>Kelebihan</th><th>Kekurangan</th><th>Contoh</th></tr>
+    <tr><td><b>SLLNC</b></td><td>Sederhana, hemat memory (1 pointer), insert/delete awal O(1), cocok traversal satu arah</td><td>Tidak bisa mundur, akses node tertentu O(n), hapus harus tahu node sebelumnya</td><td><b>Stack (LIFO), Queue (FIFO)</b></td></tr>
+    <tr><td><b>SLLC</b></td><td>Tanpa None (traversal terus-menerus), insert awal/akhir O(1) jika punya tail, bisa berhenti lalu lanjut ke awal</td><td>Lebih rumit, <b>risiko infinite loop</b>, hapus tetap perlu node sebelumnya, satu arah</td><td><b>Round-robin</b>, circular queue, board game, playlist</td></tr>
+    <tr><td><b>DLLNC</b></td><td>Traversal <b>dua arah</b>, hapus tanpa perlu node sebelumnya, fleksibel, insert/delete tengah efisien jika node diketahui</td><td>Lebih kompleks &amp; boros memory (2 pointer), langkah insert/delete lebih banyak, akses indeks tetap linear</td><td>Back/forward browser, editor teks, <b>Deque</b></td></tr>
+    <tr><td><b>DLLC</b></td><td>Maju/mundur tanpa batas, insert/delete awal/akhir konsisten (tanpa cek None), gabungan circular + double</td><td><b>Paling kompleks</b>, risiko infinite loop, boros memory, sulit debug (tak ada None)</td><td>Carousel slider, giliran multiplayer, playlist next/prev</td></tr>
+  </table></div>
+
+  <div class="callout core"><b>Wajib diingat</b>
+    <ul>
+      <li>Linked list = <b>sequential access</b>, <b>dinamis</b>, memory <b>tidak contiguous</b>, butuh <b>memory ekstra</b> untuk konektor.</li>
+      <li>Insert: <b>sambungkan node baru ke node berikutnya DULU</b>, baru geser head / sambung dari node sebelumnya, supaya konektor tidak putus.</li>
+      <li><b>Jangan sembarangan menggeser head &amp; tail</b>; traversing pakai <b>helper</b>.</li>
+      <li>Insert mid: posisi <b>0 = insert head</b>, <b>≥ size = insert tail</b>; helper berhenti di <b>posisi − 1</b>.</li>
+      <li>Delete: 3 kasus (head, tail, tengah) + kasus <b>size = 1</b> (list jadi kosong).</li>
+      <li>Delete tail <b>Single O(n)</b>, <b>Double O(1)</b>. Circular: <b>tail.next = head</b> harus selalu terjaga, awas infinite loop.</li>
+    </ul>
+  </div>
+  <p class="hint">Latihan dari slide: implementasikan <b>DLLC</b> sendiri. Materi berikutnya: 09 Stack &amp; Queue.</p>
 </section>
 
-<section id="m2"><h2>Modul 2: Konsep Switching</h2>
-<h3>Frame Ethernet</h3>
-<div class="tw"><table><tr><th>Preamble</th><th>SFD</th><th>MAC Tujuan</th><th>MAC Sumber</th><th>Tipe</th><th>Data</th><th>FCS</th></tr>
-<tr><td>7 byte</td><td>1</td><td>6</td><td>6</td><td>2</td><td>46-1500</td><td>4</td></tr></table></div>
-<ul><li>Ukuran frame valid: <b>64 sampai 1518 byte</b> (tanpa preamble dan SFD). Di bawah 64 = <b>runt</b>, di atas 1518 = <b>jumbo / baby giant</b>.</li>
-<li><b>FCS</b> dipakai mendeteksi kerusakan data (frame rusak dibuang).</li>
-<li><b>MAC address</b> = 48 bit (12 digit heksadesimal). 3 byte pertama = <b>OUI</b> (kode pabrikan), 3 byte terakhir = nomor unik dari pabrikan.</li></ul>
-<div class="tw"><table><tr><th>Jenis</th><th>Alamat tujuan</th></tr>
-<tr><td>Unicast</td><td>Satu perangkat tertentu</td></tr>
-<tr><td>Broadcast</td><td><b>FF:FF:FF:FF:FF:FF</b>, semua perangkat dalam jaringan</td></tr>
-<tr><td>Multicast</td><td>Sekelompok perangkat. IPv4 mulai <b>01-00-5E</b>, IPv6 mulai <b>33-33</b></td></tr></table></div>
-<h3>Cara switch bekerja (animasi)</h3>
-<svg viewBox="0 0 360 110"><path class="ln" d="M45,55H315"/>
-<rect class="n" x="10" y="40" width="40" height="30" rx="5"/><text x="30" y="59">PC-A</text>
-<rect class="n" x="160" y="35" width="40" height="40" rx="5"/><text x="180" y="59">SW</text>
-<rect class="n" x="310" y="40" width="40" height="30" rx="5"/><text x="330" y="59">PC-B</text>
-<text x="180" y="100">PC-A kirim frame ke PC-B. Switch mencatat MAC PC-A, lalu meneruskan.</text>
-<circle r="6" class="pk"><animateMotion dur="3s" repeatCount="indefinite" path="M45,55L315,55"/></circle></svg>
-<div class="seq"><div class="s">1. Frame masuk ke port. Switch <b>belajar</b>: catat <b>MAC sumber</b> + nomor port ke tabel MAC.</div>
-<div class="s">2. Switch cek <b>MAC tujuan</b> di tabel.</div>
-<div class="s l">3a. Ada di tabel: <b>teruskan (forward)</b> hanya ke port itu.</div>
-<div class="s l">3b. Tidak ada (atau broadcast): <b>banjiri (flood)</b> ke semua port kecuali port asal.</div></div>
-<ul><li>Tabel MAC (CAM) hapus entri otomatis setelah <b>aging time 300 detik</b>. Lihat: <code>show mac address-table</code>. Hapus: <code>clear mac address-table dynamic</code>.</li></ul>
-<h3>Metode forwarding</h3>
-<div class="tw"><table><tr><th>Metode</th><th>Cara kerja</th></tr>
-<tr><td><b>Store-and-forward</b></td><td>Terima seluruh frame, cek FCS, baru kirim. Frame rusak dibuang. Dipakai Cisco (default), butuh buffer</td></tr>
-<tr><td><b>Cut-through</b></td><td>Mulai kirim setelah baca MAC tujuan, latensi sangat rendah, tanpa cek FCS. Ada 2 jenis: <b>fast-forward</b> (paling cepat) dan <b>fragment-free</b> (tunggu 64 byte pertama)</td></tr></table></div>
-<h3>Domain tabrakan dan broadcast</h3>
-<ul><li><b>Collision domain</b>: tiap port switch = 1 domain tabrakan sendiri (hub: semua port satu domain).</li>
-<li><b>Broadcast domain</b>: semua port switch = 1 domain broadcast (tanpa VLAN). <b>Router memisahkan broadcast domain</b>.</li>
-<li>Jaringan terlalu besar = banyak broadcast = performa turun. Solusinya: segmentasi dengan VLAN atau router.</li></ul>
-</section>
-
-<section id="m3"><h2>Modul 3: VLAN</h2>
-<p><b>VLAN</b> = pemisahan jaringan secara logis (satu VLAN = satu broadcast domain) tanpa peduli lokasi fisik. Manfaat: <b>keamanan, hemat biaya, performa lebih baik, broadcast domain lebih kecil, IT lebih efisien, manajemen lebih mudah</b>.</p>
-<div class="tw"><table><tr><th>Jenis VLAN</th><th>Keterangan</th></tr>
-<tr><td>Default VLAN</td><td><b>VLAN 1</b>, semua port awalnya di sini, tidak bisa dihapus</td></tr>
-<tr><td>Data VLAN</td><td>Khusus lalu lintas pengguna</td></tr>
-<tr><td>Native VLAN</td><td>Lalu lintas <b>tanpa tag</b> di trunk. Default VLAN 1, sebaiknya diganti (mis. 99)</td></tr>
-<tr><td>Management VLAN</td><td>Untuk akses manajemen switch (SVI)</td></tr>
-<tr><td>Voice VLAN</td><td>Khusus telepon IP (butuh prioritas dan delay rendah)</td></tr></table></div>
-<ul><li>Rentang <b>normal 1-1005</b> (disimpan di <code>vlan.dat</code> di flash). Rentang <b>extended 1006-4094</b>.</li></ul>
-<h3>Trunk dan tag 802.1Q (animasi)</h3>
-<p><b>Trunk</b> = link yang membawa banyak VLAN sekaligus. Frame diberi <b>tag 802.1Q (4 byte)</b>: TPID 2 byte (0x8100), prioritas 3 bit, DEI 1 bit, <b>VLAN ID 12 bit</b>. FCS dihitung ulang. Frame <b>native VLAN tidak diberi tag</b>.</p>
-<svg viewBox="0 0 360 125"><path class="ln" d="M30,28L80,62L280,62L330,28M30,98L80,62M280,62L330,98"/>
-<rect class="n" x="60" y="47" width="40" height="30" rx="5"/><text x="80" y="66">S1</text>
-<rect class="n" x="260" y="47" width="40" height="30" rx="5"/><text x="280" y="66">S2</text>
-<text x="10" y="20" style="fill:var(--a)">PC VLAN10</text><text x="10" y="116" style="fill:var(--b)">PC VLAN20</text>
-<text x="335" y="20" style="fill:var(--a)">PC VLAN10</text><text x="335" y="116" style="fill:var(--b)">PC VLAN20</text>
-<text x="180" y="52">Trunk 802.1Q (frame bertag)</text>
-<circle r="5" class="pb"><animateMotion dur="4s" repeatCount="indefinite" path="M30,28L80,62L280,62L330,28"/></circle>
-<circle r="5" class="pk"><animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M30,98L80,62L280,62L330,98"/></circle></svg>
-<h3>Konfigurasi</h3>
-<pre><code>vlan 10
- name DATA                          ! buat VLAN + nama
-interface f0/1
- switchport mode access             ! port untuk host
- switchport access vlan 10          ! masukkan port ke VLAN 10
-interface g0/1
- switchport mode trunk              ! port untuk antar-switch
- switchport trunk native vlan 99
- switchport trunk allowed vlan 10,20,99
-no vlan 10                          ! hapus VLAN</code></pre>
-<div class="note">Hapus VLAN tapi port masih terpasang: port jadi <b>tidak aktif</b> sampai dipindah ke VLAN lain. Verifikasi: <code>show vlan brief</code>, <code>show interfaces trunk</code>, <code>show interfaces f0/1 switchport</code>.</div>
-<h3>DTP (negosiasi trunk otomatis)</h3>
-<div class="tw"><table><tr><th></th><th>Auto</th><th>Desirable</th><th>Trunk</th><th>Access</th></tr>
-<tr><td><b>Auto</b></td><td>Access</td><td>Trunk</td><td>Trunk</td><td>Access</td></tr>
-<tr><td><b>Desirable</b></td><td>Trunk</td><td>Trunk</td><td>Trunk</td><td>Access</td></tr>
-<tr><td><b>Trunk</b></td><td>Trunk</td><td>Trunk</td><td>Trunk</td><td>Tidak cocok</td></tr>
-<tr><td><b>Access</b></td><td>Access</td><td>Access</td><td>Tidak cocok</td><td>Access</td></tr></table></div>
-<p>Auto + Auto = Access (tidak jadi trunk). Matikan negosiasi: <code>switchport nonegotiate</code>. Masalah umum: <b>native VLAN tidak sama</b>, VLAN tidak ada di allowed list, mode trunk tidak cocok.</p>
-</section>
-
-<section id="m4"><h2>Modul 4: Routing Antar-VLAN</h2>
-<p>Beda VLAN = beda subnet, jadi butuh <b>perangkat Layer 3</b> agar bisa saling komunikasi. Tiga cara:</p>
-<div class="tw"><table><tr><th>Metode</th><th>Keterangan</th></tr>
-<tr><td>Legacy</td><td>Satu port fisik router per VLAN. <b>Tidak skalabel</b>, sudah ditinggalkan</td></tr>
-<tr><td><b>Router-on-a-Stick</b></td><td>Satu link trunk ke router, dipecah jadi <b>subinterface</b> per VLAN</td></tr>
-<tr><td><b>Switch Layer 3 (SVI)</b></td><td>Routing di switch lewat interface VLAN. <b>Paling cepat dan skalabel</b></td></tr></table></div>
-<h3>Router-on-a-Stick (animasi)</h3>
-<svg viewBox="0 0 360 120"><path class="ln" d="M45,98H315M180,98V38"/>
-<rect class="n" x="10" y="85" width="40" height="26" rx="5"/><text x="30" y="102">PC10</text>
-<rect class="n" x="310" y="85" width="40" height="26" rx="5"/><text x="330" y="102">PC20</text>
-<rect class="n" x="160" y="85" width="40" height="26" rx="5"/><text x="180" y="102">SW</text>
-<rect class="n" x="160" y="14" width="40" height="26" rx="5"/><text x="180" y="31">R1</text>
-<text x="250" y="48">Trunk ke R1 (g0/0/1.10 dan .20)</text>
-<circle r="6" class="pk"><animateMotion dur="5s" repeatCount="indefinite" path="M45,98L180,98L180,38L180,98L315,98"/></circle></svg>
-<pre><code>interface g0/0/1.10                 ! subinterface untuk VLAN 10
- encapsulation dot1q 10             ! pakai tag VLAN 10
- ip address 192.168.10.1 255.255.255.0
-interface g0/0/1.20
- encapsulation dot1q 20
- ip address 192.168.20.1 255.255.255.0
-interface g0/0/1
- no shutdown                        ! aktifkan interface FISIK
-! native VLAN: encapsulation dot1q 99 native</code></pre>
-<ul><li>Port switch ke router harus <b>mode trunk</b>. <b>Gateway host = IP subinterface</b> VLAN-nya.</li>
-<li>Kelemahan: satu link jadi <b>bottleneck</b> (semua lalu lintas antar-VLAN lewat satu kabel).</li></ul>
-<h3>Switch Layer 3</h3>
-<pre><code>ip routing                          ! aktifkan fungsi routing
-interface vlan 10
- ip address 192.168.10.1 255.255.255.0
- no shutdown
-interface g1/0/1                    ! port routed (tanpa VLAN)
- no switchport
- ip address 10.0.0.1 255.255.255.252</code></pre>
-<p>Troubleshooting: cek <b>VLAN hilang, port trunk salah, native VLAN beda, allowed VLAN kurang, IP atau mask salah, gateway host salah</b>.</p>
-</section>
-
-<section id="m5"><h2>Modul 5: Konsep STP</h2>
-<p>Link redundan mencegah putus, tapi di Layer 2 menimbulkan <b>loop</b> karena Ethernet <b>tidak punya TTL</b>. Akibatnya: <b>broadcast storm</b>, <b>tabel MAC tidak stabil (MAC flapping)</b>, dan frame duplikat. <b>STP (802.1D)</b> memblokir sebagian port agar topologi bebas loop.</p>
-<h3>Topologi (animasi)</h3>
-<svg viewBox="0 0 360 130"><path class="ln" style="stroke:var(--ok)" d="M180,30L70,100M180,30L290,100"/>
-<path class="ln" style="stroke:var(--no);stroke-dasharray:6 5" d="M70,100H290"/>
-<text x="180" y="94" style="fill:var(--no)">✕ Blocking (Alternate)</text>
-<rect class="n" x="155" y="14" width="50" height="26" rx="5"/><text x="180" y="31">S1 Root</text>
-<rect class="n" x="45" y="88" width="50" height="26" rx="5"/><text x="70" y="105">S2</text>
-<rect class="n" x="265" y="88" width="50" height="26" rx="5"/><text x="290" y="105">S3</text>
-<text x="110" y="55">Root Port</text><text x="252" y="55">Root Port</text>
-<circle r="5" class="pb"><animateMotion dur="2.5s" repeatCount="indefinite" path="M180,30L70,100"/></circle>
-<circle r="5" class="pb"><animateMotion dur="2.5s" repeatCount="indefinite" path="M180,30L290,100"/></circle></svg>
-<p>Titik biru = <b>BPDU</b> (pesan kontrol STP) dikirim tiap <b>2 detik</b>, berisi <b>Bridge ID</b> = prioritas (default <b>32768</b>, kelipatan 4096) + ID VLAN + MAC address.</p>
-<h3>4 langkah memilih topologi</h3>
-<div class="seq"><div class="s">1. Pilih <b>Root Bridge</b>: Bridge ID <b>terendah</b> menang (prioritas dulu, seri: MAC terendah).</div>
-<div class="s">2. Tiap switch non-root pilih <b>Root Port</b>: port dengan <b>biaya jalur terendah</b> ke root.</div>
-<div class="s">3. Tiap segmen pilih <b>Designated Port</b> (port yang meneruskan ke segmen itu).</div>
-<div class="s l">4. Sisanya jadi <b>Alternate / Backup</b> = <b>diblokir</b> (tidak meneruskan data).</div></div>
-<div class="tw"><table><tr><th>Kecepatan</th><th>10 Mbps</th><th>100 Mbps</th><th>1 Gbps</th><th>10 Gbps</th></tr><tr><td>Biaya (802.1D)</td><td>100</td><td>19</td><td>4</td><td>2</td></tr></table></div>
-<p>Seri biaya: pilih <b>Bridge ID pengirim terendah</b>, lalu <b>prioritas port terendah</b> (default 128), lalu <b>ID port terendah</b>.</p>
-<h3>Status port dan timer 802.1D</h3>
-<p><b>Blocking</b> (20 detik Max Age) → <b>Listening</b> (15 detik) → <b>Learning</b> (15 detik) → <b>Forwarding</b>; ada juga Disabled. Timer: <b>Hello 2 dtk, Forward Delay 15 dtk, Max Age 20 dtk</b>. Konvergensi lambat: <b>30-50 detik</b>.</p>
-<div class="tw"><table><tr><th>Varian</th><th>Keterangan</th></tr>
-<tr><td>STP (802.1D)</td><td>Satu instans untuk semua VLAN, lambat</td></tr>
-<tr><td><b>PVST+</b></td><td>Satu instans <b>per VLAN</b> (Cisco), bisa load balancing</td></tr>
-<tr><td>RSTP (802.1w)</td><td><b>Konvergensi cepat</b>. Status: <b>Discarding, Learning, Forwarding</b></td></tr>
-<tr><td><b>Rapid PVST+</b></td><td>RSTP per VLAN (Cisco), pilihan yang dipakai di CCNA</td></tr></table></div>
-<ul><li><b>PortFast</b>: port host langsung Forwarding (jangan untuk link antar-switch). <b>BPDU Guard</b>: matikan port jika menerima BPDU.</li></ul>
-<pre><code>spanning-tree mode rapid-pvst
-spanning-tree vlan 1 root primary     ! jadikan root (prioritas 24576)
-spanning-tree vlan 1 root secondary   ! cadangan root (28672)
-spanning-tree vlan 1 priority 4096    ! atur prioritas manual
-interface f0/1
- spanning-tree portfast
- spanning-tree bpduguard enable
-! verifikasi: show spanning-tree</code></pre>
-</section>
-
-<section id="m6"><h2>Modul 6: EtherChannel</h2>
-<p>Menggabungkan beberapa link fisik menjadi <b>satu link logis (Port-channel)</b>. Manfaat: <b>bandwidth bertambah, redundansi, load balancing</b>, dan STP menganggapnya <b>satu link</b> (tidak ada port yang diblokir).</p>
-<svg viewBox="0 0 360 110"><path class="ln" d="M60,30H300M60,55H300M60,80H300"/>
-<rect class="n" x="10" y="25" width="50" height="60" rx="5"/><text x="35" y="59">S1</text>
-<rect class="n" x="300" y="25" width="50" height="60" rx="5"/><text x="325" y="59">S2</text>
-<ellipse cx="180" cy="55" rx="110" ry="38" fill="none" stroke="var(--b)" stroke-dasharray="5 4" stroke-width="2"/>
-<text x="180" y="104">Port-channel 1 (3 link menjadi 1 link logis)</text>
-<circle r="4" class="pk"><animateMotion dur="2s" repeatCount="indefinite" path="M60,30H300"/></circle>
-<circle r="4" class="pb"><animateMotion dur="2.4s" repeatCount="indefinite" path="M60,55H300"/></circle>
-<circle r="4" class="pk"><animateMotion dur="2.8s" repeatCount="indefinite" path="M60,80H300"/></circle></svg>
-<h3>Protokol dan mode</h3>
-<div class="tw"><table><tr><th>Protokol</th><th>Mode</th><th>Keterangan</th></tr>
-<tr><td><b>PAgP</b></td><td>auto, desirable</td><td>Milik Cisco</td></tr>
-<tr><td><b>LACP</b> (802.3ad)</td><td>passive, active</td><td>Standar terbuka (IEEE)</td></tr>
-<tr><td>Statis</td><td>on</td><td>Tanpa negosiasi</td></tr></table></div>
-<div class="tw"><table><tr><th>Pasangan mode</th><th>Hasil</th></tr>
-<tr><td>desirable + desirable, desirable + auto</td><td>Berhasil</td></tr>
-<tr><td>active + active, active + passive</td><td>Berhasil</td></tr>
-<tr><td>on + on</td><td>Berhasil</td></tr>
-<tr><td><b>auto + auto, passive + passive</b></td><td><b>Gagal</b> (keduanya hanya menunggu)</td></tr>
-<tr><td><b>PAgP dengan LACP</b></td><td><b>Gagal</b>, tidak kompatibel</td></tr></table></div>
-<pre><code>interface range f0/1-2
- channel-group 1 mode active        ! gabung ke Port-channel 1 (LACP)
-interface port-channel 1
- switchport mode trunk              ! atur di interface logis</code></pre>
-<ul><li>Syarat: semua port anggota harus <b>sama kecepatan, duplex, mode, VLAN, native VLAN, dan allowed VLAN</b>. Maksimal <b>8 port aktif</b> per bundel.</li>
-<li>Verifikasi: <code>show etherchannel summary</code>. Flag <b>SU</b> = Layer 2 dan sedang dipakai (sehat), <b>P</b> = anggota bundel, <b>D</b> = mati, <b>I</b> = berdiri sendiri (gagal bergabung).</li></ul>
-</section>
-
-<section id="m7"><h2>Modul 7: DHCPv4</h2>
-<p><b>DHCPv4</b> memberi konfigurasi IP otomatis: <b>alamat IP, subnet mask, gateway, DNS, lama sewa (lease)</b>. Server memakai <b>UDP port 67</b>, klien <b>UDP port 68</b>.</p>
-<h3>Proses DORA (animasi)</h3>
-<div class="seq"><div class="s"><b>D</b>iscover: klien ➜ server. <b>Broadcast</b>, “Ada server DHCP?”</div>
-<div class="s l"><b>O</b>ffer: server ➜ klien. <b>Unicast</b>, menawarkan IP + pengaturan.</div>
-<div class="s"><b>R</b>equest: klien ➜ server. <b>Broadcast</b>, “Saya ambil tawaran ini.”</div>
-<div class="s l"><b>A</b>cknowledge: server ➜ klien. <b>Unicast</b>, konfirmasi dan mulai masa sewa.</div></div>
-<div class="note">Perpanjangan sewa: di <b>50% lease</b> klien kirim Request unicast ke server asal. Jika gagal, di <b>87,5%</b> kirim broadcast ke server mana pun.</div>
-<h3>Router sebagai server DHCP</h3>
-<pre><code>ip dhcp excluded-address 192.168.10.1 192.168.10.9   ! alamat yang TIDAK dibagikan
-ip dhcp pool LAN10                                   ! buat pool
- network 192.168.10.0 255.255.255.0
- default-router 192.168.10.1                         ! gateway
- dns-server 8.8.8.8
- domain-name contoh.local
- lease 2                                             ! sewa 2 hari
-! matikan layanan: no service dhcp</code></pre>
-<p><b>Excluded-address dibuat sebelum pool</b> agar alamat gateway/server tidak terbagi.</p>
-<h3>DHCP Relay</h3>
-<p>Broadcast tidak melewati router. Jika server di subnet lain, pasang <b>relay</b> di interface yang <b>menghadap klien</b>: broadcast diubah jadi unicast ke server.</p>
-<pre><code>interface g0/0/0
- ip helper-address 192.168.50.5     ! alamat server DHCP
-interface g0/0/1
- ip address dhcp                    ! router sebagai KLIEN DHCP</code></pre>
-<p>Verifikasi: <code>show ip dhcp binding</code> (daftar IP terpakai), <code>show ip dhcp pool</code>, <code>show ip dhcp server statistics</code>, di PC: <code>ipconfig /renew</code>. Masalah umum: <b>kabel/VLAN salah, pool habis, helper-address salah, alamat bentrok</b>.</p>
-</section>
-
-<section id="m8"><h2>Modul 8: SLAAC dan DHCPv6</h2>
-<h3>Alamat IPv6 penting</h3>
-<div class="tw"><table><tr><th>Jenis</th><th>Keterangan</th></tr>
-<tr><td>Global Unicast (GUA)</td><td><b>2000::/3</b>, alamat publik</td></tr>
-<tr><td>Link-Local</td><td><b>FE80::/10</b>, hanya dalam satu link, otomatis ada di tiap interface</td></tr>
-<tr><td>Multicast</td><td><b>FF02::1</b> = semua node, <b>FF02::2</b> = semua router</td></tr>
-<tr><td>Unique Local</td><td><b>FC00::/7</b>, mirip IP privat</td></tr></table></div>
-<h3>Alur SLAAC (animasi)</h3>
-<div class="seq"><div class="s"><b>Router Solicitation (RS, ICMPv6 tipe 133)</b>: host ➜ FF02::2, “Ada router?”</div>
-<div class="s l"><b>Router Advertisement (RA, tipe 134)</b>: router ➜ host, berisi <b>prefix, panjang prefix, gateway</b>.</div>
-<div class="s">Host buat alamat sendiri: <b>prefix dari RA + Interface ID</b> (EUI-64 atau acak).</div>
-<div class="s l"><b>DAD</b> (Duplicate Address Detection): host kirim Neighbor Solicitation untuk memastikan alamat tidak bentrok. Aman = alamat dipakai.</div></div>
-<p><b>EUI-64</b>: ambil MAC 48 bit, <b>sisipkan FFFE di tengah</b>, lalu <b>balik bit ke-7</b>. Contoh: MAC <code>00:1A:2B:3C:4D:5E</code> menjadi <code>021A:2BFF:FE3C:4D5E</code>.</p>
-<h3>Tiga metode (diatur oleh flag di RA)</h3>
-<div class="tw"><table><tr><th>Metode</th><th>Flag</th><th>Siapa kasih apa</th></tr>
-<tr><td><b>SLAAC saja</b></td><td>A=1, O=0, M=0</td><td>Alamat dari RA. Info lain (DNS) <b>tidak ada</b></td></tr>
-<tr><td><b>SLAAC + DHCPv6 stateless</b></td><td>A=1, <b>O=1</b>, M=0</td><td>Alamat dari SLAAC, <b>DNS dkk dari server DHCPv6</b></td></tr>
-<tr><td><b>DHCPv6 stateful</b></td><td><b>M=1</b>, A=0</td><td>Server DHCPv6 beri <b>alamat lengkap + info</b> dan mencatat klien</td></tr></table></div>
-<p>Pesan DHCPv6: <b>SOLICIT, ADVERTISE, REQUEST, REPLY</b>. Port: klien <b>UDP 546</b>, server <b>UDP 547</b>. Klien mengirim ke multicast <b>FF02::1:2</b> (semua server dan relay DHCPv6).</p>
-<h3>Konfigurasi router</h3>
-<pre><code>ipv6 unicast-routing                  ! WAJIB agar router kirim RA
-interface g0/0/1
- ipv6 address 2001:db8:acad:1::1/64   ! SLAAC saja: cukup ini
-
-! --- Stateless DHCPv6 ---
-ipv6 dhcp pool STATELESS
- dns-server 2001:db8:acad::254
- domain-name contoh.local
-interface g0/0/1
- ipv6 nd other-config-flag            ! set O=1
- ipv6 dhcp server STATELESS
-
-! --- Stateful DHCPv6 ---
-ipv6 dhcp pool STATEFUL
- address prefix 2001:db8:acad:1::/64 lifetime infinite infinite
- dns-server 2001:db8:acad::254
-interface g0/0/1
- ipv6 nd managed-config-flag          ! set M=1
- ipv6 nd prefix default no-autoconfig ! set A=0
- ipv6 dhcp server STATEFUL
-
-! --- Relay (server beda subnet) ---
-interface g0/0/0
- ipv6 dhcp relay destination 2001:db8:acad:2::5 g0/0/1
-! --- Router sebagai klien ---
-interface g0/0/1
- ipv6 enable
- ipv6 address autoconfig              ! SLAAC  (atau: ipv6 address dhcp)</code></pre>
-<p>Verifikasi: <code>show ipv6 interface</code>, <code>show ipv6 dhcp pool</code>, <code>show ipv6 dhcp binding</code>, <code>show ipv6 dhcp interface</code>.</p>
-</section>
-
-<section id="m9"><h2>Modul 9: Konsep FHRP (Redundansi Gateway)</h2>
-<p>Host hanya punya <b>satu default gateway</b>. Jika router itu mati, host <b>terputus dari luar jaringan</b> walau ada router cadangan (<b>single point of failure</b>). <b>FHRP</b> (First Hop Redundancy Protocol) menyelesaikannya: beberapa router fisik berbagi satu <b>router virtual</b> dengan <b>IP virtual dan MAC virtual</b>. Host memakai IP virtual itu sebagai gateway, jadi saat router utama mati, host <b>tidak perlu mengubah apa pun</b>.</p>
-<h3>Failover (animasi)</h3>
-<svg viewBox="0 0 360 165"><path class="ln" d="M45,80H110M110,80L230,30M110,80L230,131M230,30L330,80M230,131L330,80"/>
-<ellipse cx="230" cy="80" rx="46" ry="68" fill="none" stroke="var(--b)" stroke-dasharray="5 4" stroke-width="2"/>
-<rect class="n" x="10" y="67" width="40" height="26" rx="5"/><text x="30" y="84">PC</text>
-<rect class="n" x="95" y="67" width="30" height="26" rx="5"/><text x="110" y="84">SW</text>
-<rect class="n" x="205" y="17" width="50" height="26" rx="5"/><text x="230" y="34">R1</text>
-<rect class="n" x="205" y="118" width="50" height="26" rx="5"/><text x="230" y="135">R2</text>
-<rect class="n" x="305" y="67" width="50" height="26" rx="5"/><text x="330" y="84">Luar</text>
-<text x="230" y="12" style="fill:var(--ok)">Aktif<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.55;1" dur="8s" repeatCount="indefinite"/></text>
-<text x="230" y="12" opacity="0" style="fill:var(--no)">Mati ✕<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.55;1" dur="8s" repeatCount="indefinite"/></text>
-<text x="230" y="158">Standby<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.55;0.6;1" dur="8s" repeatCount="indefinite"/></text>
-<text x="230" y="158" opacity="0" style="fill:var(--ok)">Aktif<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.6;1" dur="8s" repeatCount="indefinite"/></text>
-<text x="85" y="140">Gateway virtual = R1 + R2</text>
-<circle r="5" class="pb"><animateMotion dur="2s" repeatCount="indefinite" path="M45,80H110L230,30L330,80"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.48;0.5;1" dur="8s" repeatCount="indefinite"/></circle>
-<circle r="5" class="pk" opacity="0"><animateMotion dur="2s" repeatCount="indefinite" path="M45,80H110L230,131L330,80"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.6;0.62;1" dur="8s" repeatCount="indefinite"/></circle></svg>
-<div class="seq"><div class="s">1. Host kirim lalu lintas ke <b>IP virtual</b>. Router <b>Aktif</b> yang meneruskan.</div>
-<div class="s">2. Router Aktif mengirim <b>pesan hello</b> berkala. Router <b>Standby</b> memantau.</div>
-<div class="s l">3. Router Aktif mati: <b>hello berhenti</b>. Standby menunggu sampai <b>hold time habis</b>.</div>
-<div class="s l">4. Standby <b>mengambil alih IP dan MAC virtual</b>, jadi Aktif. Host lanjut tanpa ubah pengaturan.</div></div>
-<h3>Pilihan protokol FHRP</h3>
-<div class="tw"><table><tr><th></th><th>HSRP</th><th>VRRP</th><th>GLBP</th></tr>
-<tr><td>Pembuat</td><td>Cisco</td><td><b>IETF</b> (standar terbuka)</td><td>Cisco</td></tr>
-<tr><td>Peran router</td><td><b>Active / Standby</b></td><td><b>Master / Backup</b></td><td><b>AVG</b> + <b>AVF</b></td></tr>
-<tr><td>Load balancing</td><td>Manual (banyak grup)</td><td>Manual (banyak grup)</td><td><b>Otomatis</b> (sampai 4 AVF)</td></tr>
-<tr><td>Multicast</td><td>224.0.0.2 (v1), 224.0.0.102 (v2)</td><td>224.0.0.18</td><td>224.0.0.102</td></tr>
-<tr><td>Hello default</td><td><b>3 detik</b> (hold 10)</td><td><b>1 detik</b></td><td><b>3 detik</b> (hold 10)</td></tr>
-<tr><td>Prioritas default</td><td><b>100</b></td><td><b>100</b></td><td><b>100</b></td></tr></table></div>
-<p>Satu lagi: <b>IRDP</b> (ICMP Router Discovery Protocol), hanya IPv4, host menemukan router lewat pesan ICMP. Versi IPv6: HSRP untuk IPv6, VRRPv3, GLBP untuk IPv6.</p>
-<h3>HSRP lebih dalam</h3>
-<ul><li>Router dengan <b>prioritas tertinggi</b> jadi Aktif. Seri prioritas: <b>IP address tertinggi</b> menang.</li>
-<li><b>Preempt</b>: router berprioritas lebih tinggi merebut kembali peran Aktif. Di HSRP <b>preempt tidak aktif secara default</b> (VRRP: aktif).</li>
-<li><b>MAC virtual</b>: HSRPv1 <b>0000.0C07.ACxx</b>, HSRPv2 <b>0000.0C9F.Fxxx</b> (xx = nomor grup). Grup: v1 <b>0-255</b>, v2 <b>0-4095</b>. HSRP memakai <b>UDP 1985</b>.</li>
-<li>Status HSRP berurutan: <b>Initial, Learn, Listen, Speak, Standby, Active</b>.</li>
-<li><b>Load balancing HSRP</b>: buat dua grup (mis. VLAN 10 Aktif di R1, VLAN 20 Aktif di R2), supaya kedua router terpakai.</li></ul>
-<pre><code>! R1 (dibuat Aktif)
-interface g0/0/1
- standby version 2
- standby 1 ip 192.168.1.254         ! IP virtual = gateway host
- standby 1 priority 150             ! lebih tinggi dari default 100
- standby 1 preempt                  ! rebut peran Aktif kembali
-! R2: cukup "standby 1 ip 192.168.1.254" (prioritas default 100)
-! verifikasi: show standby   atau   show standby brief</code></pre>
-<div class="note">Gateway di PC harus diisi <b>IP virtual (192.168.1.254)</b>, bukan IP asli R1 atau R2.</div>
-<h3>GLBP singkat</h3>
-<p><b>AVG</b> (Active Virtual Gateway) membalas ARP host dengan <b>MAC virtual berbeda-beda</b> (default bergiliran), sedangkan tiap <b>AVF</b> (Active Virtual Forwarder) meneruskan lalu lintas. Hasilnya beban terbagi otomatis ke beberapa router.</p>
-</section>
-</main>
+<footer>Rangkuman Strukdat · Materi 01–07</footer>
+</div>
 <script>
-document.querySelectorAll('.seq').forEach(function(q){var r=[].slice.call(q.children),i=0;
-setInterval(function(){if(i<r.length){r[i].classList.add('on');i++}else{r.forEach(function(x){x.classList.remove('on')});i=0}},1500)});
-</script></body></html>
+(function(){
+  function clone(a){ return a.slice(); }
+
+  /* ---------- step generators (shared) ---------- */
+  function bubbleSteps(arr){
+    const a=clone(arr), n=a.length, steps=[];
+    steps.push({array:clone(a), sortedFrom:n, desc:'Kondisi awal', phase:'Mulai'});
+    for(let i=0;i<n-1;i++){
+      let swapped=false;
+      for(let j=0;j<n-i-1;j++){
+        steps.push({array:clone(a), sortedFrom:n-i, highlight:[j,j+1], desc:`Bandingkan ${a[j]} dan ${a[j+1]}`, phase:`Pass ${i+1}`});
+        if(a[j]>a[j+1]){ [a[j],a[j+1]]=[a[j+1],a[j]]; swapped=true;
+          steps.push({array:clone(a), sortedFrom:n-i, highlight:[j,j+1], pop:true, desc:`${a[j+1]} > ${a[j]} → tukar!`, phase:`Pass ${i+1}`});
+        } else {
+          steps.push({array:clone(a), sortedFrom:n-i, highlight:[j,j+1], desc:`${a[j]} < ${a[j+1]} → tetap`, phase:`Pass ${i+1}`});
+        }
+      }
+      steps.push({array:clone(a), sortedFrom:n-i-1, desc:`Pass ${i+1} selesai — ${a[n-i-1]} di posisi akhir`, phase:`Pass ${i+1}`});
+      if(!swapped) break;
+    }
+    steps.push({array:clone(a), sortedFrom:0, desc:'✅ Data sudah terurut!', phase:'Selesai'});
+    return steps;
+  }
+
+  function selectionSteps(arr){
+    const a=clone(arr), n=a.length, steps=[];
+    steps.push({array:clone(a), sortedFrom:n, desc:'Kondisi awal', phase:'Mulai'});
+    for(let i=0;i<n-1;i++){
+      let minIdx=i;
+      steps.push({array:clone(a), sortedFrom:i, highlight:[minIdx], desc:`Calon terkecil: ${a[minIdx]}`, phase:`Pass ${i+1}`});
+      for(let j=i+1;j<n;j++){
+        steps.push({array:clone(a), sortedFrom:i, highlight:[minIdx,j], desc:`Bandingkan calon ${a[minIdx]} dengan ${a[j]}`, phase:`Pass ${i+1}`});
+        if(a[j]<a[minIdx]){ minIdx=j;
+          steps.push({array:clone(a), sortedFrom:i, highlight:[minIdx], desc:`Calon terkecil baru: ${a[minIdx]}`, phase:`Pass ${i+1}`});
+        }
+      }
+      if(minIdx!==i){ [a[i],a[minIdx]]=[a[minIdx],a[i]];
+        steps.push({array:clone(a), sortedFrom:i, highlight:[i], pop:true, desc:`Tukar ke posisi ${i}: ${a[i]}`, phase:`Pass ${i+1}`});
+      }
+      steps.push({array:clone(a), sortedFrom:i+1, desc:`Pass ${i+1} selesai`, phase:`Pass ${i+1}`});
+    }
+    steps.push({array:clone(a), sortedFrom:0, desc:'✅ Data sudah terurut!', phase:'Selesai'});
+    return steps;
+  }
+
+  function insertionSteps(arr){
+    const a=clone(arr), n=a.length, steps=[];
+    steps.push({array:clone(a), sortedTo:1, desc:'Kondisi awal — 1 elemen dianggap sudah urut', phase:'Mulai'});
+    for(let i=1;i<n;i++){
+      const key=a[i]; let j=i-1;
+      steps.push({array:clone(a), sortedTo:i, highlight:[i], desc:`Ambil key = ${key}`, phase:`Pass ${i}`});
+      while(j>=0 && key<a[j]){
+        a[j+1]=a[j];
+        steps.push({array:clone(a), sortedTo:i, highlight:[j,j+1], desc:`${key} < ${a[j]} → geser ${a[j]} ke kanan`, phase:`Pass ${i}`});
+        j--;
+      }
+      a[j+1]=key;
+      steps.push({array:clone(a), sortedTo:i+1, highlight:[j+1], pop:true, desc:`Sisipkan ${key} di posisi ${j+1}`, phase:`Pass ${i}`});
+    }
+    steps.push({array:clone(a), sortedTo:n, desc:'✅ Data sudah terurut!', phase:'Selesai'});
+    return steps;
+  }
+
+  function mergeSteps(arr){
+    const a=clone(arr), n=a.length, steps=[];
+    steps.push({array:clone(a), desc:'Kondisi awal', phase:'Mulai'});
+    let width=1;
+    while(width<n){
+      for(let l=0;l<n;l+=2*width){
+        const m=Math.min(l+width,n), r=Math.min(l+2*width,n);
+        if(m<r){
+          steps.push({array:clone(a), bands:[{from:l,to:m-1,cls:'band-left'},{from:m,to:r-1,cls:'band-right'}], desc:`Merge [${a.slice(l,m).join(',')}] dengan [${a.slice(m,r).join(',')}]`, phase:`Lebar ${width}`});
+          const left=a.slice(l,m), right=a.slice(m,r);
+          let i=0,j=0,k=l;
+          while(i<left.length && j<right.length){
+            if(left[i]<=right[j]){ a[k]=left[i];
+              steps.push({array:clone(a), bands:[{from:l,to:m-1,cls:'band-left'},{from:m,to:r-1,cls:'band-right'}], highlight:[k], pop:true, desc:`${left[i]} (kiri) ≤ ${right[j]} (kanan) → ambil ${left[i]}`, phase:`Lebar ${width}`});
+              i++;
+            } else { a[k]=right[j];
+              steps.push({array:clone(a), bands:[{from:l,to:m-1,cls:'band-left'},{from:m,to:r-1,cls:'band-right'}], highlight:[k], pop:true, desc:`${right[j]} (kanan) < ${left[i]} (kiri) → ambil ${right[j]}`, phase:`Lebar ${width}`});
+              j++;
+            }
+            k++;
+          }
+          while(i<left.length){ a[k]=left[i]; steps.push({array:clone(a), highlight:[k], desc:`Sisa kiri: ambil ${left[i]}`, phase:`Lebar ${width}`}); i++; k++; }
+          while(j<right.length){ a[k]=right[j]; steps.push({array:clone(a), highlight:[k], desc:`Sisa kanan: ambil ${right[j]}`, phase:`Lebar ${width}`}); j++; k++; }
+          steps.push({array:clone(a), bands:[{from:l,to:r-1,cls:'sorted-band'}], desc:`Gabungan [${l}..${r-1}] terurut`, phase:`Lebar ${width}`});
+        }
+      }
+      width*=2;
+    }
+    steps.push({array:clone(a), sortedFrom:0, desc:'✅ Data sudah terurut!', phase:'Selesai'});
+    return steps;
+  }
+
+  function quickSteps(arr){
+    const a=clone(arr), steps=[];
+    steps.push({array:clone(a), desc:'Kondisi awal', phase:'Mulai'});
+    function qs(start,end){
+      if(start>=end){
+        if(start===end) steps.push({array:clone(a), bands:[{from:start,to:start,cls:'sorted-band'}], desc:`Elemen tunggal ${a[start]} sudah di tempat`, phase:'Partisi'});
+        return;
+      }
+      const pivot=a[end];
+      steps.push({array:clone(a), bands:[{from:start,to:end,cls:'band-left'}], highlight:[end], pivotIdx:end, desc:`Pivot = ${pivot} (elemen terakhir)`, phase:'Partisi'});
+      let left=start, right=end-1;
+      while(left<=right){
+        while(left<=right && a[left]<pivot){
+          steps.push({array:clone(a), highlight:[left], pivotIdx:end, desc:`${a[left]} < pivot → left maju`, phase:'Partisi'});
+          left++;
+        }
+        while(right>=left && a[right]>pivot){
+          steps.push({array:clone(a), highlight:[right], pivotIdx:end, desc:`${a[right]} > pivot → right mundur`, phase:'Partisi'});
+          right--;
+        }
+        if(left<=right){
+          [a[left],a[right]]=[a[right],a[left]];
+          steps.push({array:clone(a), highlight:[left,right], pivotIdx:end, pop:true, desc:`Tukar posisi ${left} dan ${right}`, phase:'Partisi'});
+          left++; right--;
+        }
+      }
+      [a[left],a[end]]=[a[end],a[left]];
+      steps.push({array:clone(a), highlight:[left], pop:true, desc:`Taruh pivot ${a[left]} di posisi ${left}`, phase:'Partisi'});
+      steps.push({array:clone(a), bands:[{from:left,to:left,cls:'sorted-band'}], desc:`Pivot ${a[left]} sudah di posisi final`, phase:'Partisi'});
+      qs(start,left-1);
+      qs(left+1,end);
+    }
+    qs(0,a.length-1);
+    steps.push({array:clone(a), sortedFrom:0, desc:'✅ Data sudah terurut!', phase:'Selesai'});
+    return steps;
+  }
+
+  /* ---------- generic widget factory ---------- */
+  function makeWidget(prefix, algos, defaultArr){
+    const el = id => document.getElementById(prefix+'-'+id);
+    const arrayRow=el('arrayRow'), descText=el('descText'), metaText=el('metaText'), progressFill=el('progressFill');
+    const playBtn=el('playBtn'), prevBtn=el('prevBtn'), nextBtn=el('nextBtn'), resetBtn=el('resetBtn');
+    const speedSlider=el('speedSlider'), speedLabel=el('speedLabel'), arrInput=el('arrInput'), setBtn=el('setBtn');
+    const algoTabs=el('algoTabs'), algoInfo=el('algoInfo');
+
+    let currentAlgo=algos[0];
+    let baseArray=defaultArr.slice();
+    let steps=currentAlgo.gen(baseArray);
+    let idx=0, playing=false, timer=null;
+
+    function inBand(i,bands,cls){ if(!bands) return false; return bands.some(b=>b.cls===cls && i>=b.from && i<=b.to); }
+
+    function render(){
+      const s=steps[idx];
+      arrayRow.innerHTML='';
+      s.array.forEach((val,i)=>{
+        const box=document.createElement('div'); box.className='box';
+        const sortedFromOk=(s.sortedFrom!==undefined && i>=s.sortedFrom);
+        const sortedToOk=(s.sortedTo!==undefined && i<s.sortedTo);
+        if(sortedFromOk||sortedToOk||inBand(i,s.bands,'sorted-band')) box.classList.add('sorted');
+        else if(inBand(i,s.bands,'band-left')) box.classList.add('band-left');
+        else if(inBand(i,s.bands,'band-right')) box.classList.add('band-right');
+        if(s.pivotIdx===i) box.classList.add('pivot');
+        if(s.highlight && s.highlight.includes(i)) box.classList.add('compare');
+        if(s.pop && s.highlight && s.highlight.includes(i)) box.classList.add('pop');
+        box.textContent=val;
+        arrayRow.appendChild(box);
+      });
+      descText.textContent=s.desc;
+      metaText.textContent = s.phase==='Selesai' ? 'Selesai' : `${s.phase} — langkah ${idx}/${steps.length-1}`;
+      progressFill.style.width=(idx/(steps.length-1)*100)+'%';
+      prevBtn.disabled=idx===0;
+      nextBtn.disabled=idx===steps.length-1;
+      playBtn.textContent=playing?'⏸ Jeda':(idx===steps.length-1?'↺ Mulai lagi':'▶ Mulai');
+    }
+    function goTo(i){ idx=Math.max(0,Math.min(steps.length-1,i)); render(); }
+    function tick(){ if(idx>=steps.length-1){ stop(); return;} goTo(idx+1); }
+    function play(){ if(idx>=steps.length-1) goTo(0); playing=true; render(); timer=setInterval(tick, parseInt(speedSlider.value,10)); }
+    function stop(){ playing=false; clearInterval(timer); render(); }
+
+    function renderInfo(){
+      const a=currentAlgo;
+      algoInfo.innerHTML=`<div class="callout"><b>${a.label}</b> — ${a.info}<br>Best: <code>${a.best}</code> · Average: <code>${a.avg}</code> · Worst: <code>${a.worst}</code> · Stable: <code>${a.stable}</code></div>`;
+    }
+    function renderTabs(){
+      algoTabs.innerHTML='';
+      algos.forEach(a=>{
+        const btn=document.createElement('button');
+        btn.className='algo-tab'+(a.key===currentAlgo.key?' active':'');
+        btn.textContent=a.label;
+        btn.addEventListener('click',()=>{
+          stop(); currentAlgo=a;
+          baseArray = a.defaultArr ? a.defaultArr.slice() : defaultArr.slice();
+          arrInput.value = baseArray.join(', ');
+          steps=a.gen(baseArray);
+          renderTabs(); renderInfo(); goTo(0);
+        });
+        algoTabs.appendChild(btn);
+      });
+    }
+
+    playBtn.addEventListener('click', ()=>{ if(playing) stop(); else play(); });
+    prevBtn.addEventListener('click', ()=>{ stop(); goTo(idx-1); });
+    nextBtn.addEventListener('click', ()=>{ stop(); goTo(idx+1); });
+    resetBtn.addEventListener('click', ()=>{ stop(); goTo(0); });
+    speedSlider.addEventListener('input', ()=>{
+      speedLabel.textContent=speedSlider.value+' ms';
+      if(playing){ clearInterval(timer); timer=setInterval(tick, parseInt(speedSlider.value,10)); }
+    });
+    setBtn.addEventListener('click', ()=>{
+      const parsed=arrInput.value.split(',').map(s=>s.trim()).filter(s=>s.length).map(Number);
+      if(parsed.some(isNaN)||parsed.length<2){ descText.textContent='⚠️ Masukkan minimal 2 angka dipisah koma'; return; }
+      stop(); baseArray=parsed; steps=currentAlgo.gen(baseArray); goTo(0);
+    });
+
+    renderTabs(); renderInfo(); render();
+  }
+
+  const LINEAR_ALGOS = [
+    {key:'bubble', label:'Bubble Sort', gen:bubbleSteps, defaultArr:[29,5,14,36,7], info:'Bandingkan pasangan bersebelahan, tukar jika belum urut. Elemen terbesar "mengapung" ke posisi akhir tiap pass.', best:'O(n)', avg:'O(n²)', worst:'O(n²)', stable:'Ya'},
+    {key:'selection', label:'Selection Sort', gen:selectionSteps, defaultArr:[29,5,14,36,7], info:'Cari elemen terkecil di bagian belum terurut, lalu tukar ke posisi awal bagian tersebut.', best:'O(n²)', avg:'O(n²)', worst:'O(n²)', stable:'Tidak'},
+    {key:'insertion', label:'Insertion Sort', gen:insertionSteps, defaultArr:[36,5,29,14,7], info:'Seperti mengurutkan kartu — ambil satu elemen, sisipkan ke posisi yang benar di bagian yang sudah urut.', best:'O(n)', avg:'O(n²)', worst:'O(n²)', stable:'Ya'},
+  ];
+  const NONLINEAR_ALGOS = [
+    {key:'merge', label:'Merge Sort', gen:mergeSteps, defaultArr:[15,24,13,12,17,10,14,16], info:'Divide and conquer: bagi jadi dua, urutkan rekursif, lalu gabungkan (merge) secara terurut. Butuh memory tambahan.', best:'O(n log n)', avg:'O(n log n)', worst:'O(n log n)', stable:'Ya'},
+    {key:'quick', label:'Quick Sort', gen:quickSteps, defaultArr:[15,24,13,12,17,10,14,16], info:'Divide and conquer: pilih pivot, partisi data di sekitar pivot, lalu urutkan tiap partisi secara rekursif.', best:'O(n log n)', avg:'O(n log n)', worst:'O(n²)', stable:'Tidak'},
+  ];
+
+  makeWidget('lin', LINEAR_ALGOS, [29,5,14,36,7]);
+  makeWidget('nl', NONLINEAR_ALGOS, [15,24,13,12,17,10,14,16]);
+})();
+</script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  /* ---------- generic player ---------- */
+  function player(p, renderFn){
+    const el=id=>$(p+'-'+id);
+    const desc=el('desc'),meta=el('meta'),fill=el('fill'),playBtn=el('play'),prev=el('prev'),next=el('next'),reset=el('reset'),speed=el('speed'),speedLbl=el('speedLbl');
+    let steps=[{desc:'',phase:''}],idx=0,playing=false,timer=null;
+    function render(){
+      const s=steps[idx]; renderFn(s);
+      desc.textContent=s.desc; meta.textContent=(s.phase||'')+' — langkah '+idx+'/'+(steps.length-1);
+      fill.style.width=(steps.length>1?idx/(steps.length-1)*100:100)+'%';
+      prev.disabled=idx===0; next.disabled=idx>=steps.length-1;
+      playBtn.textContent=playing?'⏸ Jeda':(idx>=steps.length-1?'↺ Mulai lagi':'▶ Mulai');
+    }
+    function go(i){idx=Math.max(0,Math.min(steps.length-1,i));render();}
+    function tick(){ if(idx>=steps.length-1){stop();return;} go(idx+1); }
+    function play(){ if(idx>=steps.length-1) idx=0; playing=true; render(); timer=setInterval(tick,+speed.value); }
+    function stop(){ playing=false; clearInterval(timer); render(); }
+    playBtn.onclick=()=>playing?stop():play();
+    prev.onclick=()=>{stop();go(idx-1);}; next.onclick=()=>{stop();go(idx+1);}; reset.onclick=()=>{stop();go(0);};
+    speed.oninput=()=>{speedLbl.textContent=speed.value+' ms'; if(playing){clearInterval(timer);timer=setInterval(tick,+speed.value);}};
+    return {load(s){playing=false;clearInterval(timer);steps=s;idx=0;render();}};
+  }
+
+  /* ---------- SEARCH ---------- */
+  function tagMap(list){const lab={};list.forEach(([i,x])=>{(lab[i]=lab[i]||[]).push(x);});const o={};for(const k in lab)o[k]=lab[k].join('/');return o;}
+  function renderSearch(s){
+    const row=$('s-row'); row.innerHTML='';
+    (s.array||[]).forEach((v,i)=>{
+      const c=document.createElement('div'); c.className='cell';
+      const tag=document.createElement('div'); tag.className='tag'; tag.textContent=(s.tags&&s.tags[i])||'';
+      const b=document.createElement('div'); b.className='box'; b.textContent=v;
+      if(s.dim&&s.dim.some(r=>i>=r[0]&&i<=r[1])) b.classList.add('dim');
+      if(s.hl&&s.hl.includes(i)) b.classList.add('compare');
+      if(s.found===i) b.classList.add('sorted');
+      const ix=document.createElement('div'); ix.className='idx'; ix.textContent=i;
+      c.append(tag,b,ix); row.appendChild(c);
+    });
+  }
+  function seqSteps(a,t){
+    const S=[{array:a,desc:`Cari ${t} dari indeks 0, satu per satu`,phase:'Mulai'}];
+    for(let i=0;i<a.length;i++){
+      const dim=i>0?[[0,i-1]]:[];
+      if(a[i]===t){S.push({array:a,hl:[i],found:i,dim,desc:`a[${i}] = ${a[i]} = ${t} → ADA (indeks ${i})`,phase:'Ketemu'});return S;}
+      S.push({array:a,hl:[i],dim,desc:`a[${i}] = ${a[i]} ≠ ${t} → lanjut`,phase:'Cek indeks '+i});
+    }
+    S.push({array:a,dim:[[0,a.length-1]],desc:`Semua elemen sudah dicek → TIDAK ADA`,phase:'Selesai'});
+    return S;
+  }
+  function binRange(a,t,lo,hi,S){
+    const n=a.length;
+    const out=(l,h)=>{const d=[];if(l>0)d.push([0,l-1]);if(h<n-1)d.push([h+1,n-1]);return d;};
+    while(lo<=hi){
+      const mid=Math.floor((lo+hi)/2), tags=tagMap([[lo,'low'],[mid,'mid'],[hi,'high']]), d=out(lo,hi);
+      S.push({array:a,hl:[mid],dim:d,tags,desc:`low=${lo}, high=${hi} → mid = (${lo}+${hi})//2 = ${mid}, nilainya ${a[mid]}`,phase:'Hitung mid'});
+      if(a[mid]===t){S.push({array:a,hl:[mid],found:mid,dim:d,tags,desc:`${a[mid]} = ${t} → KETEMU di indeks ${mid}!`,phase:'Ketemu'});return mid;}
+      if(a[mid]>t){S.push({array:a,hl:[mid],dim:d,tags,desc:`${a[mid]} > ${t} → buang kanan: high = mid − 1 = ${mid-1}`,phase:'Bandingkan'});hi=mid-1;}
+      else{S.push({array:a,hl:[mid],dim:d,tags,desc:`${a[mid]} < ${t} → buang kiri: low = mid + 1 = ${mid+1}`,phase:'Bandingkan'});lo=mid+1;}
+    }
+    S.push({array:a,dim:[[0,n-1]],desc:`low > high → ${t} TIDAK ADA`,phase:'Selesai'});
+    return -1;
+  }
+  function binSteps(a,t){const S=[{array:a,desc:`Cari ${t} (data harus terurut)`,phase:'Mulai'}];binRange(a,t,0,a.length-1,S);return S;}
+  function expSteps(a,t){
+    const n=a.length,S=[{array:a,desc:`Cari ${t}: tahap 1 cari rentang (lipat dua), tahap 2 binary search`,phase:'Mulai'}];
+    if(a[0]===t){S.push({array:a,hl:[0],found:0,desc:`a[0] = ${t} → KETEMU di indeks 0 (best case O(1))`,phase:'Ketemu'});return S;}
+    S.push({array:a,hl:[0],desc:`Cek indeks 0: ${a[0]} ≠ ${t}`,phase:'Tahap 1'});
+    let b=1;
+    while(b<n&&a[b]<t){S.push({array:a,hl:[b],tags:{[b]:'i='+b},desc:`a[${b}] = ${a[b]} < ${t} → i = i × 2 = ${b*2}`,phase:'Tahap 1'});b*=2;}
+    const lo=Math.floor(b/2),hi=Math.min(b,n-1);
+    S.push({array:a,hl:[b<n?b:n-1],tags:{[Math.min(b,n-1)]:'i='+b},desc:`Berhenti (i=${b}). Rentang: low = i/2 = ${lo}, high = min(i, n−1) = ${hi}`,phase:'Tahap 1'});
+    binRange(a,t,lo,hi,S);
+    return S;
+  }
+  const SEARCH=[
+    {key:'seq',label:'Sequential Search',arr:[8,10,6,-2,11,7,1,100],t:6,sorted:false,gen:seqSteps,info:'<b>Sequential Search</b> — cek satu per satu dari awal. Bisa untuk list <b>belum terurut</b>. Best <code>O(1)</code> · Worst <code>O(n)</code>.'},
+    {key:'bin',label:'Binary Search',arr:[3,9,11,12,15,17,23,31,35],t:17,sorted:true,gen:binSteps,info:'<b>Binary Search</b> — bandingkan dengan elemen tengah, buang separuh data. Syarat: <b>list terurut</b>. <code>O(log n)</code>.'},
+    {key:'exp',label:'Exponential Search',arr:[2,4,7,9,12,15,18,21,25,30,34,40,47,53],t:25,sorted:true,gen:expSteps,info:'<b>Exponential Search</b> — lipat dua indeks (1,2,4,8…) cari rentang, lalu <b>binary search</b>. Best <code>O(1)</code> · avg/worst <code>O(log i)</code>.'},
+  ];
+  const sp=player('s',renderSearch);
+  let curS=SEARCH[0];
+  function loadSearch(arr,t){
+    let a=arr.slice(),note='';
+    if(curS.sorted){const sorted=a.slice().sort((x,y)=>x-y);if(sorted.join()!==a.join())note='Data otomatis diurutkan dulu (syarat '+curS.label+').';a=sorted;}
+    $('s-arr').value=a.join(', ');$('s-target').value=t;$('s-hint').textContent=note;
+    sp.load(curS.gen(a,t));
+  }
+  function searchTabs(){
+    const box=$('s-tabs');box.innerHTML='';
+    SEARCH.forEach(a=>{const b=document.createElement('button');b.className='tab'+(a===curS?' active':'');b.textContent=a.label;
+      b.onclick=()=>{curS=a;searchTabs();$('s-info').innerHTML='<div class="callout">'+a.info+'</div>';loadSearch(a.arr,a.t);};box.appendChild(b);});
+  }
+  $('s-set').onclick=()=>{
+    const a=$('s-arr').value.split(',').map(x=>x.trim()).filter(x=>x.length).map(Number),t=Number($('s-target').value);
+    if(a.length<1||a.some(isNaN)||isNaN(t)||$('s-target').value===''){$('s-hint').textContent='⚠️ Isi array (angka, pisah koma) dan target.';return;}
+    loadSearch(a,t);
+  };
+  searchTabs();$('s-info').innerHTML='<div class="callout">'+curS.info+'</div>';loadSearch(curS.arr,curS.t);
+
+  /* ---------- HASH ---------- */
+  function renderHash(s){
+    const row=$('h-row');row.innerHTML='';
+    (s.table||[]).forEach((v,i)=>{
+      const c=document.createElement('div');c.className='hslot';
+      const ix=document.createElement('div');ix.className='idx';ix.style.margin='0 0 3px';ix.textContent=i;
+      const h=document.createElement('div');h.className='hc';
+      if(v==='DEL'){h.classList.add('del');h.textContent='Δ';}else if(v!==null){h.classList.add('filled');h.textContent=v;}
+      if(s.hl&&s.hl.includes(i))h.classList.add('hl');
+      if(s.ok===i)h.classList.add('ok');
+      if(s.bad===i)h.classList.add('bad');
+      c.append(ix,h);row.appendChild(c);
+    });
+  }
+  function genHash(P){
+    const M=P.M,t=Array(M).fill(null),S=[];
+    for(const k in P.init)t[k]=P.init[k];
+    const snap=()=>t.slice();
+    S.push({table:snap(),desc:`Kondisi awal tabel (M = ${M}, hash(k) = k mod ${M})`,phase:'Mulai'});
+    const pos=(h,i,hp)=>P.method==='lin'?(h+i)%M:P.method==='quad'?(h+i*i)%M:(h+i*hp)%M;
+    const fm=(h,i,hp)=>P.method==='lin'?`(${h} + ${i}) mod ${M}`:P.method==='quad'?`(${h} + ${i}²) mod ${M}`:`(${h} + ${i}×${hp}) mod ${M}`;
+    P.ops.forEach(([op,k])=>{
+      const h=k%M,hp=P.method==='dbl'?k%5:0,ph=(op==='insert'?'Insert ':op==='search'?'Cari ':'Hapus ')+k;
+      S.push({table:snap(),hl:[h],desc:`${ph}: hash = ${k} mod ${M} = ${h}`+(P.method==='dbl'?`, hp = ${k} mod 5 = ${hp}`:''),phase:ph});
+      for(let i=0;i<M;i++){
+        const idx=pos(h,i,hp);
+        if(P.method==='dbl'&&hp===0&&i===3&&op==='insert'){S.push({table:snap(),bad:h,desc:`GAGAL: hp(${k}) = 0 → probing diam di slot ${h} terus. Tidak baik!`,phase:ph});return;}
+        if(i>0)S.push({table:snap(),hl:[idx],desc:`Probe i=${i}: ${fm(h,i,hp)} = ${idx}`,phase:ph});
+        const v=t[idx];
+        if(op==='insert'){
+          if(v===null||v==='DEL'){t[idx]=k;S.push({table:snap(),ok:idx,desc:`Slot ${idx} kosong → simpan ${k}`,phase:ph});return;}
+          S.push({table:snap(),hl:[idx],desc:`Slot ${idx} sudah berisi ${v} → COLLISION!`,phase:ph});
+        }else{
+          if(v===k){
+            if(op==='search'){S.push({table:snap(),ok:idx,desc:`Slot ${idx} berisi ${k} → ADA`,phase:ph});}
+            else{t[idx]='DEL';S.push({table:snap(),hl:[idx],desc:`Ditemukan di slot ${idx} → hapus & beri flag Δ (tanda slot pernah terisi)`,phase:ph});}
+            return;
+          }
+          if(v===null){S.push({table:snap(),bad:idx,desc:`Slot ${idx} kosong → ${k} TIDAK ADA`,phase:ph});return;}
+          S.push({table:snap(),hl:[idx],desc:v==='DEL'?`Slot ${idx} bertanda Δ (bekas terisi) → lanjut probing`:`Slot ${idx} berisi ${v} ≠ ${k} → lanjut probing`,phase:ph});
+        }
+      }
+      S.push({table:snap(),desc:`Semua slot sudah diperiksa — ${op==='insert'?'tabel penuh':'tidak ketemu'}`,phase:ph});
+    });
+    return S;
+  }
+  const HASH=[
+    {label:'Contoh dasar (mod 13)',M:13,method:'lin',init:{},ops:[93,70,137,24,51,83,65,111].map(k=>['insert',k]),
+     info:'<b>Contoh dasar</b>: <code>f(key) = key mod 13</code>. Perhatikan <b>83</b> (hash 5, bentrok dengan 70) dan <b>111</b> (hash 7, bentrok dengan 137) — di sini diselesaikan dengan linear probing.'},
+    {label:'Linear Probing',M:13,method:'lin',init:{2:431,5:96,7:579,11:765,12:142},ops:[['insert',226],['insert',903],['insert',388],['search',903],['search',561],['delete',226],['search',903]],
+     info:'<b>Linear Probing</b>: <code>Slot = (h(key) + i) % M</code>. Ada 4 hal: <b>tambah</b> (226, 903), <b>ujung tabel</b> (388 kembali ke slot 0), <b>cari</b> (903 ada, 561 tidak ada), dan <b>hapus</b> (226 diberi flag Δ supaya pencarian 903 tetap benar).'},
+    {label:'Quadratic Probing',M:7,method:'quad',init:{4:18},ops:[['insert',3],['insert',38]],
+     info:'<b>Quadratic Probing</b>: <code>slot = (home + i²) % M</code> — lompat 1, 4, 9, 16… <b>38</b> → hash 3 penuh → +1 (idx 4 penuh) → +4 (idx 0 kosong).'},
+    {label:'Double Hashing',M:7,method:'dbl',init:{0:14,4:18},ops:[['insert',21],['insert',4],['insert',35]],
+     info:'<b>Double Hashing</b>: hash = k mod 7, hp = k mod 5, lompatan = <b>i × hp(key)</b>. <b>35</b> punya hp = 0 → tidak pernah pindah slot → <b>tidak baik!</b>'},
+  ];
+  const hp=player('h',renderHash);
+  let curH=HASH[0];
+  function hashTabs(){
+    const box=$('h-tabs');box.innerHTML='';
+    HASH.forEach(p=>{const b=document.createElement('button');b.className='tab'+(p===curH?' active':'');b.textContent=p.label;
+      b.onclick=()=>{curH=p;hashTabs();$('h-info').innerHTML='<div class="callout">'+p.info+'</div>';hp.load(genHash(p));};box.appendChild(b);});
+  }
+  hashTabs();$('h-info').innerHTML='<div class="callout">'+curH.info+'</div>';hp.load(genHash(curH));
+
+  /* ---------- hash calculator ---------- */
+  function calc(){
+    const key=$('hc-key').value.trim(),M=parseInt($('hc-m').value)||13,m=parseInt($('hc-mm').value)||16,out=$('hc-out');
+    if(!key){out.innerHTML='';return;}
+    let h='';
+    if(!isNaN(Number(key))){
+      const k=Number(key),x=k*0.618,fr=x-Math.floor(x);
+      h+=`<tr><td>Modulo</td><td>f(${k}) = ${k} mod ${M} = <b>${((k%M)+M)%M}</b></td></tr>`;
+      h+=`<tr><td>Multiplication (A=0.618, m=${m})</td><td>floor(${m} × ${fr.toFixed(4)}) = <b>${Math.floor(m*fr)}</b></td></tr>`;
+    }else{
+      const ch=[...key],cd=ch.map(c=>c.codePointAt(0)),sum=cd.reduce((a,b)=>a+b,0);
+      h+=`<tr><td>ord()</td><td>${ch.map((c,i)=>esc(c)+'='+cd[i]).join(', ')}</td></tr>`;
+      h+=`<tr><td>Jumlah</td><td>${cd.join(' + ')} = ${sum}</td></tr>`;
+      h+=`<tr><td>Hash</td><td>${sum} mod ${M} = <b>${sum%M}</b></td></tr>`;
+    }
+    out.innerHTML='<div class="tw"><table>'+h+'</table></div>';
+  }
+  ['hc-key','hc-m','hc-mm'].forEach(id=>$(id).addEventListener('input',calc));calc();
+
+  /* ---------- Rekening demo ---------- */
+  const accts=[];let seq=0;
+  const fmt=n=>'Rp '+n.toLocaleString('id-ID');
+  function create(no,nama,saldo){
+    accts.push({v:'rek'+(++seq),no,nama,saldo,tx:['Deposit awal '+fmt(saldo)],msg:'',ok:true,fresh:true});
+    $('a-code').textContent=`rek${seq} = Rekening(${/^\d+$/.test(no)?no:"'"+no+"'"}, '${nama}', ${saldo})   # instansiasi -> __init__ dipanggil otomatis`;
+  }
+  function renderAcc(){
+    const box=$('a-list');box.innerHTML='';
+    accts.forEach((a,i)=>{
+      const d=document.createElement('div');d.className='acc'+(a.fresh?' pop':'');a.fresh=false;
+      d.innerHTML=`<div class="acc-h"><span><code>${a.v}</code> : Rekening</span><button class="x" data-del="${i}">del ${a.v}</button></div>
+        <div>no_rekening = <b>${esc(a.no)}</b></div><div>nama = <b>${esc(a.nama)}</b></div><div>saldo = <b>${fmt(a.saldo)}</b></div>
+        <div>daftar_transaksi = [${a.tx.map(esc).join(', ')}]</div>
+        <div class="acc-ops"><input type="number" class="sm" min="0" value="100000" id="amt${i}"><button data-dep="${i}">simpan_uang()</button><button class="secondary" data-wd="${i}">ambil_uang()</button></div>
+        <div class="acc-msg${a.ok?'':' no'}">${esc(a.msg)}</div>`;
+      box.appendChild(d);
+    });
+  }
+  $('a-list').addEventListener('click',e=>{
+    const t=e.target;if(!t.dataset)return;
+    if(t.dataset.del!==undefined){accts.splice(+t.dataset.del,1);renderAcc();return;}
+    const i=t.dataset.dep!==undefined?+t.dataset.dep:t.dataset.wd!==undefined?+t.dataset.wd:-1;if(i<0)return;
+    const a=accts[i],amt=Number($('amt'+i).value)||0;
+    if(t.dataset.dep!==undefined){
+      if(amt>0){a.saldo+=amt;a.tx.push('Simpan '+fmt(amt));a.ok=true;a.msg=`${a.v}.simpan_uang(${amt}) → return True`;}
+      else{a.ok=false;a.msg=`${a.v}.simpan_uang(${amt}) → return False (setoran harus > 0)`;}
+    }else{
+      if(amt>0&&a.saldo>amt){a.saldo-=amt;a.tx.push('Ambil '+fmt(amt));a.ok=true;a.msg=`${a.v}.ambil_uang(${amt}) → return True`;}
+      else{a.ok=false;a.msg=`${a.v}.ambil_uang(${amt}) → return False (penarikan harus > 0 dan saldo > penarikan)`;}
+    }
+    renderAcc();
+  });
+  $('a-new').onclick=()=>{
+    const no=$('a-no').value.trim()||'0',nama=$('a-nama').value.trim()||'Tanpa nama',s=Number($('a-saldo').value)||0;
+    create(no,nama,s);renderAcc();
+  };
+  create('9178041','Teddy',500000);create('9198042','Cathy',1000000);renderAcc();
+})();
+</script>
+<script>(function(){
+  const $=id=>document.getElementById(id), BASE=[230,110,21,987,543];
+  let list=BASE.slice(),steps=[],idx=0,playing=false,timer=null,code=[],opNow='ih';
+  const S=(l,o)=>Object.assign({list:l.slice(),cls:{},ptr:{},tray:null,desc:'',ph:'',ln:''},o);
+  const HT=l=>l.length?{0:['head'],[l.length-1]:['tail']}:{};
+  const NAME={ih:'insert_head(self, new_data)',it:'insert_tail(self, new_data)',im:'insert_mid(self, position, new_data)',dh:'delete_head(self)',dt:'delete_tail(self)',dp:'delete(self, position)',f:'find(self, data)'};
+  function codeFor(op,d,c){
+    const L=[],A=(k,t)=>L.push({k,t});
+    const nw=()=>A('new','new_node = Node(new_data)');
+    if(op==='ih'){nw();A('','if self.size == 0:');A('e1','    self.head = self.tail = new_node');A('','else:');A('link','    new_node.next = self.head');if(d)A('link','    self.head.prev = new_node');A('mv','    self.head = new_node');if(c)A('mv','self.tail.next = self.head'+(d?'; self.head.prev = self.tail':''));A('sz','self.size += 1');}
+    if(op==='it'){nw();A('','if self.size == 0:');A('e1','    self.head = self.tail = new_node');A('','else:');A('link','    self.tail.next = new_node');if(d)A('link','    new_node.prev = self.tail');A('mv','    self.tail = new_node');if(c)A('mv','self.tail.next = self.head'+(d?'; self.head.prev = self.tail':''));A('sz','self.size += 1');}
+    if(op==='im'){nw();A('start','helper = self.head');A('loop','for i in range(position-1):');A('loop','    helper = helper.next');A('l1','new_node.next = helper.next');if(d)A('l1','new_node.prev = helper');A('l2','helper.next = new_node');if(d)A('l2','new_node.next.prev = new_node');A('sz','self.size += 1');}
+    if(op==='dh'){A('h','helper = self.head');A('mv','if self.size == 1: self.head = self.tail = None');A('mv','else: self.head = self.head.next');if(d)A('mv','      self.head.prev = None');if(c)A('mv','self.tail.next = self.head'+(d?'; self.head.prev = self.tail':''));A('del','del helper');A('sz','self.size -= 1');}
+    if(op==='dt'){if(!d){A('h','helper = self.head');A('loop','while helper.next != self.tail:');A('loop','    helper = helper.next');}A('d','delete = self.tail');A('mv',d?'self.tail = self.tail.prev':'self.tail = helper');A('mv',c?'self.tail.next = self.head':'self.tail.next = None');A('del','del delete');A('sz','self.size -= 1');}
+    if(op==='dp'){A('d','delete_node = self.head');A('d','for i in range(position): delete_node = delete_node.next');if(d)A('h','helper = delete_node.prev');else{A('h','helper = self.head');A('h','while helper.next != delete_node: helper = helper.next');}A('l1','helper.next = delete_node.next');if(d)A('l1','delete_node.next.prev = helper');A('del','del delete_node');A('sz','self.size -= 1');}
+    if(op==='f'){A('h','helper = self.head');A('loop','while helper != None:');A('chk','    if helper.data == data: return True');A('nx','    helper = helper.next');A('nf','return False');}
+    return L;
+  }
+  function build(op,v,p,d,c){
+    const l=list.slice(),n=l.length,St=[];let note='';
+    if(op==='im'){if(n===0||p<=0){op='ih';note='posisi 0 = insert_head · ';}else if(p>=n){op='it';note='posisi ≥ size = insert_tail · ';}}
+    if(op==='dp'&&n){if(p<=0){op='dh';note='posisi 0 = delete_head · ';}else if(p+1>=n){op='dt';note='posisi terakhir = delete_tail · ';}}
+    St.op=op;const ph=note+NAME[op].split('(')[0],cx=c?' (+ tail.next = head, circular)':'',dx=d?' (+ pointer prev)':'';
+    const P=(o)=>St.push(S(l,Object.assign({ph},o)));
+    if(op==='f'){
+      P({desc:'helper = head',ln:'h',ptr:n?{0:['helper']}:{}});
+      for(let i=0;i<n;i++){
+        const hit=l[i]===v;
+        P({desc:hit?`helper.data == ${v} → ketemu, return True`:`helper.data = ${l[i]} ≠ ${v}`,ln:'chk',cls:{[i]:hit?'ok':'hl'},ptr:{[i]:['helper']}});
+        if(hit){St.fin=l;return St;}
+        P({desc:'helper = helper.next',ln:'nx',cls:{[i]:'hl'},ptr:{[i]:['helper']}});
+      }
+      P({desc:c?'Circular: helper sudah mengelilingi size node → berhenti agar tidak infinite loop. return False':'helper = None → return False',ln:'nf'});St.fin=l;return St;
+    }
+    if(op==='ih'||op==='it'){
+      const h=op==='ih',r=h?[v,...l]:[...l,v];
+      P({desc:`Buat node baru: new_node = Node(${v})`,ln:'new',tray:v,ptr:HT(l)});
+      if(!n){St.push(S(r,{ph,desc:'List kosong: node baru jadi head sekaligus tail',ln:'e1',cls:{0:'ok'},ptr:HT(r)}));}
+      else{
+        P({desc:h?`new_node.next = head${d?', head.prev = new_node':''}`:`tail.next = new_node${d?', new_node.prev = tail':''}`,ln:'link',tray:v,lk:1,cls:{[h?0:n-1]:'hl'},ptr:HT(l)});
+        St.push(S(r,{ph,desc:(h?'head = new_node':'tail = new_node')+cx,ln:'mv',cls:{[h?0:n]:'ok'},ptr:HT(r)}));
+      }
+      St.push(S(r,{ph,desc:'size bertambah satu',ln:'sz',ptr:HT(r)}));St.fin=r;return St;
+    }
+    if(op==='im'){
+      const r=l.slice();r.splice(p,0,v);
+      P({desc:`Buat node baru: new_node = Node(${v})`,ln:'new',tray:v,ptr:HT(l)});
+      P({desc:'helper = head',ln:'start',tray:v,cls:{0:'hl'},ptr:{0:['head','helper'],[n-1]:['tail']}});
+      for(let i=1;i<=p-1;i++)P({desc:`helper = helper.next (posisi ${i}); berhenti di posisi − 1 = ${p-1}`,ln:'loop',tray:v,cls:{[i]:'hl'},ptr:{[i]:['helper'],0:['head'],[n-1]:['tail']}});
+      P({desc:`new_node.next = helper.next (ke node setelah helper)${d?', new_node.prev = helper':''}`,ln:'l1',tray:v,lk:1,cls:{[p-1]:'hl',[p]:'hl'},ptr:{[p-1]:['helper']}});
+      St.push(S(r,{ph,desc:`helper.next = new_node${d?', lalu node setelahnya .prev = new_node':''} → tersisip`,ln:'l2',cls:{[p]:'ok'},ptr:HT(r)}));
+      St.push(S(r,{ph,desc:'size bertambah satu',ln:'sz',ptr:HT(r)}));St.fin=r;return St;
+    }
+    if(!n){P({desc:'List kosong, tidak ada yang bisa dihapus (return False)'});St.fin=l;return St;}
+    if(op==='dh'){
+      const r=l.slice(1);
+      P({desc:'helper = head (node yang akan dihapus)',ln:'h',cls:{0:'bad'},ptr:{0:['head','helper'],[n-1]:['tail']}});
+      P({desc:(n===1?'Hanya 1 node: head = tail = None (list jadi kosong)':'head = head.next'+(d?', head.prev = None':''))+cx,ln:'mv',cls:{0:'bad'},ptr:{0:['helper'],[Math.min(1,n-1)]:['head'],[n-1]:['tail']}});
+      St.push(S(r,{ph,desc:'del helper → node terhapus',ln:'del',ptr:HT(r)}));
+      St.push(S(r,{ph,desc:'size berkurang satu',ln:'sz',ptr:HT(r)}));St.fin=r;return St;
+    }
+    if(op==='dt'){
+      const r=l.slice(0,-1);
+      if(!d&&n>1)for(let i=0;i<n-1;i++)P({desc:i===0?'helper = head':(i===n-2?'helper.next == tail → berhenti (sebelum tail)':'helper = helper.next, cari node sebelum tail'),ln:i===0?'h':'loop',cls:{[i]:'hl'},ptr:{[i]:['helper'],[n-1]:['tail']}});
+      P({desc:'delete = tail (node yang akan dihapus)'+(d?' — Double: tidak perlu traversing, cukup tail.prev':''),ln:'d',cls:{[n-1]:'bad'},ptr:{[n-1]:['tail','delete']}});
+      if(n>1)P({desc:(c?'tail = node sebelumnya, tail.next = head (circular)':'tail = node sebelumnya, tail.next = None'),ln:'mv',cls:{[n-1]:'bad'},ptr:{[n-2]:['tail'],[n-1]:['delete']},cut:c?-1:n-2});
+      else P({desc:'Hanya 1 node: head = tail = None',ln:'mv',cls:{0:'bad'}});
+      St.push(S(r,{ph,desc:'del delete → node terhapus',ln:'del',ptr:HT(r)}));
+      St.push(S(r,{ph,desc:'size berkurang satu',ln:'sz',ptr:HT(r)}));St.fin=r;return St;
+    }
+    const r=l.slice();r.splice(p,1);
+    P({desc:`delete_node = node posisi ${p} (traversing dari head)`,ln:'d',cls:{[p]:'bad'},ptr:{[p]:['delete'],0:['head'],[n-1]:['tail']}});
+    P({desc:d?'helper = delete_node.prev (langsung, tanpa traversing)':'helper = node sebelum delete_node (traversing lagi dari head)',ln:'h',cls:{[p]:'bad',[p-1]:'hl'},ptr:{[p-1]:['helper'],[p]:['delete']}});
+    P({desc:`helper.next = delete_node.next${d?', delete_node.next.prev = helper':''} → node dilompati`,ln:'l1',cls:{[p]:'bad',[p-1]:'hl',[p+1]:'hl'},ptr:{[p-1]:['helper'],[p]:['delete']},skip:p-1});
+    St.push(S(r,{ph,desc:'del delete_node → node terhapus',ln:'del',ptr:HT(r)}));
+    St.push(S(r,{ph,desc:'size berkurang satu',ln:'sz',ptr:HT(r)}));St.fin=r;return St;
+  }
+  function node(v,s,i,d,c,n){
+    const nl=(i===n-1&&!c)||s.cut===i, pl=(i===0&&!c);
+    return `<div class="lnode ${s.cls[i]||''}">${d?`<i>${pl?'∅':'●'}</i>`:''}<b>${v}</b><i>${nl?'∅':'●'}</i></div>`;
+  }
+  function render(){
+    const s=steps[idx];if(!s)return;
+    const d=$('ll-type').value==='d',c=$('ll-circ').value==='1',row=$('ll-row'),n=s.list.length;
+    $('ll-tray').innerHTML=s.tray!==null?`<div class="lcell"><div class="ltag">new_node</div><div class="lnode new ${s.lk?'lk':''}">${d?'<i>∅</i>':''}<b>${s.tray}</b><i>${s.lk?'●':'∅'}</i></div></div>`:'';
+    let h='';
+    s.list.forEach((v,i)=>{
+      h+=`<div class="lcell"><div class="ltag">${(s.ptr[i]||[]).join(' · ')}</div>${node(v,s,i,d,c,n)}<div class="lidx">${i}</div></div>`;
+      if(i<n-1){const sk=s.skip===i,ct=s.cut===i;h+=`<div class="larrow ${sk?'skip':''} ${ct?'cut':''}">${sk?'↷':ct?'✕':(d?'⇄':'→')}</div>`;}
+    });
+    if(!n)h='<div class="hint">list kosong: head = None, tail = None</div>';
+    row.innerHTML=h+(c&&n?`</div>`.slice(0,0):'');
+    row.nextElementSibling;
+    let lp=$('ll-loop');if(!lp){lp=document.createElement('div');lp.id='ll-loop';row.after(lp);}
+    lp.className=c&&n?'lcirc':'';lp.textContent=c&&n?`↩ tail.next → head${d?'  ·  head.prev → tail':''}`:'';
+    $('ll-desc').textContent=s.desc;
+    $('ll-meta').textContent=`${s.ph} · langkah ${idx+1}/${steps.length} · size ${n}`;
+    $('ll-fill').style.width=(steps.length>1?idx/(steps.length-1)*100:100)+'%';
+    $('ll-code').innerHTML=`<span class="ch">def ${NAME[opNow]}:</span>`+code.map(x=>`<span class="cl ${x.k&&x.k===s.ln?'on':''}">${x.t.replace(/</g,'&lt;')}</span>`).join('');
+    $('ll-play').textContent=playing?'⏸ Pause':'▶ Play';
+    $('ll-prev').disabled=idx===0;$('ll-next').disabled=idx>=steps.length-1;
+  }
+  function go(i){idx=Math.max(0,Math.min(steps.length-1,i));if(idx===steps.length-1&&steps.fin)list=steps.fin.slice();render();}
+  function stop(){playing=false;clearInterval(timer);render();}
+  function play(){if(idx>=steps.length-1)go(0);playing=true;render();clearInterval(timer);timer=setInterval(()=>{if(idx>=steps.length-1){stop();return;}go(idx+1);},+$('ll-sp').value);}
+  function run(){
+    playing=false;clearInterval(timer);
+    const d=$('ll-type').value==='d',c=$('ll-circ').value==='1',op=$('ll-op').value;
+    const v=Number($('ll-val').value)||0,p=Math.max(0,Math.floor(Number($('ll-pos').value)||0));
+    steps=build(op,v,p,d,c);opNow=steps.op;code=codeFor(opNow,d,c);idx=0;render();play();
+  }
+  function reset(){
+    playing=false;clearInterval(timer);list=BASE.slice();opNow='ih';
+    const d=$('ll-type').value==='d',c=$('ll-circ').value==='1';code=codeFor('ih',d,c);
+    steps=[S(list,{desc:'List awal siap. Pilih operasi lalu klik Jalankan.',ph:'list awal',ptr:HT(list)})];idx=0;render();
+  }
+  $('ll-go').onclick=run;$('ll-rst').onclick=reset;
+  $('ll-play').onclick=()=>playing?stop():play();
+  $('ll-prev').onclick=()=>{stop();go(idx-1);};$('ll-next').onclick=()=>{stop();go(idx+1);};
+  $('ll-sp').oninput=()=>{if(playing)play();};
+  ['ll-type','ll-circ'].forEach(i=>$(i).onchange=()=>{ if(steps.length>1)run(); else reset(); });
+  reset();
+})();
+</script>
+<script>(function(){
+  const rp=document.getElementById('rp'),links=[...document.querySelectorAll('.navrow a[href^="#"]')],secs=[...document.querySelectorAll('section')];
+  addEventListener('scroll',()=>{const h=document.documentElement;rp.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%';},{passive:true});
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-20% 0px -55% 0px'});
+    secs.forEach(s=>{s.classList.add('rv');io.observe(s);});
+    setTimeout(()=>secs.forEach(s=>s.classList.add('in')),2500);
+  }
+})();</script>
+<script>(function(){
+const $=id=>document.getElementById(id);
+const bub={h:'bubble_sort(a)',c:[['p','for i in range(n-1):'],['','    swapped = False'],['cmp','    for j in range(n-i-1):'],['cmp','        if a[j] > a[j+1]:'],['swap','            a[j], a[j+1] = a[j+1], a[j]'],['swap','            swapped = True'],['pe','    if not swapped: break']],r:[[/tukar/,'swap'],[/tetap|Bandingkan/,'cmp'],[/selesai/,'pe']]};
+const C={'Bubble Sort':bub,
+'Selection Sort':{h:'selection_sort(a)',c:[['p','for i in range(n-1):'],['cand','    min_idx = i'],['cmp','    for j in range(i+1, n):'],['cmp','        if a[j] < a[min_idx]:'],['nm','            min_idx = j'],['swap','    a[i], a[min_idx] = a[min_idx], a[i]']],r:[[/terkecil baru/,'nm'],[/Calon terkecil/,'cand'],[/Bandingkan/,'cmp'],[/Tukar/,'swap'],[/selesai/,'p']]},
+'Insertion Sort':{h:'insertion_sort(a)',c:[['p','for i in range(1, n):'],['key','    key = a[i]'],['','    j = i - 1'],['sh','    while j >= 0 and a[j] > key:'],['sh','        a[j+1] = a[j]; j -= 1'],['ins','    a[j+1] = key']],r:[[/Ambil/,'key'],[/geser/,'sh'],[/Sisipkan/,'ins']]},
+'Merge Sort':{h:'merge_sort(a)',c:[['','if len(a) <= 1: return a'],['sp','mid = len(a) // 2'],['sp','left, right = merge_sort(a[:mid]), merge_sort(a[mid:])'],['mg','merged, i, j = [], 0, 0'],['','while i < len(left) and j < len(right):'],['L','    if left[i] <= right[j]: merged.append(left[i]); i += 1'],['R','    else: merged.append(right[j]); j += 1'],['rest','merged += left[i:] + right[j:]'],['ret','return merged']],r:[[/Merge \[/,'mg'],[/\(kiri\) ≤/,'L'],[/\(kanan\) </,'R'],[/Sisa/,'rest'],[/Gabungan/,'ret']]},
+'Quick Sort':{h:'quick_sort(a, start, end)',c:[['one','if start >= end: return'],['pv','pivot = a[end]; left, right = start, end - 1'],['','while left <= right:'],['L','    if a[left] < pivot: left += 1'],['R','    elif a[right] > pivot: right -= 1'],['sw','    else: a[left], a[right] = a[right], a[left]'],['pl','a[left], a[end] = a[end], a[left]   # pivot ke posisi final'],['rec','quick_sort(a, start, left-1); quick_sort(a, left+1, end)']],r:[[/tunggal/,'one'],[/Pivot =/,'pv'],[/left maju/,'L'],[/right mundur/,'R'],[/Tukar posisi/,'sw'],[/Taruh pivot/,'pl'],[/sudah di posisi final/,'rec']]},
+'Sequential Search':{h:'sequential_search(a, target)',c:[['chk','for i in range(len(a)):'],['chk','    if a[i] == target: return i'],['nf','return -1']],r:[[/TIDAK ADA/,'nf'],[/ADA|lanjut/,'chk']]},
+'Binary Search':{h:'binary_search(a, target)',c:[['st','low, high = 0, len(a) - 1'],['mid','while low <= high:'],['mid','    mid = (low + high) // 2'],['eq','    if a[mid] == target: return mid'],['gt','    elif a[mid] > target: high = mid - 1'],['lt','    else: low = mid + 1'],['nf','return -1']],r:[[/TIDAK ADA/,'nf'],[/KETEMU/,'eq'],[/buang kanan/,'gt'],[/buang kiri/,'lt'],[/low=/,'mid'],[/Cari/,'st']]},
+'Exponential Search':{h:'exponential_search(a, target)',c:[['z','if a[0] == target: return 0'],['','i = 1'],['dbl','while i < len(a) and a[i] < target:'],['dbl','    i *= 2'],['bs','return binary_search(a[i//2 : min(i, n-1)+1], target)   # tahap 2']],r:[[/indeks 0|Cek indeks 0/,'z'],[/i × 2/,'dbl'],[/Berhenti|low|KETEMU|buang|TIDAK ADA/,'bs']]},
+hash:{h:'hash_op(op, key)   # open addressing',c:[['h','h = key % M                      # fungsi hash'],['slot','for i in range(M):                # probing'],['slot','    slot = (h + i) % M          # quad: h+i², double: h+i·hp'],['','    if table[slot] is None:     # slot kosong'],['store','        insert → table[slot] = key'],['nf','        search / delete → TIDAK ADA'],['','    elif table[slot] == key:'],['found','        search → ADA'],['del','        delete → table[slot] = Δ (flag)'],['coll','    else: pass                  # COLLISION → i berikutnya'],['nf','tabel penuh / semua slot dicek → gagal']],r:[[/GAGAL/,'slot'],[/simpan/,'store'],[/TIDAK ADA|Semua slot/,'nf'],[/→ ADA/,'found'],[/hapus/,'del'],[/COLLISION/,'coll'],[/Probe/,'slot'],[/hash =/,'h']]}};
+function attach(did,iid,fixed){
+  const d=$(did);if(!d)return;
+  const pre=document.createElement('pre');pre.className='llcode';d.parentNode.appendChild(pre);
+  const up=()=>{
+    const ie=$(iid),b=ie&&ie.querySelector('b'),sp=C[fixed||(b&&b.textContent.trim())];
+    if(!sp){pre.style.display='none';return;}pre.style.display='';
+    const t=d.textContent;let key='';for(const [re,k] of sp.r){if(re.test(t)){key=k;break;}}
+    pre.innerHTML='<span class="ch">def '+sp.h+':</span>'+sp.c.map(x=>'<span class="cl '+(x[0]&&x[0]===key?'on':'')+'">'+x[1].replace(/</g,'&lt;')+'</span>').join('');
+  };
+  new MutationObserver(up).observe(d,{childList:true,characterData:true,subtree:true});
+  if($(iid))new MutationObserver(up).observe($(iid),{childList:true,subtree:true});
+  up();
+}
+attach('lin-descText','lin-algoInfo');attach('nl-descText','nl-algoInfo');attach('s-desc','s-info');attach('h-desc','h-info','hash');
+})();</script></body></html>
