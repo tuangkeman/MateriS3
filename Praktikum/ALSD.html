@@ -2,714 +2,1741 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ringkasan ALSD - 7 Modul Struktur Data Python</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#4f46e5">
+<meta name="color-scheme" content="light dark">
+<title>Ringkasan ALSD - 7 Modul & Analisis Mendalam Python</title>
 <style>
-:root{--bg:#f4f6fb;--card:#fff;--ink:#1b2233;--mut:#5b6478;--acc:#3b5bdb;--line:#d9dfee;--ok:#0b7a5a;--cbg:#0f1524;--cfg:#e4e9f7;--warn:#fff4d6;--warnl:#e0b84a}
-@media(prefers-color-scheme:dark){:root{--bg:#10141f;--card:#181e2e;--ink:#e6eaf5;--mut:#9aa4bd;--acc:#8ea2ff;--line:#2a3350;--ok:#5fd7aa;--warn:#2b2614;--warnl:#8a7424}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,"Segoe UI",sans-serif}
-.app{display:flex;min-height:100vh}
-nav{width:230px;flex:none;position:sticky;top:0;height:100vh;overflow:auto;padding:18px 12px;border-right:1px solid var(--line)}
-nav h1{font-size:17px;margin:0 6px 14px;line-height:1.3}
-nav button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--ink);padding:9px 10px;border-radius:8px;font:inherit;font-size:14px;cursor:pointer}
-nav button:hover{background:var(--line)}
-nav button.on{background:var(--acc);color:#fff}
-main{flex:1;min-width:0;max-width:900px;padding:26px 26px 80px}
-h2{font-size:26px;margin:0 0 4px}
-h3{font-size:18px;margin:28px 0 6px}
-.sub{color:var(--mut);margin:0 0 18px}
-ul{padding-left:20px}li{margin:3px 0}
-code{font:13.5px ui-monospace,Consolas,monospace;background:var(--line);padding:1px 5px;border-radius:4px}
-.cell{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;margin:10px 0 16px;overflow:hidden}
-.cell textarea{display:block;width:100%;border:0;resize:vertical;background:var(--cbg);color:var(--cfg);font:13.5px/1.55 ui-monospace,Consolas,monospace;padding:12px 14px;tab-size:4;white-space:pre;overflow:auto}
-.bar{display:flex;gap:8px;align-items:center;padding:8px 12px;border-top:1px solid #263050;background:var(--cbg)}
-.bar button,.btn{background:var(--acc);color:#fff;border:0;border-radius:7px;padding:6px 13px;font:inherit;font-size:14px;cursor:pointer}
-.bar button.g,.btn.g{background:transparent;border:1px solid var(--mut);color:var(--cfg)}
-.btn.g{color:var(--ink)}
-.bar span{color:#8fa0c8;font-size:12.5px}
-.out{margin:0;padding:10px 14px;background:var(--card);color:var(--ok);font:13.5px/1.5 ui-monospace,Consolas,monospace;white-space:pre-wrap;min-height:0}
-.out:empty{display:none}.out.err{color:#e5484d}
-table{border-collapse:collapse;width:100%;font-size:14.5px;margin:8px 0 14px}
-th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
-th{background:var(--line)}
-.note{background:var(--warn);border:1px solid var(--warnl);border-radius:8px;padding:9px 13px;margin:12px 0;font-size:14.5px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
-.bars{display:flex;align-items:flex-end;gap:5px;height:170px;margin:10px 0}
-.bars div{flex:1;background:var(--mut);border-radius:4px 4px 0 0;color:#fff;font-size:11px;text-align:center;opacity:.85;min-width:12px}
-.bars div.h{background:var(--acc);opacity:1}.bars div.d{background:var(--ok)}
-input,select{font:inherit;font-size:14.5px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);max-width:100%}
-.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0}
-.big{font-size:24px;font-weight:700;color:var(--acc)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:760px){.app{display:block}nav{position:static;width:auto;height:auto;display:flex;overflow-x:auto;border:0;border-bottom:1px solid var(--line);padding:8px}nav h1{display:none}nav button{white-space:nowrap;width:auto}main{padding:18px 14px 70px}.two{grid-template-columns:1fr}}
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --mut: #64748b;
+  --acc: #4f46e5;
+  --acc-hover: #4338ca;
+  --acc2: #06b6d4;
+  --line: #e2e8f0;
+  --ok: #10b981;
+  --cbg: #0f172a;
+  --cfg: #f8fafc;
+  --warn: #fffbeb;
+  --warnl: #f59e0b;
+  --sh: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  --top: 60px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #090d16;
+    --card: #131b2e;
+    --ink: #f1f5f9;
+    --mut: #94a3b8;
+    --acc: #6366f1;
+    --acc-hover: #818cf8;
+    --acc2: #2dd4bf;
+    --line: #1e293b;
+    --ok: #34d399;
+    --warn: #241a08;
+    --warnl: #d97706;
+    --sh: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #090d16;
+  --card: #131b2e;
+  --ink: #f1f5f9;
+  --mut: #94a3b8;
+  --acc: #6366f1;
+  --acc-hover: #818cf8;
+  --acc2: #2dd4bf;
+  --line: #1e293b;
+  --ok: #34d399;
+  --warn: #241a08;
+  --warnl: #d97706;
+  --sh: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font: 15.5px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-wrap: anywhere;
+  background: radial-gradient(1000px 600px at 85% -10%, rgba(79, 70, 229, 0.12), transparent 70%),
+              radial-gradient(800px 500px at -10% 20%, rgba(6, 182, 212, 0.08), transparent 70%),
+              var(--bg);
+  background-attachment: fixed;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+.prog {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 100;
+  background: linear-gradient(90deg, var(--acc), var(--acc2));
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: calc(var(--top) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  flex: 1;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ib {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s;
+}
+
+.ib:active {
+  transform: scale(0.92);
+}
+
+.ib:hover {
+  background: var(--line);
+}
+
+.mi {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
+
+.app {
+  display: flex;
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+#nav {
+  width: 280px;
+  flex: none;
+  position: sticky;
+  top: calc(var(--top) + env(safe-area-inset-top, 0px));
+  height: calc(100vh - var(--top));
+  height: calc(100dvh - var(--top));
+  overflow-y: auto;
+  padding: 16px 12px 30px;
+  overscroll-behavior: contain;
+}
+
+.nh {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px 16px;
+  position: relative;
+}
+
+.nh b {
+  font-size: 17px;
+}
+
+.nh small {
+  color: var(--mut);
+  font-size: 13px;
+}
+
+.nh .x {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.ni {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 4px 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14.5px;
+  text-align: left;
+  cursor: pointer;
+  min-height: 48px;
+  transition: all 0.2s ease;
+}
+
+.ni:hover {
+  background: var(--line);
+  transform: translateX(3px);
+}
+
+.ni .num {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--line);
+  font-weight: 700;
+  font-size: 13px;
+  transition: all 0.25s ease;
+}
+
+.ni .nt {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.ni small {
+  color: var(--mut);
+  font-size: 11.5px;
+  display: block;
+}
+
+.ni.on {
+  background: var(--card);
+  box-shadow: var(--sh);
+  font-weight: 600;
+}
+
+.ni.on .num {
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: #fff;
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.ov {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+main {
+  flex: 1;
+  min-width: 0;
+  padding: 20px clamp(14px, 4vw, 36px) calc(100px + env(safe-area-inset-bottom, 0px));
+}
+
+.page {
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: clamp(24px, 5vw, 40px);
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
+  background-size: 200% 200%;
+  animation: gradientFlow 12s ease infinite;
+  box-shadow: var(--sh);
+}
+
+.hero::before, .hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  animation: floatAnim 8s ease-in-out infinite;
+}
+
+.hero::before {
+  width: 220px;
+  height: 220px;
+  right: -60px;
+  top: -80px;
+}
+
+.hero::after {
+  width: 140px;
+  height: 140px;
+  right: 100px;
+  bottom: -60px;
+  animation-delay: -4s;
+}
+
+.hero .no {
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  font-size: clamp(100px, 22vw, 160px);
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.15;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero h2 {
+  position: relative;
+  margin: 0 0 8px;
+  font-size: clamp(22px, 5vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  position: relative;
+  margin: 0 0 16px;
+  max-width: 600px;
+  opacity: 0.92;
+  font-size: 15px;
+}
+
+.chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips span {
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 12.5px;
+  font-weight: 500;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.toc {
+  position: sticky;
+  top: calc(var(--top) + env(safe-area-inset-top, 0px));
+  z-index: 30;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 16px -4px 0;
+  padding: 10px 4px;
+  scrollbar-width: none;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.toc::-webkit-scrollbar {
+  display: none;
+}
+
+.toc button {
+  flex: none;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 6px 14px;
+  min-height: 36px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toc button:hover {
+  border-color: var(--acc);
+  color: var(--acc);
+  transform: translateY(-1px);
+}
+
+h3.h {
+  margin: 28px 0 12px;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.tag {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.sub {
+  color: var(--mut);
+  margin: 0 0 12px;
+  font-size: 14.5px;
+}
+
+.blk {
+  margin: 28px 0;
+  scroll-margin-top: calc(var(--top) + 60px);
+}
+
+.sum {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.sum li {
+  position: relative;
+  padding: 12px 16px 12px 42px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--sh);
+}
+
+.sum li::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+}
+
+code {
+  font: 13px/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  background: color-mix(in srgb, var(--line) 60%, transparent);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--ink);
+}
+
+.rv {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+.cell {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--cbg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--sh);
+  margin: 12px 0 16px;
+}
+
+.cell.ak {
+  border-left: 4px solid var(--ok);
+}
+
+.ch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #161e2e;
+  color: #94a3b8;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ch i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+}
+
+.ch i:nth-child(2) { background: #ffbd2e; }
+.ch i:nth-child(3) { background: #27c93f; }
+
+.ch span {
+  flex: 1;
+  margin-left: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ch button {
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  background: transparent;
+  color: #cbd5e1;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ch button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cell textarea {
+  display: block;
+  width: 100%;
+  max-height: 60vh;
+  border: 0;
+  background: transparent;
+  color: var(--cfg);
+  font: 13.5px/1.6 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  padding: 14px 16px;
+  resize: vertical;
+  white-space: pre;
+  overflow: auto;
+  tab-size: 4;
+  outline: 0;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px;
+  background: #161e2e;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bar > span {
+  color: #94a3b8;
+  font-size: 12.5px;
+}
+
+.run, .bar .g {
+  min-height: 38px;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.2s;
+}
+
+.run {
+  border: 0;
+  color: #fff;
+  background: linear-gradient(135deg, var(--acc), #6366f1);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.run:hover { filter: brightness(1.1); }
+.run:active { transform: scale(0.96); }
+
+.run.busy {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.run.busy::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.bar .g {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+}
+
+.out {
+  margin: 0;
+  padding: 14px 16px;
+  background: #090d16;
+  color: #34d399;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  font: 13px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.out:empty { display: none; }
+.out.err { color: #f87171; }
+
+.tw {
+  overflow-x: auto;
+  margin: 10px 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--sh);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+
+th, td {
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  background: color-mix(in srgb, var(--line) 40%, transparent);
+  font-weight: 600;
+}
+
+tr:last-child td { border-bottom: 0; }
+
+.box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--acc);
+  border-radius: 16px;
+  padding: 18px;
+  margin: 20px 0;
+  box-shadow: var(--sh);
+}
+
+.loop-box {
+  background: color-mix(in srgb, var(--acc2) 8%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--acc2) 30%, transparent);
+  border-left: 4px solid var(--acc2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 12px 0;
+}
+
+.loop-box h4 {
+  margin: 0 0 6px;
+  font-size: 14.5px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+input, select {
+  font: inherit;
+  font-size: 14.5px;
+  min-height: 40px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+input[type="range"] {
+  accent-color: var(--acc);
+  padding: 0;
+}
+
+.btn {
+  min-height: 40px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--acc);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.2s;
+}
+
+.btn:hover { filter: brightness(1.1); }
+.btn:active { transform: scale(0.96); }
+
+.btn.g {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.big {
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 800;
+  color: var(--acc);
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.two > div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 180px;
+  padding: 12px 8px 0;
+  margin: 12px 0;
+  background: var(--bg);
+  border-radius: 12px;
+}
+
+.bars div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--mut);
+  opacity: 0.6;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, opacity 0.2s;
+}
+
+.bars div.h { background: var(--acc); opacity: 1; }
+.bars div.d { background: var(--ok); opacity: 1; }
+
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.pager button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  min-height: 64px;
+  transition: all 0.2s ease;
+}
+
+.pager button:hover {
+  transform: translateY(-2px);
+  border-color: var(--acc);
+  box-shadow: var(--sh);
+}
+
+.pager small { color: var(--mut); }
+.pager b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pager .nx { grid-column: 2; text-align: right; }
+
+.fab {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  box-shadow: var(--sh);
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fab.show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 959px) {
+  #nav {
+    position: fixed;
+    z-index: 60;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: min(85vw, 300px);
+    height: 100%;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 12px 30px;
+    background: var(--card);
+    box-shadow: var(--sh);
+    transform: translateX(-105%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nh .x { display: grid; }
+  body.nav-open #nav { transform: none; }
+  body.nav-open .ov { opacity: 1; pointer-events: auto; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+  .two { grid-template-columns: 1fr; }
+  .pager { grid-template-columns: 1fr; }
+  .pager .nx { grid-column: 1; }
+  th, td { padding: 8px 10px; font-size: 13.5px; }
+  .cell textarea, .out { font-size: 12.5px; }
+}
 </style>
 </head>
 <body>
-<div class="app"><nav id="nav"><h1>Ringkasan ALSD<br><small style="font-weight:400;color:var(--mut)">Struktur Data dengan Python</small></h1></nav><main id="main"></main></div>
+
+<div class="prog" id="pg"></div>
+
+<header class="top">
+  <button class="ib menu" id="mb" aria-label="Buka Menu">&#9776;</button>
+  <div class="brand" id="br">Ringkasan ALSD</div>
+  <button class="ib" id="tb" aria-label="Ganti Tema"><span class="mi"></span></button>
+</header>
+
+<div class="app">
+  <aside id="nav" aria-label="Navigasi Utama"></aside>
+  <main id="main"></main>
+</div>
+
+<div class="ov" id="ov"></div>
+<button class="fab" id="fb" aria-label="Kembali ke Atas">&uarr;</button>
+
 <script>
-const R=String.raw;
-const B=(t,d,k,p,run=true)=>({t,d,k,p,run});
-const S=[];
+const R = String.raw;
+const B = (t, d, k, p, run = true, loopExplanation = null) => ({ t, d, k, p, run, loopExplanation });
+const S = [];
 
-/* ============ MODUL 1 ============ */
-S.push({n:'1. Review Python',h:'Modul 1 - Review Python & Persiapan',s:'Instalasi, Jupyter, uv, lalu dasar Python yang dipakai di semua modul berikutnya.',
-r:['<b>Python</b>: bahasa interpreted, sintaks rapi, ekosistem library besar (PyPI). Pakai Python 3.12 atau 3.13.','<b>pip</b> = pengelola paket (<code>pip install nama_library</code>). <b>Library</b> = kode siap pakai supaya tidak membuat ulang dari nol.','<b>Jupyter Notebook</b>: kode dipecah jadi <i>Cell</i> yang jalan sendiri-sendiri. <b>Shift+Enter</b> jalankan lalu pindah cell, <b>Ctrl+Enter</b> jalankan dan tetap, <b>Alt+Enter</b> jalankan lalu tambah cell. Versi online: Google Colab dan Kaggle.','<b>uv</b>: pengelola project + library, satu project satu folder supaya versi library tidak bentrok antar project.','<b>Struktur data</b> = cara mengorganisasi dan menyimpan data supaya mudah dicari, diubah, dan diproses. Pilihan yang tepat bikin program lebih cepat dan hemat memori.'],
-b:[
-B('Perintah pip & uv (di terminal, bukan di sini)','Ini dijalankan di Command Prompt / PowerShell, jadi hanya untuk dibaca.',R`python -V                  # cek versi Python
-pip --version              # cek pip
-pip install cowsay         # install library
-pip install jupyter notebook
-jupyter notebook           # buka Jupyter di localhost:8888
-
-pip install uv             # install uv
-uv init strukdat01         # buat project baru
-uv add numpy pandas        # tambah library ke project
-uv run main.py             # jalankan script
-uv run jupyter notebook    # Jupyter di dalam project`,[['uv init nama','membuat folder project baru lengkap dengan pyproject.toml'],['uv add lib','memasang library hanya untuk project aktif (bukan global)'],['uv run file.py','menjalankan file memakai library milik project']],false),
-B('Variabel dan tipe data','Variabel = kotak bernama untuk menyimpan nilai. Tipe data menentukan jenis nilainya.',R`nama = "Andi"      # str  (teks)
+/* ==========================================================================
+   MODUL 1: REVIEW PYTHON
+   ========================================================================== */
+S.push({
+  n: '1. Review Python',
+  h: 'Modul 1 - Review Dasar Python & Lingkungan Kerja',
+  s: 'Ulasan dasar sintaksis Python, variabel, tipe data, kondisi, perulangan, dan fungsi.',
+  r: [
+    '<b>Python</b>: Bahasa pemrogaraman yang berfokus pada keterbacaan kode dengan sintaksis bersih.',
+    '<b>Variabel & Tipe Data</b>: Kotak penampung data dinamik (integer, float, string, boolean).',
+    '<b>Perulangan (Loop)</b>: Mekanisme mengeksekusi blok kode secara berulang berdasarkan urutan atau kondisi.',
+    '<b>Fungsi</b>: Sub-program reusable yang menerima input (parameter) dan mengembalikan output (return).'
+  ],
+  b: [
+    B('Variabel dan Tipe Data', 'Inisialisasi tipe data dasar Python secara dinamis.',
+R`nama = "Andi"      # str  (teks)
 umur = 20          # int  (bilangan bulat)
 nilai = 85.5       # float (desimal)
 lulus = True       # bool (True/False)
+
 print(nama, type(nama))
 print(umur, type(umur))
 print(nilai, type(nilai))
-print(lulus, type(lulus))`,[['nama, umur, nilai, lulus','nama variabel (kotak) yang kamu buat sendiri'],['=','memasukkan nilai ke variabel (bukan "sama dengan")'],['type(x)','fungsi bawaan untuk melihat tipe data x']]),
-B('Percabangan: if / elif / else / match-case','Python mengecek dari atas ke bawah, begitu ada kondisi True blok itu dijalankan dan sisanya dilewati.',R`nilai = 78
-if nilai >= 85:
-    grade = "A"
-elif nilai >= 70:
-    grade = "B"
-elif nilai >= 55:
-    grade = "C"
-else:
-    grade = "D"
-print("Grade:", grade)
+print(lulus, type(lulus))`,
+    [['nama, umur, nilai', 'Nama variabel dinamis'], ['type(x)', 'Fungsi built-in pengecek tipe data']],
+    true
+    ),
+    B('Perulangan Dasar: for dan while', 'Memahami siklus iterasi dan kondisi penghentian.',
+R`print("--- FOR LOOP (range) ---")
+for i in range(1, 6, 2):  # start=1, stop=6 (eksklusif), step=2
+    print(f"Iterasi i = {i}")
 
-hari = 3
-match hari:            # mirip switch-case
-    case 1: print("Senin")
-    case 2: print("Selasa")
-    case 3: print("Rabu")
-    case _: print("Hari lain")   # _ = default`,[['if / elif / else','pilih satu jalur dari beberapa kondisi'],['>=','operator perbandingan (lebih besar atau sama)'],['match / case _','mencocokkan satu nilai dengan beberapa kemungkinan; _ untuk "selain itu"'],['indentasi (4 spasi)','menandai isi blok; wajib di Python']]),
-B('Perulangan: for, range, while, break, continue','for dipakai bila jumlah ulangan jelas, while selama kondisi True.',R`for i in range(1, 10, 2):      # start=1, stop=10 (tidak ikut), step=2
-    print("for:", i)
-
+print("\n--- WHILE LOOP ---")
 n = 3
 while n > 0:
-    print("while:", n)
-    n -= 1                      # tanpa ini jadi loop tak terbatas
+    print(f"Hitung mundur n = {n}")
+    n -= 1`,
+    [['range(1, 6, 2)', 'Menghasilkan deret [1, 3, 5]'], ['n -= 1', 'Decrement untuk mencegah infinite loop']],
+    true,
+    {
+      title: 'Penjelasan Mendalam Perulangan (Looping)',
+      details: [
+        '<b>For Loop (range)</b>: <code>range(1, 6, 2)</code> menginisialisasi <code>i = 1</code>. Pada iterasi 1, <code>i</code> bernilai 1. Langkah berikutnya menambah step (+2) sehingga <code>i = 3</code> pada iterasi 2, dan <code>i = 5</code> pada iterasi 3. Saat <code>i</code> mencapai 7 (>= 6), loop berhenti.',
+        '<b>While Loop</b>: Diuji pada kondisi awal <code>n > 0</code>. Iterasi 1: <code>n=3</code> (True), cetak lalu <code>n</code> menjadi 2. Iterasi 2: <code>n=2</code> (True), cetak lalu <code>n</code> menjadi 1. Iterasi 3: <code>n=1</code> (True), cetak lalu <code>n</code> menjadi 0. Iterasi 4: <code>n=0</code> (False), loop selesai.'
+      ]
+    }
+    )
+  ]
+});
 
-for x in [1, 2, 3, 4, 5]:
-    if x == 2:
-        continue                # lewati iterasi ini saja
-    if x == 5:
-        break                   # hentikan seluruh loop
-    print("x =", x)`,[['range(start, stop, step)','deret angka dari start sampai sebelum stop'],['n -= 1','sama dengan n = n - 1'],['break','berhenti total dari loop'],['continue','lompat ke iterasi berikutnya']]),
-B('Fungsi','Sekumpulan instruksi yang diberi nama supaya bisa dipakai ulang.',R`def sapa(nama, sapaan="Halo"):   # sapaan punya nilai default
-    return f"{sapaan}, {nama}!"
-
-print(sapa("Budi"))
-print(sapa("Ani", "Hai"))`,[['def nama(parameter):','mendefinisikan fungsi'],['return','mengirim hasil keluar dari fungsi'],['f"...{x}..."','f-string: menyisipkan nilai variabel ke teks']])
-]});
-
-/* ============ MODUL 2 ============ */
-S.push({n:'2. Big-O & Rekursif',h:'Modul 2 - Analisis Algoritma dan Fungsi Rekursif',s:'Mengukur seberapa cepat jumlah operasi tumbuh saat data bertambah, lalu belajar fungsi yang memanggil dirinya sendiri.',
-r:['Dua algoritma yang hasilnya sama belum tentu sama efisien. Yang diukur bukan detik (tergantung komputer), tapi <b>pola pertumbuhan jumlah operasi</b> saat data (n) membesar.','<b>Big-O</b>: O(1) konstan, O(log n) logaritmik, O(n) linear, O(n log n), O(n²) kuadratik (loop bersarang), O(2ⁿ) eksponensial.','<b>Rekursif</b> = fungsi memanggil dirinya sendiri dengan masalah yang lebih kecil. Wajib punya <b>base case</b> (kondisi berhenti) dan <b>recursive case</b> (pemanggilan diri).','Iteratif vs rekursif: faktorial keduanya O(n); iteratif lebih hemat memori, rekursif lebih natural untuk masalah yang bisa dipecah (pohon, divide and conquer).'],
-w:'wBigO',
-b:[
-B('Menghitung jumlah operasi tiap kompleksitas','Versi modul memakai pandas dan matplotlib; di sini dicetak sebagai tabel teks supaya bisa jalan di browser.',R`def konstan(data):
-    return 1                       # O(1): ambil 1 data saja
-
-def logaritmik(n):                 # O(log n): n dibagi 2 tiap putaran
-    op = 0
-    while n > 1:
-        n = n // 2
-        op += 1
-    return op
-
-def linear(data):                  # O(n)
-    op = 0
-    for _ in data:
-        op += 1
-    return op
-
-def nlogn(data):                   # O(n log n)
-    op = 0
-    ukuran = len(data)
-    while ukuran > 1:
-        for _ in data:
-            op += 1
-        ukuran = ukuran // 2
-    return op
-
-def kuadratik(data):               # O(n^2): loop bersarang
-    op = 0
-    for i in data:
-        for j in data:
-            op += 1
-    return op
-
-def eksponensial(n, counter):      # O(2^n): memanggil diri 2 kali
-    counter[0] += 1
-    if n == 0:
-        return
-    eksponensial(n - 1, counter)
-    eksponensial(n - 1, counter)
-
-print(f"{'n':>4}{'O(1)':>6}{'logn':>6}{'O(n)':>6}{'nlogn':>7}{'n^2':>7}{'2^n':>8}")
-for n in [1, 2, 3, 4, 5, 10, 15]:
-    data = list(range(n))
-    c = [0]
-    eksponensial(n, c)
-    print(f"{n:>4}{konstan(data):>6}{logaritmik(n):>6}{linear(data):>6}{nlogn(data):>7}{kuadratik(data):>7}{c[0]:>8}")`,[['operasi / op','penghitung berapa kali pekerjaan inti dilakukan'],['n // 2','pembagian bulat, membagi data jadi setengah'],['counter = [0]','list dipakai agar nilainya bisa diubah dari dalam fungsi rekursif'],['list(range(n))','membuat data [0,1,...,n-1]']]),
-B('Rekursif: melihat alur masuk dan keluar','Fungsi tidak langsung selesai saat memanggil dirinya. Ia menumpuk dulu sampai base case, lalu kembali satu per satu.',R`def hitung_mundur(n):
-    print("masuk  n =", n)
-    if n == 0:                      # BASE CASE
-        print("base case tercapai")
-        return
-    hitung_mundur(n - 1)            # RECURSIVE CASE (masalah lebih kecil)
-    print("selesai n =", n)
-
-hitung_mundur(3)`,[['if n == 0: return','base case: tanpa ini rekursi tak pernah berhenti (RecursionError)'],['hitung_mundur(n - 1)','recursive case: n harus mengecil menuju base case'],['output "selesai"','muncul terbalik (3 terakhir mulai, 1 duluan selesai) karena call stack']]),
-B('Faktorial: rekursif vs iteratif','Keduanya O(n). Perhatikan base case dibuat n <= 1 agar faktorial(0) tidak error.',R`def faktorial_rekursif(n):
-    if n <= 1:                      # base case
+/* ==========================================================================
+   MODUL 2: BIG-O & REKURSIF
+   ========================================================================== */
+S.push({
+  n: '2. Big-O & Rekursif',
+  h: 'Modul 2 - Analisis Kompleksitas & Fungsi Rekursif',
+  s: 'Mengukur efisiensi algoritma (Big-O) dan pemecahan masalah dengan fungsi rekursif.',
+  r: [
+    '<b>Big-O Notation</b>: Mengukur tingkat pertumbuhan waktu eksekusi terhadap ukuran input (n).',
+    '<b>Rekursi</b>: Teknik fungsi memanggil dirinya sendiri sampai mencapai <i>Base Case</i>.',
+    '<b>Base Case</b>: Syarat wajib agar rekursi berhenti dan tidak menyebabkan Stack Overflow.'
+  ],
+  w: 'wBigO',
+  b: [
+    B('Fungsi Rekursif: Faktorial', 'Rekursi dengan pelacakan pemanggilan fungsi (Call Stack).',
+R`def faktorial(n):
+    print(f"Masuk faktorial({n})")
+    if n <= 1:  # Base Case
+        print("-> Reach Base Case")
         return 1
-    return n * faktorial_rekursif(n - 1)
-
-def faktorial_iteratif(n):
-    hasil = 1
-    for i in range(1, n + 1):
-        hasil *= i
+    
+    # Recursive Case
+    hasil = n * faktorial(n - 1)
+    print(f"Keluar faktorial({n}) = {hasil}")
     return hasil
 
-print(faktorial_rekursif(5), faktorial_iteratif(5))
-print(faktorial_rekursif(0))`,[['n * faktorial_rekursif(n - 1)','5! = 5 x 4! = 5 x 4 x 3! ... sampai 1'],['hasil','akumulator pada versi iteratif']]),
-B('Latihan modul: kunci jawaban','Cetak n..1, jumlah 1..n, pangkat, dan Fibonacci secara rekursif.',R`def cetak(n):
-    if n == 0: return
-    print(n, end=" ")
-    cetak(n - 1)
+print("Hasil Akhir:", faktorial(4))`,
+    [['n <= 1', 'Base Case pencapai batas rekursi'], ['n * faktorial(n - 1)', 'Pemanggilan rekursif menuju base case']],
+    true,
+    {
+      title: 'Mekanisme Call Stack Rekursi Faktorial',
+      details: [
+        '<b>Fase Masuk (Push)</b>: <code>faktorial(4)</code> memanggil <code>4 * faktorial(3)</code> -> <code>3 * faktorial(2)</code> -> <code>2 * faktorial(1)</code>.',
+        '<b>Fase Base Case</b>: Pada <code>faktorial(1)</code>, kondisi <code>n <= 1</code> terpenuhi (True), mengembalikan nilai 1.',
+        '<b>Fase Keluar (Pop/Unwinding)</b>: Hasil dikembalikan ke atas: <code>2 * 1 = 2</code> -> <code>3 * 2 = 6</code> -> <code>4 * 6 = 24</code>.'
+      ]
+    }
+    )
+  ]
+});
 
-def jumlah(n):
-    if n == 0: return 0
-    return n + jumlah(n - 1)
-
-def pangkat(a, b):                 # a pangkat b
-    if b == 0: return 1
-    return a * pangkat(a, b - 1)
-
-def fib(n):
-    if n < 2: return n             # fib(0)=0, fib(1)=1
-    return fib(n - 1) + fib(n - 2)
-
-cetak(5); print()
-print(jumlah(10), pangkat(2, 8))
-print([fib(i) for i in range(10)])`,[['fib(n-1) + fib(n-2)','memanggil diri 2 kali, jadi pertumbuhannya eksponensial (lihat O(2ⁿ))']])
-]});
-
-/* ============ MODUL 3 ============ */
-S.push({n:'3. Sorting Iteratif',h:'Modul 3 - Algoritma Pengurutan: Iteratif',s:'Bubble, Selection, dan Insertion Sort. Mudah dipahami, semuanya O(n²).',
-r:['<b>Sorting</b> = mengurutkan data (menaik/ascending atau menurun/descending) berdasarkan aturan tertentu.','<b>Selection Sort</b>: cari nilai terkecil dari bagian yang belum urut, taruh di depan. Pertukaran sedikit.','<b>Bubble Sort</b>: bandingkan dua tetangga, tukar jika salah urut; tiap putaran nilai terbesar "mengapung" ke ujung.','<b>Insertion Sort</b>: ambil satu elemen lalu sisipkan ke posisi yang pas di bagian yang sudah urut (seperti menyusun kartu). Bagus untuk data hampir urut.','Ketiganya O(n²), tidak in-place memori tambahan (tidak butuh memori ekstra), kurang cocok untuk data besar.'],
-w:'wSort',
-b:[
-B('Tiga sorting pada data yang sama','Data dikopi dengan .copy() supaya data asli tidak rusak oleh fungsi sorting.',R`data = [64, 34, 25, 12, 22, 11, 90]
-
-def selection_sort(arr):
+/* ==========================================================================
+   MODUL 3: SORTING ITERATIF
+   ========================================================================== */
+S.push({
+  n: '3. Sorting Iteratif',
+  h: 'Modul 3 - Algoritma Pengurutan Iteratif',
+  s: 'Memahami Bubble Sort, Selection Sort, dan Insertion Sort dengan analisis O(n²).',
+  r: [
+    '<b>Bubble Sort</b>: Membandingkan tetangga bersebelahan dan menukarnya jika urutan salah.',
+    '<b>Selection Sort</b>: Mencari nilai terkecil lalu menukarnya ke posisi terdepan.',
+    '<b>Insertion Sort</b>: Menyisipkan elemen ke posisi yang tepat pada sub-array yang terurut.'
+  ],
+  w: 'wSort',
+  b: [
+    B('Bubble Sort Lengkap dengan Tracing Iterasi', 'Mengamati pergerakan elemen terbesar ke ujung kanan.',
+R`def bubble_sort(arr):
     n = len(arr)
-    for i in range(n - 1):               # posisi yang akan diisi
-        min_index = i                    # anggap arr[i] terkecil
-        for j in range(i + 1, n):        # cari yang lebih kecil
-            if arr[j] < arr[min_index]:
-                min_index = j
-        arr[i], arr[min_index] = arr[min_index], arr[i]   # tukar
-    return arr
-
-def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n - 1):               # jumlah putaran
-        for j in range(n - i - 1):       # ujung kanan sudah beres, makin pendek
+    print("Data awal:", arr)
+    for i in range(n - 1):
+        swapped = False
+        print(f"\n--- Putaran Utama i = {i} ---")
+        for j in range(0, n - i - 1):
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+                print(f"  Tukar index [{j}] & [{j+1}]: {arr}")
+            else:
+                print(f"  Aman index [{j}] & [{j+1}]: {arr}")
+        if not swapped:
+            print("Sudah terurut, berhentikan loop lebih awal.")
+            break
     return arr
 
-def insertion_sort(arr):
-    n = len(arr)
-    for i in range(1, n):
-        key = arr[i]                     # elemen yang disisipkan
-        j = i - 1
-        while j >= 0 and arr[j] > key:   # geser yang lebih besar ke kanan
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key
-    return arr
+data = [5, 2, 8, 1, 3]
+bubble_sort(data)`,
+    [['for i in range(n-1)', 'Loop outer untuk jumlah pass maksimum'], ['for j in range(0, n-i-1)', 'Loop inner pembanding pasang elemen']],
+    true,
+    {
+      title: 'Penjelasan Perulangan Bersarang (Nested Loop) Bubble Sort',
+      details: [
+        '<b>Outer Loop (i)</b>: Mengontrol berapa banyak elemen yang sudah dipastikan berada di posisi akhirnya (ujung kanan). Berjalan dari <code>i = 0</code> hingga <code>n - 2</code>.',
+        '<b>Inner Loop (j)</b>: Membandingkan elemen berdekatan <code>arr[j]</code> dan <code>arr[j+1]</code>. Batas atasnya <code>n - i - 1</code> berkurang 1 tiap putaran outer loop karena elemen terbesar di ujung kanan sudah terurut (sorted).',
+        '<b>Flag swapped</b>: Digunakan untuk optimasi O(n) jika dalam 1 putaran penuh tidak ada pertukaran nilai sama sekali.'
+      ]
+    }
+    )
+  ]
+});
 
-print("Selection:", selection_sort(data.copy()))
-print("Bubble   :", bubble_sort(data.copy()))
-print("Insertion:", insertion_sort(data.copy()))`,[['arr[i], arr[j] = arr[j], arr[i]','menukar dua nilai tanpa variabel bantu'],['min_index','posisi nilai terkecil sementara (Selection)'],['range(n - i - 1)','batas perbandingan Bubble menyusut karena ujung sudah urut'],['key','nilai yang sedang dicarikan tempat (Insertion)'],['data.copy()','salinan list, supaya list asli tetap']]),
-B('Studi kasus toko online: sort list of dictionary','Algoritma sama, yang berubah hanya kunci pembandingnya: ["harga"], ["nama"], atau ["stok"].',R`produk = [
-    {"nama": "Headset",   "harga": 150000, "stok": 12},
-    {"nama": "Mouse",     "harga": 85000,  "stok": 25},
-    {"nama": "Keyboard",  "harga": 250000, "stok": 8},
-    {"nama": "Webcam",    "harga": 200000, "stok": 15},
-    {"nama": "Flashdisk", "harga": 75000,  "stok": 30},
-]
-
-def bubble_harga(p):                      # termurah -> termahal
-    n = len(p)
-    for i in range(n - 1):
-        for j in range(n - i - 1):
-            if p[j]["harga"] > p[j + 1]["harga"]:
-                p[j], p[j + 1] = p[j + 1], p[j]
-    return p
-
-def selection_nama(p):                    # A -> Z
-    n = len(p)
-    for i in range(n - 1):
-        m = i
-        for j in range(i + 1, n):
-            if p[j]["nama"] < p[m]["nama"]:
-                m = j
-        p[i], p[m] = p[m], p[i]
-    return p
-
-def insertion_stok(p):                    # stok terbanyak -> tersedikit
-    for i in range(1, len(p)):
-        key = p[i]
-        j = i - 1
-        while j >= 0 and p[j]["stok"] < key["stok"]:   # tanda < = menurun
-            p[j + 1] = p[j]
-            j -= 1
-        p[j + 1] = key
-    return p
-
-print("Harga :", [(x["nama"], x["harga"]) for x in bubble_harga(produk.copy())])
-print("Nama  :", [x["nama"] for x in selection_nama(produk.copy())])
-print("Stok  :", [(x["nama"], x["stok"]) for x in insertion_stok(produk.copy())])`,[['produk[j]["harga"]','ambil nilai kunci "harga" dari dictionary ke-j'],['> atau <','membalik tanda perbandingan = membalik arah urutan (latihan modul)'],['[... for x in ...]','list comprehension, membuat list baru ringkas']])
-]});
-
-/* ============ MODUL 4 ============ */
-S.push({n:'4. Merge & Quick Sort',h:'Modul 4 - Sorting Divide and Conquer',s:'Dua algoritma efisien yang memakai rekursi: Merge Sort dan Quick Sort.',
-r:['<b>Divide and Conquer</b>: Divide (bagi masalah) → Conquer (selesaikan sub-masalah, rekursif) → Combine (gabungkan).','<b>Merge Sort</b>: bagi array di tengah sampai 1 elemen, lalu gabung (merge) sambil membandingkan. Selalu O(n log n), memori O(n), <b>stabil</b>.','<b>Quick Sort</b>: pilih <b>pivot</b>, pecah jadi kiri (&lt; pivot) dan kanan (≥ pivot), urutkan keduanya rekursif. Rata-rata O(n log n), terburuk O(n²) jika pivot selalu ekstrem; tidak stabil.'],
-w:'wSort',
-b:[
-B('Merge Sort dengan jejak proses','Jalankan dan baca baris "Divide" untuk melihat pembagian, hasil akhir muncul setelah merge.',R`def merge(left, right):
-    result = []
-    i = 0                                  # penunjuk di left
-    j = 0                                  # penunjuk di right
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            result.append(left[i]); i += 1
-        else:
-            result.append(right[j]); j += 1
-    result.extend(left[i:])                # sisa yang belum terambil
-    result.extend(right[j:])
-    return result
-
-def merge_sort(arr):
-    print("Divide:", arr)
-    if len(arr) <= 1:                      # BASE CASE
+/* ==========================================================================
+   MODUL 4: MERGE & QUICK SORT
+   ========================================================================== */
+S.push({
+  n: '4. Merge & Quick Sort',
+  h: 'Modul 4 - Sorting Divide & Conquer',
+  s: 'Pengurutan tingkat lanjut dengan efisiensi O(n log n).',
+  r: [
+    '<b>Divide & Conquer</b>: Memecah masalah besar menjadi sub-masalah kecil secara rekursif.',
+    '<b>Merge Sort</b>: Membagi array menjadi 2 bagian seimbang, mengurutkan, lalu menggabungkannya.',
+    '<b>Quick Sort</b>: Memilih <i>pivot</i> untuk mempartisi elemen menjadi kelompok lebih kecil dan lebih besar.'
+  ],
+  b: [
+    B('Quick Sort dengan List Comprehension', 'Implementasi Quick Sort yang ringkas dan intuitif.',
+R`def quick_sort(arr):
+    if len(arr) <= 1:
         return arr
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])           # RECURSIVE CASE
-    right = merge_sort(arr[mid:])
-    hasil = merge(left, right)
-    print("Merge :", left, "+", right, "=", hasil)
-    return hasil
+    
+    pivot = arr[-1]  # Memilih elemen terakhir sebagai pivot
+    kiri  = [x for x in arr[:-1] if x < pivot]
+    kanan = [x for x in arr[:-1] if x >= pivot]
+    
+    print(f"Pivot: {pivot} | Kiri: {kiri} | Kanan: {kanan}")
+    return quick_sort(kiri) + [pivot] + quick_sort(kanan)
 
-data = [38, 12, 27, 43, 9, 31, 18, 25]
-print("Akhir:", merge_sort(data.copy()))`,[['mid = len(arr) // 2','titik tengah pembagian'],['arr[:mid], arr[mid:]','slicing: separuh kiri dan separuh kanan'],['merge(left, right)','menggabung dua list yang SUDAH urut jadi satu urut'],['i, j','penunjuk posisi di left dan right, maju sesuai yang diambil']]),
-B('Quick Sort dengan jejak proses','Pivot = elemen terakhir. Gabungan akhirnya selalu: kiri + [pivot] + kanan.',R`def quick_sort(arr):
-    print("Data :", arr)
-    if len(arr) <= 1:                      # BASE CASE
-        return arr
-    pivot = arr[-1]                        # elemen terakhir
-    left, right = [], []
-    for x in arr[:-1]:                     # semua kecuali pivot
-        if x < pivot:
-            left.append(x)
-        else:
-            right.append(x)
-    print("  Left:", left, "Pivot:", pivot, "Right:", right)
-    return quick_sort(left) + [pivot] + quick_sort(right)
+angka = [38, 12, 27, 43, 9, 31]
+print("Hasil:", quick_sort(angka))`,
+    [['pivot = arr[-1]', 'Pemilihan titik tumpu partisi'], ['quick_sort(kiri) + ...', 'Penggabungan rekursif hasil partisi']],
+    true,
+    {
+      title: 'Penjelasan Iterasi List Comprehension Partisi Quick Sort',
+      details: [
+        '<b>[x for x in arr[:-1] if x < pivot]</b>: Melakukan iterasi melewati setiap elemen <code>x</code> pada array (kecuali pivot terakhir). Jika <code>x < pivot</code>, masukkan ke sub-list <code>kiri</code>.',
+        '<b>[x for x in arr[:-1] if x >= pivot]</b>: Iterasi serupa untuk menyaring elemen yang lebih besar atau sama dengan pivot ke sub-list <code>kanan</code>.',
+        'Proses ini berulang secara rekursif hingga ukuran sub-list <code><= 1</code>.'
+      ]
+    }
+    )
+  ]
+});
 
-data = [38, 12, 27, 43, 9, 31, 18, 25]
-print("Akhir:", quick_sort(data.copy()))`,[['pivot = arr[-1]','indeks -1 = elemen terakhir'],['left / right','wadah elemen lebih kecil dan lebih besar/sama dari pivot'],['quick_sort(left) + [pivot] + quick_sort(right)','recursive case + combine']]),
-B('Studi kasus perpustakaan','Merge Sort untuk judul (A-Z), Quick Sort untuk tahun terbit.',R`buku = [
-    {"judul": "Algoritma Pemrograman", "tahun": 2022, "penulis": "Andi Wijaya"},
-    {"judul": "Basis Data", "tahun": 2020, "penulis": "Andi Wijaya"},
-    {"judul": "Pemrograman Python", "tahun": 2023, "penulis": "Tono Pratama"},
-    {"judul": "Struktur Data", "tahun": 2021, "penulis": "Rina Putri"},
-    {"judul": "Jaringan Komputer", "tahun": 2019, "penulis": "Andi Wijaya"},
-    {"judul": "Rekayasa Perangkat Lunak", "tahun": 2022, "penulis": "Deni Kurniawan"},
-    {"judul": "Sistem Operasi", "tahun": 2020, "penulis": "Maya Sari"},
-    {"judul": "Kecerdasan Buatan", "tahun": 2024, "penulis": "Tono Pratama"},
-]
-
-def merge(left, right):
-    result, i, j = [], 0, 0
-    while i < len(left) and j < len(right):
-        if left[i]["judul"] < right[j]["judul"]:
-            result.append(left[i]); i += 1
-        else:
-            result.append(right[j]); j += 1
-    return result + left[i:] + right[j:]
-
-def merge_sort(b):
-    if len(b) <= 1: return b
-    mid = len(b) // 2
-    return merge(merge_sort(b[:mid]), merge_sort(b[mid:]))
-
-def quick_sort(b):
-    if len(b) <= 1: return b
-    pivot = b[-1]
-    left  = [x for x in b[:-1] if x["tahun"] <  pivot["tahun"]]
-    right = [x for x in b[:-1] if x["tahun"] >= pivot["tahun"]]
-    return quick_sort(left) + [pivot] + quick_sort(right)
-
-print("== Judul A-Z (Merge) ==")
-for x in merge_sort(buku): print(f'{x["judul"]:<28}{x["penulis"]:<16}{x["tahun"]}')
-print("== Tahun terlama (Quick) ==")
-for x in quick_sort(buku): print(f'{x["tahun"]}  {x["judul"]}')`,[['b[:-1]','semua elemen kecuali yang terakhir (pivot)'],['f\'{x:<28}\'','f-string dengan lebar 28 rata kiri, supaya kolom rapi'],['x["tahun"] < pivot["tahun"]','kriteria urut; ganti sesuai kebutuhan latihan']]),
-]});
-
-/* ============ MODUL 5 ============ */
-S.push({n:'5. Streamlit Dasar',h:'Modul 5 - Prototyping Aplikasi dengan Streamlit',s:'Membuat aplikasi web dari Python murni. Kode Streamlit butuh server Python, jadi di sini kodenya dibaca dan hasilnya disimulasikan.',
-r:['<b>Streamlit</b>: framework untuk membuat web app/dashboard cepat tanpa HTML/CSS/JS. Jalankan: <code>streamlit run file.py</code> (buka <code>localhost:8501</code>).','<b>Top-to-bottom + rerun</b>: skrip jalan dari atas ke bawah, dan <b>diulang dari awal</b> setiap kali pengguna berinteraksi dengan widget.','Alur membuat app: tentukan <b>input</b> (widget), <b>proses</b> (logika Python), <b>output</b> (tampilan).'],
-w:'wDapen',
-b:[
-B('Widget input dan output yang sering dipakai','Ringkasan tabel modul.','# INPUT\nst.text_input("Nama")            # teks 1 baris\nst.text_area("Komentar")         # teks banyak baris\nst.number_input("Qty", min_value=1)\nst.slider("Usia", 0, 120, 19)   # geser angka\nst.selectbox("Pilih", ["A","B"]) # dropdown 1 pilihan\nst.multiselect("Pilih", ["A","B"])\nst.radio / st.checkbox / st.toggle\nst.date_input / st.time_input\nst.file_uploader / st.camera_input\nst.button("Klik")                # True saat diklik\n\n# OUTPUT\nst.title / st.header / st.subheader / st.caption\nst.write / st.markdown / st.code / st.latex\nst.dataframe(df)   # tabel interaktif\nst.table(data)     # tabel statis\nst.metric("Label", "Rp 1 jt")   # angka besar\nst.line_chart / st.pyplot / st.plotly_chart / st.image\nst.success / st.info / st.warning / st.error\nst.progress / st.spinner / st.toast',[['st.xxx','semua perintah Streamlit diawali st (alias dari import streamlit as st)'],['input mengembalikan nilai','x = st.slider(...) langsung menyimpan nilai pilihan pengguna ke x']],false),
-B('Kasus 1: QR Code Generator (kode dari modul)','Library qrcode membuat gambarnya, Streamlit menampilkan. Install dengan uv add streamlit qrcode (di modul tertulis uv install, yang benar uv add).',R`import streamlit as st
-import qrcode
-
-st.header("QR Code Generator")
-data = st.text_input("URL/Text: ")       # INPUT
-if st.button("Generate!"):
-    if data:                             # tidak kosong
-        qr = qrcode.make(data)           # PROSES
-        qr.save("qrcode.png")
-        st.image("qrcode.png")           # OUTPUT
-    else:
-        st.error("Please enter a URL or text to generate a QR code.")`,[['st.text_input(...)','kotak teks; hasil ketikan disimpan di data'],['if st.button(...)','True hanya pada rerun tepat setelah tombol diklik'],['if data:','string kosong dianggap False, jadi muncul error'],['qrcode.make / qr.save','membuat dan menyimpan gambar QR'],['st.image / st.error','menampilkan gambar / pesan merah']],false),
-B('Kasus 2: Kalkulator Dana Pensiun (kode dari modul)','Bunga majemuk dihitung per tahun: tambah iuran 12 bulan, lalu kalikan (1 + bunga%).',R`import streamlit as st
-
-st.header("Kalkulator Proyeksi Dana Pensiun")
-usia_sekarang = st.slider("Usia sekarang:", min_value=0, max_value=120, value=19)
-usia_pensiun  = st.slider("Usia pensiun:", min_value=usia_sekarang, max_value=120, value=55)
-dana_awal = st.number_input("Dana awal:", min_value=0, value=0)
-kontribusi_bulanan = st.number_input("Kontribusi bulanan:", min_value=0, value=1000000)
-tingkat_pengembalian = st.number_input("Tingkat pengembalian:", min_value=0.0, value=5.0)
-
-if st.button("Hitung!", type="primary"):
-    jumlah_tahun = usia_pensiun - usia_sekarang
-    dana_pensiun = dana_awal
-    for i in range(jumlah_tahun):
-        dana_pensiun = dana_pensiun + kontribusi_bulanan * 12
-        dana_pensiun = dana_pensiun * (1 + tingkat_pengembalian / 100)
-    st.metric(label="Proyeksi dana pensiun Anda adalah:", value=f"{dana_pensiun:,.2f}")`,[['jumlah_tahun','lama menabung = usia pensiun - usia sekarang'],['dana_pensiun','saldo yang terus diperbarui tiap tahun'],['kontribusi_bulanan * 12','iuran setahun'],['(1 + r/100)','faktor bunga majemuk tahunan'],['{x:,.2f}','format angka: pemisah ribuan, 2 desimal']],false),
-B('Logika dapen versi Python biasa (bisa dijalankan)','Bagian PROSES dipisah jadi fungsi; hasilnya sama dengan simulator di atas.',R`def proyeksi(usia_skr, usia_pensiun, dana_awal, iuran, bunga):
+/* ==========================================================================
+   MODUL 5: STREAMLIT DASAR
+   ========================================================================== */
+S.push({
+  n: '5. Streamlit Dasar',
+  h: 'Modul 5 - Prototyping Web App dengan Streamlit',
+  s: 'Pengenalan framework Streamlit untuk membuat antarmuka web interaktif berbasis Python.',
+  r: [
+    '<b>Streamlit Architecture</b>: Kode dieksekusi ulang dari atas ke bawah (Top-to-Bottom) setiap kali pengguna berinteraksi dengan widget.',
+    '<b>UI Components</b>: Menggunakan fungsi dekoratif seperti <code>st.write()</code>, <code>st.slider()</code>, dan <code>st.button()</code>.'
+  ],
+  w: 'wDapen',
+  b: [
+    B('Simulasi Logika Kalkulator Dana Pensiun', 'Logika iterasi perhitungan bunga majemuk tahunan.',
+R`def hitung_proyeksi(usia_skr, usia_pensiun, dana_awal, iuran_bulanan, bunga_tahunan):
     dana = dana_awal
-    riwayat = []
-    for tahun in range(1, usia_pensiun - usia_skr + 1):
-        dana = (dana + iuran * 12) * (1 + bunga / 100)
-        riwayat.append((usia_skr + tahun, round(dana)))
-    return riwayat
+    tahun = usia_pensiun - usia_skr
+    
+    print(f"Memulai perhitungan untuk {tahun} tahun ke depan...\n")
+    for t in range(1, tahun + 1):
+        iuran_setahun = iuran_bulanan * 12
+        dana = (dana + iuran_setahun) * (1 + bunga_tahunan / 100)
+        print(f"Tahun ke-{t} (Usia {usia_skr + t}): Rp {dana:,.2f}")
+        
+    return dana
 
-for usia, dana in proyeksi(19, 25, 0, 1_000_000, 5.0):
-    print(f"usia {usia}: Rp {dana:,}")`,[['riwayat','list of tuple (usia, dana) untuk tabel/grafik (latihan opsional modul)'],['1_000_000','garis bawah hanya pemisah agar angka mudah dibaca']])
-]});
+total = hitung_proyeksi(20, 25, 0, 1000000, 5.0)`,
+    [['for t in range(1, tahun + 1)', 'Loop iterasi pertumbuhan dana per tahun']],
+    true,
+    {
+      title: 'Penjelasan Perulangan Akumulasi Dana Pensiun',
+      details: [
+        '<b>Variabel Akumulator</b>: <code>dana</code> menyimpan saldo akumulasi.',
+        '<b>Dalam setiap iterasi tahun (t)</b>: 1) Tambahkan total iuran setahun (<code>iuran_bulanan * 12</code>). 2) Kalikan dengan faktor imbal hasil bunga <code>(1 + r/100)</code>.',
+        'Hasil akhir iterasi <code>t</code> menjadi modal awal untuk iterasi <code>t + 1</code>.'
+      ]
+    }
+    )
+  ]
+});
 
-/* ============ MODUL 6 ============ */
-S.push({n:'6. Session State',h:'Modul 6 - Siklus Aplikasi dan Manajemen State',s:'Kenapa variabel Streamlit "lupa" nilainya, dan cara menyimpannya dengan st.session_state.',
-r:['<b>Rerun model</b>: tiap interaksi widget menjalankan seluruh skrip dari baris 1. Akibatnya semua variabel biasa <b>di-reset</b>.','<b>st.session_state</b> = dictionary yang tetap hidup antar rerun selama sesi pengguna aktif. Cek dulu <code>if "k" not in st.session_state</code> agar nilai awal hanya diisi sekali.','<b>Multi-page</b>: file utama + folder <code>pages/</code>; tiap .py di dalamnya jadi halaman. Urutan lewat awalan angka (<code>1_Dashboard.py</code>). Pindah halaman: <code>st.switch_page("pages/home.py")</code>.','Alur login: simpan username, password, logged_in di session_state → cocokkan saat tombol Login → set logged_in=True → switch_page ke home. Halaman terlindungi harus cek logged_in dulu, kalau False kembali ke login.'],
-w:'wRerun',
-b:[
-B('Counter klik: versi bermasalah (dari modul)','Selalu menampilkan 1 karena clicks = 0 dijalankan ulang tiap rerun.',R`import streamlit as st
+/* ==========================================================================
+   MODUL 6: SESSION STATE
+   ========================================================================== */
+S.push({
+  n: '6. Session State',
+  h: 'Modul 6 - Manajemen State Aplikasi Streamlit',
+  s: 'Menyimpan state/data agar tidak ter-reset saat aplikasi melakukan rerun.',
+  r: [
+    '<b>st.session_state</b>: Dictionary persisten yang nilainya dipertahankan antar eksekusi rerun.',
+    '<b>State Initialization</b>: Selalu periksa keberadaan key menggunakan <code>if "key" not in st.session_state:</code>.'
+  ],
+  w: 'wRerun',
+  b: [
+    B('Simulasi Mekanisme Session State dengan Dictionary', 'Membandingkan variabel lokal biasa vs dictionary state persisten.',
+R`session_state = {}
 
-st.title("Berapa kali Anda Mengklik Tombol Ini?")
-clicks = 0                          # <- di-reset ke 0 di SETIAP rerun
+def simulasi_rerun(tombol_diklik):
+    # 1. Variabel Lokal Biasa (Ter-reset setiap eksekusi)
+    counter_lokal = 0
+    
+    # 2. Inisialisasi Session State (Persisten)
+    if "counter_state" not in session_state:
+        session_state["counter_state"] = 0
+        
+    if tombol_diklik:
+        counter_lokal += 1
+        session_state["counter_state"] += 1
+        
+    print(f"Hasil Rerun -> Lokal: {counter_lokal} | Session State: {session_state['counter_state']}")
 
-if st.button("Klik Saya!"):
-    clicks += 1                     # jadi 1 hanya pada rerun saat diklik
+print("--- Rerun 1 (Klik Tombol) ---")
+simulasi_rerun(True)
 
-st.write(f"Tombol ini telah diklik {clicks} kali.")`,[['clicks = 0','variabel biasa lahir ulang tiap rerun'],['hasil','paling banyak tampil 1, tidak pernah 2 atau lebih']],false),
-B('Counter klik: versi benar dengan session_state','Nilai disimpan di session_state sehingga selamat dari rerun.',R`import streamlit as st
+print("\n--- Rerun 2 (Klik Tombol Lagi) ---")
+simulasi_rerun(True)`,
+    [['if "counter_state" not in session_state', 'Pengecekan keberadaan state agar tidak tertimpa']],
+    true,
+    {
+      title: 'Analisis Mengapa Variabel Biasa Ter-reset',
+      details: [
+        '<b>counter_lokal</b>: Dibuat ulang di memori dengan nilai <code>0</code> setiap kali fungsi dipanggil.',
+        '<b>session_state["counter_state"]</b>: Disimpan pada namespace global luar fungsi, sehingga ketika dipanggil kembali, nilainya bertambah secara kontinu dari nilai sebelumnya.'
+      ]
+    }
+    )
+  ]
+});
 
-st.title("Berapa kali Anda Mengklik Tombol Ini?")
-if "clicks" not in st.session_state:      # hanya sekali saat awal sesi
-    st.session_state["clicks"] = 0
-
-if st.button("Klik Saya!"):
-    st.session_state["clicks"] += 1
-
-st.write(f"Tombol ini telah diklik {st.session_state['clicks']} kali.")`,[['"clicks" not in st.session_state','cek apakah kunci belum ada (seperti dictionary biasa)'],['st.session_state["clicks"] += 1','memperbarui nilai yang persisten']],false),
-B('Kerangka login multi-halaman (rekonstruksi dari catatan modul)','Struktur: login.py, pages/home.py, pages/profile.py. Kode persisnya ada di gambar modul, ini versi rangkuman alurnya (admin / password).',R`# ---------- login.py ----------
-import streamlit as st
-for k, v in {"username": "admin", "password": "password", "logged_in": False}.items():
-    if k not in st.session_state:
-        st.session_state[k] = v
-
-st.title("Login")
-u = st.text_input("Username")
-p = st.text_input("Password", type="password")
-if st.button("Login"):
-    if u == st.session_state["username"] and p == st.session_state["password"]:
-        st.session_state["logged_in"] = True
-        st.switch_page("pages/home.py")
-    else:
-        st.error("Username atau password salah")
-
-# ---------- pages/home.py ----------
-import streamlit as st
-if not st.session_state.get("logged_in"):
-    st.switch_page("login.py")               # belum login -> tendang ke login
-st.title(f"Selamat datang {st.session_state['username']}")
-if st.button("Logout"):
-    st.session_state["logged_in"] = False
-    st.switch_page("login.py")`,[['.get("logged_in")','aman dibaca: kembali None kalau kunci belum ada'],['type="password"','menyembunyikan ketikan'],['st.switch_page','pindah halaman'],['latihan mandiri','buat profile.py untuk ganti username/password, lalu kembali ke home']],false)
-]});
-
-/* ============ MODUL 7 ============ */
-S.push({n:'7. Struktur Data Built-in',h:'Modul 7 - Struktur Data Built-in Python',s:'List, array, list 2D, set, tuple, dictionary, dan nested dictionary.',
-r:['<b>List</b> <code>[ ]</code>: berurutan, bisa diubah (mutable), tipe campur boleh, bisa berisi list lain.','<b>Array</b> (modul <code>array</code>): satu tipe data saja; di praktik umumnya cukup memakai list.','<b>Set</b> <code>{ }</code>: tanpa indeks, tanpa urutan, nilai unik; cocok untuk himpunan (union <code>|</code>, intersection <code>&amp;</code>).','<b>Tuple</b> <code>( )</code>: seperti list tapi <b>tidak bisa diubah</b> (immutable).','<b>Dictionary</b> <code>{k: v}</code>: pasangan key-value; nested dictionary = dictionary di dalam dictionary.'],
-b:[
-B('List: tambah, ubah, hapus, gabung','Catatan: di modul tertulis prepend() dan print tanpa kurung (gaya Python 2). Di Python 3 list tidak punya prepend; pakai insert(0, x).',R`buah = ["jeruk", "apel", "mangga", "duren"]
-buah.append("manggis")        # tambah di belakang
-buah.insert(0, "anggur")      # tambah di depan (prepend)
-buah.insert(2, "pisang")      # tambah di indeks 2
-buah[3] = "kelapa"            # ubah isi indeks 3 (mutable)
-print(buah)
-
-del buah[1]                   # hapus berdasarkan indeks
-buah.remove("duren")          # hapus berdasarkan nilai
-print(buah)
-
-a = [12, 2]
-b = [79, 34, 17]
-a.extend(b)                   # gabung list b ke a
-print(a, len(a))`,[['append(x)','tambah di akhir'],['insert(i, x)','sisipkan x di indeks i'],['del l[i] / remove(x)','hapus per indeks / per nilai'],['extend(list)','menempelkan semua isi list lain'],['len(l)','jumlah elemen']]),
-B('Array module, list 2 dimensi','array menyimpan satu tipe saja (kode i = integer). Koreksi: append(x) menambah di akhir (bukan "menulis ulang"), index(x) mengembalikan posisi x.',R`from array import array
-arr = array('i', [1, 3, 5, 7, 9])
-arr.append(11); arr.insert(1, 2)
-print(arr, arr.index(5), arr.count(3))
-print(arr.pop(), arr)           # pop ambil+hapus elemen terakhir
-arr.reverse(); print(arr)
-
-minuman = [
-    ["Kopi", "Susu", "Teh"],
-    ["Jus Apel", "Jus Melon", "Jus Jeruk"],
-    ["Es Kopi", "Es Campur", "Es Teler"],
+/* ==========================================================================
+   MODUL 7: STRUKTUR DATA BUILT-IN
+   ========================================================================== */
+S.push({
+  n: '7. Struktur Data Built-in',
+  h: 'Modul 7 - Struktur Data Built-in & Pemrosesan Matriks',
+  s: 'Menguasai List, Tuple, Set, Dictionary, dan Matriks 2D dalam Python.',
+  r: [
+    '<b>List</b>: Koleksi terurut, mutable (dapat diubah).',
+    '<b>Tuple</b>: Koleksi terurut, immutable (tidak dapat diubah setelah dibuat).',
+    '<b>Set</b>: Koleksi tak terurut dengan elemen unik tanpa duplikasi.',
+    '<b>Dictionary</b>: Pasangan Key-Value untuk pencarian O(1) berdasarkan kunci.'
+  ],
+  b: [
+    B('Pemrosesan Matriks 2D dengan Nested Enumerate Loop', 'Iterasi mendalam pada struktur data matriks 2 dimensi.',
+R`matriks = [
+    [12, 17, 20],
+    [45, 80, 33],
+    [64, 21, 90]
 ]
-print(minuman[2][0])            # baris 2, kolom 0 -> Es Kopi
-for baris in minuman:
-    for item in baris:
-        print(item, end=" | ")
-    print()`,[["array('i', [...])","array bertipe integer"],['minuman[2][0]','indeks pertama = baris (list luar), kedua = kolom (list dalam)'],['nested for','loop luar per baris, loop dalam per elemen baris']]),
-B('Set dan Tuple','Set: unik dan tanpa urutan. Tuple: tidak bisa diubah, mencoba mengubahnya menimbulkan TypeError.',R`foo = {1, 2, 3, 4, 5}
-bar = {3, 4, 5, 6, 7}
-print(foo | bar)                # union
-print(foo & bar)                # intersection
-print(foo - bar)                # selisih
-s = {1, 1, 2, 2, 3}; s.add(4); s.remove(1)
-print(s)                        # duplikat otomatis hilang
 
-t = ("Python", 200, 6.99, True, "Struktur Data")
-print(t[0], t[1:3], t[:2], t[-1])
-try:
-    t[0] = "Belajar"            # tuple immutable
-except TypeError as e:
-    print("Error:", e)`,[['{ } berisi elemen','set (bukan dictionary)'],['|  &  -','union, irisan, selisih'],['t[1:3]','slicing: indeks 1 sampai sebelum 3'],['try/except','menangkap error agar program tidak berhenti']]),
-B('Dictionary dan nested dictionary','Akses data lewat key, bukan indeks angka.',R`foo = {"kegiatan": "Praktikum Struktur Data", "kelas": "Praktikum", "hasil": "Yakin bisa!"}
-print(foo["kegiatan"])
-foo["kelas"] = "Jarak Jauh"      # ubah
-foo["target"] = 2026             # tambah key baru
-del foo["hasil"]                 # hapus
-print(foo)
+print("--- MENCARI ELEMEN GENAP DAN INDEKSNYA ---")
+for i, baris in enumerate(matriks):
+    for j, val in enumerate(baris):
+        if val % 2 == 0:
+            print(f"Elemen Genap: matriks[{i}][{j}] = {val}")`,
+    [['for i, baris in enumerate(matriks)', 'Outer loop mendapatkan indeks baris i dan isi baris'], ['for j, val in enumerate(baris)', 'Inner loop mendapatkan indeks kolom j dan nilai val']],
+    true,
+    {
+      title: 'Penjelasan Detail Perulangan Matriks 2D (Sesuai Gambar Soal)',
+      details: [
+        '<b>1. Outer Loop (enumerate(m))</b>: Variabel <code>i</code> memegang indeks baris (0, 1, 2...), dan <code>baris</code> memegang list 1D dari baris tersebut.',
+        '<b>2. Inner Loop (enumerate(baris))</b>: Membedah list <code>baris</code>. Variabel <code>j</code> memegang indeks kolom (0, 1, 2...), dan <code>val</code> memegang nilai angka spesifik.',
+        '<b>3. Kondisi (val % 2 == 0)</b>: Memeriksa apakah nilai <code>val</code> habis dibagi 2 (bilangan genap).',
+        '<b>Langkah Eksekusi</b>:<br>' +
+        '&bull; Iterasi i=0, baris=[12, 17, 20]:<br>' +
+        '&nbsp;&nbsp;- j=0, val=12 -> (12%2==0 True) -> Cetak <code>m[0][0] = 12</code><br>' +
+        '&nbsp;&nbsp;- j=1, val=17 -> (17%2==0 False) -> Dilewati<br>' +
+        '&nbsp;&nbsp;- j=2, val=20 -> (20%2==0 True) -> Cetak <code>m[0][2] = 20</code><br>' +
+        '&bull; Iterasi i=1, baris=[45, 80, 33]:<br>' +
+        '&nbsp;&nbsp;- j=1, val=80 -> (80%2==0 True) -> Cetak <code>m[1][1] = 80</code><br>' +
+        '&bull; Iterasi i=2, baris=[64, 21, 90]:<br>' +
+        '&nbsp;&nbsp;- j=0, val=64 -> Cetak <code>m[2][0] = 64</code><br>' +
+        '&nbsp;&nbsp;- j=2, val=90 -> Cetak <code>m[2][2] = 90</code>'
+      ]
+    }
+    )
+  ]
+});
 
-people = {
-    1: {"name": "John",  "age": 27, "sex": "Male"},
-    2: {"name": "Marie", "age": 22, "sex": "Female"},
-}
-print(people[1]["name"])         # nested: dua kunci berurutan
-people[3] = {"name": "Luna", "age": 24, "sex": "Female"}
-for pid, info in people.items():
-    print("Person ID:", pid)
-    for key in info:
-        print("  ", key + ":", info[key])`,[['d[key]','ambil value (error KeyError kalau key tidak ada)'],['d[key] = v','ubah atau tambah'],['.items()','menghasilkan pasangan (key, value) untuk loop'],['people[1]["name"]','nested dictionary: masuk lapis demi lapis']]),
-B('Rata-rata list dan cari key (versi tanpa input())','input() tidak tersedia di browser, jadi nilainya ditulis langsung.',R`a = [80, 75, 90, 65]            # anggap hasil input
-print("Rata-rata:", round(sum(a) / len(a), 2))
-
-d = {"A": 1, "B": 2, "C": 3}
-key = "B"                        # anggap hasil input
-if key in d:
-    print("Key ditemukan, nilainya:", d[key])
-else:
-    print("Key tidak ditemukan!")`,[['sum(a) / len(a)','total dibagi jumlah elemen'],['key in d','cek apakah key ada (cepat, O(1) rata-rata)']]),
-B('Minimarket: tuple + dictionary + list transaksi (logika inti)','Versi Streamlit di modul memakai session_state; ini logika yang sama, jalan di browser. Koreksi bug modul: baris "transaksi" harus dicek ke st.session_state, bukan st.session_state["transaksi"].',R`produk_sku = (("BRG001", "Roti Tawar"), ("BRG002", "Susu UHT"), ("BRG003", "Mi Instan"))
-inventori = {
-    "BRG001": {"nama": "Roti Tawar", "kategori": "Makanan", "harga": 18000, "stok": 20},
-    "BRG002": {"nama": "Susu UHT",   "kategori": "Minuman", "harga": 15000, "stok": 25},
-    "BRG003": {"nama": "Mi Instan",  "kategori": "Makanan", "harga": 3500,  "stok": 100},
-}
-transaksi = []
-
-def jual(sku, qty):
-    if inventori[sku]["stok"] >= qty:
-        inventori[sku]["stok"] -= qty
-        transaksi.append({"id": sku, "nama": inventori[sku]["nama"], "qty": qty})
-        return "OK"
-    return "Stok tidak mencukupi!"
-
-print(jual("BRG001", 5), jual("BRG002", 99))
-print(transaksi)
-print("Stok roti:", inventori["BRG001"]["stok"])
-print("Kategori unik:", {v["kategori"] for v in inventori.values()})
-rata = [v["harga"] for v in inventori.values() if v["kategori"] == "Makanan"]
-print("Rata harga Makanan:", sum(rata) / len(rata))
-print("BRG005 ada?", "BRG005" in inventori)`,[['produk_sku (tuple)','data tetap: (id, nama), tidak diubah'],['inventori (dict)','id -> dictionary detail produk'],['transaksi (list)','riwayat penjualan, bertambah lewat append'],['{... for ...}','set comprehension: kategori unik'],['.values()','semua value dictionary']])
-]});
-
-/* ============ AKSES DATA ============ */
-S.push({n:'Cara akses data',h:'Panduan: Akses List, Dictionary, dan Rekursif',s:'Bagian ini fokus pada satu pertanyaan: bagaimana mengambil data tertentu dari struktur data. Semua kode bisa diubah lalu dijalankan.',
-r:['Indeks list mulai dari <b>0</b>; indeks negatif menghitung dari belakang (<code>-1</code> = terakhir).','Slicing <code>l[a:b]</code> = dari indeks a sampai <b>sebelum</b> b. <code>l[a:b:c]</code> memakai langkah c.','Dictionary diakses lewat <b>key</b>; <code>d.get(key, default)</code> tidak error kalau key hilang.','Struktur bersarang: baca dari kiri ke kanan, satu kunci/indeks per lapis.','Rekursi cocok untuk data bersarang yang kedalamannya tidak pasti.'],
-b:[
-B('Akses list: indeks, negatif, slicing','Latihan: ubah angka indeks lalu jalankan lagi.',R`angka = [10, 20, 30, 40, 50]
-print(angka[0])        # 10  elemen pertama
-print(angka[-1])       # 50  elemen terakhir
-print(angka[1:4])      # [20, 30, 40]
-print(angka[:2])       # [10, 20]  dari awal
-print(angka[2:])       # [30, 40, 50]  sampai akhir
-print(angka[::2])      # [10, 30, 50]  loncat 2
-print(angka[::-1])     # dibalik
-print(len(angka), 30 in angka, angka.index(30))
-
-for i, v in enumerate(angka):     # indeks + nilai sekaligus
-    print(i, "->", v)`,[['l[0], l[-1]','pertama, terakhir'],['l[a:b]','potong; b tidak ikut'],['enumerate(l)','loop dengan indeks otomatis'],['x in l','cek keberadaan'],['l.index(x)','posisi x (ValueError kalau tidak ada)']]),
-B('Akses list bersarang (list 2D dan list di dalam list)','Dua kurung siku = dua lapis: pertama pilih baris, lalu kolom.',R`matriks = [[1, 2, 3],
-          [4, 5, 6],
-          [7, 8, 9]]
-print(matriks[1])          # [4, 5, 6]  satu baris
-print(matriks[1][2])       # 6  baris 1, kolom 2
-print([b[0] for b in matriks])      # kolom pertama: [1, 4, 7]
-print(sum(sum(b) for b in matriks)) # total semua elemen
-
-campur = [23, [22, 20], 45]
-print(campur[1][0])        # 22`,[['m[i][j]','baris i, kolom j'],['[b[0] for b in m]','mengambil satu kolom dari semua baris'],['campur[1][0]','masuk ke list di dalam list']]),
-B('Akses dictionary dan list of dictionary','Pola paling sering dipakai: list berisi dictionary (seperti data produk/buku).',R`mhs = {"nama": "Andi", "umur": 20, "nilai": [80, 90, 70]}
-print(mhs["nama"])
-print(mhs["nilai"][1])             # 90 : key dulu, lalu indeks
-print(mhs.get("alamat", "kosong")) # aman, tanpa error
-print("umur" in mhs)               # cek key
-print(list(mhs.keys()))
-print(list(mhs.values()))
-for k, v in mhs.items():
-    print(k, "=", v)
-
-kelas = [
-    {"nama": "Andi", "ipk": 3.5},
-    {"nama": "Sinta", "ipk": 3.9},
-    {"nama": "Rina", "ipk": 3.2},
+/* ==========================================================================
+   MODUL AKSES DATA & MANIPULASI LANJUTAN
+   ========================================================================== */
+S.push({
+  n: 'Cara Akses Data',
+  h: 'Panduan Akses & Manipulasi Struktur Data Kompleks',
+  s: 'Teknik slicing, kueri nested dictionary, list of dictionary, dan ekstrasi data.',
+  r: [
+    '<b>Negative Indexing</b>: Mengakses elemen dari arah belakang (misal <code>arr[-1]</code>).',
+    '<b>Nested Accessing</b>: Menggabungkan operator kurung siku berturut-turut untuk struktur bersarang (misal <code>data["prodi"][0]["nama"]</code>).'
+  ],
+  b: [
+    B('Akses & Filter List of Dictionary', 'Pola pengolahan data JSON / REST API yang paling sering digunakan.',
+R`mahasiswa = [
+    {"nim": "001", "nama": "Andi", "ipk": 3.75, "hobi": ["baca", "coding"]},
+    {"nim": "002", "nama": "Budi", "ipk": 3.20, "hobi": ["game"]},
+    {"nim": "003", "nama": "Cici", "ipk": 3.90, "hobi": ["coding", "musik"]}
 ]
-print(kelas[1]["nama"])                       # indeks dulu, lalu key
-print([m["nama"] for m in kelas if m["ipk"] > 3.4])
-print(max(kelas, key=lambda m: m["ipk"])["nama"])`,[['d["k"]','ambil value'],['d.get("k", default)','aman dari KeyError'],['kelas[1]["nama"]','list of dict: nomor urut lalu nama key'],['[... if ...]','filter dengan list comprehension'],['max(..., key=lambda)','mencari item dengan nilai kunci terbesar']]),
-B('Nested dictionary: path ke data','Coba ketik ekspresi sendiri, misalnya data["kampus"]["prodi"]["TI"]["mahasiswa"][0]',R`data = {
-    "kampus": "UKDW",
-    "prodi": {
-        "TI": {"mahasiswa": ["Andi", "Budi"], "akreditasi": "A"},
-        "SI": {"mahasiswa": ["Citra"], "akreditasi": "B"},
-    },
+
+print("--- HOBI MAHASISWA DENGAN IPK > 3.5 ---")
+for mhs in mahasiswa:
+    if mhs["ipk"] > 3.5:
+        print(f"Nama: {mhs['nama']} (IPK: {mhs['ipk']})")
+        for h in mhs["hobi"]:
+            print(f"  - Hobi: {h}")`,
+    [['mhs["ipk"] > 3.5', 'Saringan kondisi atribut dictionary'], ['for h in mhs["hobi"]', 'Iterasi list di dalam dictionary']],
+    true,
+    {
+      title: 'Penjelasan Perulangan Bersarang Struktur Data Kompleks',
+      details: [
+        '<b>Outer Loop (for mhs in mahasiswa)</b>: Mengekstrak setiap objek dictionary mahasiswa satu per satu.',
+        '<b>Pengecekan Atribut</b>: Membaca nilai kualifikasi <code>mhs["ipk"]</code>.',
+        '<b>Inner Loop (for h in mhs["hobi"])</b>: Karena atribut <code>"hobi"</code> bernilai List, kita melakukan perulangan sekunder untuk mencetak setiap hobi individu.'
+      ]
+    }
+    )
+  ]
+});
+
+/* ==========================================================================
+   RENDER & UTILITY FUNCTIONS
+   ========================================================================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+let py = null, cur = -1;
+
+function loadPy() {
+  return new Promise((ok, no) => {
+    if (window.loadPyodide) return ok();
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';
+    s.onload = ok;
+    s.onerror = () => no(new Error('Gagal memuat engine Python Pyodide. Pastikan koneksi internet aktif.'));
+    document.head.appendChild(s);
+  });
 }
-print(data["prodi"]["TI"]["akreditasi"])      # A
-print(data["prodi"]["TI"]["mahasiswa"][0])    # Andi
-print(data["prodi"]["SI"]["mahasiswa"][-1])   # Citra
 
-# tambah dan loop bersarang
-data["prodi"]["DKV"] = {"mahasiswa": [], "akreditasi": "-"}
-for nama_prodi, info in data["prodi"].items():
-    print(nama_prodi, len(info["mahasiswa"]), "mhs")`,[['alur baca','data → "prodi" → "TI" → "mahasiswa" → indeks 0'],['dict[key] = {...}','menambah cabang baru'],['loop .items()','nama_prodi = key, info = dictionary di dalamnya']]),
-B('Rekursif untuk menelusuri data bersarang','Kedalaman bersarang tidak diketahui, jadi fungsi memanggil dirinya untuk setiap isi yang berupa list/dict.',R`def jumlah_semua(x):                 # jumlahkan angka di list bersarang
-    if isinstance(x, list):          # RECURSIVE CASE
-        return sum(jumlah_semua(i) for i in x)
-    return x                         # BASE CASE: angka biasa
+async function run(code, out, st, btn) {
+  out.className = 'out';
+  out.textContent = '';
+  let buf = '', err = false;
+  btn.classList.add('busy');
+  try {
+    if (!py) {
+      st.textContent = 'Memuat Pyodide Engine (~10 MB)...';
+      await loadPy();
+      py = await loadPyodide();
+    }
+    st.textContent = 'Mengeksekusi...';
+    py.setStdout({ batched: s => buf += s + '\n' });
+    py.setStderr({ batched: s => buf += s + '\n' });
+    const g = py.toPy({});
+    await py.runPythonAsync(code, { globals: g });
+    g.destroy();
+    out.textContent = buf || '(Selesai tanpa output)';
+  } catch (e) {
+    err = true;
+    out.textContent = buf + String(e.message || e).split('\n').slice(-8).join('\n');
+  }
+  st.textContent = '';
+  btn.classList.remove('busy');
+  out.className = 'out show' + (err ? ' err' : '');
+}
 
-print(jumlah_semua([1, [2, 3], [4, [5, 6]]]))   # 21
+function mk(t, c, h) {
+  const e = document.createElement(t);
+  if (c) e.className = c;
+  if (h != null) e.innerHTML = h;
+  return e;
+}
 
-def ratakan(x):                      # flatten
-    if not isinstance(x, list):
-        return [x]
-    hasil = []
-    for i in x:
-        hasil += ratakan(i)
-    return hasil
-print(ratakan([1, [2, [3, [4]]], 5]))
+function cell(b) {
+  const d = mk('div', 'cell' + (b.t.startsWith('Akses') ? ' ak' : ''));
+  const ta = mk('textarea');
+  ta.value = b.k;
+  ta.spellcheck = false;
+  ta.setAttribute('autocapitalize', 'off');
+  ta.setAttribute('autocorrect', 'off');
+  ta.rows = Math.min(b.k.split('\n').length + 1, 22);
 
-def cetak_dict(d, tab=0):            # telusuri dictionary bersarang
-    for k, v in d.items():
-        if isinstance(v, dict):
-            print("  " * tab + str(k) + ":")
-            cetak_dict(v, tab + 1)   # masuk lapis lebih dalam
-        else:
-            print("  " * tab + f"{k} = {v}")
-cetak_dict({"a": 1, "b": {"c": 2, "d": {"e": 3}}})
+  ta.onkeydown = e => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      ta.setRangeText('    ', ta.selectionStart, ta.selectionEnd, 'end');
+    }
+  };
 
-def kedalaman(x):
-    if not isinstance(x, list): return 0
-    return 1 + max([kedalaman(i) for i in x], default=0)
-print(kedalaman([1, [2, [3]]]))      # 3`,[['isinstance(x, list)','cek tipe: list atau bukan'],['base case','isi sudah bukan wadah (angka), berhenti'],['recursive case','isi masih wadah, panggil diri untuk tiap anak'],['tab + 1','menandai kedalaman supaya tercetak menjorok']])
-]});
+  const ch = mk('div', 'ch', '<i></i><i></i><i></i><span>Python Code Editor</span>');
+  const cp = mk('button', '', 'Salin Kode');
+  cp.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(ta.value);
+    } catch (e) {
+      ta.select();
+      document.execCommand('copy');
+    }
+    cp.textContent = 'Tersalin!';
+    setTimeout(() => cp.textContent = 'Salin Kode', 1500);
+  };
+  ch.append(cp);
+  d.append(ch, ta);
 
-/* ============ RENDER ============ */
-const $=s=>document.querySelector(s),esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-let py=null;
-function loadPy(){return new Promise((ok,no)=>{if(window.loadPyodide)return ok();const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';s.onload=ok;s.onerror=()=>no(new Error('Gagal memuat Python di browser. Pastikan internet aktif.'));document.head.appendChild(s)})}
-async function run(code,out,st){out.className='out';out.textContent='';let buf='';
- try{if(!py){st.textContent='Memuat Python (sekali saja, ~10 MB)...';await loadPy();py=await loadPyodide();}
-  st.textContent='Berjalan...';py.setStdout({batched:s=>buf+=s+'\n'});py.setStderr({batched:s=>buf+=s+'\n'});
-  const g=py.toPy({});await py.runPythonAsync(code,{globals:g});g.destroy();out.textContent=buf||'(selesai, tidak ada output)';st.textContent='';}
- catch(e){out.className='out err';out.textContent=buf+String(e.message||e).split('\n').slice(-8).join('\n');st.textContent='';}}
-function cell(b){const d=document.createElement('div');d.className='cell';const ta=document.createElement('textarea');ta.value=b.k;ta.spellcheck=false;ta.rows=Math.min(b.k.split('\n').length+1,26);
- ta.onkeydown=e=>{if(e.key==='Tab'){e.preventDefault();const s=ta.selectionStart;ta.setRangeText('    ',s,ta.selectionEnd,'end')}};
- d.appendChild(ta);const bar=document.createElement('div');bar.className='bar';
- if(b.run){const o=document.createElement('pre');const st=document.createElement('span');const r=document.createElement('button');r.textContent='Jalankan';r.onclick=()=>run(ta.value,o,st);const rs=document.createElement('button');rs.className='g';rs.textContent='Reset kode';rs.onclick=()=>{ta.value=b.k;o.textContent=''};bar.append(r,rs,st);d.append(ta,bar,o);o.className='out'}
- else{bar.innerHTML='<span>Kode Streamlit / terminal: dijalankan di komputer sendiri, bukan di browser.</span>';d.append(bar)}
- return d}
-function block(b){const f=document.createDocumentFragment();const h=document.createElement('h3');h.textContent=b.t;const p=document.createElement('p');p.className='sub';p.innerHTML=b.d;f.append(h,p,cell(b));
- if(b.p&&b.p.length){const t=document.createElement('table');t.innerHTML='<tr><th>Bagian / variabel</th><th>Artinya</th></tr>'+b.p.map(x=>`<tr><td><code>${esc(x[0])}</code></td><td>${x[1]}</td></tr>`).join('');f.append(t)}return f}
-function show(i){const m=S[i];document.querySelectorAll('nav button').forEach((b,j)=>b.classList.toggle('on',i===j));const M=$('#main');M.innerHTML=`<h2>${m.h}</h2><p class="sub">${m.s}</p><h3>Ringkasan</h3><ul>${m.r.map(x=>`<li>${x}</li>`).join('')}</ul>`;
- if(m.w){const w=document.createElement('div');w.className='box';M.append(w);W[m.w](w)}
- M.append(...m.b.map(block));scrollTo(0,0);location.hash=i}
-S.forEach((m,i)=>{const b=document.createElement('button');b.textContent=m.n;b.onclick=()=>show(i);$('#nav').append(b)});
+  if (b.run) {
+    const o = mk('pre', 'out');
+    const st = mk('span');
+    const bar = mk('div', 'bar');
+    const r = mk('button', 'run', 'Jalankan');
+    const rs = mk('button', 'g', 'Reset Kode');
 
-/* ============ WIDGET INTERAKTIF ============ */
-const W={};
-W.wBigO=el=>{el.innerHTML=`<b>Simulator pertumbuhan operasi</b><div class="row">n = <input type="range" id="bn" min="1" max="30" value="10"> <b id="bv">10</b></div><table id="bt"></table><small>Perhatikan O(2ⁿ) melonjak, sementara O(log n) hampir diam.</small>`;
- const f=()=>{const n=+el.querySelector('#bn').value;el.querySelector('#bv').textContent=n;const L=Math.log2(n),rows=[['O(1)',1],['O(log n)',Math.floor(L)],['O(n)',n],['O(n log n)',Math.round(n*L)],['O(n²)',n*n],['O(2ⁿ)',2**n]];
- el.querySelector('#bt').innerHTML='<tr><th>Kompleksitas</th><th>Operasi</th><th>Relatif ke O(n)</th></tr>'+rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1].toLocaleString('id-ID')}</td><td><div style="height:8px;background:var(--acc);width:${Math.min(100,Math.max(1,r[1]/Math.max(n,1)*10))}%"></div></td></tr>`).join('')};
- el.querySelector('#bn').oninput=f;f()};
-W.wSort=el=>{el.innerHTML=`<b>Visualisasi sorting langkah demi langkah</b><div class="row"><select id="sa"><option value="bubble">Bubble</option><option value="selection">Selection</option><option value="insertion">Insertion</option></select><button class="btn g" id="sr">Acak data</button><button class="btn" id="sp">Mulai otomatis</button><button class="btn g" id="sn">Langkah berikut</button><span id="ss"></span></div><div class="bars" id="sb"></div><small>Biru = sedang dibandingkan/digeser, hijau = selesai. Untuk Merge dan Quick lihat jejak "Divide/Pivot" pada kode di bawah.</small>`;
- const q=s=>el.querySelector(s);let A=[],T=[],k=0,tm=null;
- const steps=(al,a)=>{a=[...a];const Z=[{a:[...a],h:[]}],n=a.length,p=h=>Z.push({a:[...a],h});
-  if(al=='bubble'){for(let i=0;i<n-1;i++)for(let j=0;j<n-i-1;j++){p([j,j+1]);if(a[j]>a[j+1]){[a[j],a[j+1]]=[a[j+1],a[j]];p([j,j+1])}}}
-  else if(al=='selection'){for(let i=0;i<n-1;i++){let m=i;for(let j=i+1;j<n;j++){p([m,j]);if(a[j]<a[m])m=j}[a[i],a[m]]=[a[m],a[i]];p([i,m])}}
-  else{for(let i=1;i<n;i++){const key=a[i];let j=i-1;while(j>=0&&a[j]>key){a[j+1]=a[j];j--;p([j+1,i])}a[j+1]=key;p([j+1])}}
-  Z.push({a:[...a],h:[],d:1});return Z};
- const draw=()=>{const s=T[k];q('#sb').innerHTML=s.a.map((v,i)=>`<div class="${s.d?'d':s.h.includes(i)?'h':''}" style="height:${v*1.6}px">${v}</div>`).join('');q('#ss').textContent=`langkah ${k+1}/${T.length}`};
- const init=()=>{clearInterval(tm);q('#sp').textContent='Mulai otomatis';T=steps(q('#sa').value,A);k=0;draw()};
- const rnd=()=>{A=Array.from({length:9},()=>5+Math.floor(Math.random()*90));init()};
- q('#sr').onclick=rnd;q('#sa').onchange=init;q('#sn').onclick=()=>{if(k<T.length-1){k++;draw()}};
- q('#sp').onclick=()=>{if(tm&&q('#sp').textContent=='Jeda'){clearInterval(tm);q('#sp').textContent='Mulai otomatis';return}if(k>=T.length-1)init();q('#sp').textContent='Jeda';tm=setInterval(()=>{if(k<T.length-1){k++;draw()}else{clearInterval(tm);q('#sp').textContent='Mulai otomatis'}},350)};
- A=[64,34,25,12,22,11,90];init()};
-W.wDapen=el=>{el.innerHTML=`<b>Simulator Kalkulator Dana Pensiun (meniru app Streamlit)</b><div class="row">Usia sekarang <input id="d1" type="number" value="19" style="width:70px"> Usia pensiun <input id="d2" type="number" value="55" style="width:70px"> Dana awal <input id="d3" type="number" value="0" style="width:110px"></div><div class="row">Iuran bulanan <input id="d4" type="number" value="1000000" style="width:110px"> Imbal hasil % <input id="d5" type="number" value="5" step="0.5" style="width:70px"> <button class="btn" id="d6">Hitung!</button></div><div id="d7"></div>`;
- const q=s=>el.querySelector(s);q('#d6').onclick=()=>{const a=+q('#d1').value,p=+q('#d2').value,iu=+q('#d4').value,r=+q('#d5').value;let d=+q('#d3').value,rows='';
-  if(p<a){q('#d7').innerHTML='<div class="note">Usia pensiun harus lebih besar atau sama dengan usia sekarang.</div>';return}
-  for(let i=1;i<=p-a;i++){d=(d+iu*12)*(1+r/100);rows+=`<tr><td>${i}</td><td>${a+i}</td><td>${Math.round(d).toLocaleString('id-ID')}</td></tr>`}
-  q('#d7').innerHTML=`<p>Proyeksi dana pensiun Anda adalah:</p><div class="big">Rp ${d.toLocaleString('id-ID',{maximumFractionDigits:2})}</div><details><summary>Tabel per tahun</summary><table><tr><th>Tahun ke</th><th>Usia</th><th>Dana</th></tr>${rows}</table></details>`}};
-W.wRerun=el=>{el.innerHTML=`<b>Simulator Rerun Model</b><p class="sub">Klik tombol beberapa kali dan bandingkan dua versi kode.</p><button class="btn" id="rb">Klik Saya!</button> <button class="btn g" id="rr">Reset sesi</button>
-<div class="two" style="margin-top:12px"><div><b>Tanpa session_state</b><div class="big" id="r1">0</div><small>clicks = 0 di-reset tiap rerun</small></div><div><b>Dengan session_state</b><div class="big" id="r2">0</div><small>nilai bertahan antar rerun</small></div></div><pre class="out" id="rl" style="color:var(--mut);max-height:150px;overflow:auto"></pre>`;
- const q=s=>el.querySelector(s);let ses=0,n=0;const log=[];
- q('#rb').onclick=()=>{n++;ses++;q('#r1').textContent=1;q('#r2').textContent=ses;log.unshift(`Rerun #${n}: clicks=0 -> tombol True -> clicks=1 | session_state: ${ses-1} -> ${ses}`);q('#rl').textContent=log.join('\n')};
- q('#rr').onclick=()=>{ses=0;n=0;log.length=0;q('#r1').textContent=0;q('#r2').textContent=0;q('#rl').textContent=''}};
-const h=+location.hash.slice(1);show(S[h]?h:0);
+    r.onclick = () => run(ta.value, o, st, r);
+    rs.onclick = () => {
+      ta.value = b.k;
+      o.textContent = '';
+      o.className = 'out';
+    };
+
+    bar.append(r, rs, st);
+    d.append(bar, o);
+  }
+  return d;
+}
+
+function block(b, k) {
+  const s = mk('section', 'blk rv');
+  s.id = 'b' + k;
+  const ak = b.t.startsWith('Akses data:');
+  s.innerHTML = `<h3>${ak ? '<em class="tag">akses data</em>' : ''}${esc(ak ? b.t.slice(12) : b.t)}</h3><p class="sub">${b.d}</p>`;
+  s.append(cell(b));
+
+  if (b.p && b.p.length) {
+    s.append(mk('div', 'tw', '<table><tr><th>Sintaksis / Variabel</th><th>Penjelasan Fungsi</th></tr>' +
+      b.p.map(x => `<tr><td><code>${esc(x[0])}</code></td><td>${x[1]}</td></tr>`).join('') + '</table>'));
+  }
+
+  if (b.loopExplanation) {
+    const lb = mk('div', 'loop-box');
+    let html = `<h4>🔄 ${esc(b.loopExplanation.title)}</h4>`;
+    html += '<ul style="margin:6px 0 0; padding-left:20px; font-size:13.5px; color:var(--ink);">';
+    b.loopExplanation.details.forEach(item => {
+      html += `<li style="margin-bottom:6px;">${item}</li>`;
+    });
+    html += '</ul>';
+    lb.innerHTML = html;
+    s.append(lb);
+  }
+
+  return s;
+}
+
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) {
+    e.target.classList.add('in');
+    io.unobserve(e.target);
+  }
+}), { rootMargin: '0px 0px -5% 0px', threshold: 0.02 }) : null;
+
+const openNav = () => document.body.classList.add('nav-open');
+const closeNav = () => document.body.classList.remove('nav-open');
+
+function show(i) {
+  cur = i;
+  const m = S[i];
+  document.querySelectorAll('.ni').forEach((b, j) => b.classList.toggle('on', j === i));
+  closeNav();
+  $('#br').textContent = m.n;
+
+  const nk = m.b.filter(x => x.run).length;
+  const M = $('#main');
+
+  M.innerHTML = `
+    <div class="page">
+      <header class="hero">
+        <div class="no">${i + 1}</div>
+        <h2>${m.h.replace(/^Modul \d+ - /, '')}</h2>
+        <p>${m.s}</p>
+        <div class="chips">
+          <span>Modul ${i + 1} dari ${S.length}</span>
+          <span>${m.r.length} Poin Ringkasan</span>
+          <span>${nk} Interaktif Code</span>
+        </div>
+      </header>
+      <div class="toc"></div>
+      <h3 class="h">Ringkasan Konsep Kunci</h3>
+      <ul class="sum">${m.r.map((x, j) => `<li class="rv" style="transition-delay:${j * 60}ms">${x}</li>`).join('')}</ul>
+      <div id="wd"></div>
+      <div id="bl"></div>
+      <div class="pager"></div>
+    </div>
+  `;
+
+  m.b.forEach((b, k) => {
+    const a = mk('button', '', (k + 1) + '. ' + esc(b.t));
+    a.onclick = () => document.getElementById('b' + k).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    M.querySelector('.toc').append(a);
+  });
+
+  if (m.w) {
+    const w = mk('div', 'box rv');
+    M.querySelector('#wd').append(w);
+    W[m.w](w);
+  }
+
+  M.querySelector('#bl').append(...m.b.map(block));
+
+  const pg = M.querySelector('.pager');
+  if (i > 0) {
+    const p = mk('button', 'pv', `<small>&larr; Sebelumnya</small><b>${esc(S[i - 1].n)}</b>`);
+    p.onclick = () => show(i - 1);
+    pg.append(p);
+  }
+  if (i < S.length - 1) {
+    const n = mk('button', 'nx', `<small>Berikutnya &rarr;</small><b>${esc(S[i + 1].n)}</b>`);
+    n.onclick = () => show(i + 1);
+    pg.append(n);
+  }
+
+  M.querySelectorAll('.rv').forEach(e => io ? io.observe(e) : e.classList.add('in'));
+  scrollTo(0, 0);
+  try { history.replaceState(null, '', '#' + i); } catch (e) {}
+}
+
+/* ==========================================================================
+   INITIALIZATION & NAVIGATION BUILDER
+   ========================================================================== */
+const nv = $('#nav');
+nv.innerHTML = '<div class="nh"><b>Ringkasan ALSD</b><small>7 Modul & Analisis Python</small><button class="ib x" aria-label="Tutup Menu">&times;</button></div>';
+nv.querySelector('.x').onclick = closeNav;
+
+S.forEach((m, i) => {
+  const b = mk('button', 'ni', `
+    <span class="num">${i + 1}</span>
+    <span class="nt">${esc(m.n.replace(/^\d+\.\s*/, ''))}<small>${m.b.length} Topik Pembahasan</small></span>
+  `);
+  b.onclick = () => show(i);
+  nv.append(b);
+});
+
+$('#mb').onclick = openNav;
+$('#ov').onclick = closeNav;
+addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+$('#fb').onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
+
+let tk = 0;
+addEventListener('scroll', () => {
+  if (tk) return;
+  tk = requestAnimationFrame(() => {
+    tk = 0;
+    const d = document.documentElement;
+    const mx = d.scrollHeight - innerHeight;
+    $('#pg').style.transform = `scaleX(${mx > 0 ? Math.min(1, scrollY / mx) : 0})`;
+    $('#fb').classList.toggle('show', scrollY > 400);
+  });
+}, { passive: true });
+
+const root = document.documentElement;
+const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+const setTheme = t => {
+  root.dataset.theme = t;
+  try { localStorage.setItem('th', t); } catch (e) {}
+};
+
+try {
+  const t = localStorage.getItem('th');
+  if (t) setTheme(t);
+} catch (e) {}
+
+$('#tb').onclick = () => setTheme(dark() ? 'light' : 'dark');
+
+addEventListener('hashchange', () => {
+  const n = +location.hash.slice(1);
+  if (S[n] && n !== cur) show(n);
+});
+
+/* ==========================================================================
+   WIDGET VISUALIZER INTERAKTIF
+   ========================================================================== */
+const W = {};
+
+W.wBigO = el => {
+  el.innerHTML = `
+    <b>Simulator Pertumbuhan Kompleksitas Big-O</b>
+    <div class="row">n = <input type="range" id="bn" min="1" max="25" value="8"> <b id="bv">8</b></div>
+    <table id="bt"></table>
+    <small style="color:var(--mut);">Geser slider untuk melihat perbedaan laju pertumbuhan jumlah operasi.</small>
+  `;
+  const f = () => {
+    const n = +el.querySelector('#bn').value;
+    el.querySelector('#bv').textContent = n;
+    const L = Math.log2(n);
+    const rows = [
+      ['O(1) Konstan', 1],
+      ['O(log n) Logaritmik', Math.floor(L)],
+      ['O(n) Linear', n],
+      ['O(n log n)', Math.round(n * L)],
+      ['O(n²) Kuadratik', n * n],
+      ['O(2ⁿ) Eksponensial', 2 ** n]
+    ];
+    el.querySelector('#bt').innerHTML = '<tr><th>Notasi Big-O</th><th>Jumlah Operasi</th><th>Visualisator Grafik</th></tr>' +
+      rows.map(r => `
+        <tr>
+          <td><b>${r[0]}</b></td>
+          <td>${r[1].toLocaleString('id-ID')}</td>
+          <td><div style="height:10px; border-radius:6px; background:linear-gradient(90deg, var(--acc), var(--acc2)); width:${Math.min(100, Math.max(2, (r[1] / (n * n || 1)) * 100))}%"></div></td>
+        </tr>
+      `).join('');
+  };
+  el.querySelector('#bn').oninput = f;
+  f();
+};
+
+W.wSort = el => {
+  el.innerHTML = `
+    <b>Visualisator Animasi Sorting</b>
+    <div class="row">
+      <select id="sa"><option value="bubble">Bubble Sort</option><option value="selection">Selection Sort</option><option value="insertion">Insertion Sort</option></select>
+      <button class="btn g" id="sr">Acak Data</button>
+      <button class="btn" id="sp">Mulai Sort</button>
+      <span id="ss" style="font-size:13px; color:var(--mut);"></span>
+    </div>
+    <div class="bars" id="sb"></div>
+  `;
+  const q = s => el.querySelector(s);
+  let A = [], T = [], k = 0, tm = null;
+
+  const steps = (al, a) => {
+    a = [...a];
+    const Z = [{ a: [...a], h: [] }];
+    const n = a.length;
+    const p = h => Z.push({ a: [...a], h });
+
+    if (al === 'bubble') {
+      for (let i = 0; i < n - 1; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+          p([j, j + 1]);
+          if (a[j] > a[j + 1]) {
+            [a[j], a[j + 1]] = [a[j + 1], a[j]];
+            p([j, j + 1]);
+          }
+        }
+      }
+    } else if (al === 'selection') {
+      for (let i = 0; i < n - 1; i++) {
+        let m = i;
+        for (let j = i + 1; j < n; j++) {
+          p([m, j]);
+          if (a[j] < a[m]) m = j;
+        }
+        [a[i], a[m]] = [a[m], a[i]];
+        p([i, m]);
+      }
+    } else {
+      for (let i = 1; i < n; i++) {
+        const key = a[i];
+        let j = i - 1;
+        while (j >= 0 && a[j] > key) {
+          a[j + 1] = a[j];
+          j--;
+          p([j + 1, i]);
+        }
+        a[j + 1] = key;
+        p([j + 1]);
+      }
+    }
+    Z.push({ a: [...a], h: [], d: 1 });
+    return Z;
+  };
+
+  const draw = () => {
+    const s = T[k];
+    const bx = q('#sb');
+    if (bx.children.length !== s.a.length) bx.innerHTML = s.a.map(() => '<div></div>').join('');
+    [...bx.children].forEach((d, i) => {
+      d.style.height = s.a[i] + '%';
+      d.textContent = s.a[i];
+      d.className = s.d ? 'd' : s.h.includes(i) ? 'h' : '';
+    });
+    q('#ss').textContent = `Langkah ${k + 1}/${T.length}`;
+  };
+
+  const init = () => {
+    clearInterval(tm);
+    q('#sp').textContent = 'Mulai Sort';
+    T = steps(q('#sa').value, A);
+    k = 0;
+    draw();
+  };
+
+  const rnd = () => {
+    A = Array.from({ length: 8 }, () => 10 + Math.floor(Math.random() * 85));
+    init();
+  };
+
+  q('#sr').onclick = rnd;
+  q('#sa').onchange = init;
+
+  q('#sp').onclick = () => {
+    if (tm && q('#sp').textContent === 'Jeda') {
+      clearInterval(tm);
+      q('#sp').textContent = 'Mulai Sort';
+      return;
+    }
+    if (k >= T.length - 1) init();
+    q('#sp').textContent = 'Jeda';
+    tm = setInterval(() => {
+      if (k < T.length - 1) {
+        k++;
+        draw();
+      } else {
+        clearInterval(tm);
+        q('#sp').textContent = 'Mulai Sort';
+      }
+    }, 300);
+  };
+
+  A = [64, 34, 25, 12, 22, 11, 90, 45];
+  init();
+};
+
+W.wDapen = el => {
+  el.innerHTML = `
+    <b>Simulator Dana Pensiun Interaktif</b>
+    <div class="row">
+      Usia Sekarang: <input id="d1" type="number" value="20" style="width:70px">
+      Usia Pensiun: <input id="d2" type="number" value="55" style="width:70px">
+    </div>
+    <div class="row">
+      Iuran Bulanan (Rp): <input id="d4" type="number" value="1000000" style="width:130px">
+      Bunga Tahunan (%): <input id="d5" type="number" value="6" step="0.5" style="width:70px">
+      <button class="btn" id="d6">Hitung</button>
+    </div>
+    <div id="d7"></div>
+  `;
+  const q = s => el.querySelector(s);
+  q('#d6').onclick = () => {
+    const a = +q('#d1').value, p = +q('#d2').value, iu = +q('#d4').value, r = +q('#d5').value;
+    let d = 0;
+    if (p <= a) {
+      q('#d7').innerHTML = '<div style="color:var(--warnl); margin-top:8px;">Usia pensiun harus lebih besar dari usia sekarang!</div>';
+      return;
+    }
+    for (let i = 1; i <= p - a; i++) {
+      d = (d + iu * 12) * (1 + r / 100);
+    }
+    q('#d7').innerHTML = `
+      <p style="margin:10px 0 2px;">Proyeksi Hasil Dana Pensiun:</p>
+      <div class="big">Rp ${d.toLocaleString('id-ID', { maximumFractionDigits: 0 })}</div>
+    `;
+  };
+};
+
+W.wRerun = el => {
+  el.innerHTML = `
+    <b>Interactive State vs Local Variable Demo</b>
+    <div class="row">
+      <button class="btn" id="rb">Klik Simulasi Rerun</button>
+      <button class="btn g" id="rr">Reset State</button>
+    </div>
+    <div class="two" style="margin-top:10px;">
+      <div>
+        <b>Variabel Lokal Biasa</b>
+        <div class="big" id="r1">0</div>
+        <small style="color:var(--mut);">Selalu ter-reset ke 0 tiap rerun</small>
+      </div>
+      <div>
+        <b>Session State</b>
+        <div class="big" id="r2">0</div>
+        <small style="color:var(--mut);">Nilai persisten antar rerun</small>
+      </div>
+    </div>
+  `;
+  const q = s => el.querySelector(s);
+  let ses = 0;
+  q('#rb').onclick = () => {
+    ses++;
+    q('#r1').textContent = 1;
+    q('#r2').textContent = ses;
+  };
+  q('#rr').onclick = () => {
+    ses = 0;
+    q('#r1').textContent = 0;
+    q('#r2').textContent = 0;
+  };
+};
+
+// Start application on load
+const initialHash = +location.hash.slice(1);
+show(S[initialHash] ? initialHash : 0);
 </script>
 </body>
 </html>
