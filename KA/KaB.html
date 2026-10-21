@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Ringkasan Kecerdasan Artifisial IT0263</title>
+<style>
+:root{--bg:#faf8f3;--cd:#fff;--tx:#1c2230;--mu:#5c6575;--ac:#c2410c;--bl:#1d4ed8;--bd:#e4dfd3;--hl:#fde68a;--ok:#15803d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#13151b;--cd:#1c1f28;--tx:#e8e9ee;--mu:#9aa1b0;--ac:#fb923c;--bl:#7aa2ff;--bd:#2c303c;--hl:#5b4a12;--ok:#4ade80}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:20px 16px 8px;max-width:980px;margin:auto}h1{margin:0;font-size:1.5rem}header p{margin:4px 0;color:var(--mu)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--bd);display:flex;gap:6px;overflow-x:auto;padding:8px 12px}
+nav button{flex:none;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:99px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer}nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:980px;margin:auto;padding:12px 16px 60px}section{display:none}section:first-of-type{display:block}section.on{display:block;animation:f .3s}@keyframes f{from{opacity:0;transform:translateY(6px)}}
+h2{font-size:1.25rem;margin:8px 0 12px;color:var(--ac)}h3{font-size:1rem;margin:0 0 6px;color:var(--bl)}
+.c{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:0 0 12px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.g .c{margin:0}
+ul{margin:4px 0;padding-left:20px}li{margin:2px 0}code,.m{font-family:ui-monospace,Menlo,monospace;background:var(--hl);padding:0 4px;border-radius:4px;font-size:.88em}
+p{margin:6px 0}.k{background:var(--hl);border-radius:10px;padding:8px 12px;margin:0 0 12px}.tw{overflow-x:auto;margin:0 0 12px}table{border-collapse:collapse;width:100%;font-size:.88rem}th,td{border:1px solid var(--bd);padding:5px 8px;text-align:left;vertical-align:top}th{background:var(--cd)}
+.fl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 12px}.fl i{color:var(--mu);font-style:normal}.st{border:2px solid var(--bd);background:var(--cd);border-radius:8px;padding:5px 9px;font-size:.85rem;transition:.3s}.st.a{background:var(--ac);color:#fff;border-color:var(--ac);transform:scale(1.06)}.fl small{width:100%;color:var(--mu)}
+.bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.bar button,.b{border:1px solid var(--bl);background:none;color:var(--bl);border-radius:8px;padding:5px 10px;font:inherit;font-size:.85rem;cursor:pointer}.bar button.on{background:var(--bl);color:#fff}
+svg{width:100%;max-width:520px;height:auto;display:block;margin:auto}.e{stroke:var(--mu);stroke-width:1.5}.e.x{stroke:#dc2626;stroke-dasharray:4}.nd{fill:var(--cd);stroke:var(--mu);stroke-width:2;transition:.3s}.nd.on{fill:#93c5fd;stroke:var(--bl)}.nd.cu{fill:#fb923c;stroke:var(--ac)}.nd.x{fill:#fca5a5;stroke:#dc2626}svg text{fill:#111;font-size:12px;text-anchor:middle;pointer-events:none}
+.nt{min-height:1.6em;margin:4px 0;color:var(--mu)}input[type=number]{width:70px;font:inherit;padding:3px}.bits span{display:inline-block;width:22px;text-align:center;border:1px solid var(--bd);margin:1px;border-radius:4px;font-family:monospace}.bits .p1{background:#bfdbfe;color:#111}.bits .p2{background:#fecaca;color:#111}.bits .mu{outline:2px solid var(--ac)}
+</style></head><body>
+<header><h1>Ringkasan Kecerdasan Artifisial (IT0263)</h1><p>Modul 01–08 + Tugas 1 &amp; 2 · FTI UKDW · bisa dibuka di HP maupun laptop</p></header>
+<nav id="nv"></nav><main>
+
+<section data-t="Peta">
+<h2>Peta Besar Materi</h2>
+<div class="c"><b>Alur belajar</b> (kotak menyala bergantian):<div class="fl" data-flow="Intro AI|Problem Solving|Uninformed Search|Informed Search|Local &amp; Optimization|Adversarial|Knowledge Representation"></div></div>
+<div class="g">
+<div class="c"><h3>Pathfinding</h3>Greedy (Best First), A*, SMA*<br><small>Mencari jalur optimal</small></div>
+<div class="c"><h3>Local Search</h3>Hill Climbing (Simple, Steepest, Random-Restart)<br><small>Mencari kondisi/konfigurasi terbaik</small></div>
+<div class="c"><h3>Optimization</h3>Simulated Annealing, Genetic Algorithm<br><small>Mencari konfigurasi terbaik</small></div>
+<div class="c"><h3>Adversarial</h3>Minimax, Alpha-Beta Pruning<br><small>Permainan kompetitif</small></div></div>
+<div class="k"><b>Pola berpikir semua modul:</b> Knowledge Base (sumber kecerdasan) + Inference Mechanism (search dan pattern matching). Keduanya terpisah tapi saling terkait.</div>
+<div class="c"><h3>Cara pakai halaman ini</h3>Pilih tab di atas. Ada animasi alur, simulasi pohon (tekan <b>Langkah</b>/<b>Putar</b>), kalkulator SA, dan demo crossover GA. Tab terakhir <b>Tugas 1 &amp; 2</b> menjelaskan konsep modul mana yang dipakai.</div>
+</section>
+
+<section data-t="Konsep Inti">
+<h2>Konsep Inti AI: Knowledge Base + Inference Mechanism</h2>
+<div class="k">Gambar puzzle di slide: dua potongan <b>berbeda bentuk, terpisah, tapi hanya bermakna kalau menyatu</b>. Inilah kerangka berpikir hampir semua modul, termasuk Tugas 1 dan 2.</div>
+<div class="c"><h3>Alur kerja sistem cerdas</h3><div class="fl" data-flow="Input (masalah / fakta)|Knowledge Base (apa yang diketahui)|Inference Mechanism (search + pattern matching)|Kesimpulan / aksi (output)" data-loop="mesin inferensi membaca KB berulang sampai menemukan jawaban"></div></div>
+<div class="g">
+<div class="c"><h3>1. Knowledge Base (KB)</h3>Sumber kecerdasan sistem. Isinya: konsep, teori, prosedur praktis beserta hubungannya, dan fakta tentang objek di domain terpilih beserta relasinya. Syarat: harus <b>dikumpulkan, dikodekan, dan diatur secara sistematis</b> supaya bisa dipakai mesin.<br><br><b>Cara membuatnya (knowledge engineering):</b> identify the task → knowledge acquisition (kumpulkan pengetahuan relevan, mis. dari pakar) → knowledge representation (ubah ke bentuk formal: logika, rule IF-THEN, semantic network, frame).</div>
+<div class="c"><h3>2. Inference Mechanism</h3>Program yang <b>menalar</b> memakai KB untuk menarik kesimpulan. Dua teknik utamanya: <b>search</b> (menelusuri ruang kemungkinan: BFS, DFS, A*, dst) dan <b>pattern matching</b> (mencocokkan fakta dengan pola, mis. kondisi IF pada rule atau premis pada logika, lalu menerapkan Modus Ponens/resolution).<br><br>Tanpa KB, mesin inferensi tidak punya bahan. Tanpa mesin inferensi, KB hanya data diam.</div></div>
+<div class="c"><h3>Kenapa dikatakan terpisah tapi saling terkait?</h3><ul><li><b>Terpisah:</b> pengetahuan (apa) dan cara menalar (bagaimana) dibuat sendiri-sendiri. KB bisa ditambah atau diperbarui tanpa menulis ulang mesin inferensi, dan satu mesin bisa dipakai untuk banyak KB.</li><li><b>Terkait:</b> bentuk KB harus cocok dengan jenis inferensinya. KB berupa graph/tree cocok dengan search; KB berupa rule cocok dengan pencocokan pola (forward chaining); KB berupa logika cocok dengan aturan inferensi.</li></ul></div>
+<div class="tw"><table><tr><th>Skema KB (Modul 08)</th><th>Mesin inferensi yang cocok</th><th>Contoh</th></tr><tr><td>Graph / tree (state space)</td><td>Search: BFS, DFS, A*, Minimax</td><td>Rute kota, permainan</td></tr><tr><td>Rule IF-THEN (production system)</td><td>Pattern matching: cocokkan kondisi, nyalakan rule</td><td>Rating dan kompetisi (9 rule)</td></tr><tr><td>Logika propositional/predicate</td><td>Modus Ponens, resolution</td><td>(p⇒q) ∧ p ⇒ q</td></tr><tr><td>Semantic network / frame</td><td>Telusur arc, pewarisan (inheritance)</td><td>human_being(Kay)?, navigasi mobil</td></tr></table></div>
+<div class="c"><h3>Contoh utuh: sistem rating lomba</h3><b>KB:</b> 9 rule (job &lt; 15 → performa buruk, dst). <b>Input:</b> fakta job=20, usia=3, tujuan=serius. <b>Inferensi:</b> pattern matching mencocokkan fakta dengan IF → Rule 2 menyala (performa baik) → Rule 5 (mahir) → Rule 9 → <b>output</b> festival internasional. Menyalakan rule berantai ini disebut forward chaining.<br><b>Contoh lain:</b> navigasi mobil. KB = peta sebagai Point dan Path (semantic network). Inferensi = search jalur terpendek (A*). Output = rute.</div>
+<div class="c"><h3>Hubungan dengan teori lain di modul</h3><ul><li><b>DIKW:</b> data → information → knowledge → wisdom. KB berisi level <i>knowledge</i>, yaitu informasi yang sudah diberi konteks. Inferensi inilah yang menaikkan data menjadi keputusan (Autonomy).</li><li><b>Readable data &amp; different interpretation:</b> manusia membaca teks dengan makna, mesin hanya membaca simbol. Karena itu pengetahuan harus dibuat formal (sintaks dan semantik jelas) supaya mesin tidak salah tafsir. Itulah gunanya knowledge representation dan ontologi.</li><li><b>Jenis pengetahuan:</b> declarative (fakta), procedural (aturan), heuristic (rule of thumb seperti h(n)), meta, structural. Semuanya bisa menjadi isi KB.</li><li><b>Informed search:</b> heuristik h(n) adalah pengetahuan domain yang disuntikkan ke mesin inferensi agar search lebih efisien.</li></ul></div>
+<div class="k"><b>Kaitan ke Tugas:</b> Tugas 1 butir proses (karakteristik fungsional) dan Tugas 2 butir 3 (rancangan mekanisme inferensi) pada dasarnya meminta Anda menjawab dua hal: <b>apa isi KB sistem Anda</b>, dan <b>mesin inferensi apa yang menalar di atasnya</b>.</div>
+</section>
+
+<section data-t="1 Intro AI">
+<h2>Introduction to AI</h2>
+<div class="g">
+<div class="c"><h3>Automatic</h3>Input (trigger) → aturan pra-set → output (aksi). Input sama, aturan sama, output selalu sama.<div class="fl" data-flow="Input / trigger|Rule pra-set|Aksi sama"></div></div>
+<div class="c"><h3>Autonomy</h3>Sistem merasakan, memutuskan, bertindak, dan belajar dari umpan balik.<div class="fl" data-flow="Persepsi lingkungan|Ambil keputusan|Aksi di dunia nyata|Belajar &amp; perbaiki" data-loop="feedback loop kembali ke persepsi"></div></div></div>
+<div class="c"><h3>Definisi AI</h3><ul><li><b>McCarthy (Dartmouth, 1955):</b> setiap aspek belajar atau fitur kecerdasan lain pada prinsipnya dapat dideskripsikan begitu tepat sehingga mesin dapat mensimulasikannya.</li><li><b>Turing (1947):</b> yang kita inginkan adalah mesin yang dapat belajar dari pengalaman.</li></ul></div>
+<div class="c"><h3>Multiple Intelligence (Gardner, 1983)</h3>Logis-matematis (number smart), linguistik (word), visual-spasial, musikal, kinestetik (body), interpersonal (people), intrapersonal (self), naturalis (nature). Dasar argumen interdisipliner.</div>
+<div class="c"><h3>DIKW</h3><div class="fl" data-flow="Data: fakta diskrit|Information: data + relasi|Knowledge: informasi terkontekstualisasi|Wisdom: + nilai &amp; keyakinan"></div>Data–Information = <b>Automatic</b>; Knowledge–Wisdom = <b>Autonomy</b>.</div>
+<div class="c"><h3>Roadmap AI</h3><div class="fl" data-flow="ANI (sempit): hari ini, pekerjaan terbantu|AGI (umum): sekitar 2040?, pekerjaan terancam|ASI (super): setelah AGI, risiko bagi manusia"></div>Pesan modul: <i>Embrace AI</i>, jadilah orang yang cerdas dan adaptif, <i>never stop learning</i>.</div>
+</section>
+
+<section data-t="2 Uninformed">
+<h2>Problem Solving &amp; Uninformed Search</h2>
+<div class="c"><h3>Problem solving manusia = proses search</h3><div class="fl" data-flow="1 Problem formulation (tentukan state, diberi goal)|2 Searching (cari urutan aksi)|3 Execution (jalankan metode)"></div>
+<b>Elemen:</b> <b>Problem state</b> (situasi/initial state), <b>Goal</b> (bisa lebih dari 1), <b>Operator</b> (prosedur pindah state). Ruang masalah direpresentasikan sebagai <b>graph</b> atau <b>tree</b>.</div>
+<div class="c"><h3>Uninformed (blind/naive) vs Informed</h3>Uninformed: tujuan umum, brute force, tanpa informasi selain definisi masalah. Informed: punya pengetahuan/heuristik, dipakai untuk optimasi.</div>
+<div class="tw"><table><tr><th>Metode</th><th>Inti</th></tr>
+<tr><td>Generate &amp; Test</td><td>Bangkitkan path, uji; tidak mengingat yang sudah dicoba. Bisa tersesat/loop.</td></tr>
+<tr><td>Random Search</td><td>Pilih state baru acak dari state sekarang sampai goal.</td></tr>
+<tr><td>DFS</td><td>Sedalam mungkin, backtracking, anak kiri→kanan. <b>FRONTIER = stack (LIFO)</b>: path baru ditambah di <b>depan</b>.</td></tr>
+<tr><td>BFS</td><td>Level demi level, selalu dapat path terpendek. <b>FRONTIER = queue (FIFO)</b>: path baru di <b>belakang</b>.</td></tr>
+<tr><td>Non-Deterministic</td><td>Seperti DFS/BFS, path baru disisipkan di posisi <b>acak</b>.</td></tr>
+<tr><td>DLS</td><td>DFS dengan batas kedalaman tetap (hanya expand jika path_length ≤ DEPTH).</td></tr>
+<tr><td>IDS</td><td>DLS dengan DEPTH dinaikkan 1 demi 1: gabungan DFS dan BFS.</td></tr>
+<tr><td>Bidirectional</td><td>BFS dari start dan dari goal sampai bertemu di node yang sama.</td></tr></table></div>
+<div class="c"><h3>Algoritma umum (DFS/BFS)</h3>FRONTIER ← path berisi root. <b>While</b> FRONTIER tidak kosong dan goal belum tercapai: ambil path pertama → buat path ke semua anak → buang yang loop → tambahkan ke FRONTIER (depan=DFS, belakang=BFS). Akhir: goal tercapai? sukses : gagal.</div>
+<div class="c"><h3>Simulasi: DFS vs BFS</h3><div id="w1"></div>Goal = simpul 7. Perhatikan urutan kunjungan berbeda.</div>
+<div class="c"><h3>Metrik &amp; Big-O</h3>Time, space, completeness, optimality. b = branching factor, d = kedalaman tree, m = kedalaman solusi, l = batas kedalaman.<div class="tw"><table><tr><th>Algoritma</th><th>Time</th><th>Space</th><th>Complete</th><th>Optimal</th></tr><tr><td>DFS</td><td>O(b^d)</td><td>O(bd)</td><td>No/Yes</td><td>No/Yes</td></tr><tr><td>BFS</td><td>O(b^m)</td><td>O(b^m)</td><td>Yes</td><td>Yes</td></tr><tr><td>DLS</td><td>O(b^l)</td><td>O(bl)</td><td>No/Yes</td><td>No/Yes</td></tr><tr><td>IDS</td><td>O(b^m)</td><td>O(bm)</td><td>Yes</td><td>Yes</td></tr><tr><td>BIDI</td><td>O(b^m/2)</td><td>O(b^m/2)</td><td>Yes</td><td>Yes</td></tr></table></div><b>Masalah:</b> combinatorial explosion: waktu blind search membengkak sangat cepat.</div>
+</section>
+
+<section data-t="3 Informed">
+<h2>Informed Search</h2>
+<div class="c"><h3>Heuristic</h3>Dari Yunani <i>heuriskein</i> (menemukan): aturan praktis untuk menyelesaikan masalah kompleks secara efisien. <b>Fungsi heuristik</b> memuat wawasan domain; tujuannya mengevaluasi state dan memandu pencarian. f(n) memetakan state n ke angka x.<br>(+) heuristik bagus meng-expand lebih sedikit node; (−) biaya menghitungnya bisa mahal.</div>
+<div class="g"><div class="c"><h3>g(n)</h3>Biaya historis (accumulated cost) dari simpul awal ke n. Fungsi objektif: ukuran aktual, mahal.</div><div class="c"><h3>h(n)</h3>Biaya estimasi dari n ke goal. Perkiraan, bisa tidak akurat, murah.</div></div>
+<div class="k"><b>f(n) = g(n) + h(n)</b> (total biaya evaluasi). Contoh slide: f(B)=g(SAB)+h(B)=1+2+1=<b>4</b>; f(C)=g(SBAC)+h(C)=2+2+1+1=<b>6</b>.</div>
+<div class="c"><h3>Best First (Greedy)</h3>Selalu expand node terbaik menurut h(n); backtracking boleh. Algoritma seperti BFS, tetapi setelah menambah path baru, <b>seluruh QUEUE diurutkan</b> berdasarkan h(n).</div>
+<div class="c"><h3>A* = tiga prinsip</h3><div class="fl" data-flow="Heuristic estimate: f=g+h|Branch &amp; Bound|Redundant path deletion"></div>
+<b>Branch &amp; Bound:</b> branching (bangkitkan cabang), bounding (LowerBound = biaya path lengkap pertama), selection (pilih node jika biayanya &lt; LowerBound, selain itu hapus). Pelajaran: hapus partial path berbiaya lebih tinggi. Contoh: goal pertama berbiaya 5 → LowerBound=5, node berbiaya 5 dan 6 dibuang.<br>
+<b>Redundant path deletion:</b> jika ada path P dan Q yang sama-sama menuju node I dan cost_P ≥ cost_Q, hapus P.<br>
+<b>Metode A*:</b> seperti Best First, queue diurutkan dengan f(n)=g(n)+h(n) ditambah penghapusan path redundan.</div>
+<div class="c"><h3>SMA* (Simplified Memory-Bounded A*)</h3>Berjalan seperti A*; saat memori penuh, buang leaf terburuk (f terbesar). Expand leaf terbaik yang <b>terbaru</b>, hapus leaf terburuk yang <b>terlama</b>.</div>
+</section>
+
+<section data-t="4 Local Search">
+<h2>Local Search: Hill Climbing</h2>
+<div class="c">Tanpa backtracking, successor function tetap. Mulai dari satu solusi → perbaiki berulang → sampai nilai maksimal (naik bukit sampai puncak). Analogi: robot = algoritma, bukit = ruang pencarian, altimeter = fungsi objektif, bukit tertinggi = <b>global optimum</b>, bukit lain = <b>local optimum</b>.</div>
+<div class="c"><h3>Algoritma HC (Moore)</h3>X = konfigurasi awal; E = Eval(X). Loop: hitung Eval semua move di moveset; jika semua ≤ E, berhenti dan kembalikan X; kalau tidak ambil move terbaik, X = move itu, E = nilainya.</div>
+<div class="c"><h3>Contoh TSP 4 kota (A,B,C,D)</h3>Operator = tukar posisi (kombinasi): C(4,2)=6 → Switch 1,2 / 2,3 / 3,4 / 4,1 / 2,4 / 1,3. Contoh: ABCD dengan Switch 1,2 → BACD. <b>Tabu list</b> = daftar closed node agar tidak diulang.</div>
+<div class="tw"><table><tr><th>Jenis</th><th>Prosedur</th></tr><tr><td>Simple HC</td><td>Bangkitkan node (satu per satu), buang yang sudah pernah, ambil <b>node pertama yang lebih baik</b> dari sebelumnya.</td></tr><tr><td>Steepest Ascent</td><td>Bangkitkan <b>semua</b> node, buang yang pernah, ambil <b>yang terbaik</b> dibanding semua.</td></tr><tr><td>Random-Restart</td><td>Ulangi HC dari state awal acak sebanyak N kali, simpan hasil terbaik. Tujuan: lolos dari local maxima, plateau, dan ridge.</td></tr></table></div>
+<div class="c"><h3>Pseudocode RRHC</h3><code>best ← None; ulang N kali: state ← acak; hasil ← HillClimbing(state); jika hasil lebih baik dari best → best ← hasil; return best</code></div>
+</section>
+
+<section data-t="5 SA &amp; GA">
+<h2>Optimization Search</h2>
+<div class="c"><h3>Simulated Annealing (SA)</h3>Meniru <i>annealing</i> (pemanasan lalu pendinginan terkendali pada logam). Dua kunci: proses "mengguncang" dan energi. Panas tinggi = energi besar, makin dingin energi turun.
+<div class="fl" data-flow="1 Solusi awal (CS)|2 Nilai energi CSE|3 Tweak: WS=CS lalu ubah (mis. tukar 2 elemen)|4 Hitung WSE|5 Kriteria penerimaan|6 Inner iteration|7 Turunkan suhu" data-loop="inner loop di suhu sama (Metropolis Monte Carlo); outer loop sampai suhu ≈ nol"></div>
+<b>Penerimaan:</b> energi lebih rendah = lebih baik. Jika WSE &lt; CSE → CS=WS. Jika tidak: P = exp(−ΔE/T), ΔE = WSE−CSE, ambil acak R ∈ [0,1]; jika <b>P &gt; R</b> terima WS, selain itu tolak. Solusi terbaik = CS.<br>
+<b>Pendinginan:</b> T<sub>i+1</sub> = α·T<sub>i</sub> (α&lt;1). Contoh T0=120, α=0,25 → 30 → 7,5 → 1,875; berhenti jika T<sub>i</sub> &lt; T<sub>end</sub>(=2).<br>
+<b>Masalah:</b> proses acak, makan waktu, belum tentu optimal. <b>Aplikasi:</b> path generation, rekonstruksi citra, penjadwalan, layout sirkuit, routing, deteksi objek, desain filter digital.
+<div id="sa" style="margin-top:8px"></div></div>
+<div class="c"><h3>Genetic Algorithm (GA)</h3>Meniru evolusi alam (Darwin: seleksi alam + pewarisan genetik). Inspirasi biologis: sel → kromosom (46 = 23 pasang) → DNA (A,T,G,C) → gen (unit pewarisan). Mitosis = sel menggandakan kromosom lalu membelah jadi dua sel identik.
+<ul><li><b>Kromosom</b> = untai variabel yang merepresentasikan satu solusi; <b>gen</b> = satu parameter (mis. bit); <b>fitness</b> = kualitas kromosom; <b>populasi</b> = kumpulan individu.</li></ul>
+<div class="fl" data-flow="Inisialisasi populasi|Evaluasi (fitness)|Stop?|Seleksi|Rekombinasi (crossover + mutasi)" data-loop="generasi baru kembali ke evaluasi"></div>
+<b>Seleksi:</b> elitist/truncation, tournament, roulette wheel. <b>Stop:</b> jumlah iterasi tertentu atau populasi konvergen (Diff = δf/f &lt; k).<br>
+<b>Crossover</b> (jika PC &gt; Pc(Si)): tukar segmen dua kromosom, tidak membuat materi baru tetapi kromosom baru (single-point / multi-point). <b>Mutasi</b> (jika PM &gt; Pm(Si)): ubah acak gen, menghasilkan materi baru dan mengguncang populasi.<br>
+<b>Parameter:</b> popsize, PC, PM, generasi. <b>Masalah:</b> premature convergence (diversitas kurang → perbesar populasi / restart); <b>No-Free-Lunch</b>: tidak ada metode optimal untuk semua masalah, gunakan pengetahuan masalah. <b>Aplikasi:</b> optimasi, search, penjadwalan.
+<div id="ga" style="margin-top:8px"></div></div>
+</section>
+
+<section data-t="6 Adversarial">
+<h2>Adversarial Search</h2>
+<div class="c">Untuk permainan kompetitif multi-player <b>zero-sum</b> (untung satu pihak = rugi pihak lain, tidak ada win-win). Peran: strategic thinking, tujuan bertentangan, pengambilan keputusan, state-space search (pohon), dasar game playing (catur, Go, checkers, poker).</div>
+<div class="c"><h3>Minimax</h3>Meminimalkan kerugian maksimum (minmax) atau memaksimalkan keuntungan minimum (maxmin), bekerja mundur dari akhir permainan. Syarat: 2 pemain, MAX (komputer) dan MIN (lawan), deterministik, informasi sempurna.
+<div class="fl" data-flow="Pilih depth-bound &amp; fungsi evaluasi|Bangun tree sampai batas|Hitung evaluasi daun|Naik: ambil min di MIN, max di MAX"></div><div id="mm"></div></div>
+<div class="c"><h3>Alpha-Beta Pruning</h3>Mengurangi jumlah node yang dievaluasi minimax. <b>Alpha</b> = nilai sementara node MAX (hanya boleh naik); <b>Beta</b> = nilai sementara node MIN (hanya boleh turun). Jika nilai MIN sudah lebih kecil dari nilai MAX induknya, tidak perlu menghitung lebih lanjut (pruning). Contoh slide: 11 evaluasi dihemat.<div id="ab"></div></div>
+</section>
+
+<section data-t="7 Knowledge Rep">
+<h2>Knowledge Representation</h2>
+<div class="c"><b>Knowledge base</b> berisi konsep, teori, prosedur, fakta tentang objek domain beserta relasinya; harus dikumpulkan, dikodekan, dan diatur sistematis; dipakai inference mechanism untuk bernalar. <b>Knowledge engineering:</b> identify task → knowledge acquisition → knowledge representation.<div class="fl" data-flow="Identify the task|Knowledge acquisition|Knowledge representation"></div>IS (deskriptif, diagnostik) → ML (prediktif, preskriptif) → AI (kognitif).</div>
+<div class="tw"><table><tr><th>Jenis pengetahuan</th><th>Isi</th></tr><tr><td>Declarative</td><td>Apa yang diketahui: konsep, fakta, objek (true/false)</td></tr><tr><td>Procedural</td><td>Bagaimana: aturan, strategi, agenda, prosedur</td></tr><tr><td>Heuristic</td><td>Rule of thumb pemandu penalaran</td></tr><tr><td>Meta</td><td>Pengetahuan tentang pengetahuan, meningkatkan efisiensi</td></tr><tr><td>Structural</td><td>Struktur pengetahuan, model mental, relasi konsep-objek</td></tr></table></div>
+<div class="tw"><table><tr><th>Skema</th><th>Model</th><th>Representasi</th></tr><tr><td>Logical</td><td>Propositional, predicate</td><td>Simbol + aturan inferensi, sintaks dan semantik jelas</td></tr><tr><td>Procedural</td><td>IF…THEN</td><td>Kumpulan instruksi</td></tr><tr><td>Networked</td><td>Semantic net, conceptual graph</td><td>Graph</td></tr><tr><td>Structured</td><td>List, tree, frame</td><td>Graph terstruktur</td></tr></table></div>
+<div class="c"><h3>Logika</h3>Penalaran <b>deduktif</b> (umum → khusus, verifikasi) dan <b>induktif</b> (khusus → umum, penemuan). Jenis: propositional (T/F), predicate (fakta, objek, relasi), temporal, probability (derajat keyakinan), fuzzy (derajat kebenaran).
+<ul><li><b>Propositional:</b> proposisi = pernyataan benar/salah. Konektor AND (∧), OR (∨), NOT (¬), IMPLIES (⇒), EQUIVALENT (⇔) dengan tabel kebenaran.</li><li><b>Modus Ponens:</b> ((p⇒q) ∧ p) ⇒ q. Aturan lain: And-Elimination, And-Introduction, Or-Introduction, Double-Negation, Unit Resolution, Resolution.</li><li><b>Predicate:</b> pecah menjadi predikat dan argumen, mis. in(car, garage), give(Berto, Orel, apple). Kuantor: ∀ (universal), ∃ (eksistensial).</li></ul></div>
+<div class="c"><h3>List &amp; Tree</h3>Mewakili pengetahuan hierarkis. List: deretan item berperingkat. Tree: node = objek/kejadian, arc = relasi.</div>
+<div class="c"><h3>Semantic Network &amp; Conceptual Graph</h3>Node = konsep, arc = relasi (is-a, owns, works-for). Mencari jawaban = menelusuri arc maju/mundur dari node awal (mis. human_being(Kay)?). Tidak ada himpunan relasi standar. Contoh: navigasi mobil, Point(titik1, 36.59, 48.23), Path(jalur6, [titik6, titik7], 596.25, 30, 50). Conceptual graph: concept, relationship, type:referent.</div>
+<div class="c"><h3>Production System (IF kondisi THEN aksi)</h3>Contoh slide (lomba): job &lt;15/tahun → performa buruk; ≥15 → baik; usia &lt;2 → pemula; usia ≥2 dan buruk → pemula; usia ≥2 dan baik → mahir; pemula+senang-senang → festival lokal; pemula+serius → nasional; mahir+senang-senang → nasional tahunan; mahir+serius → internasional.</div>
+<div class="c"><h3>Frame</h3>Cocok untuk pengetahuan kompleks: node punya struktur dalam. Slot (atribut) + filler (nilai/prosedur), mendukung <b>inheritance</b> (class → superclass → instance, mis. ZE vehicle → Electric vehicle → Car → Van → Ford Ecostar).</div>
+<div class="c"><h3>Ontologi</h3>Filsafat tentang "ada": essence vs existence (centaur punya essence, tidak exist). Di CS: spesifikasi <b>formal, eksplisit</b> dari <b>konseptualisasi bersama</b> (Gruber &amp; Borst, 1998). Standar: RDF, OWL, SKOS. Kategori (Lassila &amp; McGuinness): dari catalog/ID, glosarium, thesauri, is-a, frame, sampai batasan logika umum.</div>
+</section>
+
+<section data-t="Panduan Tugas">
+<h2>Panduan Tugas 1 &amp; 2: Apa yang Diminta, Modul Mana, Konsepnya</h2>
+<div class="k">Tiap butir dijelaskan dengan 4 pertanyaan: <b>Apa yang ditanyakan?</b> · <b>Modul mana yang menjawab?</b> · <b>Konsepnya apa?</b> · <b>Jawaban yang benar bentuknya seperti apa?</b> (kerangka, bukan isi). Isi tetap dari kasus kelompokmu.</div>
+<div class="tw"><table><tr><th>Modul</th><th>Bisa menjawab</th></tr>
+<tr><td>02 Intro AI</td><td>Apa itu AI, Automatic vs Autonomy, Gardner, DIKW, roadmap AI</td></tr>
+<tr><td>03 Problem Solving &amp; Uninformed</td><td>Formulasi masalah (state, goal, operator), graph/tree, metrik algoritma</td></tr>
+<tr><td>04 Informed</td><td>Heuristik, f=g+h, A*</td></tr>
+<tr><td>05 Local Search</td><td>Hill climbing, local optimum, contoh operator TSP</td></tr>
+<tr><td>06 Optimization</td><td>Simulated Annealing, Genetic Algorithm</td></tr>
+<tr><td>07 Adversarial</td><td>Minimax, Alpha-Beta</td></tr>
+<tr><td>08 Knowledge Rep</td><td>KB, jenis pengetahuan, skema representasi, ontologi</td></tr></table></div>
+
+<h3>TUGAS 1 · Proposal sistem AI untuk SDG</h3>
+
+<div class="c"><h3>Butir 1-3: Topik, SDG, Deskripsi masalah</h3>
+<p><b>Ditanyakan:</b> pilih satu kasus nyata, kaitkan dengan minimal satu SDG, jelaskan masalahnya.</p>
+<p><b>Modul:</b> 03 (problem formulation: problem state, goal, operator; combinatorial explosion) dan 02 (Automatic vs Autonomy, definisi AI).</p>
+<p><b>Konsep:</b> Masalah dalam kacamata AI selalu punya tiga hal: kondisi sekarang (<i>initial state</i>), kondisi yang diinginkan (<i>goal</i>), dan tindakan yang boleh dilakukan (<i>operator</i>). Alasan memakai AI: masalah itu butuh pencarian atau keputusan yang tidak bisa dijawab aturan tetap (sistem Automatic: input sama, output selalu sama). Kalau ruang kemungkinannya besar, pencarian buta kewalahan (combinatorial explosion), jadi perlu AI.</p>
+<p><b>Bentuk jawaban:</b> konteks nyata dan siapa terdampak → kondisi sekarang → target → kenapa sulit diselesaikan manual/aturan biasa → hubungan jelas ke target SDG tertentu. Dinilai dari <b>kejelasan dan ketepatan</b>.</p></div>
+
+<div class="c"><h3>Butir 4: Karakteristik fungsional (input, output, proses)</h3>
+<p><b>Ditanyakan:</b> apa yang dilakukan sistem: masuk apa, diolah bagaimana, keluar apa.</p>
+<p><b>Modul:</b> 02 (Autonomy: persepsi → keputusan → aksi → belajar; DIKW; slide AI Concepts; IS-ML-AI), 08 (KB), 03-07 (metode untuk proses).</p>
+<p><b>Konsep:</b> <i>Input</i> = data dari lingkungan (tingkat Data pada DIKW). <i>Proses</i> = knowledge base + mekanisme inferensi (search dan pattern matching) yang mengubah data menjadi informasi, pengetahuan, lalu keputusan. <i>Output</i> = keputusan/rekomendasi/aksi. Sistem disebut Autonomy bila ada umpan balik yang membuatnya memperbaiki diri. Catatan: modul hanya menyebut machine learning di peta IS-ML-AI, detailnya tidak dibahas.</p>
+<p><b>Bentuk jawaban:</b> tiga bagian terpisah. Input: jenis, sumber, format data. Proses: kelompok metode (search / optimasi / rule-based) beserta alasan. Output: bentuk dan siapa pemakainya. Sebutkan feedback loop bila ada.</p></div>
+
+<div class="c"><h3>Butir 5: Argumentasi interdisipliner</h3>
+<p><b>Ditanyakan:</b> kenapa membangun sistem ini butuh bidang ilmu selain informatika.</p>
+<p><b>Modul:</b> 02 (definisi McCarthy, Multiple Intelligence Gardner), 08 (knowledge acquisition dari pakar, ontologi sebagai konseptualisasi bersama). Soal CPMK juga menyebut ilmu kognitif.</p>
+<p><b>Konsep:</b> AI = mesin yang mensimulasikan aspek kecerdasan manusia (McCarthy). Karena yang ditiru adalah kecerdasan, kamu butuh ilmu yang memahaminya (kognitif/psikologi), pakar domain sebagai sumber isi knowledge base, dan bidang yang terkait SDG (mis. kesehatan, lingkungan, ekonomi).</p>
+<p><b>Bentuk jawaban:</b> 3-4 disiplin; untuk tiap disiplin tulis <i>kontribusinya ke sistem</i> dan <i>akibatnya bila diabaikan</i>. Bukan sekadar daftar nama bidang.</p></div>
+
+<div class="c"><h3>Butir 6: Pertimbangan etika</h3>
+<p><b>Ditanyakan:</b> bias, dampak sosial/lingkungan, privasi, transparansi.</p>
+<p><b>Modul:</b> hanya menyentuh sedikit: roadmap ANI/AGI/ASI (pekerjaan terdampak), slide AI-generated content, dan sifat KB yang eksplisit (lebih mudah dijelaskan). <b>Selebihnya harus dari jurnal.</b></p>
+<p><b>Konsep:</b> <i>Bias</i>: data/aturan/KB yang tidak representatif menghasilkan keputusan tidak adil. <i>Dampak sosial/lingkungan</i>: siapa diuntungkan atau dirugikan, pekerjaan, energi. <i>Privasi</i>: data pribadi yang dikumpulkan dan disimpan. <i>Transparansi</i>: apakah keputusan bisa dijelaskan alasannya.</p>
+<p><b>Bentuk jawaban:</b> untuk tiap aspek: risiko yang spesifik di kasusmu, lalu cara mengurangi (mitigasi). Hindari kalimat umum yang berlaku untuk semua AI.</p></div>
+
+<div class="c"><h3>Butir 7: Daftar pustaka</h3>Minimal 3 artikel ilmiah berkualitas (jurnal/konferensi), dipakai untuk mendukung masalah, metode, dan etika. Tidak berasal dari modul.</div>
+
+<h3>TUGAS 2 · Mekanisme inferensi untuk PAM</h3>
+
+<div class="c"><h3>Butir 1: Formulasi/representasi masalah</h3>
+<p><b>Ditanyakan:</b> ubah masalah PAM menjadi bentuk formal yang bisa diproses komputer.</p>
+<p><b>Modul:</b> 03 (elemen problem state, goal, operator; graph dan tree), 05 (contoh TSP: operator Switch, kombinasi), 07 (game tree), 08 (skema representasi: logical, procedural, networked, structured).</p>
+<p><b>Konsep:</b> <i>Formulasi</i> = menetapkan state, initial state, goal (atau fungsi objektif/heuristik, modul 04), operator, dan biaya. <i>Representasi</i> = cara menyimpannya. Bentuknya mengikuti jenis masalah: cari jalur → graph/tree; cari konfigurasi → state berupa susunan, operator berupa tukar/ubah; game → tree MAX dan MIN; sistem aturan → fakta dan rule IF-THEN.</p>
+<p><b>Bentuk jawaban:</b> daftar elemen formulasi lengkap + satu gambar/diagram representasi + alasan skema itu cocok. Dinilai dari <b>ketepatan</b>.</p></div>
+
+<div class="c"><h3>Butir 2: Proses kognitif yang dimodelkan</h3>
+<p><b>Ditanyakan:</b> aktivitas berpikir manusia apa yang ditiru rancanganmu.</p>
+<p><b>Modul:</b> 03 (problem solving manusia: formulation → searching → execution), 02 (loop Autonomy, definisi AI, Gardner), 08 (jenis pengetahuan: declarative, procedural, heuristic, meta, structural; DIKW), 04 (heuristik = rule of thumb), 06 (SA meniru annealing dan GA meniru evolusi: contoh sistem yang meniru proses alamiah).</p>
+<p><b>Konsep:</b> Proses kognitif = rangkaian aktivitas mental: mengamati, mengingat pengetahuan, menalar/mencari, memutuskan, belajar. "Dimodelkan" berarti tiap aktivitas punya padanan komponen di sistemmu.</p>
+<p><b>Bentuk jawaban:</b> uraian proses berpikirnya + tabel dua kolom "aktivitas manusia → komponen sistem", dan sebutkan jenis pengetahuan yang dipakai.</p></div>
+
+<div class="c"><h3>Butir 3: Rancangan mekanisme inferensi</h3>
+<p><b>Ditanyakan:</b> bagaimana sistem bernalar dari input sampai output (arsitektur, flowchart).</p>
+<p><b>Modul:</b> slide AI Concepts (KB + inference mechanism: search dan pattern matching); metode dari modul 03 (BFS/DFS/IDS), 04 (Best First, A*), 05 (hill climbing), 06 (SA, GA), 07 (Minimax, Alpha-Beta), 08 (forward chaining pada rule, logika).</p>
+<p><b>Konsep:</b> Mekanisme inferensi = prosedur sistematis yang menalar di atas KB dan input hingga menghasilkan kesimpulan. Pemilihan metode berdasarkan jenis masalah dan sifat algoritma (metrik modul 03: time, space, completeness, optimality), apakah ada heuristik, dan risiko terjebak local optimum (modul 05).</p>
+<table><tr><th>Jenis masalah</th><th>Metode</th><th>Modul</th></tr><tr><td>Jalur tanpa biaya/estimasi</td><td>BFS, DFS, IDS, Bidirectional</td><td>03</td></tr><tr><td>Jalur dengan biaya + estimasi</td><td>Best First, A*</td><td>04</td></tr><tr><td>Konfigurasi terbaik</td><td>Hill climbing, SA, GA</td><td>05, 06</td></tr><tr><td>Game dua pemain</td><td>Minimax, Alpha-Beta</td><td>07</td></tr><tr><td>Berbasis aturan</td><td>Pattern matching, forward chaining</td><td>08</td></tr></table>
+<p><b>Bentuk jawaban:</b> diagram blok (Input → KB → mesin inferensi → Output) + flowchart langkah metode + alasan memilih metode itu dibanding alternatif.</p></div>
+
+<div class="c"><h3>Butir 4: Contoh skenario eksekusi (trace)</h3>
+<p><b>Ditanyakan:</b> satu contoh jalannya sistem melalui seluruh tahap, dari input hingga output.</p>
+<p><b>Modul:</b> format tabel di modul 03 (Step, Frontier, Processed node, Generated path, Added path); 7 langkah SA di modul 06 (CS, CSE, WS, WSE, P, R, T); siklus GA; propagasi nilai Minimax; rule yang menyala di modul 08.</p>
+<p><b>Konsep:</b> Trace = menjalankan algoritma "dengan tangan" pada satu contoh kecil dan mencatat kondisi internal di tiap langkah, supaya terlihat bahwa rancangan benar-benar berjalan.</p>
+<p><b>Bentuk jawaban:</b> satu kasus kecil dengan data sedikit; ada input awal dan output akhir; tiap langkah tercatat (tabel); setiap tahap dari butir 3 muncul minimal sekali. Dinilai dari <b>kejelasan per tahapan</b>.</p></div>
+</section>
+
+<section data-t="Tugas 1 &amp; 2">
+<h2>Tugas 1 &amp; 2: Konsep dari Modul Mana?</h2>
+<div class="k">Kata dosen: kalau Tugas 1 dan 2 sudah dikerjakan, kisi-kisi UTS bisa dikerjakan. Jadi pahami <b>alasan</b> tiap bagian tugas, bukan hanya mengisinya.</div>
+<h3>TUGAS 1 · Proposal sistem AI untuk SDG</h3>
+<div class="c">Kelompok · maks 4 halaman · deadline Senin 14 Sep 2026 12:00 · PDF di e-Class + hardcopy di loker · pakai cover. Nilai 4 × 25% (topik &amp; masalah, karakteristik fungsional, interdisipliner, etika). Daftar pustaka minimal 3 artikel ilmiah.</div>
+<div class="tw"><table><tr><th>Bagian proposal</th><th>Konsep modul yang dipakai</th><th>Cara menuliskan</th></tr>
+<tr><td>1-3 Topik, SDG, deskripsi masalah</td><td>Problem formulation (Modul 02/03): problem state, goal, operator</td><td>Pilih kasus nyata + SDG. Tulis kondisi sekarang (initial state), kondisi diinginkan (goal), batasan/aksi yang mungkin (operator). Jelaskan kenapa perlu AI, bukan sekadar otomatisasi.</td></tr>
+<tr><td>4 Karakteristik fungsional (input, proses, output)</td><td>Automatic vs Autonomy; knowledge base + inference mechanism; DIKW; IS-ML-AI</td><td><b>Input</b>: data/sensor (level Data). <b>Proses</b>: metode AI + knowledge base (naik ke Knowledge). <b>Output</b>: keputusan/rekomendasi. Tegaskan sistem Autonomy: persepsi → keputusan → aksi → belajar (feedback loop).</td></tr>
+<tr><td>5 Argumen interdisipliner</td><td>Definisi AI (McCarthy), Multiple Intelligence (Gardner), AI Concepts, knowledge acquisition</td><td>AI mensimulasikan aspek kecerdasan manusia, jadi butuh ilmu kognitif/psikologi, pakar domain (sumber knowledge base), dan bidang terkait SDG (lingkungan, kesehatan, ekonomi). Sebut kecerdasan manusia mana yang ditiru.</td></tr>
+<tr><td>6 Etika</td><td>Roadmap AI (ANI/AGI/ASI: jobs at risk), knowledge base eksplisit</td><td>Bias (data/aturan), dampak sosial &amp; lingkungan, privasi data, transparansi (rule-based mudah dijelaskan). Modul hanya menyentuh sedikit; cari rujukan jurnal.</td></tr>
+<tr><td>7 Pustaka</td><td>-</td><td>Minimal 3 artikel ilmiah berkualitas (jurnal/konferensi).</td></tr></table></div>
+<div class="c"><b>Contoh ide (ilustrasi):</b> rute pengumpulan sampah (SDG 11/12). Input: lokasi TPS dan jarak; proses: optimasi rute (A*/SA/GA); output: urutan rute terpendek. Ganti sesuai kasus kelompok.</div>
+
+<h3>TUGAS 2 · Mekanisme inferensi untuk PAM</h3>
+<div class="c">Kelompok · maks 5 halaman di luar cover · deadline Senin 5 Okt 2026 12:00. Nilai: formulasi masalah, proses kognitif, rancangan inferensi, contoh skenario (trace). Alur berpikirnya:<div class="fl" data-flow="1 Formulasi masalah|2 Proses kognitif|3 Mekanisme inferensi|4 Trace input → output"></div></div>
+<div class="tw"><table><tr><th>Butir</th><th>Konsep &amp; modul</th><th>Isi yang diminta</th></tr>
+<tr><td>1 Formulasi/representasi masalah</td><td>Problem formulation + space representation (Modul 02/03); skema representasi pengetahuan (Modul 08)</td><td>Definisikan state, initial state, goal, operator/aksi, path cost atau fungsi objektif. Gambarkan sebagai graph/tree, atau sebagai fakta+aturan (propositional/predicate, production rules, semantic network, frame).</td></tr>
+<tr><td>2 Proses kognitif yang dimodelkan</td><td>Problem solving manusia (formulation → searching → execution); DIKW; jenis pengetahuan</td><td>Jelaskan penalaran manusia yang ditiru: mengamati, mengingat pengetahuan (declarative/procedural/heuristic), menalar, memutuskan. Hubungkan tiap langkah ke komponen sistem.</td></tr>
+<tr><td>3 Rancangan mekanisme inferensi</td><td>Knowledge base + inference mechanism (search dan pattern matching); modul 03–07</td><td>Arsitektur: Input → knowledge base → inference engine → output. Beri flowchart dan alasan memilih algoritma (lihat tabel).</td></tr>
+<tr><td>4 Contoh skenario (trace)</td><td>Tabel proses (Step | Frontier | Processed node | Generated path | Added path) atau urutan rule yang menyala</td><td>Satu kasus konkret, tiap tahap dari input sampai output.</td></tr></table></div>
+<div class="tw"><table><tr><th>Jenis masalah PAM</th><th>Mekanisme inferensi</th><th>Modul</th></tr>
+<tr><td>Cari jalur/urutan aksi, tanpa info biaya</td><td>BFS (terpendek), DFS, IDS, Bidirectional</td><td>03</td></tr>
+<tr><td>Cari jalur dengan biaya + estimasi</td><td>Best First, A* (f=g+h), SMA*</td><td>04</td></tr>
+<tr><td>Cari konfigurasi terbaik (jadwal, rute TSP)</td><td>Hill Climbing, SA, Genetic Algorithm</td><td>05, 06</td></tr>
+<tr><td>Permainan 2 pemain</td><td>Minimax, Alpha-Beta</td><td>07</td></tr>
+<tr><td>Pakar/rekomendasi berbasis aturan</td><td>Production system (IF-THEN), forward chaining, logika</td><td>08</td></tr></table></div>
+<div class="c"><h3>Contoh trace: production system (dari slide lomba)</h3><div class="tw"><table><tr><th>Langkah</th><th>Fakta saat ini</th><th>Rule menyala</th><th>Fakta baru</th></tr>
+<tr><td>0 Input</td><td>job=20 kali/tahun, usia=3 tahun, tujuan=serius</td><td>-</td><td>-</td></tr>
+<tr><td>1</td><td>job ≥ 15</td><td>Rule 2</td><td>performa = baik</td></tr>
+<tr><td>2</td><td>usia ≥ 2 dan performa baik</td><td>Rule 5</td><td>rating = mahir</td></tr>
+<tr><td>3</td><td>rating mahir dan tujuan serius</td><td>Rule 9</td><td>kompetisi = internasional</td></tr>
+<tr><td>Output</td><td colspan="3">Festival internasional</td></tr></table></div>Untuk masalah pencarian, trace-nya berupa tabel FRONTIER tiap langkah; untuk SA, tulis T, CSE, WSE, P, R, diterima/ditolak per iterasi.</div>
+<h3>Ringkasan rumus untuk UTS (perkiraan)</h3>
+<div class="c"><ul><li>f(n)=g(n)+h(n); Greedy hanya h(n)</li><li>SA: P=exp(−ΔE/T), terima jika P&gt;R; T<sub>i+1</sub>=αT<sub>i</sub>; berhenti jika T<sub>i</sub>&lt;T<sub>end</sub></li><li>GA: crossover jika PC&gt;Pc(Si); mutasi jika PM&gt;Pm(Si); stop jika Diff&lt;k</li><li>DFS=stack/LIFO, BFS=queue/FIFO; tabel Big-O di tab 2</li><li>Minimax: min di MIN, max di MAX; alpha-beta potong jika nilai MIN ≤ alpha induk</li><li>Modus Ponens: ((p⇒q)∧p)⇒q</li></ul></div>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const secs=[...document.querySelectorAll('section')],nv=$('#nv');
+secs.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.dataset.t;b.onclick=()=>{secs.forEach((x,j)=>x.classList.toggle('on',i==j));[...nv.children].forEach((x,j)=>x.classList.toggle('on',i==j));scrollTo(0,0)};nv.append(b)});nv.children[0].click();
+document.querySelectorAll('[data-flow]').forEach(h=>{h.classList.add('fl');h.innerHTML=h.dataset.flow.split('|').map(s=>`<span class="st">${s}</span>`).join('<i>→</i>')+(h.dataset.loop?`<small>↺ ${h.dataset.loop}</small>`:'');const el=[...h.querySelectorAll('.st')];let k=0;setInterval(()=>{el.forEach((e,j)=>e.classList.toggle('a',j==k));k=(k+1)%el.length},1100)});
+function T(h,c){const ns=Object.keys(c.sets);let cur=ns[0],i=-1,tm;h.innerHTML=`<div class="bar">${ns.map(n=>`<button data-n="${n}">${n}</button>`).join('')}<button data-a="p">▶ Putar</button><button data-a="s">Langkah ›</button><button data-a="r">Reset</button></div><svg viewBox="0 0 ${c.w} ${c.h}"></svg><p class="nt"></p>`;const sv=h.querySelector('svg'),nt=h.querySelector('.nt');
+function d(){const f=i>=0?c.sets[cur][i]:{on:[],note:'Tekan Langkah atau Putar'};const N=c.nodes;let s=c.edges.map(([a,b])=>`<line class="e ${(f.cut||[]).includes(b)?'x':''}" x1="${N[a][0]}" y1="${N[a][1]}" x2="${N[b][0]}" y2="${N[b][1]}"/>`).join('');for(const k in N){const cl=(f.cut||[]).includes(k)?'x':f.cur==k?'cu':(f.on||[]).includes(k)?'on':'';s+=`<circle class="nd ${cl}" cx="${N[k][0]}" cy="${N[k][1]}" r="15"/><text x="${N[k][0]}" y="${N[k][1]+4}">${(f.lab&&f.lab[k])||N[k][2]}</text>`}sv.innerHTML=s;nt.textContent=f.note;h.querySelectorAll('[data-n]').forEach(b=>b.classList.toggle('on',b.dataset.n==cur))}
+const nx=()=>{if(i<c.sets[cur].length-1){i++;d()}else clearInterval(tm)};
+h.onclick=e=>{const b=e.target;if(b.dataset.n){cur=b.dataset.n;i=-1;clearInterval(tm);d()}if(b.dataset.a=='s')nx();if(b.dataset.a=='r'){i=-1;clearInterval(tm);d()}if(b.dataset.a=='p'){i=-1;d();clearInterval(tm);tm=setInterval(nx,1100)}};d()}
+const od=(a,g)=>a.map((n,j)=>({on:a.slice(0,j+1),cur:n,note:`Kunjungi simpul ${n}`+(n==g?' = GOAL ✓':'')}));
+T($('#w1'),{w:300,h:160,nodes:{1:[150,20,1],2:[57,75,2],3:[150,75,3],4:[243,75,4],5:[30,135,5],6:[85,135,6],7:[150,135,7],8:[205,135,8],9:[243,135,9],10:[281,135,10]},edges:[[1,2],[1,3],[1,4],[2,5],[2,6],[3,7],[4,8],[4,9],[4,10]],sets:{DFS:od([1,2,5,6,3,7],7),BFS:od([1,2,3,4,5,6,7],7)}});
+const mn={w:300,h:170,nodes:{r:[150,20,'?'],a:[60,80,'?'],b:[150,80,'?'],c:[240,80,'?'],1:[30,145,2],2:[80,145,5],3:[120,145,3],4:[150,145,1],5:[180,145,4],6:[225,145,4],7:[265,145,3]},edges:[['r','a'],['r','b'],['r','c'],['a',1],['a',2],['b',3],['b',4],['b',5],['c',6],['c',7]]};
+T($('#mm'),{...mn,sets:{Minimax:[{on:[1,2,3,4,5,6,7],note:'Evaluasi daun (depth 2): 2 5 3 1 4 4 3'},{on:[1,2],cur:'a',lab:{a:2},note:'MIN a = min(2,5) = 2'},{on:[3,4,5],cur:'b',lab:{a:2,b:1},note:'MIN b = min(3,1,4) = 1'},{on:[6,7],cur:'c',lab:{a:2,b:1,c:3},note:'MIN c = min(4,3) = 3'},{on:['a','b','c'],cur:'r',lab:{a:2,b:1,c:3,r:3},note:'MAX = max(2,1,3) = 3 → pilih langkah ke c'}]}});
+T($('#ab'),{w:300,h:170,nodes:{r:[150,20,'?'],a:[85,85,'?'],b:[215,85,'?'],1:[55,145,2],2:[115,145,5],3:[185,145,1],4:[245,145,3]},edges:[['r','a'],['r','b'],['a',1],['a',2],['b',3],['b',4]],sets:{'Alpha-Beta':[{on:[1,2],cur:'a',lab:{a:2},note:'MIN a = min(2,5) = 2, maka alpha di MAX ≥ 2'},{on:[3],cur:'b',lab:{a:2,b:'≤1'},note:'Daun 1 terbaca: beta b ≤ 1, sudah lebih kecil dari alpha 2'},{on:[3],cut:[4],lab:{a:2,b:'≤1'},note:'Daun 3 DIPOTONG: MIN hanya bisa turun, MAX sudah punya 2'},{on:['a','b'],cur:'r',lab:{a:2,b:1,r:2},note:'MAX = 2. Hasil sama dengan minimax, 1 evaluasi dihemat'}]}});
+$('#sa').innerHTML=`<b>Kalkulator P</b>: ΔE=WSE−CSE <input type="number" id="de" value="10"> T <input type="number" id="tt" value="50"> <button class="b" id="go">Hitung &amp; undi R</button><p class="nt" id="sr">Contoh slide: ΔE=10, T=50 → P=0,818731</p>`;
+$('#go').onclick=()=>{const dE=+$('#de').value,T=+$('#tt').value,P=dE<=0?1:Math.exp(-dE/T),R=Math.random();$('#sr').textContent=`P=${P.toFixed(6)}, R=${R.toFixed(3)} → ${dE<=0?'WSE lebih baik: langsung terima':P>R?'P>R: WS DITERIMA':'P≤R: WS DITOLAK'}`};
+let A='1101000010011101',B='0110110101001010',cp=8;
+$('#ga').innerHTML=`<b>Demo crossover single-point</b> titik potong <input type="range" id="cp" min="1" max="15" value="8"> <button class="b" id="mu">Mutasi acak anak 1</button><div class="bits" id="gb"></div>`;
+let mi=-1;function gr(){const cs=s=>[...s].map((c,i)=>`<span class="${i<cp?'p1':'p2'}">${c}</span>`).join(''),cs2=s=>[...s].map((c,i)=>`<span class="${i<cp?'p2':'p1'}">${c}</span>`).join('');let c1=A.slice(0,cp)+B.slice(cp),c2=B.slice(0,cp)+A.slice(cp);let o1=[...c1].map((c,i)=>`<span class="${i<cp?'p1':'p2'} ${i==mi?'mu':''}">${i==mi?(c=='1'?'0':'1'):c}</span>`).join('');$('#gb').innerHTML=`P1 ${cs(A).replace(/p2/g,'p1')}<br>P2 ${[...B].map(c=>`<span class="p2">${c}</span>`).join('')}<br>Anak1 ${o1}<br>Anak2 ${[...c2].map((c,i)=>`<span class="${i<cp?'p2':'p1'}">${c}</span>`).join('')}<p class="nt">Biru = gen dari P1, merah = dari P2. ${mi>=0?'Kotak oranye = gen termutasi (materi baru).':'Crossover hanya menukar segmen.'}</p>`}
+$('#cp').oninput=e=>{cp=+e.target.value;mi=-1;gr()};$('#mu').onclick=()=>{mi=Math.floor(Math.random()*16);gr()};gr();
+</script></body></html>
