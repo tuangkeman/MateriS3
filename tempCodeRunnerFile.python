@@ -1,0 +1,4 @@
+asal = {"B1": {"stok": 5}}
+salin = asal.deepcopy()
+salin["B1"]["stok"] -= 2
+print(asal["B1"]["stok"])
