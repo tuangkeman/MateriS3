@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ringkasan Algoritma & Struktur Data (Materi 09 sampai 11)</title>
+<style>
+:root{--bg:#f4f6fb;--cd:#fff;--tx:#18202f;--mu:#5a6578;--pr:#2447d6;--ac:#d9480f;--ok:#0f9d58;--bad:#d1293d;--bd:#dfe4ee;--ce:#e8edff;--cb:#0f1626;--on:#fff;--ct:#dfe7ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0c111c;--cd:#151d2e;--tx:#e6ebf6;--mu:#97a3ba;--pr:#86a2ff;--ac:#ff9a55;--ok:#46dc8a;--bad:#ff7487;--bd:#27324c;--ce:#202c4a;--cb:#080c15;--on:#0c111c}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0c111c;--cd:#151d2e;--tx:#e6ebf6;--mu:#97a3ba;--pr:#86a2ff;--ac:#ff9a55;--ok:#46dc8a;--bad:#ff7487;--bd:#27324c;--ce:#202c4a;--cb:#080c15;--on:#0c111c}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+header{padding:48px 20px 28px;max-width:960px;margin:auto}
+h1{font:800 clamp(30px,6vw,48px)/1.1 Georgia,"Times New Roman",serif;margin:0 0 10px;letter-spacing:-.02em}
+header p{color:var(--mu);margin:0 0 18px;max-width:60ch}
+nav{display:flex;flex-wrap:wrap;gap:8px}nav a{padding:5px 12px;border:1px solid var(--bd);border-radius:99px;color:var(--tx);text-decoration:none;font-size:14px;background:var(--cd)}nav a:hover{border-color:var(--pr);color:var(--pr)}
+main{max-width:960px;margin:auto;padding:0 20px 60px}
+section{margin-top:34px}
+h2{font:700 26px/1.2 Georgia,serif;margin:0 0 12px;padding-left:12px;border-left:5px solid var(--pr)}
+h3{font:700 21px/1.3 Georgia,serif;margin:30px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--bd);color:var(--pr)}h4{font-size:17px;margin:20px 0 6px}
+.cd{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:16px 18px;margin:12px 0}
+.hl{border-left:4px solid var(--ac)}
+b{color:var(--pr)}.hl b{color:var(--ac)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:10px;background:var(--cd);margin:10px 0}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd)}th{background:var(--ce)}tr:last-child td{border:0}
+pre{background:var(--cb);color:var(--ct);padding:14px 16px;border-radius:10px;overflow-x:auto;font:13px/1.55 Consolas,monospace;margin:10px 0}
+code{background:var(--ce);padding:1px 6px;border-radius:5px;font-size:.9em}pre code{background:none;padding:0}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.demo{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:14px 0}
+.demo>small{display:block;color:var(--mu);margin-bottom:8px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.b{background:var(--pr);color:#fff;border:0;border-radius:8px;padding:7px 14px;font:inherit;font-size:14px;cursor:pointer}.b:hover{filter:brightness(1.1)}.b:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+:root[data-theme="dark"] .b{color:#0c111c}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .b{color:#0c111c}}
+input,select{background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:7px 10px;font:inherit;font-size:14px;width:150px}
+.tk{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.t{padding:3px 11px;border:1px solid var(--bd);border-radius:7px;font:600 15px Consolas,monospace;background:var(--bg)}.t.d{opacity:.4}.t.c{background:var(--pr);color:#fff;border-color:var(--pr);transform:scale(1.15)}
+:root[data-theme="dark"] .t.c{color:#0c111c}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .t.c{color:#0c111c}}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end}
+.sk{display:flex;flex-direction:column;gap:3px;min-width:130px;max-height:300px;overflow:auto;padding-bottom:4px;border-bottom:4px solid var(--mu)}
+.sk small,.ot small{color:var(--mu);margin-bottom:2px}.sk small{order:-1}
+.bx{background:var(--ce);border:1px solid var(--pr);border-radius:6px;padding:4px 12px;text-align:center;font:600 15px Consolas,monospace}
+.bx.top{background:var(--ac);border-color:var(--ac);color:#fff;animation:pop .35s}
+@keyframes pop{from{transform:translateY(-18px) scale(.8);opacity:0}to{transform:none;opacity:1}}
+.ot .o{font:700 20px Consolas,monospace;min-height:30px;color:var(--ok)}
+.nt{margin-top:12px;padding:8px 12px;border-radius:8px;background:var(--ce);font-size:14.5px;min-height:38px}.nt.ok{background:color-mix(in srgb,var(--ok) 22%,transparent)}.nt.bad{background:color-mix(in srgb,var(--bad) 22%,transparent)}
+.qv{display:flex;gap:4px;align-items:center;flex-wrap:wrap;min-height:50px}.qv .bx{min-width:46px}.qv small{color:var(--mu);font-size:12px;display:block;text-align:center}
+.mz{display:grid;grid-template-columns:repeat(8,34px);gap:2px}.mz i{width:34px;height:34px;background:#cdf6f9;border-radius:4px;display:grid;place-items:center;font:700 13px sans-serif;font-style:normal;color:#222;transition:background .25s}
+.mz i.w{background:#10131a}.mz i.p{background:#ffc999}.mz i.x{background:#ff3b3b}.mz i.c{outline:3px solid var(--pr);outline-offset:-3px}
+.mh{background:var(--ce);border:1px solid var(--bd);border-radius:14px;padding:18px 22px;margin:56px 0 6px}.mh:first-child{margin-top:8px}.mh>b{color:var(--ac);font-size:14px}.mh h1{font-size:clamp(24px,4.5vw,34px);margin:2px 0 10px}.mh nav a{font-size:13px}
+.trw{overflow-x:auto;padding:4px 0}svg text{font-family:Consolas,monospace;font-weight:600;fill:var(--tx);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.edge{stroke:var(--mu);stroke-width:2}.nd circle{fill:var(--ce);stroke:var(--pr);stroke-width:2;transition:fill .25s}.nd.v circle{fill:var(--ok);stroke:var(--ok)}.nd.h circle{fill:var(--ac);stroke:var(--ac)}.nd.v text,.nd.h text{fill:var(--on)}
+.ar{display:flex;flex-wrap:wrap;gap:3px;margin-top:10px}.ar div{min-width:40px;text-align:center;border:1px solid var(--bd);border-radius:6px;padding:2px 6px;font:600 14px Consolas,monospace;background:var(--bg)}.ar small{display:block;font-size:10px;color:var(--mu);font-weight:400}.ar .h{background:var(--ac);border-color:var(--ac);color:var(--on)}.ar .h small{color:var(--on)}.ar .sd{background:color-mix(in srgb,var(--ok) 30%,transparent);border-color:var(--ok)}
+.pq{display:flex;gap:4px;flex-wrap:wrap;min-height:56px;margin:6px 0 14px;color:var(--mu)}.pq div{border:1px solid var(--pr);border-radius:8px;padding:3px 10px;text-align:center;background:var(--ce);color:var(--tx);font-size:14px}.pq .p{font:700 15px Consolas,monospace;color:var(--ac)}.pq .f{outline:3px solid var(--ok)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+footer{text-align:center;color:var(--mu);padding:20px;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>Ringkasan Algoritma &amp; Struktur Data</h1>
+<p>Semester Gasal 2026/2027, Prof. Antonius Rachmat C., Informatika UKDW. Tiga materi: 09 Stack Queue, 10 Tree dan BST, 11 Binary Heap dan Priority Queue. Ada demo interaktif: klik ▶ untuk melihat langkah demi langkah.</p>
+<nav><a href="#m09">Materi 09: Stack Queue</a><a href="#m10">Materi 10: Tree dan BST</a><a href="#m11">Materi 11: Heap dan Priority Queue</a></nav>
+</header>
+<main>
+<div class="mh" id="m09"><b>Materi 09</b><h1>Stack Queue</h1><nav class="sub"><a href="#s-def">Stack: Definisi</a><a href="#s-impl">Stack: Implementasi</a><a href="#s-kasus">Stack: Kasus</a><a href="#q-def">Queue: Definisi</a><a href="#q-impl">Queue: Implementasi</a><a href="#q-kasus">Queue: Kasus</a><a href="#rekap">Rekap</a></nav></div>
+<section id="stack"><h2>1. Stack</h2>
+<h3 id="s-def">1.1 Definisi dan Istilah pada Stack</h3><div class="cd hl">Struktur data <b>linier</b> dengan aturan khusus: <b>penambahan</b> dan <b>pengambilan</b> data hanya di <b>satu posisi / ujung</b> saja. Prinsipnya <b>LIFO = Last In First Out</b> (yang masuk terakhir, keluar pertama), seperti tumpukan piring.</div>
+<div class="tw"><table><tr><th>Operasi</th><th>Fungsi</th></tr>
+<tr><td><b>Push</b></td><td>Memasukkan data ke Stack. Data terbaru ada di posisi paling atas (top)</td></tr>
+<tr><td><b>Pop</b></td><td>Mengeluarkan data paling atas</td></tr>
+<tr><td><b>Top / Peek</b></td><td>Melihat nilai paling atas tanpa mengeluarkannya</td></tr>
+<tr><td><b>Clear</b></td><td>Mengosongkan isi Stack</td></tr></table></div>
+<div class="demo" id="ia1"><small>Coba sendiri: Push 10, 20, 30, 40 lalu Pop. Yang keluar duluan pasti 40.</small></div>
+
+<h3 id="s-impl">1.2 Implementasi Stack</h3><div class="g2">
+<div class="cd"><h4>Dengan List</h4><p>Pakai list bawaan Python yang sudah efisien. Top bisa di depan atau belakang, tapi paling mudah di <b>belakang</b>: dua fungsi utamanya <code>append</code> dan <code>pop</code>. Class: <code>StackList</code> dengan atribut <code>stack_data: list</code> dan method <code>__init__, push, pop, top, clear</code>.</p></div>
+<div class="cd"><h4>Dengan Linked List</h4><p>Pakai class Linked List yang sudah dibuat sebelumnya. Susunan class: <code>Node</code> (data, next), <code>SLNC</code> (head, tail, size; method <code>insert_head, delete_head</code>), lalu <code>StackLinkedList</code> (stack_data: SLNC). Lebih mudah jika <b>Top di head</b>.</p></div></div>
+<div class="tw"><table><tr><th>Operasi</th><th>List</th><th>Linked List (top di head)</th></tr>
+<tr><td>Push</td><td><code>append</code>, <b>O(1)</b></td><td>insert head, <b>O(1)</b> (langkahnya selalu tetap)</td></tr>
+<tr><td>Pop</td><td><code>pop</code>, <b>O(1)</b></td><td>delete head, <b>O(1)</b>. Jika top di tail: <b>O(n)</b></td></tr>
+<tr><td>Top</td><td>index -1, <b>O(1)</b></td><td>akses head/tail, <b>O(1)</b></td></tr>
+<tr><td>Clear</td><td><code>clear</code>, <b>O(1)</b></td><td>hapus Node satu per satu, <b>O(n)</b></td></tr></table></div>
+<div class="cd hl"><b>Kenapa top di head?</b> Insert dan delete di head selalu butuh jumlah langkah tetap. Kalau top di tail pada singly linked list, pop harus menelusuri dari head dulu untuk menemukan node sebelum tail, makanya O(n).</div>
+
+<h3 id="s-kasus">1.3 Kasus-Kasus untuk Stack</h3><h4>1. Stack Frame Function</h4>
+<p>Saat fungsi memanggil fungsi (rekursi), Python menyimpan setiap pemanggilan sebagai <b>frame</b> di <b>call stack</b>. Frame terakhir dipanggil, selesai paling dulu. Fungsi <code>f1(n)</code> mencetak n lalu memanggil <code>f1(n-1)</code> sampai <b>base case</b> (n = 0) yang mencetak <code>end</code>.</p>
+<pre><code>def f1(n):
+    if n > 0:
+        print(n)
+        f1(n-1)
+    else:
+        print('end')
+f1(2)      # Output: 2, 1, end</code></pre>
+<div class="demo" id="d-frame"><small>Animasi call stack f1(2)</small></div>
+<h4>2. Reversing Data</h4>
+<p>Karena LIFO, Stack bisa <b>membalik urutan data</b>. Push 10, 20, 30, 40 lalu pop semuanya, hasilnya <b>40, 30, 20, 10</b>.</p>
+<div class="demo" id="d-rev"><small>Animasi membalik data</small></div>
+
+<h4>3. Bracket Matching</h4>
+<p>Mengecek apakah semua bracket dipakai dengan benar: urutan (pembuka, penutup) sesuai, boleh <b>nested</b>, dan pasangannya cocok <code>{ }</code>, <code>( )</code>, <code>[ ]</code>.</p>
+<div class="cd"><b>Algoritma:</b> untuk setiap karakter input. (1) Bukan kurung: abaikan. (2) Kurung buka <code>( [ {</code>: <b>push</b>. (3) Kurung tutup <code>) ] }</code>: <b>pop</b>; kalau hasilnya kurung buka yang tidak sesuai, input <b>salah</b>, selesai. Setelah semua dibaca: stack <b>tidak kosong</b> berarti salah, stack <b>kosong</b> berarti benar.</div>
+<div class="demo" id="d-brk"><small>Ubah ekspresinya, misalnya <code>{[(]})</code> untuk melihat kasus salah</small></div>
+
+<h4>4. Infix, Postfix, dan Prefix</h4>
+<div class="tw"><table><tr><th>Notasi</th><th>Bentuk</th><th>Contoh (A * (B + C) / D)</th></tr>
+<tr><td><b>Infix</b></td><td>X + Y</td><td><code>A * ( B + C ) / D</code></td></tr>
+<tr><td><b>Postfix</b> (Reverse Polish)</td><td>X Y +</td><td><code>A B C + * D /</code></td></tr>
+<tr><td><b>Prefix</b> (Polish)</td><td>+ X Y</td><td><code>/ * A + B C D</code></td></tr></table></div>
+<p>Contoh: infix <code>3 + 2 * 5</code> harus diubah ke postfix <code>3 2 5 * +</code>.</p>
+<div class="cd"><b>Algoritma Infix to Postfix (IntoPos):</b> (1) Huruf atau angka: langsung ke <b>output</b>. (2) Kurung buka <code>(</code>: push. Saat ketemu <code>)</code>: pop isi stack ke output sampai <code>(</code> terbuang. (3) Operator: kalau stack kosong, <b>push</b>. Kalau tidak, bandingkan prioritas: bila operator masuk <b>lebih tinggi</b> dari top, <b>push</b>; bila tidak, <b>pop</b> top ke output lalu ulangi pengecekan. (4) Setelah input habis, pop sisa stack ke output.</div>
+<div class="demo" id="d-inf"><small>Contoh slide: a+b*c-d menghasilkan abc*+d-</small></div>
+
+<h4>5. Postfix Evaluator</h4>
+<div class="cd"><b>Algoritma:</b> baca postfix dari kiri ke kanan dengan Stack Hasil. <b>Operand</b>: push. <b>Operator</b>: pop pertama = <b>y</b>, pop kedua = <b>x</b>, hitung <b>x operator y</b>, push hasilnya. Setelah habis, sisa satu elemen di stack, itulah jawabannya. Contoh <code>2 5 * 3 +</code>: 2*5 = 10, lalu 10+3 = <b>13</b>. Perhatikan urutan: y di-pop duluan, jadi penting untuk pengurangan dan pembagian.</div>
+<div class="demo" id="d-pos"><small>Ubah token (pisahkan dengan spasi), misalnya <code>8 2 / 3 -</code></small></div>
+<h4>6. Penjelajahan Labirin (Maze)</h4>
+<p>Stack <b>path</b> menyimpan jejak dari <b>S</b> (2,0) menuju <b>E</b> (5,7). Di tiap kotak, arah dicoba berurutan: <b>ATAS, KIRI, BAWAH, KANAN</b> (sesuai enumerasi). Maju: <b>push</b> koordinat baru. <b>Jalan buntu</b>: <b>pop</b> untuk mundur sampai ketemu kotak yang masih punya arah belum dikunjungi. Ulangi sampai E tercapai (atau seluruh labirin habis dijelajahi). Oranye = jalur di stack, merah = sudah di-pop (buntu).</p>
+<div class="demo" id="d-mz"><small>Koordinat dalam format (baris, kolom)</small></div>
+
+</section>
+<section id="queue"><h2>2. Queue</h2>
+<h3 id="q-def">2.1 Definisi dan Operasi pada Queue</h3><div class="cd hl">Struktur data linier dengan prinsip <b>FIFO = First In First Out</b>, seperti antrean kasir: yang datang pertama dilayani pertama.</div>
+<div class="tw"><table><tr><th>Operasi</th><th>Fungsi</th></tr>
+<tr><td><b>Enqueue</b></td><td>Memasukkan data baru di posisi <b>paling belakang</b></td></tr>
+<tr><td><b>Dequeue</b></td><td>Mengeluarkan data di posisi <b>paling depan</b></td></tr>
+<tr><td><b>Front</b></td><td>Melihat data paling depan. Front selalu mengacu ke data terdepan</td></tr></table></div>
+<div class="demo" id="ia2"><small>Contoh slide: 32, 48, 80, 64, 18, 20, 100. Coba Dequeue, yang keluar selalu yang terdepan.</small></div>
+
+<h3 id="q-impl">2.2 Implementasi Queue</h3><p>Penyimpanan bisa pakai <b>List</b> atau <b>Linked List</b>. Minimal ada tiga fungsi utama: <b>enqueue, dequeue, front</b>. Tambahan opsional: <code>clear</code>, <code>__len__</code>, dan <code>__str__</code> untuk print.</p>
+<h4>Dengan List</h4>
+<p>Posisi Front terbaik di <b>index 0</b>. Enqueue memakai <code>append()</code>, dequeue mengambil elemen index 0 lalu menghapusnya (<code>pop(0)</code> atau <code>del</code>), dan front cukup mengakses index 0. Setiap method mengecek dulu apakah queue kosong, kalau kosong mengembalikan <code>None</code>.</p>
+<pre><code>class QueueList:
+    def __init__(self):
+        self.queue_data = list()
+    def enqueue(self, new_data):
+        self.queue_data.append(new_data)
+    def dequeue(self):
+        if len(self.queue_data) == 0:
+            return None
+        front_data = self.queue_data[0]   # ambil data terdepan
+        del self.queue_data[0]            # lalu hapus
+        return front_data
+    def front(self):
+        return None if len(self.queue_data) == 0 else self.queue_data[0]
+    def clear(self):
+        self.queue_data.clear()
+    def __len__(self):
+        return len(self.queue_data)
+    def __str__(self):
+        if len(self.queue_data) == 0:
+            return 'Queue is empty'
+        result = 'Queue contain ' + str(len(self.queue_data)) + ' data\n(Front) '
+        for data in self.queue_data:
+            result = result + ' ' + str(data)
+        return result</code></pre>
+<p>Catatan tambahan (bukan dari slide): menghapus elemen index 0 pada list Python menggeser semua elemen sisanya, jadi dequeue di sini sebenarnya O(n).</p>
+<h4>Dengan Linked List</h4>
+<p><b>Head sebagai Front</b> dan sebaiknya ada <b>tail</b>. Tanpa tail, enqueue (insert di belakang) harus menelusuri seluruh node dulu sehingga tidak efisien. Class: <code>Node</code>, <code>SLNC</code> (head, tail, size; <code>delete_head</code>, <code>insert_tail</code>), dan <code>QueueLinkedList</code>.</p>
+<div class="tw"><table><tr><th>Operasi</th><th>Cara</th><th>Kompleksitas</th></tr>
+<tr><td>Enqueue</td><td>insert di tail</td><td><b>O(1)</b></td></tr><tr><td>Dequeue</td><td>delete head</td><td><b>O(1)</b></td></tr><tr><td>Front</td><td>akses data di head</td><td><b>O(1)</b></td></tr></table></div>
+<pre><code>from slnc import SingleLinkedListNonCircular
+class QueueLinkedList:
+    def __init__(self):
+        self.queue_data = SingleLinkedListNonCircular()
+    def enqueue(self, new_data):          # insert pada tail
+        self.queue_data.insert_tail(new_data)
+    def dequeue(self):                    # hapus head
+        if len(self.queue_data) == 0:
+            return None
+        front_data = self.queue_data.head.data
+        self.queue_data.delete_head()
+        return front_data
+    def front(self):
+        if len(self.queue_data) == 0:
+            return None
+        return self.queue_data.head.data
+    def __len__(self):
+        return len(self.queue_data)
+    def __str__(self):
+        return str(self.queue_data)
+    def clear(self):                      # dequeue sampai kosong
+        while len(self.queue_data) > 0:
+            self.dequeue()</code></pre>
+
+<h3 id="q-kasus">2.3 Kasus-Kasus untuk Queue</h3><h4>Penggunaan Queue</h4>
+<p>Untuk kasus yang butuh pendekatan FIFO: <b>penjadwalan resource</b> oleh sistem operasi (CPU, disk, memori), <b>spooling printer</b>, <b>buffer hardware input</b> seperti keyboard, pengiriman <b>paket data</b> berurutan di jaringan, dan <b>antrean pengiriman</b> di mail/messaging server. Variasinya: <b>Priority Queue</b> (antrean berdasarkan skala prioritas) dan <b>Deque</b> (Double Ended Queue, punya dua ujung kepala).</p>
+<h4>Variasi Queue: Deque (Double Ended Queue)</h4>
+<p>Variasi Queue di mana enqueue dan dequeue bisa dari <b>ujung kiri maupun kanan</b>, jadi data bisa masuk dan keluar dari kedua ujung. Python sudah menyediakannya lewat <code>import collections</code>.</p>
+<div class="tw"><table><tr><th>Operasi</th><th>Fungsi</th></tr>
+<tr><td><code>append</code></td><td>Masukkan data baru ke ujung kanan</td></tr><tr><td><code>appendleft</code></td><td>Masukkan data baru ke ujung kiri</td></tr>
+<tr><td><code>pop</code></td><td>Keluarkan data di ujung kanan</td></tr><tr><td><code>popleft</code></td><td>Keluarkan data di ujung kiri</td></tr>
+<tr><td><code>extend</code></td><td>Tambah semua elemen di ujung kanan</td></tr><tr><td><code>extendleft</code></td><td>Tambah semua elemen di ujung kiri</td></tr>
+<tr><td><code>rotate</code></td><td>Putar n langkah ke kanan (n negatif = ke kiri)</td></tr></table></div>
+<pre><code>>>> import collections
+>>> dek = collections.deque()
+>>> dek.append(20); dek.append(30)
+>>> dek.appendleft(40); dek.appendleft(50)
+>>> dek
+deque([50, 40, 20, 30])
+>>> dek.pop()        # 30
+>>> dek.popleft()    # 50
+>>> dek
+deque([40, 20])</code></pre>
+<p><b>Karakteristik:</b> mutable, tambah data di awal dan akhir <b>O(1)</b>, bisa bersifat <b>LIFO maupun FIFO</b>, bisa diakses dengan index, kompatibel dengan operator <code>in</code>, dan punya banyak fungsi bawaan. Dokumentasi: docs.python.org/3/library/collections.html#deque-objects</p>
+
+</section>
+<section id="rekap"><h2>Rekap Stack vs Queue</h2>
+<div class="tw"><table><tr><th></th><th>Stack</th><th>Queue</th></tr>
+<tr><td>Prinsip</td><td><b>LIFO</b></td><td><b>FIFO</b></td></tr>
+<tr><td>Tambah</td><td>Push (di top)</td><td>Enqueue (di belakang)</td></tr>
+<tr><td>Ambil</td><td>Pop (dari top)</td><td>Dequeue (dari depan)</td></tr>
+<tr><td>Lihat</td><td>Top / Peek</td><td>Front</td></tr>
+<tr><td>Ujung yang dipakai</td><td>Satu ujung</td><td>Dua ujung (masuk belakang, keluar depan)</td></tr>
+<tr><td>Penerapan</td><td>Stack frame, reversing, bracket matching, infix-postfix, maze</td><td>Penjadwalan OS, printer spooling, buffer, paket jaringan, mail server</td></tr>
+<tr><td>Dengan list / linked list</td><td>Top di belakang list / di head</td><td>Front di index 0 / di head, enqueue di tail</td></tr></table></div>
+<div class="cd hl">Minggu depan: <b>10 – Tree dan BST</b>.</div>
+</section>
+<div class="mh" id="m10"><b>Materi 10</b><h1>Tree dan Binary Search Tree</h1><nav class="sub"><a href="#t-def">Struktur &amp; Kegunaan</a><a href="#t-op">Operasi pada Tree</a><a href="#t-bst">Binary Search Tree</a></nav></div>
+
+<section id="t-def"><h2>1. Struktur, Karakteristik, dan Kegunaan Tree</h2>
+<div class="cd hl"><b>Tree</b> adalah struktur data <b>non-linear</b> yang membentuk <b>hierarki / tingkatan</b>. Tree juga <b>recursive data structure</b>: sebagian atau seluruhnya tersusun dari struktur yang sama dalam bentuk lebih kecil (subtree adalah tree juga). Bisa diimplementasikan dengan linked list.</div>
+<h3>Mengapa menggunakan tree?</h3>
+<div class="tw"><table><tr><th>Kebutuhan</th><th>Contoh</th></tr>
+<tr><td>Data berjenjang secara natural</td><td><b>File system</b></td></tr>
+<tr><td>Jaringan komputer</td><td>Routing table di router high-bandwidth (binary tries)</td></tr>
+<tr><td>Kompresi data</td><td>JPEG dan MP3 memakai <b>Huffman coding tree</b></td></tr>
+<tr><td>Teknologi HTML</td><td><b>DOM</b> (Document Object Model) disimpan sebagai tree</td></tr>
+<tr><td>Game</td><td>Penyelesaian catur / tic-tac-toe / Othello dengan tree (brute force)</td></tr>
+<tr><td>Sistem pakar</td><td><b>Decision tree</b></td></tr></table></div>
+<h3>Terminologi pada Tree</h3>
+<div class="tw"><table><tr><th>Istilah</th><th>Keterangan</th></tr>
+<tr><td><b>Node</b></td><td>Elemen data pada tree</td></tr>
+<tr><td><b>Root</b></td><td>Elemen paling atas</td></tr>
+<tr><td><b>Parent</b></td><td>Node yang punya anak/cabang (single node atau subtree)</td></tr>
+<tr><td><b>Leaf (daun) / External node</b></td><td>Node tanpa cabang</td></tr>
+<tr><td><b>Internal node</b></td><td>Semua node kecuali root dan leaf</td></tr>
+<tr><td><b>Sibling</b></td><td>Node-node yang punya parent sama</td></tr>
+<tr><td><b>Degree</b></td><td>Banyaknya subtree/anak yang dimiliki sebuah node</td></tr>
+<tr><td><b>Level</b></td><td>Urutan tingkatan node, dari paling atas (root = level 0)</td></tr>
+<tr><td><b>Depth / Height</b></td><td>Level maksimum sebuah tree (level mulai dari 0)</td></tr>
+<tr><td><b>Path</b></td><td>Urutan rute akses dari source node ke destination node</td></tr></table></div>
+<p><b>Sub-tree</b> adalah bagian tree yang lebih kecil (misalnya subtree dari node B). Hubungan sebuah node dengan node satu level di bawahnya disebut <b>Parent – Child</b>.</p>
+<div class="demo" id="d-term"></div>
+<h3>Height dan Depth</h3>
+<div class="g2">
+<div class="cd"><b>Height tree</b> = level maksimum. Pada tree contoh (A di level 0; B, C level 1; D, E, F level 2; G, H, I level 3) height-nya <b>3</b>, dengan jumlah node per level 1, 2, 3, 3.</div>
+<div class="cd"><b>Height node</b> = jarak terjauh node itu ke leaf-nya. Leaf (D, G, H, I) height <b>0</b>; F punya leaf H dan I satu langkah di bawahnya, jadi height <b>1</b>.<br><b>Depth node</b> = jarak dari root ke node itu. Root A depth <b>0</b>, F depth <b>2</b>.</div></div>
+<div class="cd hl">Cara mengingat: <b>depth</b> dihitung ke <b>bawah dari root</b>, <b>height</b> dihitung ke <b>bawah menuju leaf</b> (dari node itu sendiri). Klik node pada demo di atas untuk melihat keduanya.</div>
+<h3>Jenis-Jenis Tree</h3>
+<div class="g2">
+<div class="cd"><h4>General Tree</h4>Tiap node boleh punya child dalam jumlah berapa pun. Biasanya child disimpan dalam <b>List</b>.</div>
+<div class="cd"><h4>Binary Tree</h4>Tiap node punya <b>maksimal dua child</b>, biasanya disimpan sebagai <b>left</b> dan <b>right</b>. Paling banyak dipakai dalam algoritma; variasinya: <b>Binary Search Tree, AVL Tree, B-Tree, T-Tree</b>. Binary tree yang lebih spesifik punya aturan peletakan child (kiri atau kanan).</div></div>
+<h4>Bentuk-bentuk Binary Tree</h4>
+<div class="g2" id="bt-types"></div>
+</section>
+
+<section id="t-op"><h2>2. Operasi-Operasi pada Tree</h2>
+<div class="cd hl">ADT Binary Tree: <b>Create, Insert, Traversing</b> (Find, Print), dan <b>Delete</b>.</div>
+<h3>Create (Insert)</h3>
+<p>Tentukan <b>root</b> (biasanya node pertama). Node berikutnya: <b>lebih besar dari parent → kanan</b>, <b>lebih kecil atau sama → kiri</b>. Bentuk ini disebut <b>Binary Search Tree</b>. Contoh urutan masuk: 56, 24, 78, 12, 29, 33, 63, 81, 98.</p>
+<div class="demo" id="d-bg"><small>Coba juga data latihan lain, misalnya 45 56 72 23 38 17 30 60 100</small></div>
+<h3>Traversing</h3>
+<div class="tw"><table><tr><th>Mode</th><th>Urutan kunjungan</th><th>Hasil pada tree contoh</th></tr>
+<tr><td><b>Level Order</b> (Breadth First)</td><td>Per level, mulai level paling atas, kiri ke kanan</td><td>56, 24, 78, 12, 29, 63, 81, 33, 98</td></tr>
+<tr><td><b>Pre-Order</b> (Depth First)</td><td><b>Root → Left → Right</b></td><td>56, 24, 12, 29, 33, 78, 63, 81, 98</td></tr>
+<tr><td><b>In-Order</b> (Depth First)</td><td><b>Left → Root → Right</b></td><td>12, 24, 29, 33, 56, 63, 78, 81, 98</td></tr>
+<tr><td><b>Post-Order</b> (Depth First)</td><td><b>Left → Right → Root</b></td><td>12, 33, 29, 24, 63, 98, 81, 78, 56</td></tr></table></div>
+<p>Depth first traversal punya tiga macam: Pre-Order, In-Order, dan Post-Order. Ketiganya dikerjakan <b>secara rekursif</b> pada subtree kiri dan kanan.</p>
+<div class="demo" id="d-tr"><small>Pilih mode lalu klik Jalankan. Hijau = sudah dikunjungi, oranye = sedang dikunjungi.</small></div>
+<pre><code># ilustrasi (bukan dari slide): Pre-Order
+def pre_order(node):
+    if node:
+        print(node.data)        # Root
+        pre_order(node.left)    # Left (rekursif)
+        pre_order(node.right)   # Right (rekursif)</code></pre>
+<p>Kode di atas mengunjungi root dulu, lalu menurun ke subtree kiri sampai habis, baru subtree kanan. In-Order cukup memindahkan baris <code>print</code> ke antara dua pemanggilan rekursif, dan Post-Order memindahkannya ke paling akhir.</p>
+<div class="tw"><table><tr><th>Contoh lain dari slide (tree 15; 11, 50; 10, 12, 20, 80)</th><th>Hasil</th></tr>
+<tr><td>Pre-Order</td><td>15, 11, 10, 12, 50, 20, 80</td></tr><tr><td>In-Order</td><td>10, 11, 12, 15, 20, 50, 80 (terurut)</td></tr><tr><td>Post-Order</td><td>10, 12, 11, 20, 80, 50, 15</td></tr></table></div>
+<h3>Delete pada Binary Tree biasa</h3>
+<p>Caranya tergantung ada tidaknya aturan khusus pembentukan tree. Untuk <b>binary tree biasa</b>: jika <b>leaf</b>, hapus langsung. Jika <b>bukan leaf</b>, pilih node yang berada <b>paling kanan (paling bawah kanan)</b> untuk menggantikannya, lalu hapus node asalnya. Binary tree dengan aturan khusus (BST) dibahas di bagian berikutnya.</p>
+<div class="tw"><table><tr><th>Contoh</th><th>Penyelesaian</th></tr>
+<tr><td>Tree 15; 11, 50; 10, 12, 20, 80. <b>Hapus 11</b></td><td>11 diganti node paling kanan-bawah (<b>80</b>), node 80 yang lama dihapus. Hasil: 15; 80, 50; 10, 12, 20</td></tr>
+<tr><td>Tree A; B, C; D, E, G, H; F, I. <b>Hapus F</b></td><td>F adalah leaf: langsung dihapus</td></tr>
+<tr><td><b>Hapus B</b> (punya child)</td><td>Pilih node paling kanan, yaitu <b>I</b>, untuk menggantikan B</td></tr></table></div>
+</section>
+
+<section id="t-bst"><h2>3. Binary Search Tree (BST)</h2>
+<div class="cd hl">BST adalah binary tree dengan aturan: <b>(1)</b> child kiri nilainya <b>lebih kecil</b> dari parent, <b>(2)</b> child kanan <b>lebih besar</b> dari parent, <b>(3)</b> subtree kiri dan kanan juga harus memenuhi aturan 1 dan 2.</div>
+<div class="cd"><b>Jebakan saat mengecek “apakah ini BST?”</b> Aturan berlaku untuk seluruh subtree, bukan hanya parent langsung. Contoh: node 19 sebagai child kanan 14 tampak benar (19 &gt; 14), tetapi 19 berada di subtree kiri 18 sehingga harus lebih kecil dari 18, jadi tree itu <b>bukan BST</b>.</div>
+<h3>Kompleksitas dan sifat BST</h3>
+<div class="tw"><table><tr><th>Operasi</th><th>Balanced BST</th><th>Unbalanced BST</th></tr>
+<tr><td>Insert</td><td><b>O(log n)</b></td><td><b>O(n)</b></td></tr><tr><td>Search</td><td><b>O(log n)</b></td><td><b>O(n)</b></td></tr><tr><td>Delete</td><td><b>O(log n)</b></td><td><b>O(n)</b></td></tr></table></div>
+<p>Slide menulis O(2log n), maksudnya log berbasis 2. Traversing <b>In-Order</b> pada BST menghasilkan data <b>terurut</b>. Pada balanced BST, pencarian setara binary search pada array terurut, sedangkan insert dan delete <b>lebih cepat</b> daripada pada array terurut. Pada unbalanced BST (misalnya tree miring seperti linked list) kinerja turun menjadi O(n).</p>
+<h3>Insert pada BST</h3>
+<p>Caranya sama dengan Create: bandingkan dengan node saat ini, belok kiri atau kanan, sampai ketemu posisi kosong. Contoh slide: pada tree 18; 14, 25; 12, 20, 29 dimasukkan 16, 35, 24, 27. Coba di demo Create dengan data <code>18 14 25 12 20 29 16 35 24 27</code>.</p>
+<div class="tw"><table><tr><th>Latihan slide</th><th>Tree yang terbentuk</th><th>Depth</th><th>Paling kiri</th><th>Paling kanan</th></tr>
+<tr><td>a. 45, 56, 72, 23, 38, 17, 30, 60, 100</td><td>45; kiri 23 (17, 38 (kiri 30)); kanan 56 (kanan 72 (60, 100))</td><td>3</td><td>17</td><td>100</td></tr>
+<tr><td>b. 94, 54, 67, 34, 12, 89, 100, 101, 77</td><td>94; kiri 54 (34 (12), 67 (kanan 89 (kiri 77))); kanan 100 (kanan 101)</td><td>4</td><td>12</td><td>101</td></tr></table></div>
+<p>Jawaban saya (cek lewat demo Create). Pertanyaan terakhir slide: ya, <b>urutan kedatangan yang berbeda menghasilkan bentuk BST yang berbeda</b>, tetapi hasil In-Order tetap sama-sama terurut.</p>
+<h3>Search (Lookup) pada BST</h3>
+<p>Mulai dari root. Jika target lebih besar dari node, ke <b>kanan</b>; jika lebih kecil, ke <b>kiri</b>. Berhenti saat ketemu atau saat mencapai leaf tanpa hasil. Contoh slide: cari 24 ditemukan (18, 25, 20, 24), cari 32 tidak ada (18, 25, 29, 35, lalu leaf).</p>
+<div class="demo" id="d-sr"><small>Tree: hasil insert 18, 14, 25, 12, 20, 29, 16, 35, 24, 27. Coba 24 dan 32.</small></div>
+<h3>Delete pada BST</h3>
+<div class="tw"><table><tr><th>Kondisi node yang dihapus</th><th>Tindakan</th></tr>
+<tr><td>Tidak punya child (leaf)</td><td>Langsung hapus</td></tr>
+<tr><td>Punya <b>1 child</b></td><td><b>Child menggantikan</b> node yang dihapus</td></tr>
+<tr><td>Punya <b>2 child</b></td><td>Cari pengganti: <b>terkecil di subtree kanan</b> atau <b>terbesar di subtree kiri</b></td></tr></table></div>
+<p>Menghapus leaf paling mudah. Menghapus internal node atau root lebih kompleks karena bentuk tree berubah. Demo di bawah memakai pengganti terkecil di kanan, seperti slide (hapus 25 diganti 29, hapus 18 diganti 20).</p>
+<div class="demo" id="d-dl"><small>Tree awal: 18; 14, 25; 12, 20, 29</small></div>
+<div class="cd hl">Minggu depan: <b>11 – Heap Tree dan Priority Queue</b>.</div>
+</section>
+
+<div class="mh" id="m11"><b>Materi 11</b><h1>Binary Heap Tree dan Priority Queue</h1><nav class="sub"><a href="#h-cmp">Perbandingan</a><a href="#h-heap">Binary Heap</a><a href="#h-pq">Priority Queue</a></nav></div>
+
+<section id="h-cmp"><h2>1. Demo Perbandingan dan Binary Tree vs BST vs Heap</h2>
+<h3>Demo: Queue biasa vs Binary Heap Queue</h3>
+<div class="tw"><table><tr><th>Data (N)</th><th>Antrean biasa (list linier, O(n))</th><th>Binary Heap Queue (O(log n))</th></tr>
+<tr><td>1.000</td><td>103,86 ms</td><td>0,99 ms (<b>104,8x lebih cepat</b>)</td></tr>
+<tr><td>10.000</td><td>0,08 detik naik jadi <b>8,5 detik</b></td><td>tetap instan, <b>0,019 detik</b></td></tr></table></div>
+<div class="cd"><b>Refleksi:</b> untuk 1.000 elemen masuk-keluar, antrean biasa melakukan sekitar 1000²/2 = <b>500.000 pembandingan</b>. Binary Heap memakai complete binary tree yang disimpan di array, penyesuaiannya hanya sepanjang tinggi tree (log n), jadi cukup sekitar 1000 × log(1000) = <b>10.000 operasi</b>. Pilihan struktur data yang keliru bisa fatal pada kasus kritis, misalnya keterlambatan 8,5 detik yang membahayakan keselamatan jiwa.</div>
+<h3>Binary Tree vs Binary Search Tree vs Heap Tree</h3>
+<div class="tw"><table><tr><th></th><th>Binary Tree</th><th>Binary Search Tree</th><th>Binary Heap</th></tr>
+<tr><td>Aturan</td><td>Maks. 2 anak (perfect, full, complete, balanced, unbalanced)</td><td>Kiri <b>selalu lebih kecil</b>, kanan <b>selalu lebih besar</b></td><td><b>Complete</b> binary tree + <b>heap property</b></td></tr>
+<tr><td>Hapus node bukan leaf</td><td>Diganti node <b>paling bawah kanan</b></td><td>Diganti <b>terbesar di kiri</b> atau <b>terkecil di kanan</b></td><td>Root diganti elemen terakhir, lalu <b>heapify down</b></td></tr>
+<tr><td>Penyimpanan</td><td>Linked node</td><td>Linked node</td><td>Umumnya <b>array / list</b></td></tr></table></div>
+</section>
+
+<section id="h-heap"><h2>2. Binary Heap</h2>
+<div class="cd hl"><b>Binary Heap</b> adalah <b>complete binary tree</b> yang memenuhi <b>heap property</b>:<br><b>Max-heap</b>: nilai tiap node ≥ nilai anak-anaknya (terbesar di root).<br><b>Min-heap</b>: nilai tiap node ≤ nilai anak-anaknya (terkecil di root).<br>Bisa dipakai untuk <b>priority queue</b> (min-heap), prioritas tertinggi ada di root.</div>
+<h3>Implementasi dengan array</h3>
+<p>Implementasi paling umum memakai <b>array / list</b>, bukan linked list. Jika posisi node = i:</p>
+<div class="tw"><table><tr><th>Indeks mulai dari</th><th>Anak kiri</th><th>Anak kanan</th><th>Parent</th></tr>
+<tr><td><b>0</b></td><td>2i + 1</td><td>2i + 2</td><td>(i − 1) // 2</td></tr>
+<tr><td><b>1</b></td><td>2i</td><td>2i + 1</td><td>i // 2</td></tr></table></div>
+<p>Contoh list <code>[17, 15, 13, 9, 6, 5, 10, 4, 8, 3, 1]</code> (angka kecil di bawah kotak = indeks, mulai 0):</p>
+<div class="demo" id="hp-ex"></div>
+<h3>Pembentukan Binary Heap (Heapify)</h3>
+<p>Data 3, 9, 2, 1, 4, 5 (n = 6) belum memenuhi max-heap, maka dilakukan <b>heapify</b>: memperbaiki heap property dari bawah ke atas.</p>
+<div class="cd"><b>Langkah:</b> (1) mulai dari internal node bukan root terakhir, yaitu posisi <b>(n/2) − 1</b>. (2) Cek anak kiri dan kanan; kalau ada yang lebih besar dari parent, <b>tukar</b> dengan anak terbesar. (3) Ulangi sampai seluruh subtree memenuhi syarat. Untuk n = 6 iterasinya node <b>2, 1, 0</b>.</div>
+<pre><code>def heapify(arr, n, i):
+    largest = i
+    l = 2*i + 1
+    r = 2*i + 2
+    if l &lt; n and arr[l] &gt; arr[largest]:
+        largest = l
+    if r &lt; n and arr[r] &gt; arr[largest]:
+        largest = r
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)</code></pre>
+<p>Fungsi ini menganggap node i mungkin lebih kecil dari anaknya. Ia mencari yang terbesar di antara i, anak kiri, dan anak kanan (dengan syarat indeks anak masih di dalam n). Kalau ternyata bukan i yang terbesar, nilai ditukar lalu fungsi memanggil dirinya sendiri pada posisi baru supaya perbaikan terus turun ke bawah.</p>
+<div class="demo" id="d-hf"><small>Contoh slide: 3 9 2 1 4 5. Contoh soal slide: 1 3 5 4 6 13 10 9 8 15 17 (hasilnya max-heap yang sama dengan list contoh di atas).</small></div>
+<h3>Operasi Insert (percolate up)</h3>
+<div class="cd">(1) Tambahkan elemen di <b>posisi terakhir</b> (paling bawah kanan). (2) Bandingkan dengan parent; kalau elemen baru <b>lebih besar</b>, <b>tukar</b>. (3) Naik terus sampai parent ≥ elemen atau sudah di root. Contoh slide: heap [17, 15, 13, 9, 6, 5, 10, 4, 8, 3, 1], insert 12 menjadi [17, 15, 13, 9, 6, <b>12</b>, 10, 4, 8, 3, 1, 5].</div>
+<div class="demo" id="d-hi"><small>Heap awal: 17 15 13 9 6 5 10 4 8 3 1. Ganti nilai yang di-insert, misalnya 12 atau 20.</small></div>
+<h3>Operasi Delete (heapify down)</h3>
+<div class="cd">(1) Simpan nilai root bila perlu di-return. (2) Ganti root dengan <b>elemen terakhir</b> (paling bawah kanan). (3) <b>Kurangi ukuran heap</b>. (4) Heapify ke bawah dari root: bandingkan dengan kedua anak, tukar dengan <b>anak yang lebih besar</b> jika melanggar, teruskan sampai terpenuhi. Contoh slide: hapus 17, hasil akhir [15, 9, 13, 8, 6, 12, 10, 4, 5, 3, 1].</div>
+<div class="demo" id="d-hd"><small>Heap awal: 17 15 13 9 6 12 10 4 8 3 1 5. Menghapus root (17).</small></div>
+<h3>Heapsort</h3>
+<p>Mengurutkan list memakai heap, versi optimal dari selection sort. Langkah: (1) bentuk <b>max-heap</b>. (2) <b>Tukar root</b> (terbesar) dengan elemen terakhir. (3) Kecilkan ukuran heap (elemen terakhir sudah terurut). (4) <b>Heapify</b> dari elemen pertama. (5) Ulangi sampai urut.</p>
+<div class="tw"><table><tr><th>Tahap</th><th>Kompleksitas</th></tr><tr><td>Build heap</td><td><b>O(n)</b></td></tr><tr><td>Heapify per elemen</td><td><b>O(log n)</b></td></tr><tr><td><b>Total Heapsort</b></td><td><b>O(n log n)</b></td></tr></table></div>
+<pre><code># ilustrasi (bukan dari slide), memakai heapify di atas
+def heapsort(arr):
+    n = len(arr)
+    for i in range(n//2 - 1, -1, -1):   # bentuk max-heap
+        heapify(arr, n, i)
+    for end in range(n-1, 0, -1):
+        arr[0], arr[end] = arr[end], arr[0]   # root ke posisi akhir
+        heapify(arr, end, 0)                  # perbaiki heap yang mengecil</code></pre>
+<div class="demo" id="d-hs"><small>Kotak hijau pada array = bagian yang sudah terurut. Slide diakhiri dengan [5, 4, 2, 3, 8, 9, 10] menjadi [2, 3, 4, 5, 8, 9, 10].</small></div>
+</section>
+
+<section id="h-pq"><h2>3. Priority Queue dan Priority Heap</h2>
+<div class="cd hl"><b>Priority Queue</b> adalah antrean yang tiap datanya punya <b>nilai prioritas</b>. Yang keluar pertama bukan berdasarkan posisinya, melainkan <b>prioritas tertinggi</b>. Aturan slide: <b>semakin kecil angkanya, semakin tinggi prioritasnya</b> (1 = tertinggi). Prioritas sama: <b>sesuai urutan masuk</b>. Operasi: <b>enqueue, dequeue, front, clear, empty, full</b>.</div>
+<p><b>Contoh pemakaian:</b> antrean program user vs system/kernel, pesawat yang akan mendarat (rute, jenis penerbangan, bahan bakar), kendaraan di jalan raya (jenis yang harus didahulukan), pemesanan ojol (pelanggan platinum lebih diprioritaskan).</p>
+<h3>Pilihan implementasi</h3>
+<div class="tw"><table><tr><th>Cara simpan</th><th>Penyimpanan</th></tr><tr><td><b>Sorted</b></td><td>List/Array atau Linked List</td></tr><tr><td><b>Unsorted</b></td><td>List/Array atau Linked List</td></tr><tr><td><b>Binary Heap</b></td><td>List/Array (umum) atau Linked List</td></tr></table></div>
+<div class="g2">
+<div class="cd"><h4>Sorted</h4>Data selalu urut prioritas. Data baru <b>disisipkan</b> di posisi yang sesuai (perlu mencari tempat). Data terdepan pasti prioritas tertinggi dan itu yang keluar.</div>
+<div class="cd"><h4>Unsorted</h4>Data diletakkan sesuai urutan masuk. Saat keluar atau peek, harus <b>mencari dulu</b> data berprioritas tertinggi.</div></div>
+<div class="demo" id="d-pq"><small>Data awal dari slide: (Bambang, 4) (Badu, 6) (Upin, 2) (Susi, 1) (Mail, 3) (Rose, 5)</small></div>
+<h3>Kompleksitas</h3>
+<div class="tw"><table><tr><th>Implementasi</th><th>Add</th><th>Remove</th><th>Peek</th></tr>
+<tr><td>Unsorted List / Linked List</td><td><b>O(1)</b> (append / insert tail)</td><td>O(n) (cari lalu hapus)</td><td>O(n)</td></tr>
+<tr><td>Sorted List / Linked List</td><td>O(n) (cari posisi sisip)</td><td><b>O(1)</b> (hapus paling depan)</td><td><b>O(1)</b></td></tr>
+<tr><td><b>Heap Tree</b></td><td><b>O(log n)</b></td><td><b>O(log n)</b></td><td><b>O(1)</b></td></tr>
+<tr><td>Build Heap</td><td colspan="3"><b>O(n)</b></td></tr></table></div>
+<h3>Kode: Priority Queue Unsorted (List)</h3>
+<pre><code>class PriorityQueueUnsorted:
+    def __init__(self):
+        self.queue = []
+    def is_empty(self):
+        return len(self.queue) == 0
+    def enqueue(self, item, priority):
+        self.queue.append((item, priority))              # O(1)
+    def _idx_tertinggi(self):                             # angka terkecil = prioritas tertinggi
+        idx = 0
+        for i in range(1, len(self.queue)):
+            if self.queue[i][1] &lt; self.queue[idx][1]:
+                idx = i
+        return idx
+    def dequeue(self):
+        if self.is_empty():
+            raise IndexError("Dequeue from an empty priority queue")
+        item, priority = self.queue.pop(self._idx_tertinggi())   # O(n)
+        return item
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Peek from an empty priority queue")
+        return self.queue[self._idx_tertinggi()][0]              # O(n)
+    def cetak(self):
+        for x in self.queue:
+            print(x)</code></pre>
+<p>Enqueue cukup menambah pasangan (item, prioritas) di belakang list. Dequeue dan peek sama-sama mencari indeks data dengan angka prioritas terkecil lewat satu perulangan, lalu dequeue mengeluarkannya dengan <code>pop(index)</code>. Catatan: di slide, dequeue memakai tanda <code>&gt;</code> (mencari angka terbesar) padahal peek memakai <code>&lt;</code>, dan <code>cetak()</code> mulai dari index 1 sehingga elemen pertama terlewat. Di versi di atas sudah saya samakan mengikuti aturan “angka kecil = prioritas tinggi”.</p>
+<h3>Kode: versi Sorted (ubah enqueue)</h3>
+<pre><code>def enqueue(self, item, priority):
+    new_element = (item, priority)
+    for i in range(len(self.queue)):
+        if self.queue[i][1] &gt; priority:      # sisipkan sebelum yang prioritasnya lebih rendah
+            self.queue.insert(i, new_element)
+            return
+    self.queue.append(new_element)          # prioritas terendah: di belakang
+# dequeue dan peek memakai self.queue.pop(0)[0] atau self.queue[0][0]</code></pre>
+<p>Pada versi sorted hanya enqueue yang berubah: ia mencari elemen pertama yang prioritasnya lebih rendah (angkanya lebih besar), menyisipkan data baru tepat di depannya, dan kalau tidak ada, menaruhnya di belakang. Dequeue dan peek jadi sederhana karena data prioritas tertinggi selalu di index 0. (Slide memakai <code>&lt;</code> di baris perbandingan, yang berarti angka besar = prioritas tinggi; di sini disesuaikan dengan aturan angka kecil.)</p>
+<h3>Latihan slide</h3>
+<p>Data masuk berurutan: Monkey 5, Snake 4, Giraffe 1, Cockroach 2, Pigeon 3, Bull 4, Panther 2, Lion 2.</p>
+<div class="tw"><table><tr><th>Cara simpan</th><th>Isi queue (depan ke belakang)</th></tr>
+<tr><td><b>Unsorted</b></td><td>Monkey 5, Snake 4, Giraffe 1, Cockroach 2, Pigeon 3, Bull 4, Panther 2, Lion 2</td></tr>
+<tr><td><b>Sorted</b></td><td>Giraffe 1, Cockroach 2, Panther 2, Lion 2, Pigeon 3, Snake 4, Bull 4, Monkey 5</td></tr></table></div>
+<p>Jawaban dari saya. Pada sorted, prioritas yang sama tetap sesuai urutan masuk (Cockroach, Panther, Lion; Snake, Bull).</p>
+<h3>Priority Queue dengan Heap Tree</h3>
+<p>Priority queue bisa memakai heap tree: prioritas kecil dianggap penting → <b>min-heap</b>; prioritas besar dianggap penting → <b>max-heap</b>. Elemen prioritas tertinggi <b>selalu di root</b>. Tiap data disimpan sebagai pasangan <code>(item, priority)</code> dan heap property diperiksa berdasarkan <b>priority</b>. Min-heap: parent selalu berprioritas lebih tinggi atau sama dengan anak-anaknya.</p>
+<p>Contoh slide: (Susi,1), (Upin,2), (Mail,3), (Bambang,4), (Rose,5), (Badu,6). Angka di node = prioritas, nama di array:</p>
+<div class="demo" id="pq-heap"></div>
+<div class="cd hl">Minggu depan: <b>12 – Teori Graf</b>.</div>
+</section>
+
+</main>
+<footer>Ringkasan materi 09 sampai 11, Algoritma &amp; Struktur Data</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const SK=(a,l)=>`<small>${l||'Stack'}</small>`+(a.length?a.slice().reverse().map((x,j)=>`<div class="bx${j?'':' top'}">${x}${j?'':' ◂ top'}</div>`).join(''):'<div style="color:var(--mu);font-size:13px">(kosong)</div>');
+function D(id,gen,inp,dr,lab){
+ const e=$(id),w=document.createElement('div');let S=gen(Array.isArray(inp)?inp[0][0]:inp),i=0,T=null;
+ w.innerHTML=`<div class=ctl>${inp===undefined?'':(Array.isArray(inp)?`<select aria-label="pilih">${inp.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('')}</select>`:`<input value="${inp}" aria-label="input">`)+'<button class=b data-a=run>Jalankan</button>'}<button class=b data-a=prev>◀ Mundur</button><button class=b data-a=next>Maju ▶</button><button class=b data-a=auto>Auto ▶▶</button></div><div class=vz></div><div class=nt></div>`;
+ e.appendChild(w);const vz=w.querySelector('.vz'),nt=w.querySelector('.nt');
+ const draw=()=>{const s=S[i];(dr||((v,s)=>{v.innerHTML=`<div class=tk>${(s.t||[]).map((x,j)=>`<span class="t ${j<s.i?'d':j==s.i?'c':''}">${x}</span>`).join('')}</div><div class=row><div class=sk>${SK(s.s)}</div><div class=ot><small>${lab||'Output'}</small><div class=o>${s.o||'&nbsp;'}</div></div></div>`}))(vz,s);nt.className='nt '+(s.k||'');nt.textContent=s.n+(i==S.length-1?'  (selesai)':'')};
+ const stop=()=>{clearInterval(T);T=null};
+ w.onclick=ev=>{const a=ev.target.dataset.a;if(!a)return;
+  if(a=='run'){stop();S=gen(w.querySelector('input,select').value);i=0}
+  if(a=='next'){stop();if(i<S.length-1)i++}
+  if(a=='prev'){stop();if(i>0)i--}
+  if(a=='auto'){stop();if(i>=S.length-1)i=0;T=setInterval(()=>{if(i<S.length-1){i++;draw()}else stop()},1000)}
+  draw()};
+ draw()}
+// demo interaktif stack/queue
+function IA(id,q){const e=$(id);let a=[];
+ const w=document.createElement('div');w.innerHTML=`<div class=ctl><input type=number value=10 aria-label="nilai"><button class=b data-a=in>${q?'Enqueue':'Push'}</button><button class=b data-a=out>${q?'Dequeue':'Pop'}</button><button class=b data-a=clr>Clear</button></div><div class=vz></div><div class=nt>${q?'Antrean kosong':'Stack kosong'}. Masukkan angka lalu klik ${q?'Enqueue':'Push'}.</div>`;e.appendChild(w);
+ const vz=w.querySelector('.vz'),nt=w.querySelector('.nt'),inp=w.querySelector('input');
+ const draw=()=>{vz.innerHTML=q?`<div class=qv>${a.length?a.map((x,j)=>`<div><div class="bx${j==a.length-1?' top':''}">${x}</div><small>${j==0?'Front':j==a.length-1?'Belakang':'&nbsp;'}</small></div>`).join(''):'(kosong)'}</div>`:`<div class=row><div class=sk>${SK(a)}</div></div>`};
+ w.onclick=ev=>{const k=ev.target.dataset.a;if(!k)return;
+  if(k=='in'){if(a.length<9){a.push(inp.value||0);nt.textContent=(q?'Enqueue ':'Push ')+(inp.value||0)+(q?': masuk di belakang':': masuk di atas');inp.value=+inp.value+10}else nt.textContent='Maksimal 9 data pada demo ini'}
+  if(k=='out'){nt.textContent=a.length?(q?'Dequeue → '+a.shift()+' (yang terdepan)':'Pop → '+a.pop()+' (yang teratas)'):(q?'Queue kosong, dequeue mengembalikan None':'Stack kosong, tidak ada yang di-pop')}
+  if(k=='clr'){a=[];nt.textContent='Dikosongkan'}
+  draw()};draw()}
+IA('ia1',0);IA('ia2',1);
+// stack frame
+D('d-frame',()=>{const m='main',f=['f1(2)','f1(1)','f1(0)'];return[
+{s:[m],o:'',n:'Program utama memanggil f1(2)'},
+{s:[m,f[0]],o:'2',n:'f1(2): 2 > 0, cetak 2, lalu panggil f1(1). Frame baru di-push'},
+{s:[m,f[0],f[1]],o:'2 1',n:'f1(1): 1 > 0, cetak 1, lalu panggil f1(0)'},
+{s:[m,...f],o:'2 1 end',n:'f1(0): BASE CASE, cetak end. Tidak ada pemanggilan lagi'},
+{s:[m,f[0],f[1]],o:'2 1 end',n:'f1(0) selesai, frame di-pop'},
+{s:[m,f[0]],o:'2 1 end',n:'f1(1) selesai, frame di-pop'},
+{s:[m],o:'2 1 end',n:'f1(2) selesai. Kembali ke program utama'}]},undefined,null,'Output');
+// reversing
+D('d-rev',()=>{let s=[],o=[],r=[],d=[10,20,30,40];d.forEach((x,i)=>{s.push(x);r.push({t:d,i,s:s.slice(),o:'',n:'Push '+x})});while(s.length){const x=s.pop();o.push(x);r.push({t:d,i:4,s:s.slice(),o:o.join(', '),n:'Pop → '+x})}r[r.length-1].n+='. Urutan jadi terbalik: 40, 30, 20, 10';r[r.length-1].k='ok';return r},undefined,null,'Hasil pop');
+// bracket
+D('d-brk',v=>{const t=v.split(''),P={')':'(',']':'[','}':'{'},s=[],r=[];
+ for(let i=0;i<t.length;i++){const c=t[i];let n='';
+  if('([{'.includes(c)){s.push(c);n=`Kurung buka ${c}: push`}
+  else if(P[c]){if(!s.length){r.push({t,i,s:[...s],n:`Kurung tutup ${c} tapi stack kosong: SALAH`,k:'bad'});return r}
+   const p=s.pop();if(p!=P[c]){r.push({t,i,s:[...s],n:`Kurung tutup ${c} tidak cocok dengan ${p}: SALAH`,k:'bad'});return r}n=`Kurung tutup ${c}: pop ${p}, cocok`}
+  else n=`${c} bukan kurung: abaikan`;
+  r.push({t,i,s:[...s],n})}
+ r.push(s.length?{t,i:t.length,s:[...s],n:'Input habis tapi stack tidak kosong: SALAH',k:'bad'}:{t,i:t.length,s:[],n:'Input habis dan stack kosong: BENAR',k:'ok'});return r},'{[()]}',null,'');
+// infix to postfix
+D('d-inf',v=>{const t=v.match(/[A-Za-z0-9]|[-+*\/^()]/g)||[],pr={'+':1,'-':1,'*':2,'/':2,'^':3},s=[],r=[];let o='';
+ t.forEach((c,i)=>{let n='';
+  if(/[A-Za-z0-9]/.test(c)){o+=c;n=`Operand ${c}: langsung ke output`}
+  else if(c=='('){s.push(c);n='Kurung buka: push'}
+  else if(c==')'){while(s.length&&s[s.length-1]!='('){o+=s.pop()}s.pop();n='Kurung tutup: pop sampai ( ke output'}
+  else{const q=[];while(s.length&&s[s.length-1]!='('&&pr[s[s.length-1]]>=pr[c]){const x=s.pop();o+=x;q.push(x)}
+   n=q.length?`Operator ${c}: top (${q.join(', ')}) prioritasnya ≥ ${c}, pop ke output. Lalu push ${c}`:`Operator ${c}: prioritas lebih tinggi dari top (atau stack kosong), push`;s.push(c)}
+  r.push({t,i,s:[...s],o,n})});
+ while(s.length)o+=s.pop();r.push({t,i:t.length,s:[],o,n:'Input habis: pop sisa stack ke output. Postfix = '+o,k:'ok'});return r},'a+b*c-d',null,'Postfix');
+// postfix eval
+D('d-pos',v=>{const t=v.trim().split(/\s+/),s=[],r=[];
+ for(let i=0;i<t.length;i++){const c=t[i];let n;
+  if(!isNaN(c)){s.push(+c);n=`Operand ${c}: push`}
+  else{if(s.length<2){r.push({t,i,s:[...s],n:'Operand kurang: ekspresi tidak valid',k:'bad'});return r}
+   const y=s.pop(),x=s.pop(),z={'+':x+y,'-':x-y,'*':x*y,'/':x/y}[c];s.push(z);n=`Operator ${c}: y = ${y}, x = ${x}, hitung ${x} ${c} ${y} = ${z}, push hasilnya`}
+  r.push({t,i,s:[...s],n})}
+ r.push({t,i:t.length,s:[...s],o:'= '+s[s.length-1],n:s.length==1?'Selesai, sisa satu elemen: hasil = '+s[0]:'Sisa elemen tidak tepat satu, ekspresi tidak valid',k:s.length==1?'ok':'bad'});return r},'2 5 * 3 +',null,'Hasil');
+// maze
+const G=["XX.X..XX","XX...X..","S.X.XX.X","X....X.X","XXXX...X",".....X.E","XX.X.XXX","X..X.XXX"];
+function mz(){const dr=[[-1,0],[0,-1],[1,0],[0,1]],nm=['ATAS','KIRI','BAWAH','KANAN'],p=[[2,0]],dead=[],vis={'2,0':1},ix={},r=[];
+ const sn=n=>r.push({p:p.map(x=>x.slice()),d:dead.map(x=>x.slice()),n}),ok=(a,b)=>a>=0&&b>=0&&a<8&&b<8&&G[a][b]!='X'&&!vis[a+','+b];
+ sn('Mulai dari S (2,0): push ke stack path');
+ while(p.length){const[a,b]=p[p.length-1];
+  if(G[a][b]=='E'){sn(`Sampai di E (${a},${b})! Isi stack = jalur dari S ke E`);r[r.length-1].k='ok';break}
+  let f=0;for(let k=0;k<4;k++){const y=a+dr[k][0],z=b+dr[k][1];if(ok(y,z)){vis[y+','+z]=1;p.push([y,z]);sn(`(${a},${b}): pilih ${nm[k]}, push (${y},${z})`);f=1;break}}
+  if(!f){dead.push(p.pop());sn(`Jalan buntu di (${a},${b}): pop, mundur`)}}
+ return r}
+D('d-mz',mz,undefined,(v,s)=>{const P={},X={};s.p.forEach(x=>P[x]=1);s.d.forEach(x=>X[x]=1);const c=''+s.p[s.p.length-1];let g='';
+ for(let a=0;a<8;a++)for(let b=0;b<8;b++){const h=G[a][b];g+=`<i class="${h=='X'?'w':X[[a,b]]?'x':P[[a,b]]?'p':''}${c==a+','+b?' c':''}">${h=='S'||h=='E'?h:''}</i>`}
+ v.innerHTML=`<div class=row><div class=mz>${g}</div><div class=sk>${SK(s.p.map(x=>`(${x[0]}, ${x[1]})`),'Stack path')}</div></div>`});
+// ===== Materi 10 & 11 =====
+function ID(t,c){c=c||{n:0};if(t){t.id=c.n++;ID(t.l,c);ID(t.r,c)}return t}
+const MK=(v,l,r)=>({v,l:l||null,r:r||null}),CL=t=>JSON.parse(JSON.stringify(t));
+function TV(t,hl,vs,z,cl){z=z||1;hl=hl||[];vs=vs||[];if(!t)return'<small style="color:var(--mu)">(tree kosong)</small>';
+ const X=42*z,Y=54*z,R=16*z;let i=0,m=0,e='',g='';
+ const L=(n,d)=>{if(!n)return;L(n.l,d+1);n.x=i++*X+R+6;n.y=d*Y+R+6;m=Math.max(m,d);L(n.r,d+1)};L(t,0);
+ const W=(i-1)*X+2*R+12,H=m*Y+2*R+12;
+ const P=n=>{if(!n)return;[n.l,n.r].forEach(c=>{if(c){e+=`<line class="edge" x1="${n.x}" y1="${n.y}" x2="${c.x}" y2="${c.y}"/>`;P(c)}});
+  g+=`<g class="nd${hl.includes(n.id)?' h':vs.includes(n.id)?' v':''}"${cl?` data-i="${n.id}" style="cursor:pointer"`:''}><circle cx="${n.x}" cy="${n.y}" r="${R}"/><text x="${n.x}" y="${n.y}" style="font-size:${13*z}px">${n.v}</text></g>`};P(t);
+ return`<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="pohon">${e}${g}</svg>`}
+const AT=(a,n)=>{const f=i=>i<n?{v:a[i],id:i,l:f(2*i+1),r:f(2*i+2)}:null;return f(0)};
+const AR=(a,n,h)=>`<div class="ar">${a.map((x,i)=>`<div class="${(h||[]).includes(i)?'h':''}${i>=n?' sd':''}">${x}<small>${i}</small></div>`).join('')}</div>`;
+const TD=(v,s)=>{v.innerHTML=`<div class="trw">${TV(s.tr,s.h,s.vs)}</div>`+(s.o!=null?`<div class="ot"><small>Urutan kunjungan</small><div class="o">${s.o||'&nbsp;'}</div></div>`:'')};
+const HD=(v,s)=>{v.innerHTML=`<div class="trw">${s.m?TV(AT(s.a,s.m),s.h,[]):'(heap kosong)'}</div>`+AR(s.a,s.m,s.h)};
+const nums=s=>(s.match(/-?\d+/g)||[]).map(Number);
+function ins(r,v,c,pt){const n={v,l:null,r:null,id:c.n++};if(!r)return n;let p=r;for(;;){const k=v>p.v?'r':'l';if(pt)pt.push(`${v} ${v>p.v?'>':'≤'} ${p.v} → ${v>p.v?'kanan':'kiri'}`);if(!p[k]){p[k]=n;break}p=p[k]}return r}
+function bst(a){const c={n:0};let r=null;a.forEach(v=>{r=ins(r,v,c)});return r}
+// terminologi
+(function(){const t=ID(MK('A',MK('B',MK('D'),MK('E',MK('G'))),MK('C',MK('F',MK('H'),MK('I')))));const M={};
+ const W=(n,p,d)=>{if(!n)return;n.p=p;n.d=d;M[n.id]=n;W(n.l,n,d+1);W(n.r,n,d+1)};W(t,null,0);
+ const ht=n=>Math.max(n.l?ht(n.l)+1:0,n.r?ht(n.r)+1:0);
+ const e=$('d-term');e.innerHTML=`<small>Klik sebuah node untuk melihat istilahnya.</small><div class="trw">${TV(t,[],[],1,1)}</div><div class="nt">Klik node, misalnya F.</div>`;
+ e.onclick=ev=>{const g=ev.target.closest('.nd');if(!g)return;const n=M[g.dataset.i],ch=[n.l,n.r].filter(Boolean),sb=n.p?[n.p.l,n.p.r].filter(x=>x&&x!=n):[];
+  e.querySelector('.trw').innerHTML=TV(t,[n.id],[],1,1);
+  e.querySelector('.nt').innerHTML=`<b>Node ${n.v}</b> (${!n.p?'root':ch.length?'internal node':'leaf'}). Parent: ${n.p?n.p.v:'-'}. Child: ${ch.map(x=>x.v).join(', ')||'-'}. Sibling: ${sb.map(x=>x.v).join(', ')||'-'}. Degree: ${ch.length}. Depth: ${n.d} (level ${n.d}). Height: ${ht(n)}.`}})();
+// bentuk binary tree
+(function(){const T=[['Full','Semua node punya dua child, kecuali leaf.',MK(1,MK(2),MK(3,MK(4),MK(5)))],
+['Complete','Semua level terisi penuh kecuali level terbawah, dan leaf di level terbawah rata ke kiri.',MK(1,MK(2,MK(4),MK(5)),MK(3,MK(6)))],
+['Perfect','Semua internal node punya dua child dan semua leaf berada di level yang sama.',MK(1,MK(2,MK(4),MK(5)),MK(3,MK(6),MK(7)))],
+['Balanced','Tinggi tree sekitar log n; selisih tinggi kiri dan kanan paling banyak 1.',MK(1,MK(2,MK(4)),MK(3,null,MK(6)))],
+['Degenerate / Skewed','Semua internal node hanya punya 1 child (sama dengan linked list).',MK(1,null,MK(2,null,MK(3,null,MK(4))))]];
+ $('bt-types').innerHTML=T.map(x=>`<div class="cd"><div class="trw">${TV(ID(x[2]),[],[],.7)}</div><h4>${x[0]}</h4>${x[1]}</div>`).join('')})();
+// create BST
+D('d-bg',s=>{const a=nums(s).slice(0,15),c={n:0},r=[];let t=null;
+ a.forEach(v=>{const pt=[],first=!t;t=ins(t,v,c,pt);r.push({tr:CL(t),h:[c.n-1],vs:[],n:first?`${v} jadi root (node pertama)`:`Masukkan ${v}: ${pt.join('; ')}; posisi kosong, taruh di sini`})});
+ if(!t)return[{tr:null,h:[],vs:[],n:'Masukkan beberapa angka'}];
+ let hh=0,lm=t,rm=t;const H=(n,d)=>{if(!n)return;hh=Math.max(hh,d);H(n.l,d+1);H(n.r,d+1)};H(t,0);while(lm.l)lm=lm.l;while(rm.r)rm=rm.r;
+ r.push({tr:CL(t),h:[],vs:[],k:'ok',n:`Selesai. Depth tree = ${hh}, node paling kiri = ${lm.v}, paling kanan = ${rm.v}`});return r},'56 24 78 12 29 33 63 81 98',TD);
+// traversing
+D('d-tr',k=>{const t=bst([56,24,78,12,29,33,63,81,98]),o=[];
+ if(k=='level'){const q=[t];while(q.length){const n=q.shift();o.push(n);n.l&&q.push(n.l);n.r&&q.push(n.r)}}
+ else{const f=n=>{if(!n)return;k=='pre'&&o.push(n);f(n.l);k=='in'&&o.push(n);f(n.r);k=='post'&&o.push(n)};f(t)}
+ const nm={level:'Level Order: per level, kiri ke kanan (memakai Queue)',pre:'Pre-Order: Root → Left → Right',in:'In-Order: Left → Root → Right (hasilnya terurut)',post:'Post-Order: Left → Right → Root'}[k];
+ const r=[{tr:t,h:[],vs:[],o:'',n:nm}];o.forEach((n,i)=>r.push({tr:t,h:[n.id],vs:o.slice(0,i).map(x=>x.id),o:o.slice(0,i+1).map(x=>x.v).join(', '),n:`Kunjungi ${n.v}`}));
+ r[r.length-1].k='ok';return r},[['pre','Pre-Order'],['in','In-Order'],['post','Post-Order'],['level','Level Order']],TD);
+// search BST
+D('d-sr',s=>{const v=+s,t=bst([18,14,25,12,20,29,16,35,24,27]),r=[],vs=[];let c=t;
+ r.push({tr:t,h:[],vs:[],n:`Cari ${v}: mulai dari root (${t.v})`});
+ while(c){if(v==c.v){r.push({tr:t,h:[c.id],vs:[...vs],k:'ok',n:`${c.v} = ${v}: DITEMUKAN`});return r}
+  const k=v>c.v;r.push({tr:t,h:[c.id],vs:[...vs],n:`${c.v} ${k?'<':'>'} ${v}, ke ${k?'kanan':'kiri'}`});vs.push(c.id);c=k?c.r:c.l}
+ r.push({tr:t,h:[],vs:[...vs],k:'bad',n:`Sudah mencapai leaf, ${v} tidak ada`});return r},'24',TD);
+// delete BST
+function rm(n,x,lg){if(!n)return null;if(x<n.v)n.l=rm(n.l,x,lg);else if(x>n.v)n.r=rm(n.r,x,lg);
+ else{if(!n.l&&!n.r){lg.t=0;return null}if(!n.l||!n.r){lg.t=1;const c=n.l||n.r;lg.h=c.id;return c}
+  let s=n.r;while(s.l)s=s.l;lg.t=2;lg.s=s.v;lg.h=n.id;n.v=s.v;n.r=rm(n.r,s.v,{})}return n}
+D('d-dl',s=>{const v=+s,t=bst([18,14,25,12,20,29]),f=(n,x)=>{while(n&&n.v!=x)n=x>n.v?n.r:n.l;return n},nd=f(t,v),r=[];
+ if(!nd)return[{tr:t,h:[],vs:[],k:'bad',n:`${v} tidak ada di BST`}];
+ r.push({tr:CL(t),h:[nd.id],vs:[],n:`Hapus ${v}. Cek dulu apakah ada di BST: Ya`});
+ const lg={},a=rm(t,v,lg);
+ const msg=['Tidak punya child (leaf): langsung dihapus',`Punya 1 child: child menggantikan ${v}`,`Punya 2 child: cari pengganti, node terkecil di subtree kanan = ${lg.s}. Nilai ${lg.s} dipindah ke posisi ${v}, node ${lg.s} yang lama dihapus`][lg.t];
+ r.push({tr:CL(a),h:lg.h==null?[]:[lg.h],vs:[],k:'ok',n:msg});return r},[['20','Hapus 20 (leaf)'],['14','Hapus 14 (1 child)'],['25','Hapus 25 (2 child)'],['18','Hapus 18 (root, 2 child)']],TD);
+// heap
+function sd(a,p,n,P){for(;;){const l=2*p+1,q=l+1;let b=p;if(l<n&&a[l]>a[b])b=l;if(q<n&&a[q]>a[b])b=q;
+ if(b==p){P([p],`Index ${p} (${a[p]}) sudah ≥ anak-anaknya: aman`,n);return}
+ P([p,b],`Index ${p} (${a[p]}): anak terbesar ${a[b]} (index ${b}), tukar`,n);[a[p],a[b]]=[a[b],a[p]];P([b],`${a[b]} turun ke index ${b}, cek lagi ke bawah`,n);p=b}}
+const mkP=(a,r)=>(h,t,m)=>r.push({a:a.slice(),m:m==null?a.length:m,h,n:t});
+$('hp-ex').innerHTML=`<div class="trw">${TV(AT([17,15,13,9,6,5,10,4,8,3,1],11),[],[])}</div>`+AR([17,15,13,9,6,5,10,4,8,3,1],11,[]);
+D('d-hf',s=>{const a=nums(s).slice(0,12),n=a.length,r=[],P=mkP(a,r);
+ P([],`Array awal. Heapify mulai dari node (n/2) − 1 = ${(n>>1)-1}`);
+ for(let i=(n>>1)-1;i>=0;i--)sd(a,i,n,P);
+ P([],'Selesai: array sudah max-heap');r[r.length-1].k='ok';return r},'3 9 2 1 4 5',HD);
+D('d-hi',s=>{const a=[17,15,13,9,6,5,10,4,8,3,1],v=+s||12,r=[],P=mkP(a,r);P([],'Heap awal (max-heap)');
+ a.push(v);let i=a.length-1;P([i],`Tambah ${v} di posisi terakhir (index ${i})`);
+ while(i>0){const p=(i-1)>>1;if(a[i]>a[p]){P([i,p],`${a[i]} > parent ${a[p]} (index ${p}): tukar`);[a[i],a[p]]=[a[p],a[i]];P([p],`${a[p]} naik ke index ${p}`);i=p}
+  else{P([i,p],`${a[i]} ≤ parent ${a[p]}: berhenti, heap property terpenuhi`);r[r.length-1].k='ok';return r}}
+ P([0],'Sudah sampai root: selesai');r[r.length-1].k='ok';return r},'12',HD);
+D('d-hd',()=>{const a=[17,15,13,9,6,12,10,4,8,3,1,5],r=[],P=mkP(a,r),n=a.length;P([0],'Heap awal. Root = 17 akan dihapus');
+ a[0]=a[n-1];P([0],`Pindahkan elemen terakhir (${a[n-1]}) ke root; ukuran heap jadi ${n-1} (elemen index ${n-1} di luar heap)`,n-1);
+ sd(a,0,n-1,P);P([],'Selesai: heap baru memenuhi heap property (17 sudah dihapus)',n-1);r[r.length-1].k='ok';return r},undefined,HD);
+D('d-hs',s=>{const a=nums(s).slice(0,10),n=a.length,r=[],P=mkP(a,r);P([],'Array awal. Langkah 1: bentuk max-heap');
+ for(let i=(n>>1)-1;i>=0;i--)sd(a,i,n,P);P([0],'Max-heap jadi: terbesar ada di root');
+ for(let m=n;m>1;m--){P([0,m-1],`Tukar root (${a[0]}) dengan elemen terakhir heap (${a[m-1]})`,m);[a[0],a[m-1]]=[a[m-1],a[0]];
+  P([m-1],`${a[m-1]} sudah di posisi akhir (terurut). Ukuran heap jadi ${m-1}`,m-1);sd(a,0,m-1,P)}
+ P([],'Selesai, data terurut naik: '+a.join(', '),n);r[r.length-1].k='ok';return r},'8 5 10 3 4 2 9',HD);
+// priority queue
+(function(){const e=$('d-pq'),DF=[['Bambang',4],['Badu',6],['Upin',2],['Susi',1],['Mail',3],['Rose',5]];let a=DF.map(x=>x.slice());
+ const w=document.createElement('div');w.innerHTML=`<div class="ctl"><input id="pn" value="Ani" style="width:110px" aria-label="nama"><input id="pp" type="number" min="1" value="2" style="width:70px" aria-label="prioritas"><button class="b" data-a="in">Enqueue</button><button class="b" data-a="out">Dequeue</button><button class="b" data-a="rs">Reset</button></div><div class="vz"></div><div class="nt">Enqueue data baru, lalu Dequeue: yang keluar selalu prioritas terkecil (tertinggi).</div>`;e.appendChild(w);
+ const vz=w.querySelector('.vz'),nt=w.querySelector('.nt'),best=l=>{let b=0;l.forEach((x,i)=>{if(x[1]<l[b][1])b=i});return b};
+ const row=(l,f)=>`<div class="pq">${l.length?l.map((x,i)=>`<div class="${i==f?'f':''}"><span class="p">${x[1]}</span><br>${x[0]}</div>`).join(''):'(kosong)'}</div>`;
+ const draw=()=>{const so=a.map((x,i)=>[x,i]).sort((p,q)=>p[0][1]-q[0][1]||p[1]-q[1]).map(x=>x[0]);
+  vz.innerHTML=`<small>Unsorted: urutan masuk. Garis hijau = yang akan keluar (harus dicari dulu, O(n))</small>${row(a,a.length?best(a):-1)}<small>Sorted: selalu urut prioritas, Front = prioritas tertinggi (O(1))</small>${row(so,0)}`};
+ w.onclick=ev=>{const k=ev.target.dataset.a;if(!k)return;
+  if(k=='in'){const n=w.querySelector('#pn').value||'?',p=+w.querySelector('#pp').value||1;if(a.length<12){a.push([n,p]);nt.textContent=`Enqueue (${n}, ${p}): unsorted langsung ke belakang O(1); sorted disisipkan di posisi sesuai prioritas O(n)`}else nt.textContent='Maksimal 12 data pada demo ini'}
+  if(k=='out'){if(!a.length)nt.textContent='Queue kosong';else{const i=best(a),x=a.splice(i,1)[0];nt.textContent=`Dequeue → ${x[0]} (prioritas ${x[1]}). Unsorted mencari dulu O(n), sorted tinggal ambil paling depan O(1)`}}
+  if(k=='rs'){a=DF.map(x=>x.slice());nt.textContent='Kembali ke data slide'}
+  draw()};draw()})();
+$('pq-heap').innerHTML=`<div class="trw">${TV(AT([1,2,3,4,5,6],6),[],[])}</div>`+AR(['Susi','Upin','Mail','Bambang','Rose','Badu'],6,[]);
+</script>
+</body>
+</html>
