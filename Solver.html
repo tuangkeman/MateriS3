@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eaf1f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1a25" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Simpleks Gomory">
+<title>Solver Simpleks Gomory: Big-M, Dua Fase, Integer</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+:root{--bg:#eaf1f0;--panel:#fff;--ink:#16243a;--mute:#566679;--line:#c9d6d5;--acc:#0d7a85;--accbg:#d6edef;--piv:#ffb703;--leave:#fff0c4;--bad:#b3261e;--badbg:#fde8e6;--ok:#1b7f4b;--okbg:#e0f3e8;
+--on-acc:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a25;--panel:#15263a;--ink:#e6eef5;--mute:#9db0c2;--line:#2c4058;--acc:#4cc3cf;--accbg:#12404a;--leave:#4a3a0e;--bad:#ff9a90;--badbg:#3d1a18;--ok:#7be0a8;--okbg:#14382a;--on-acc:#06222a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1a25;--panel:#15263a;--ink:#e6eef5;--mute:#9db0c2;--line:#2c4058;--acc:#4cc3cf;--accbg:#12404a;--leave:#4a3a0e;--bad:#ff9a90;--badbg:#3d1a18;--ok:#7be0a8;--okbg:#14382a;--on-acc:#06222a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Atkinson Hyperlegible",system-ui,Segoe UI,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:1.9rem;margin:.2em 0 .1em;letter-spacing:-.01em}
+h3{margin:0 0 10px;font-size:1.1rem}
+.sub{color:var(--mute);margin:0 0 18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg button{font:inherit;text-align:left;padding:12px 14px;border:2px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.seg button b{display:block}.seg button span{color:var(--mute);font-size:.88rem}
+.seg button[aria-pressed=true]{border-color:var(--acc);background:var(--accbg)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.ctl{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+.ctl label{display:flex;flex-direction:column;font-size:.88rem;color:var(--mute);gap:3px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+input[type=number]{width:74px}
+.eq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}
+.eq .t{display:inline-flex;align-items:center;gap:3px}
+.eq .lab{min-width:76px;color:var(--mute);font-size:.88rem}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+.go{font:inherit;font-weight:700;background:var(--acc);color:var(--on-acc);min-height:44px;border:0;border-radius:8px;padding:11px 22px;cursor:pointer}
+.pre{font:inherit;font-size:.88rem;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.scroll{overflow-x:auto;max-width:100%}
+table.tb{border-collapse:collapse;font-variant-numeric:tabular-nums;margin:8px 0;min-width:100%}
+.tb th,.tb td{border:1px solid var(--line);padding:5px 9px;text-align:center;white-space:nowrap}
+.tb thead th{background:var(--bg)}
+.tb tr.cj th{color:var(--mute);font-weight:400}
+.tb td.b{font-weight:700}
+.tb .ec{background:var(--accbg)}
+.tb tr.lr td{background:var(--leave)}
+.tb tr.lr td.ec{background:var(--piv);color:#16243a;font-weight:700}
+.tb tfoot td{background:var(--bg);font-weight:700}
+.ex{border-left:4px solid var(--acc);padding:6px 12px;margin:8px 0;background:var(--bg);border-radius:0 6px 6px 0}
+.note{color:var(--mute);margin:4px 0}
+.res{border-radius:8px;padding:12px 14px;margin:10px 0;font-weight:700}
+.res.ok{background:var(--okbg);color:var(--ok)}.res.bad{background:var(--badbg);color:var(--bad)}
+.eqs{font-size:1.02rem;line-height:1.9}
+.leg i{display:inline-block;width:14px;height:14px;vertical-align:-2px;border:1px solid var(--line);margin-right:4px}
+.obe{margin:8px 0;padding:8px 12px;border:1px dashed var(--line);border-radius:6px}.obe ul{margin:6px 0 0;padding-left:18px}.obe li{margin:8px 0;font-variant-numeric:tabular-nums}
+.hint{display:none;color:var(--mute);font-size:.85rem;margin:0 0 4px}
+.nw{display:inline-flex;align-items:stretch}
+.nw input{width:68px;border-radius:6px 0 0 6px}
+.sg{font:inherit;font-weight:700;min-width:36px;border:1px solid var(--line);border-left:0;border-radius:0 6px 6px 0;background:var(--accbg);color:var(--ink);cursor:pointer}
+.eqs,.obe li,.res,.ex{overflow-wrap:anywhere;word-break:break-word}
+.scroll{-webkit-overflow-scrolling:touch}
+.tb td:nth-child(2),.tb th:nth-child(2){position:-webkit-sticky;position:sticky;left:0;background:var(--panel);z-index:1}
+.tb thead th:nth-child(2),.tb tfoot td:nth-child(2){background:var(--bg)}
+.tb.bm td:nth-child(1),.tb.bm th:nth-child(1){position:-webkit-sticky;position:sticky;left:0;background:var(--panel);z-index:1}
+.tb.bm td:nth-child(2),.tb.bm th:nth-child(2){position:static}
+.tb.bm thead th:nth-child(n){background:var(--bg)}
+.tb.bm tr.zr td:nth-child(n){background:var(--bg);font-weight:700}
+.tb.bm tr.zr td.ec{background:var(--accbg)}
+.tb.bm tr.lr td:nth-child(n){background:var(--leave)}
+.tb.bm tr.lr td.ec{background:var(--piv);color:#16243a;font-weight:700}
+@media(max-width:600px){
+.wrap{padding-block:14px 40px}
+h1{font-size:1.5rem}
+.seg{grid-template-columns:1fr}
+.card{padding:12px}
+input,select{font-size:16px;min-height:44px}
+input[type=number]{width:62px;padding:6px 5px}
+.nw input{width:54px;padding:6px 5px}
+.sg{min-width:44px}
+.ctl{gap:10px}.ctl label{flex:1 1 40%}.ctl label:first-child{flex:1 1 100%}
+.ctl input,.ctl select{width:100%}
+.eq{gap:6px 4px}.eq .lab{flex:0 0 100%;color:var(--ink);font-weight:700}
+.eq select{min-width:60px}
+.pre{min-height:44px;padding:8px 14px}
+.gobar{position:-webkit-sticky;position:-webkit-sticky;position:sticky;bottom:0;z-index:5;margin:14px -12px -12px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--panel);border-top:1px solid var(--line);border-radius:0 0 10px 10px}
+.go{width:100%;font-size:1.05rem}
+.row{margin-top:12px}
+.tb{font-size:.82rem}.tb th,.tb td{padding:4px 6px}
+.hint{display:block}
+.obe li{font-size:.92rem}
+}
+
+
+.lbl{margin:14px 0 6px;font-weight:700;color:var(--ink)}
+.tb.gt td:nth-child(2),.tb.gt th:nth-child(2){position:static;left:auto}
+.tb.gt tr.cutr td{background:var(--okbg)}
+.tb.gt tr.drr td{background:var(--bg);font-style:italic;color:var(--mute)}
+.tb.gt tr.drr td.ec{background:var(--accbg);color:var(--ink);font-weight:700;font-style:normal}
+ol.eexp{padding-left:22px}
+
+/* iPhone / Safari */
+.gobar{margin-top:14px}
+@media(max-width:600px){.gobar{margin-top:14px}}
+input[type=text],input[type=number],select{-webkit-appearance:none;appearance:none;box-shadow:none}
+select{padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,var(--mute) 50%),linear-gradient(135deg,var(--mute) 50%,transparent 50%);background-position:calc(100% - 15px) 55%,calc(100% - 10px) 55%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+button,select,input{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.seg button,.pre,.go,.sg{-webkit-appearance:none;appearance:none}
+.sg{min-height:44px}
+.nw input{min-height:44px}
+.scroll{overscroll-behavior-x:contain}
+@media(hover:none){.pre:active,.sg:active,.seg button:active{filter:brightness(.92)}}
+
+.entbox{margin:12px 0 6px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
+.ettl{font-weight:700;color:var(--acc);margin-bottom:6px;letter-spacing:.02em}
+.tb.et td:nth-child(2),.tb.et th:nth-child(2),.tb.et thead th:nth-child(2){position:static;left:auto}
+.tb.et tr.er td{background:var(--accbg);font-weight:700}
+.badge{display:inline-block;background:var(--acc);color:var(--on-acc);border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:700;letter-spacing:.04em}
+.entbox .note{margin:8px 0 0}
+
+.emx{display:flex;align-items:flex-start;justify-content:center;gap:8px;min-width:max-content;padding:4px 0}
+.emx *{box-sizing:border-box}
+.ecol{display:flex;flex-direction:column;align-items:center}
+.ecol.arr{align-self:stretch;justify-content:center;padding-bottom:1.6em}
+.ar{font-size:1.6rem;color:var(--mute);line-height:1}
+.stk{display:flex;flex-direction:column;padding:4px 0}
+.mx{display:flex;flex-direction:column;padding:4px 10px;border-left:2px solid var(--ink);border-right:2px solid var(--ink);
+background:linear-gradient(var(--ink),var(--ink)) top left/7px 2px no-repeat,linear-gradient(var(--ink),var(--ink)) bottom left/7px 2px no-repeat,linear-gradient(var(--ink),var(--ink)) top right/7px 2px no-repeat,linear-gradient(var(--ink),var(--ink)) bottom right/7px 2px no-repeat;background-origin:border-box;border-radius:0}
+.mc{height:36px;min-width:36px;padding:0 8px;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mc.zc{border-bottom:1px dashed var(--line);margin-bottom:2px}
+.mc.pv{background:var(--piv);color:#16243a;font-weight:700;border-radius:6px}
+.cap{color:var(--mute);font-size:.85rem;margin-top:6px;min-height:1.2em}
+.eexp{margin:6px 0 0;padding-left:20px}.eexp li{margin:6px 0}
+
+.obeb{margin:10px 0 4px}
+.obet{font-weight:700;margin:2px 0 4px;overflow-wrap:anywhere}
+.tb.ot td:nth-child(2),.tb.ot th:nth-child(2){position:static;left:auto}
+.tb.ot td:first-child{text-align:left;width:1%}
+.tb.ot tr.op td{color:var(--mute)}
+.tb.ot tr.nb td{background:var(--accbg);font-weight:700}
+
+</style></head><body>
+<div class="wrap">
+<h1>Solver Simpleks + Gomory</h1>
+<p class="sub">Masukkan model, pilih metode, lalu lihat setiap tabel iterasi dengan penjelasannya sampai optimal. Entering dipilih dari zⱼ−cⱼ paling negatif; jika seri, diambil kolom paling kiri, jadi langkah bisa berbeda dari buku saat ada seri (hasil akhir tetap sama). Aktifkan <b>+ Metode Gomory</b> agar setelah simpleks selesai, solusi dihitung ulang dengan kendala Gomory dan dual simpleks sampai semua variabel basis bernilai bulat.</p>
+<div class="seg" id="seg">
+<button type="button" data-m="bigm" aria-pressed="true"><b>Big-M</b><span>Satu tabel, variabel semu dihukum dengan M</span></button>
+<button type="button" data-m="two" aria-pressed="false"><b>Dua Fase</b><span>Fase 1 membuang variabel semu, Fase 2 mengoptimalkan</span></button></div>
+<p class="note lbl">Variabel harus bulat (integer)?</p>
+<div class="seg" id="segg">
+<button type="button" data-g="0" aria-pressed="false"><b>Simpleks saja</b><span>Berhenti di solusi optimal simpleks (boleh pecahan)</span></button>
+<button type="button" data-g="1" aria-pressed="true"><b>+ Metode Gomory</b><span>Setelah simpleks, lanjut kendala Gomory sampai semua bulat</span></button></div>
+<div id="segnw"><p class="note lbl">Nama slack potongan Gomory</p>
+<div class="seg" id="segn">
+<button type="button" data-n="S" aria-pressed="true"><b>S₁, S₂, …</b><span>Seperti file Soal-Jawab Gomory</span></button>
+<button type="button" data-n="sg" aria-pressed="false"><b>sg₁, sg₂, …</b><span>Seperti file Metode Gomory</span></button></div></div>
+<div class="card"><h3>Model</h3><div id="form"></div>
+<div class="gobar"><button class="go" id="go" type="button">Selesaikan</button></div>
+<div class="row"><span class="note">Contoh:</span>
+<button type="button" class="pre" data-p="0">Soal 1 (Min, ≥)</button><button type="button" class="pre" data-p="1">Soal 2 (≤, ≥, =)</button><button type="button" class="pre" data-p="2">Soal 3 (RHS negatif)</button><button type="button" class="pre" data-p="3">Soal 4 (tak feasible)</button><button type="button" class="pre" data-p="4">Soal UTS (Big-M)</button><button type="button" class="pre" data-p="5">Gomory: contoh Soal-Jawab</button><button type="button" class="pre" data-p="6">Gomory: soal latihan</button><button type="button" class="pre" data-p="7">Gomory: contoh Metode (7x₁ + 9x₂)</button></div></div>
+<div id="out"></div></div>
+<script>
+/* ================= Metode Gomory (lanjutan simpleks) ================= */
+const GOM={on:true,name:'S'};
+let TN=0;
+const ORD=['pertama','kedua','ketiga','keempat','kelima','keenam','ketujuh','kedelapan','kesembilan','kesepuluh'];
+const ordk=k=>ORD[k-1]||('ke-'+k);
+const isInt=v=>Math.abs(v-Math.round(v))<1e-9;
+const split=v=>{if(isInt(v)){const r=Math.round(v);return{fl:r,f:0}}const fl=Math.floor(v);return{fl,f:v-fl}};
+const dec=v=>isInt(v)?fmt(v):`${fmt(v)} (≈ ${+v.toFixed(3)})`;
+const wpp=s=>(s.indexOf(' ')>=0||s[0]=='−')?'('+s+')':s;
+function gtbl(cx,zn,obj,zc,e,l,dr,cut){const {T,basis,cols}=cx,N=cols.length;
+let h='<div class="scroll"><table class="tb bm gt"><thead><tr><th>Basis</th>'+cols.map(c=>`<th>${nm(c.name)}</th>`).join('')+'<th>Solusi</th></tr></thead><tbody>';
+h+=`<tr class="zr"><td class="b">${zn}</td>`+zc.map((v,j)=>`<td class="${j==e?'ec':''}">${pf(v)}</td>`).join('')+`<td>${pf(obj)}</td></tr>`;
+T.forEach((r,i)=>{h+=`<tr class="${i==l?'lr':''}${i===cut&&i!=l?' cutr':''}"><td class="b">${nm(cols[basis[i]].name)}</td>`+r.slice(0,N).map((v,j)=>`<td class="${j==e?'ec':''}">${fmt(v)}</td>`).join('')+`<td>${fmt(r[N])}</td></tr>`});
+if(dr)h+=`<tr class="drr"><td class="b">Rasio</td>`+dr.map((v,j)=>`<td class="${j==e?'ec':''}">${v==null?'–':fmt(v)}</td>`).join('')+`<td></td></tr>`;
+return h+'</tbody></table></div>'}
+function zrowG(cx,cf){const {T,basis,cols}=cx,m=T.length,N=cols.length,cB=basis.map(j=>cf(cols[j])),zc=[];
+for(let j=0;j<N;j++){let s=P(0);for(let i=0;i<m;i++)s=add(s,mul(cB[i],T[i][j]));zc.push(sub(s,cf(cols[j])))}
+let obj=P(0);for(let i=0;i<m;i++)obj=add(obj,mul(cB[i],T[i][N]));return{zc,obj}}
+const basVals=cx=>cx.basis.map((j,i)=>({i,j,c:cx.cols[j],v:cx.T[i][cx.cols.length]}));
+function gomoryFrom(fin,o){
+const {n,sense,c,cc,zn,K,method}=o;TN=0;
+const xn=Array.from({length:n},(_,j)=>nm('x'+(j+1)));
+const zval=ob=>sense=='min'?-ob.c:ob.c;
+let h='',nt='';
+/* 1. ambil tabel akhir simpleks; buang kolom variabel semu */
+const cols0=fin.cols,N0=cols0.length,T=fin.T.map(r=>r.slice()),basis=fin.basis.slice();
+const keep=[],rm=new Set();cols0.forEach((x,j)=>{if(x.t!='a')keep.push(j)});
+basis.forEach((j,i)=>{if(cols0[j].t=='a'){const q=keep.find(k=>Math.abs(T[i][k])>1e-7&&!basis.includes(k));if(q!==undefined){piv(T,i,q);basis[i]=q;nt+=` ${nm(cols0[j].name)} masih di basis dengan nilai 0, jadi dikeluarkan lewat pivot di kolom ${nm(cols0[q].name)}.`}else{rm.add(i);nt+=` Baris ${nm(cols0[j].name)} redundan, jadi dibuang.`}}});
+const nT=[],nb=[];T.forEach((rw,i)=>{if(rm.has(i))return;nT.push([...keep.map(j=>rw[j]),rw[N0]]);nb.push(keep.indexOf(basis[i]))});
+const cx={T:nT,basis:nb,cols:keep.map(j=>({...cols0[j]}))};
+const cf=x=>x.t=='x'?P(cc[x.k]):P(0);
+const hadA=cols0.some(x=>x.t=='a');
+const nonInt=st.cons.some(r=>!isInt(Number(r.b))||r.a.some(v=>!isInt(Number(v))));
+let {zc,obj}=zrowG(cx,cf);
+h+=sec(`${K+1}. Metode Gomory (cutting plane): lanjutan dari hasil simpleks`,`<p class="note"><b>Langkah-langkah metode Gomory:</b></p><ol class="eexp"><li>Selesaikan masalah dengan metode simpleks biasa (sudah dikerjakan di atas).</li><li>Amati solusi optimumnya. Jika semua variabel basis sudah bernilai integer, solusi integer sudah diperoleh dan proses berakhir. Jika satu atau lebih variabel basis bernilai pecahan, lanjut ke langkah 3.</li><li>Buat kendala Gomory dari persamaan yang bagian pecahannya (f) maksimum, lalu cari solusi optimum dengan operasi baris elementer (metode dual simpleks). Kembali ke langkah 2.</li></ol><p class="note">Pemisahan koefisien: setiap b<sub>i</sub> dan a<sub>ij</sub> dipisah menjadi bagian bulat + pecahan nonnegatif, misalnya 3/2 = 1 + 1/2, 7/8 = 0 + 7/8, −7/3 = −3 + 2/3, −1 = −1 + 0, −2/5 = −1 + 3/5. Kendala Gomory: ${GOM.name=='sg'?'sg − Σ f<sub>ij</sub> s<sub>j</sub> = −f<sub>i</sub>':'S − Σ f<sub>ij</sub> s<sub>j</sub> = −f<sub>i</sub>'} (dari Σ f<sub>ij</sub> s<sub>j</sub> ≥ f<sub>i</sub>).</p>${nonInt?'<div class="res bad">Perhatian: ada koefisien atau ruas kanan yang tidak bulat. Metode Gomory murni mengasumsikan semua koefisien kendala bulat (agar slack juga bulat), jadi hasil bisa tidak tepat.</div>':''}`);
+h+=sec(`Tabel akhir simpleks sebagai titik awal Gomory (Tabel G${TN++})`,`<p class="note">${method=='two'?'Tabel optimal Fase 2 ditulis ulang dalam bentuk baris '+zn+' (isi baris '+zn+' = z<sub>j</sub> − c<sub>j</sub>), sama seperti format tabel di metode Gomory.':'Tabel optimal simpleks ditulis ulang dalam bentuk baris '+zn+'.'}${hadA?' Kolom variabel semu ('+cols0.filter(x=>x.t=='a').map(x=>nm(x.name)).join(', ')+') dibuang karena nilainya 0 dan tidak akan masuk basis lagi.':''}${nt}</p>`+gtbl(cx,zn,obj,zc,-1,-1));
+let k=0;
+const check=()=>{const bv=basVals(cx),fr=bv.filter(o=>!isInt(o.v));
+return {bv,fr,txt:`Nilai variabel basis: ${bv.map(o=>`${nm(o.c.name)} = ${dec(o.v)}`).join(', ')}.`}};
+let ck=check();
+h+=`<div class="res ${ck.fr.length?'bad':'ok'}"><b>Langkah 2 (cek integer):</b> ${ck.txt} ${ck.fr.length?'Masih ada variabel basis bernilai pecahan ('+ck.fr.map(o=>nm(o.c.name)).join(', ')+'), jadi dibuat kendala Gomory.':'Semua variabel basis sudah integer, jadi solusi simpleks sudah merupakan solusi integer. STOP.'}</div>`;
+while(ck.fr.length){
+k++;if(k>25)return h+`<div class="res bad">Kendala Gomory melebihi 25 kali. Proses dihentikan.</div>`;
+const {T,basis,cols}=cx,N=cols.length;
+const cand=ck.fr.map(o=>({...o,f:split(o.v).f}));
+let best=null;cand.forEach(o=>{if(!best||o.f>best.f+1e-9||(Math.abs(o.f-best.f)<1e-9&&o.c.t=='x'&&best.c.t!='x'))best=o});
+const ties=cand.filter(o=>Math.abs(o.f-best.f)<1e-9);
+const ri=best.i,row=T[ri],bn=nm(best.c.name);
+let why;
+if(cand.length==1)why=`Hanya ${bn} yang bernilai pecahan, jadi persamaan baris ${bn} dipakai.`;
+else if(ties.length>1)why=`Pecahan maksimum sama besar (f = ${fmt(best.f)}) pada ${ties.map(o=>nm(o.c.name)).join(', ')}. Dipilih ${ties.some(o=>o.c.t=='x')&&ties.some(o=>o.c.t!='x')?'variabel keputusan, lalu ':''}baris paling atas: baris ${bn}.`;
+else why=`f maksimum ada di ${bn} (f = ${fmt(best.f)}), jadi persamaan baris ${bn} dipakai.`;
+let s=`<p class="note"><b>Pilih persamaan sumber.</b> Bagian pecahan variabel basis: ${cand.map(o=>`${nm(o.c.name)} = ${fmt(o.v)} = ${fmt(split(o.v).fl)} + ${fmt(o.f)} → f = ${fmt(o.f)}`).join('; ')}. ${why}</p>`;
+const terms=cols.map((cl,j)=>({cl,j,a:row[j]})).filter(o=>Math.abs(o.a)>1e-12);
+s+=`<p class="note"><b>Persamaan dari baris ${bn}:</b></p><div class="eqs">`+terms.map(o=>(isInt(o.a)&&Math.round(o.a)==1?'':'('+fmt(o.a)+')')+nm(o.cl.name)).join(' + ')+` = ${fmt(row[N])}</div>`;
+s+=`<p class="note"><b>Pisahkan koefisien menjadi bagian bulat + pecahan nonnegatif</b> (0 ≤ f &lt; 1):</p><ul class="eexp">`+terms.map(o=>{const q=split(o.a);return`<li>${nm(o.cl.name)}: ${fmt(o.a)} = ${fmt(q.fl)} + ${fmt(q.f)} → f = ${fmt(q.f)}</li>`}).join('')+`<li>Solusi (ruas kanan): ${fmt(row[N])} = ${fmt(split(row[N]).fl)} + ${fmt(split(row[N]).f)} → f = ${fmt(split(row[N]).f)}</li></ul>`;
+s+=`<div class="eqs">`+terms.map(o=>{const q=split(o.a);return basis.includes(o.j)?nm(o.cl.name):`(${fmt(q.fl)} + ${fmt(q.f)})${nm(o.cl.name)}`}).join(' + ')+` = (${fmt(split(row[N]).fl)} + ${fmt(split(row[N]).f)})</div>`;
+const fj=cols.map((cl,j)=>basis.includes(j)?0:split(row[j]).f),f0=split(row[N]).f,pos=fj.map((f,j)=>({f,j})).filter(o=>o.f>1e-12);
+const Sn=(GOM.name=='sg'?'sg':'S')+k;
+s+=`<p class="note"><b>Pertidaksamaan potongan Gomory</b> (variabel non-basis dengan f &gt; 0):</p><div class="eqs">${pos.map(o=>`(${fmt(o.f)})${nm(cols[o.j].name)}`).join(' + ')} ≥ ${fmt(f0)}</div>`;
+s+=`<p class="note"><b>Kendala Gomory</b> (kalikan −1 lalu tambah slack potongan ${nm(Sn)} ≥ 0):</p><div class="eqs">`+(GOM.name=='sg'?`${nm(Sn)} − ${pos.map(o=>`${fmt(o.f)} ${nm(cols[o.j].name)}`).join(' − ')} = ${fmt(-f0)}`:`${pos.map(o=>`(${fmt(-o.f)})${nm(cols[o.j].name)}`).join(' + ')} + ${nm(Sn)} = ${fmt(-f0)}`)+`</div><p class="note">Baris baru ${nm(Sn)} ditambahkan ke tabel: kolom non-basis berisi −f, kolom ${nm(Sn)} = 1, Solusi = ${fmt(-f0)}.</p>`;
+cols.push({name:Sn,t:'g'});T.forEach(rw=>rw.splice(N,0,0));
+const nr=Array(N+2).fill(0);fj.forEach((f,j)=>{if(f>1e-12)nr[j]=-f});nr[N]=1;nr[N+1]=-f0;T.push(nr);basis.push(N);
+const cutRow=T.length-1;
+h+=sec(`Kendala Gomory ${ordk(k)} (dari baris ${bn})`,s);
+for(let d=0;;d++){
+if(d>40)return h+`<div class="res bad">Dual simpleks melebihi batas iterasi.</div>`;
+const z=zrowG(cx,cf),NN=cols.length;zc=z.zc;obj=z.obj;
+let l=-1;T.forEach((rw,i)=>{if(rw[NN]<-1e-9&&(l<0||rw[NN]<T[l][NN]-1e-9))l=i});
+if(l<0){ck=check();
+h+=sec(`Hasil operasi baris setelah kendala Gomory ${ordk(k)} (Tabel G${TN++})`,gtbl(cx,zn,obj,zc,-1,-1)+`<div class="ex">Semua Solusi ≥ 0 dan semua koefisien baris ${zn} ≥ 0, jadi tabel ini optimal dan layak. Z = ${dec(zval(obj))}.<br><b>Langkah 2 (cek integer):</b> ${ck.txt}<br>${ck.fr.length?'Masih ada variabel basis bernilai <b>pecahan</b> ('+ck.fr.map(o=>nm(o.c.name)).join(', ')+'), jadi dibuat kendala Gomory berikutnya.':'Semua variabel basis sudah <b>integer</b>. <b>STOP</b>.'}</div>`);
+break}
+const dr=cols.map((cl,j)=>T[l][j]<-1e-9?Math.abs(zc[j].c/T[l][j]):null);
+let e=-1;dr.forEach((v,j)=>{if(v!=null&&(e<0||v<dr[e]-1e-9))e=j});
+const ln=nm(cols[basis[l]].name);
+if(e<0)return h+sec(`Dual simpleks (Tabel G${TN++})`,gtbl(cx,zn,obj,zc,-1,l,null,cutRow)+`<div class="res bad">Baris ${ln} punya Solusi negatif tetapi tidak ada elemen negatif di barisnya, jadi tidak ada solusi integer yang layak.</div>`);
+const negs=T.filter(rw=>rw[NN]<-1e-9).length,en=nm(cols[e].name);
+let ex=`<b>Operasi baris (metode dual simpleks)</b><br><b>Baris keluar (leaving):</b> ${ln}, karena Solusi-nya negatif (${fmt(T[l][NN])})${negs>1?' dan paling negatif':''}.<br><b>Rasio</b> = |koefisien baris ${zn} ÷ elemen negatif baris ${ln}|, cari yang minimum:<ul class="eexp">`+dr.map((v,j)=>v==null?'':`<li>Kolom ${nm(cols[j].name)}: |${pf(zc[j])} ÷ ${wpp(fmt(T[l][j]))}| = ${fmt(v)}</li>`).join('')+`</ul><b>Kolom masuk (entering):</b> ${en}, rasio terkecil ${fmt(dr[e])}.<br><b>Pivot</b> = ${fmt(T[l][e])}.`;
+const title=d==0?`Tabel setelah kendala Gomory ${ordk(k)} ditambahkan (Tabel G${TN++})`:`Dual simpleks lanjutan (Tabel G${TN++})`;
+let body=gtbl(cx,zn,obj,zc,e,l,dr,cutRow)+entTbl(cols,basis,zc,e,true,zn,T,l)+`<div class="ex">${ex}</div>`;
+body+=obeHtml(cx,zc,obj,e,l,zn);
+h+=sec(title,body)}
+}
+const xv=Array(n).fill(0);basVals(cx).forEach(o=>{if(o.c.t=='x')xv[o.c.k]=o.v});
+const Zv=zval(zrowG(cx,cf).obj);
+let body=`<div class="res ok">Solusi optimal integer: ${xv.map((v,j)=>nm('x'+(j+1))+' = '+fmt(v)).join(', ')}<br>Z ${sense=='min'?'minimum':'maksimum'} = ${c.map((v,j)=>({v,j})).filter(q=>q.v!=0).map((q,i)=>(i?(q.v<0?' − ':' + '):(q.v<0?'−':''))+fmt(Math.abs(q.v))+'('+fmt(xv[q.j])+')').join('')} = ${fmt(Zv)}</div>`;
+body+=`<p class="note">Verifikasi pada kendala awal:</p><div class="scroll"><table class="tb"><thead><tr><th>Kendala</th><th>Ruas kiri</th><th>Tanda</th><th>Ruas kanan</th><th>Status</th></tr></thead><tbody>`+st.cons.map((r,i)=>{const L=r.a.reduce((s,v,j)=>s+Number(v)*xv[j],0),b=Number(r.b),ok=r.s=='le'?L<=b+1e-7:r.s=='ge'?L>=b-1e-7:Math.abs(L-b)<1e-7;return`<tr><td>${i+1}</td><td>${fmt(L)}</td><td>${SG[r.s]}</td><td>${fmt(b)}</td><td>${ok?'✓ terpenuhi':'✗ tidak terpenuhi'}</td></tr>`}).join('')+`</tbody></table></div>`;
+return h+sec(`${K+2}. Solusi optimal integer (metode Gomory)`,body)}
+function obeHtml(cx,oZ,oO,e,l,zname){const {T,basis,cols}=cx,N=cols.length;const oT=T.map(r=>r.slice()),oB=basis.map(j=>cols[j].name),pv=T[l][e],fz=oZ[e],eN=cols[e].name;piv(T,l,e);basis[l]=e;const nr=T[l],nz=oZ.map((q,j)=>P(q.c-fz.c*nr[j],q.m-fz.m*nr[j])),no=P(oO.c-fz.c*nr[N],oO.m-fz.m*nr[N]);
+const hd='<tr><th>Baris</th>'+cols.map(c=>`<th>${nm(c.name)}</th>`).join('')+'<th>Solusi</th></tr>';
+const rw=(lab,vals,cls)=>`<tr class="${cls||''}"><td class="b">${lab}</td>`+vals.map(v=>`<td>${v}</td>`).join('')+'</tr>';
+const mt=(title,rows)=>`<div class="obeb"><div class="obet">${title}</div><div class="scroll"><table class="tb ot"><thead>${hd}</thead><tbody>${rows}</tbody></table></div></div>`;
+const wp=s=>(s.indexOf(' ')>=0||s[0]=='−')?'('+s+')':s;
+let ob=`<div class="obe"><b>Operasi baris (OBE)</b>: baris pivot dibagi pivot, lalu setiap baris lain dikurangi (angka di kolom ${nm(eN)} × baris ${nm(eN)} baru).`;
+ob+=mt(`1) Baris pivot: Baris ${nm(eN)} baru = Baris ${nm(oB[l])} lama ÷ ${wp(fmt(pv))}`,rw(`${nm(oB[l])} lama`,oT[l].map(fmt))+rw(`${nm(eN)} baru (÷ ${wp(fmt(pv))})`,nr.map(fmt),'nb'));
+const zl=[...oZ.map(pf),pf(oO)],zk=nr.map(v=>pf(P(fz.c*v,fz.m*v)));
+ob+=mt(`2) Baris ${zname} baru = Baris ${zname} lama − ${wp(pf(fz))} × Baris ${nm(eN)} baru`,rw(`${zname} lama`,zl)+rw(`${wp(pf(fz))} × ${nm(eN)} baru`,zk,'op')+rw(`${zname} baru`,[...nz.map(pf),pf(no)],'nb'));
+let kk=3;
+oT.forEach((r,i)=>{if(i==l)return;const f=r[e];
+if(Math.abs(f)<1e-12){ob+=`<p class="note">${kk++}) Baris ${nm(oB[i])}: angka di kolom ${nm(eN)} sudah 0, jadi baris tidak berubah = (${T[i].map(fmt).join(', ')}).</p>`;return}
+ob+=mt(`${kk++}) Baris ${nm(oB[i])} baru = Baris ${nm(oB[i])} lama − ${wp(fmt(f))} × Baris ${nm(eN)} baru`,rw(`${nm(oB[i])} lama`,r.map(fmt))+rw(`${wp(fmt(f))} × ${nm(eN)} baru`,nr.map(v=>fmt(f*v)),'op')+rw(`${nm(oB[i])} baru`,T[i].map(fmt),'nb'))});
+ob+='</div>';
+return ob}
+
+
+const $=s=>document.querySelector(s),E=1e-9;
+const PRE=[
+{sense:'min',n:2,m:2,c:[2,3],cons:[{a:[1,1],s:'ge',b:4},{a:[1,3],s:'ge',b:6}]},
+{sense:'max',n:2,m:3,c:[3,2],cons:[{a:[2,1],s:'le',b:11},{a:[1,1],s:'ge',b:4},{a:[1,-1],s:'eq',b:1}]},
+{sense:'min',n:2,m:2,c:[1,2],cons:[{a:[1,-1],s:'le',b:-1},{a:[1,1],s:'le',b:5}]},
+{sense:'max',n:2,m:2,c:[1,1],cons:[{a:[1,1],s:'le',b:2},{a:[1,1],s:'ge',b:5}]},
+{sense:'max',n:2,m:3,c:[5,4],cons:[{a:[1,1],s:'le',b:10},{a:[1,2],s:'ge',b:6},{a:[1,0],s:'eq',b:4}]},
+{sense:'max',n:2,m:2,c:[3,4],cons:[{a:[3,-1],s:'le',b:12},{a:[3,11],s:'le',b:66}],g:1,nmz:'S'},
+{sense:'max',n:3,m:2,c:[3,2,1],cons:[{a:[1,1,1],s:'le',b:4},{a:[2,1,0],s:'le',b:5}],g:1,nmz:'S'},
+{sense:'max',n:2,m:2,c:[7,9],cons:[{a:[-1,3],s:'le',b:6},{a:[7,1],s:'le',b:35}],g:1,nmz:'sg'}];
+let st=JSON.parse(JSON.stringify(PRE[5]));st.method='bigm';
+const SG={le:'≤',ge:'≥',eq:'='};
+function form(){
+let h=`<div class="ctl"><label>Tujuan<select data-k="sense"><option value="max" ${st.sense=='max'?'selected':''}>Maksimumkan</option><option value="min" ${st.sense=='min'?'selected':''}>Minimumkan</option></select></label>
+<label>Jumlah variabel<input type="number" min="1" max="6" data-k="n" value="${st.n}"></label>
+<label>Jumlah kendala<input type="number" min="1" max="8" data-k="m" value="${st.m}"></label></div>`;
+h+='<div class="eq"><span class="lab">Z =</span>'+st.c.map((v,j)=>`<span class="t"><input type="number" step="any" data-k="c" data-j="${j}" value="${v}" aria-label="koefisien x${j+1}"><b>x<sub>${j+1}</sub></b></span>`).join('<span>+</span>')+'</div>';
+st.cons.forEach((r,i)=>{h+=`<div class="eq"><span class="lab">Kendala ${i+1}</span>`+r.a.map((v,j)=>`<span class="t"><input type="number" step="any" data-k="a" data-i="${i}" data-j="${j}" value="${v}" aria-label="kendala ${i+1} x${j+1}"><b>x<sub>${j+1}</sub></b></span>`).join('<span>+</span>')+
+`<select data-k="s" data-i="${i}">${['le','ge','eq'].map(o=>`<option value="${o}" ${r.s==o?'selected':''}>${SG[o]}</option>`).join('')}</select><input type="number" step="any" data-k="b" data-i="${i}" value="${r.b}" aria-label="ruas kanan ${i+1}"></div>`});
+h+='<p class="note">Semua variabel keputusan ≥ 0. Ruas kanan boleh negatif; solver akan menormalkannya.</p>';
+h=h.replace(/<input type="number" step="any" ([^>]*)>/g,(m,a)=>`<span class="nw"><input type="text" inputmode="decimal" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" ${a}><button type="button" class="sg" aria-label="Ganti tanda plus atau minus">±</button></span>`);
+$('#form').innerHTML=h}
+$('#form').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();e.target.blur()}});
+$('#form').addEventListener('input',e=>{const t=e.target,k=t.dataset.k,i=+t.dataset.i,j=+t.dataset.j;if(t.inputMode=='decimal'){const v=t.value.trim();t.style.borderColor=(v!==''&&!/^[-−–+]?\d*[.,]?\d*$/.test(v))?'var(--bad)':''}
+if(k=='c')st.c[j]=num(t.value);else if(k=='a')st.cons[i].a[j]=num(t.value);else if(k=='b')st.cons[i].b=num(t.value);else if(k=='s')st.cons[i].s=t.value;else if(k=='sense')st.sense=t.value});
+$('#form').addEventListener('change',e=>{const t=e.target,k=t.dataset.k;if(k!='n'&&k!='m')return;
+const v=Math.max(1,Math.min(k=='n'?6:8,parseInt(t.value)||1));
+if(k=='n'){st.n=v;st.c=Array.from({length:v},(_,j)=>st.c[j]||0);st.cons.forEach(r=>r.a=Array.from({length:v},(_,j)=>r.a[j]||0))}
+else{st.m=v;while(st.cons.length<v)st.cons.push({a:Array(st.n).fill(0),s:'le',b:0});st.cons.length=v}form()});
+$('#seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.method=b.dataset.m;document.querySelectorAll('#seg button').forEach(x=>x.setAttribute('aria-pressed',x==b))});
+document.querySelectorAll('.pre').forEach(b=>b.onclick=()=>{const m=st.method;st=JSON.parse(JSON.stringify(PRE[b.dataset.p]));st.method=m;if(st.g){GOM.on=true;GOM.name=st.nmz||GOM.name;syncG()}form()});
+const num=v=>{const x=parseFloat(String(v).replace(/[−–]/g,'-').replace(',','.'));return isNaN(x)?0:x};
+$('#form').addEventListener('click',e=>{const b=e.target.closest('.sg');if(!b)return;const t=b.previousElementSibling;const s=t.value.trim().replace(/^[−–]/,'-');t.value=s.startsWith('-')?s.slice(1):'-'+s;t.dispatchEvent(new Event('input',{bubbles:true}))});
+/* ---------- util ---------- */
+const fmt=x=>{if(Math.abs(x)<E)return'0';for(let d=1;d<=720;d++){const p=Math.round(x*d);if(Math.abs(x-p/d)<1e-9)return(d==1?''+p:p+'/'+d).replace('-','−')}return x.toFixed(3).replace('-','−')};
+const P=(c,m=0)=>({c,m}),add=(a,b)=>P(a.c+b.c,a.m+b.m),sub=(a,b)=>P(a.c-b.c,a.m-b.m),mul=(a,k)=>P(a.c*k,a.m*k);
+const neg=p=>p.m<-E||(Math.abs(p.m)<=E&&p.c<-E),cmp=(p,q)=>Math.abs(p.m-q.m)>E?p.m-q.m:p.c-q.c;
+const pf=p=>{const c=Math.abs(p.c)<E?0:p.c,m=Math.abs(p.m)<E?0:p.m;if(!m)return fmt(c);const ms=(Math.abs(m)==1?'':fmt(Math.abs(m)))+'M';if(!c)return(m<0?'−':'')+ms;return fmt(c)+(m<0?' − ':' + ')+ms};
+const nm=s=>s[0]+'<sub>'+s.slice(1)+'</sub>';
+const lin=(cf,names)=>{let s='';cf.forEach((v,j)=>{if(Math.abs(v)<1e-12)return;const a=Math.abs(v),t=(a==1?'':fmt(a))+names[j];s+=s?(v<0?' − ':' + ')+t:(v<0?'−':'')+t});return s||'0'};
+const sec=(t,h)=>`<section class="card"><h3>${t}</h3>${/class="scroll"/.test(h)?'<p class="hint">Geser tabel ke samping jika kolom terpotong.</p>':''}${h}</section>`;
+function piv(T,l,e){const p=T[l][e];T[l]=T[l].map(v=>v/p);T.forEach((r,i)=>{if(i!=l){const f=r[e];if(Math.abs(f)>1e-12)T[i]=r.map((v,k)=>{const x=v-f*T[l][k];return Math.abs(x)<1e-11?0:x})}})}
+/* ---------- simpleks ---------- */
+function bmtbl(cx,zn,obj,zc,e,l,ra){const {T,basis,cols}=cx,N=cols.length;
+let h='<div class="scroll"><table class="tb bm"><thead><tr><th>Basis</th><th>Z</th>'+cols.map(c=>`<th>${nm(c.name)}</th>`).join('')+'<th>Solusi</th><th>Rasio</th></tr></thead><tbody>';
+h+=`<tr class="zr"><td class="b">${zn}</td><td>1</td>`+zc.map((v,j)=>`<td class="${j==e?'ec':''}">${pf(v)}</td>`).join('')+`<td>${pf(obj)}</td><td></td></tr>`;
+T.forEach((r,i)=>{h+=`<tr class="${i==l?'lr':''}"><td class="b">${nm(cols[basis[i]].name)}</td><td>0</td>`+r.slice(0,N).map((v,j)=>`<td class="${j==e?'ec':''}">${fmt(v)}</td>`).join('')+`<td>${fmt(r[N])}</td><td>${ra[i]==null?'–':fmt(ra[i])}</td></tr>`});
+return h+'</tbody></table></div>'}
+function entTbl(cols,basis,zc,e,bm,zname,T,l){
+const en=nm(cols[e].name),w=x=>x.indexOf(' ')>=0?'('+x+')':x,m=T.length;
+const zo=pf(zc[e]),ro=T.map(r=>fmt(r[e]));
+const rn=Array.from({length:m},(_,i)=>i+1);
+const lab=`<div class="mc zc">${zname}</div>`+rn.map(i=>`<div class="mc">${i}.</div>`).join('');
+const oc=`<div class="mc zc">${zo}</div>`+ro.map((v,i)=>`<div class="mc${i==l?' pv':''}">${v}</div>`).join('');
+const nc=`<div class="mc zc">0</div>`+ro.map((v,i)=>`<div class="mc${i==l?' pv':''}">${i==l?'1':'0'}</div>`).join('');
+let h=`<div class="entbox"><div class="ettl">Tabel entering: kolom ${en}</div><div class="scroll"><div class="emx"><div class="ecol"><div class="stk">${lab}</div><div class="cap">&nbsp;</div></div><div class="ecol"><div class="mx">${oc}</div><div class="cap">Baris lama</div></div>`;
+if(l<0)return h+`</div></div><p class="note">Tidak ada baris pivot karena semua elemen kolom ${en} ≤ 0, jadi baris baru tidak bisa dihitung.</p></div>`;
+h+=`<div class="ecol arr"><div class="ar">→</div></div><div class="ecol"><div class="mx">${nc}</div><div class="cap">Baris baru</div></div></div></div>`;
+let li='';
+const zf=zc[e];
+li+=Math.abs(zf.c)<E&&Math.abs(zf.m)<E?`<li>Baris ${zname} lama = 0, sudah 0 sehingga baris ${zname} baru = 0.</li>`:`<li>Baris ${zname} lama = ${zo}.<br>Baris ${zname} baru = Baris ${zname} lama − (${w(zo)} × 1) = 0.</li>`;
+T.forEach((r,i)=>{const nmv=nm(cols[basis[i]].name);
+if(i==l)li+=`<li>Baris ${i+1} (${nmv}) adalah baris pivot. Pivot = ${fmt(r[e])}.<br>Baris ${i+1} baru = Baris ${i+1} lama ÷ ${wpp(fmt(r[e]))} = ${fmt(r[e])} ÷ ${wpp(fmt(r[e]))} = 1.</li>`;
+else li+=Math.abs(r[e])<E?`<li>Baris ${i+1} (${nmv}) lama = 0, sudah 0 sehingga baris ${i+1} baru = 0.</li>`:`<li>Baris ${i+1} (${nmv}) lama = ${fmt(r[e])}.<br>Baris ${i+1} baru = Baris ${i+1} lama − (${fmt(r[e])} × 1) = 0.</li>`});
+return h+`<p class="note">Di kolom ${en}, baris pivot dibagi pivot sehingga menjadi 1. Baris lain dikurangi (angka lamanya × baris pivot baru) sehingga menjadi 0.</p><ul class="eexp">${li}</ul></div>`}
+function altSec(cx,cf,zname,bm,zc,obj){
+const {T,basis,cols}=cx,m=T.length,N=cols.length;let j=-1,l=-1,ra=Array(m).fill(null);
+for(let q=0;q<N&&j<0;q++){if(cols[q].t=='a'||basis.includes(q)||Math.abs(zc[q].c)>E||Math.abs(zc[q].m)>E)continue;
+let ll=-1;const rr=Array(m).fill(null);for(let i=0;i<m;i++)if(T[i][q]>1e-9){rr[i]=T[i][N]/T[i][q];if(ll<0||rr[i]<rr[ll]-1e-9)ll=i}
+if(ll>=0&&rr[ll]>1e-9){j=q;l=ll;ra=rr}}
+if(j<0)return'';
+const T2=T.map(r=>r.slice()),b2=basis.slice();
+const before=bmtbl({T,basis,cols},zname,obj,zc,j,l,ra),et=entTbl(cols,basis,zc,j,bm,zname,T,l);
+const rl=ra.map((r,i)=>r==null?null:`${nm(cols[basis[i]].name)}: ${fmt(T[i][N])}/${fmt(T[i][j])} = ${fmt(r)}`).filter(Boolean).join('; ');
+const lv=nm(cols[basis[l]].name),en=nm(cols[j].name),pv=fmt(T[l][j]);
+piv(T2,l,j);b2[l]=j;
+const cB=b2.map(q=>cf(cols[q])),zc2=[];for(let q=0;q<N;q++){let s=P(0);for(let i=0;i<m;i++)s=add(s,mul(cB[i],T2[i][q]));zc2.push(sub(s,cf(cols[q])))}
+let o2=P(0);for(let i=0;i<m;i++)o2=add(o2,mul(cB[i],T2[i][N]));
+const after=bmtbl({T:T2,basis:b2,cols},zname,o2,zc2,-1,-1,Array(m).fill(null));
+const xs=cols.filter(c=>c.t=='x').map(c=>{const i=b2.indexOf(cols.indexOf(c));return`${nm(c.name)} = ${i<0?'0':fmt(T2[i][N])}`}).join(', ');
+return sec('Solusi optimal alternatif',`<p class="note">Di tabel optimal, ${en} bukan basis tetapi koefisiennya di baris ${zname} = 0. Jika ${en} dimasukkan, nilai ${zname} tidak berubah, sehingga ada titik optimal lain dengan nilai tujuan yang sama.</p>${before}${et}<div class="ex"><b>Entering:</b> ${en} (koefisien baris ${zname} = 0).<br><b>Rasio:</b> ${rl}. Terkecil di baris ${lv}, jadi ${lv} <b>keluar</b>.<br><b>Pivot</b> = ${pv}.</div><p class="note"><b>Tabel setelah ${en} masuk:</b></p>${after}<div class="res ok">Solusi alternatif: ${xs}. Nilai ${zname} tetap ${pf(o2)} (sama dengan solusi utama).</div>`)}
+function run(cx,cf,zname,label,bm){
+let out='',it=0,chk=null;
+for(;;){
+const {T,basis,cols}=cx,m=T.length,N=cols.length,cB=basis.map(j=>cf(cols[j]));
+const z=[],zc=[];
+for(let j=0;j<N;j++){let s=P(0);for(let i=0;i<m;i++)s=add(s,mul(cB[i],T[i][j]));z.push(s);zc.push(sub(s,cf(cols[j])))}
+let obj=P(0);for(let i=0;i<m;i++)obj=add(obj,mul(cB[i],T[i][N]));
+if(chk){const bad=zc.some((q,j)=>Math.abs(q.c-chk.nz[j].c)>1e-6||Math.abs(q.m-chk.nz[j].m)>1e-6)||Math.abs(obj.c-chk.no.c)>1e-6||Math.abs(obj.m-chk.no.m)>1e-6;if(bad)out+='<div class="res bad">Peringatan: baris Z hasil OBE tidak sama dengan hitungan ulang. Iterasi ini tidak boleh dipercaya.</div>';chk=null}
+let e=-1;for(let j=0;j<N;j++)if(neg(zc[j])&&(e<0||cmp(zc[j],zc[e])<0))e=j;
+const ra=Array(m).fill(null);let l=-1;
+if(e>=0)for(let i=0;i<m;i++)if(T[i][e]>1e-9){ra[i]=T[i][N]/T[i][e];if(l<0||ra[i]<ra[l]-1e-9)l=i}
+let h=`<div class="scroll"><table class="tb"><thead><tr class="cj"><th></th><th>cⱼ</th>`+cols.map(c=>`<th>${pf(cf(c))}</th>`).join('')+`<th></th><th></th></tr><tr><th>c<sub>B</sub></th><th>Basis</th>`+cols.map(c=>`<th>${nm(c.name)}</th>`).join('')+`<th>Solusi</th><th>Rasio</th></tr></thead><tbody>`;
+for(let i=0;i<m;i++){h+=`<tr class="${i==l?'lr':''}"><td>${pf(cB[i])}</td><td class="b">${nm(cols[basis[i]].name)}</td>`+T[i].slice(0,N).map((v,j)=>`<td class="${j==e?'ec':''}">${fmt(v)}</td>`).join('')+`<td>${fmt(T[i][N])}</td><td>${ra[i]==null?'–':fmt(ra[i])}</td></tr>`}
+h+=`</tbody><tfoot><tr><td></td><td>zⱼ</td>${z.map(v=>`<td>${pf(v)}</td>`).join('')}<td>${zname} = ${pf(obj)}</td><td></td></tr><tr><td></td><td>zⱼ−cⱼ</td>${zc.map((v,j)=>`<td class="${j==e?'ec':''}">${pf(v)}</td>`).join('')}<td></td><td></td></tr></tfoot></table></div>`;
+if(bm)h=bmtbl(cx,zname,obj,zc,e,l,ra);let ex;
+if(e<0){const alt=label!='Fase 1'&&cols.some((x,j)=>x.t!='a'&&!basis.includes(j)&&Math.abs(zc[j].c)<E&&Math.abs(zc[j].m)<E);ex=`Semua ${bm?'koefisien baris '+zname:'zⱼ−cⱼ'} ≥ 0, jadi tabel ini <b>optimal</b> untuk ${label}. Nilai ${zname} = ${pf(obj)}.`+(alt?' Ada variabel non-basis dengan zⱼ−cⱼ = 0: ada solusi optimal alternatif dengan nilai Z yang sama (lihat bagian Solusi optimal alternatif di bawah).':'');out+=sec(it?`Iterasi ${it}`:'Tabel awal',h+`<div class="ex">${ex}</div>`);if(alt)out+=altSec(cx,cf,zname,bm,zc,obj);return{status:'optimal',obj,out}}
+if(l<0){ex=`Entering <b>${nm(cols[e].name)}</b>, tetapi semua elemen kolomnya ≤ 0, sehingga tidak ada batas rasio. Masalah <b>tak terbatas (unbounded)</b>.`;out+=sec(it?`Iterasi ${it}`:'Tabel awal',h+entTbl(cols,basis,zc,e,bm,zname,T,l)+`<div class="ex">${ex}</div>`);return{status:'unbounded',out}}
+const rl=ra.map((r,i)=>r==null?null:`${nm(cols[basis[i]].name)}: ${fmt(T[i][N])}/${fmt(T[i][e])} = ${fmt(r)}`).filter(Boolean).join('; ');
+ex=`<b>Entering:</b> ${nm(cols[e].name)}, karena ${bm?'koefisien baris '+zname:'zⱼ−cⱼ'} = ${pf(zc[e])} paling negatif.<br><b>Rasio</b> (Solusi ÷ elemen kolom, hanya elemen &gt; 0): ${rl}. Terkecil di baris ${nm(cols[basis[l]].name)} = ${fmt(ra[l])}, jadi ${nm(cols[basis[l]].name)} <b>keluar</b>.<br><b>Pivot</b> = ${fmt(T[l][e])}. Rincian OBE ada di bawah tabel. Nilai ${zname} saat ini = ${pf(obj)}.${ra[l]<1e-9?' Rasio terkecil = 0 (degeneratif): nilai '+zname+' tidak berubah pada iterasi ini.':''}`;
+out+=sec(it?`Iterasi ${it}`:'Tabel awal',h+entTbl(cols,basis,zc,e,bm,zname,T,l)+`<div class="ex">${ex}</div>`);
+const oT=T.map(r=>r.slice()),oB=basis.map(j=>cols[j].name),pv=T[l][e],fz=zc[e],eN=cols[e].name,oZ=zc.slice(),oO=obj;
+piv(T,l,e);basis[l]=e;
+const V=r=>'(0, '+r.map(fmt).join(', ')+')',nr=T[l],nz=oZ.map((q,j)=>P(q.c-fz.c*nr[j],q.m-fz.m*nr[j])),no=P(oO.c-fz.c*nr[N],oO.m-fz.m*nr[N]);
+const hd='<tr><th>Baris</th>'+cols.map(c=>`<th>${nm(c.name)}</th>`).join('')+'<th>Solusi</th></tr>';
+const rw=(lab,vals,cls)=>`<tr class="${cls||''}"><td class="b">${lab}</td>`+vals.map(v=>`<td>${v}</td>`).join('')+'</tr>';
+const mt=(title,rows)=>`<div class="obeb"><div class="obet">${title}</div><div class="scroll"><table class="tb ot"><thead>${hd}</thead><tbody>${rows}</tbody></table></div></div>`;
+const wp=s=>(s.indexOf(' ')>=0||s[0]=='−')?'('+s+')':s;
+let ob=`<div class="obe"><b>Operasi baris (OBE)</b>: baris pivot dibagi pivot, lalu setiap baris lain dikurangi (angka di kolom ${nm(eN)} × baris ${nm(eN)} baru).`;
+ob+=mt(`1) Baris pivot: Baris ${nm(eN)} baru = Baris ${nm(oB[l])} lama ÷ ${fmt(pv)}`,rw(`${nm(oB[l])} lama`,oT[l].map(fmt))+rw(`${nm(eN)} baru (÷ ${fmt(pv)})`,nr.map(fmt),'nb'));
+const zl=[...oZ.map(pf),pf(oO)],zk=nr.map(v=>pf(P(fz.c*v,fz.m*v)));
+ob+=mt(`2) Baris ${zname} baru = Baris ${zname} lama − ${wp(pf(fz))} × Baris ${nm(eN)} baru`,rw(`${zname} lama`,zl)+rw(`${wp(pf(fz))} × ${nm(eN)} baru`,zk,'op')+rw(`${zname} baru`,[...nz.map(pf),pf(no)],'nb'));
+let kk=3;
+oT.forEach((r,i)=>{if(i==l)return;const f=r[e];
+if(Math.abs(f)<1e-12){ob+=`<p class="note">${kk++}) Baris ${nm(oB[i])}: angka di kolom ${nm(eN)} sudah 0, jadi baris tidak berubah = (${T[i].map(fmt).join(', ')}).</p>`;return}
+ob+=mt(`${kk++}) Baris ${nm(oB[i])} baru = Baris ${nm(oB[i])} lama − ${wp(fmt(f))} × Baris ${nm(eN)} baru`,rw(`${nm(oB[i])} lama`,r.map(fmt))+rw(`${wp(fmt(f))} × ${nm(eN)} baru`,nr.map(v=>fmt(f*v)),'op')+rw(`${nm(oB[i])} baru`,T[i].map(fmt),'nb'))});
+ob+='</div>';
+chk={nz,no};out=out.replace(/<\/section>$/,ob+'</section>');
+if(++it>60)return{status:'loop',out}}}
+function solve(){
+const {n,m,sense,method}=st,c=st.c.map(Number),notes=[];
+const rows=st.cons.map((r,i)=>{let a=r.a.map(Number),s=r.s,b=Number(r.b);
+if(b<0){a=a.map(v=>-v);b=-b;s=s=='le'?'ge':s=='ge'?'le':'eq';notes.push(`Kendala ${i+1}: ruas kanan negatif, dikali −1 dan tanda berbalik.`)}return{a,s,b}});
+const cols=[],ent=[],basis=Array(m).fill(-1);
+for(let j=0;j<n;j++)cols.push({name:'x'+(j+1),t:'x',k:j});
+rows.forEach((r,i)=>{if(r.s!='eq'){cols.push({name:'s'+(i+1),t:'s'});ent.push([i,cols.length-1,r.s=='le'?1:-1]);if(r.s=='le')basis[i]=cols.length-1;notes.push(`Kendala ${i+1} (${SG[r.s]}): ${r.s=='le'?'tambah slack s'+(i+1)+' (jadi basis awal)':'kurangi surplus s'+(i+1)+', tambah variabel semu R'+(rows.slice(0,i+1).filter(q=>q.s!='le').length)}.`)}});
+const pre='R';let ra=0;
+rows.forEach((r,i)=>{if(r.s!='le'){ra++;cols.push({name:pre+ra,t:'a'});ent.push([i,cols.length-1,1]);basis[i]=cols.length-1;if(r.s=='eq')notes.push(`Kendala ${i+1} (=): tambah variabel semu ${pre}${ra}.`)}});
+const N=cols.length,T=rows.map(r=>{const t=Array(N+1).fill(0);r.a.forEach((v,j)=>t[j]=v);t[N]=r.b;return t});
+ent.forEach(([i,j,v])=>T[i][j]=v);
+const cc=sense=='min'?c.map(v=>-v):c,hasA=cols.some(x=>x.t=='a'),names=cols.map(x=>nm(x.name));
+const cBig=x=>x.t=='x'?P(cc[x.k]):x.t=='a'?P(0,-1):P(0),cP1=x=>x.t=='a'?P(-1):P(0),cP2=x=>x.t=='x'?P(cc[x.k]):P(0);
+let h=sec('1. Bentuk standar',`<div class="note">${notes.join('<br>')||'Semua kendala ≤ dengan ruas kanan ≥ 0.'}</div><div class="eqs">`+rows.map((r,i)=>lin(T[i].slice(0,N),names)+' = '+fmt(r.b)).join('<br>')+`</div><p class="note">Basis awal: ${basis.map(j=>nm(cols[j].name)).join(', ')}. Semua variabel ≥ 0.</p>`);
+const xn=Array.from({length:n},(_,j)=>nm('x'+(j+1)));
+const zn=sense=='min'?'Z′':'Z',zl=(sense=='min'?'Maks Z′ = −Z = ':'Maks Z = ')+lin(cc,xn);
+let fin,rep;
+const verdict=(t,b)=>{h+=`<div class="res bad">${t}</div>`};
+if(method=='bigm'){
+h+=sec('2. Fungsi tujuan Big-M',`<div class="eqs">${zl}${hasA?' − M·('+cols.filter(x=>x.t=='a').map(x=>nm(x.name)).join(' + ')+')':''}</div><p class="note">M adalah bilangan positif sangat besar. Langkah berikutnya: tulis baris Z, lalu hilangkan M dari kolom variabel semu (basis awal). Perbandingan nilai ber-M: bandingkan koefisien M dulu, baru konstanta.</p>`);
+{let raw=cols.map(x=>x.t=='x'?P(-cc[x.k]):x.t=='a'?P(0,1):P(0)),rr=P(0),rowsH='';
+const hd='<thead><tr><th>Baris</th>'+cols.map(x=>`<th>${nm(x.name)}</th>`).join('')+'<th>Solusi</th></tr></thead>';
+rowsH+=`<tr><td class="b">${zn} awal</td>`+raw.map(v=>`<td>${pf(v)}</td>`).join('')+`<td>0</td></tr>`;
+basis.forEach((j,i)=>{if(cols[j].t!='a')return;rowsH+=`<tr><td class="b">−M × baris ${nm(cols[j].name)}</td>`+T[i].slice(0,N).map(v=>`<td>${pf(P(0,-v))}</td>`).join('')+`<td>${pf(P(0,-T[i][N]))}</td></tr>`;raw=raw.map((q,k)=>P(q.c,q.m-T[i][k]));rr=P(rr.c,rr.m-T[i][N])});
+rowsH+=`<tr><td class="b">${zn} setelah eliminasi M</td>`+raw.map(v=>`<td>${pf(v)}</td>`).join('')+`<td>${pf(rr)}</td></tr>`;
+h+=sec('Eliminasi M dari baris '+zn,`<p class="note">Tulis ${zn} − (koefisien tujuan) = 0, sehingga kolom variabel semu bernilai +M. Variabel semu adalah basis awal, jadi kolomnya harus 0 di baris ${zn}: kurangkan M × baris variabel semu. Hasilnya menjadi baris ${zn} di tabel awal.</p><div class="scroll"><table class="tb bm">${hd}<tbody>${rowsH}</tbody></table></div>`)}
+const r=run({T,basis,cols},cBig,zn,'Big-M',true);h+=r.out;
+if(r.status=='unbounded'&&basis.some((j,i)=>cols[j].t=='a'&&T[i][N]>1e-7))return h+`<div class="res bad">Tidak feasible: kolom entering tidak punya batas rasio, tetapi variabel semu masih bernilai &gt; 0. Pada Big-M ini berarti kendala asli tidak bisa dipenuhi bersamaan (bukan unbounded).</div>`;
+if(r.status!='optimal')return h+`<div class="res bad">${r.status=='unbounded'?'Masalah tak terbatas (unbounded).':'Iterasi melebihi batas (kemungkinan siklus).'}</div>`;
+if(basis.some((j,i)=>cols[j].t=='a'&&T[i][N]>1e-7))return h+`<div class="res bad">Tidak feasible: variabel semu masih bernilai &gt; 0 di solusi optimal, jadi kendala asli tidak bisa dipenuhi bersamaan.</div>`;
+fin={obj:r.obj,T,basis,cols,N}}
+else{
+let cx={T,basis,cols};
+if(hasA){h+=sec('2. Fase 1',`<div class="eqs">Maks W = −(${cols.filter(x=>x.t=='a').map(x=>nm(x.name)).join(' + ')})</div><p class="note">Fungsi tujuan asli diabaikan dulu. Jika W maksimum = 0, semua variabel semu bernilai 0 dan solusi feasible ada.</p>`);
+const r=run(cx,cP1,'W','Fase 1');h+=r.out;
+if(r.status!='optimal')return h+`<div class="res bad">Iterasi Fase 1 melebihi batas (kemungkinan siklus). Hasil tidak dapat dipastikan.</div>`;
+if(Math.abs(r.obj.c)>1e-7)return h+`<div class="res bad">Fase 1 selesai dengan W = ${fmt(r.obj.c)} ≠ 0 dan variabel semu masih &gt; 0. Tidak ada solusi feasible, Fase 2 tidak dijalankan.</div>`;
+h+=`<div class="res ok">W = 0: ada solusi feasible. Lanjut ke Fase 2 (kolom variabel semu dibuang, c<sub>j</sub> diganti fungsi tujuan asli).</div>`;
+const keep=[],rm=new Set();
+cols.forEach((x,j)=>{if(x.t!='a')keep.push(j)});
+basis.forEach((j,i)=>{if(cols[j].t=='a'){const q=keep.find(k=>Math.abs(T[i][k])>1e-7&&!basis.includes(k));if(q!==undefined){piv(T,i,q);basis[i]=q;h+=`<p class="note">Catatan: ${nm(cols[j].name)} masih di basis dengan nilai 0, jadi dikeluarkan lewat pivot di kolom ${nm(cols[q].name)}.</p>`}else{rm.add(i);h+=`<p class="note">Catatan: baris ${nm(cols[j].name)} (kendala ${i+1}) redundan karena semua elemen non-semunya 0, jadi baris dibuang.</p>`}}});
+const nc=keep.map(j=>cols[j]),nT=[],nb=[];
+T.forEach((r,i)=>{if(rm.has(i))return;nT.push([...keep.map(j=>r[j]),r[N]]);nb.push(keep.indexOf(basis[i]))});
+cx={T:nT,basis:nb,cols:nc}}
+else h+=sec('2. Fase 1',`<p class="note">Tidak ada variabel semu, jadi Fase 1 dilewati.</p>`);
+h+=sec('3. Fase 2',`<div class="eqs">${zl}</div>`);
+const r2=run(cx,cP2,zn,'Fase 2');h+=r2.out;
+if(r2.status!='optimal')return h+`<div class="res bad">${r2.status=='unbounded'?'Masalah tak terbatas (unbounded).':'Iterasi melebihi batas.'}</div>`;
+fin={obj:r2.obj,T:cx.T,basis:cx.basis,cols:cx.cols,N:cx.cols.length}}
+const xv=Array(n).fill(0),sv={};
+fin.basis.forEach((j,i)=>{const x=fin.cols[j];if(x.t=='x')xv[x.k]=fin.T[i][fin.N];else if(x.t=='s')sv[x.name]=fin.T[i][fin.N]});
+const Zv=sense=='min'?-fin.obj.c:fin.obj.c;
+let body=`<div class="res ok">Optimal: ${xv.map((v,j)=>nm('x'+(j+1))+' = '+fmt(v)).join(', ')}; <br>Z ${sense=='min'?'minimum':'maksimum'} = ${fmt(Zv)}${sense=='min'?` (Z′ = ${fmt(fin.obj.c)}, dikembalikan: Z = −Z′)`:''}</div>`;
+body+=`<div class="scroll"><table class="tb"><thead><tr><th>Kendala asli</th><th>Ruas kiri</th><th>Tanda</th><th>Ruas kanan</th><th>Status</th></tr></thead><tbody>`+st.cons.map((r,i)=>{const L=r.a.reduce((s,v,j)=>s+Number(v)*xv[j],0),b=Number(r.b),ok=r.s=='le'?L<=b+1e-7:r.s=='ge'?L>=b-1e-7:Math.abs(L-b)<1e-7,gap=Math.abs(L-b)<1e-7;return`<tr><td>${i+1}</td><td>${fmt(L)}</td><td>${SG[r.s]}</td><td>${fmt(b)}</td><td>${ok?'✓ ':'✗ '}${gap?'aktif (terpakai pas)':'sisa/selisih '+fmt(Math.abs(L-b))}</td></tr>`}).join('')+`</tbody></table></div><p class="note">Fungsi tujuan asli: Z = ${lin(c,xn)} = ${fmt(c.reduce((s,v,j)=>s+v*xv[j],0))}.</p>`;
+const KK=method=='bigm'?3:4;if(!GOM.on)return h+sec(`${KK}. Hasil akhir dan pengecekan`,body);
+return h+sec(`${KK}. Hasil simpleks (relaksasi LP) dan pengecekan`,body+`<p class="note">Soal meminta variabel bulat, jadi hasil simpleks ini dihitung ulang dengan metode Gomory di bawah.</p>`)+gomoryFrom(fin,{n,sense,c,cc,zn,K:KK,method})}
+$('#go').onclick=()=>{try{const ae=document.activeElement;if(ae&&ae!==document.body&&ae.blur)ae.blur();$('#out').innerHTML=solve();try{$('#out').scrollIntoView({behavior:'smooth',block:'start'})}catch(_){$('#out').scrollIntoView()}}catch(e){$('#out').innerHTML='<div class="res bad">Terjadi kesalahan: '+e.message+'</div>'}};
+form();
+
+
+function syncG(){document.querySelectorAll('#segg button').forEach(x=>x.setAttribute('aria-pressed',(x.dataset.g=='1')==GOM.on));document.querySelectorAll('#segn button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.n==GOM.name));$('#segnw').hidden=!GOM.on}
+$('#segg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;GOM.on=b.dataset.g=='1';syncG()});
+$('#segn').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;GOM.name=b.dataset.n;syncG()});
+syncG();
+</script></body></html>
